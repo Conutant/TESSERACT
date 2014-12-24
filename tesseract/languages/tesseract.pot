@@ -1,0 +1,452 @@
+# Copyright (C) 2014 Tyler Moore
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Tesseract 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/tesseract\n"
+"POT-Creation-Date: 2014-12-23 06:38:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: 404.php:15
+#@ tesseract
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:19
+#@ tesseract
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr ""
+
+#: comments.php:28
+#, php-format
+#@ tesseract
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:35
+#: comments.php:53
+#@ tesseract
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:36
+#: comments.php:54
+#@ tesseract
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:37
+#: comments.php:55
+#@ tesseract
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: comments.php:65
+#@ tesseract
+msgid "Comments are closed."
+msgstr ""
+
+#: content-none.php:13
+#@ tesseract
+msgid "Nothing Found"
+msgstr ""
+
+#: content-none.php:19
+#, php-format
+#@ tesseract
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: content-none.php:23
+#@ tesseract
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr ""
+
+#: content-none.php:28
+#@ tesseract
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr ""
+
+#: content-page.php:18
+#: content-single.php:28
+#: content.php:47
+#@ tesseract
+msgid "Pages:"
+msgstr ""
+
+#: content-page.php:25
+#: inc/template-tags.php:122
+#@ tesseract
+msgid "Edit"
+msgstr ""
+
+#. translators: %s: Name of current post
+#: content.php:38
+#, php-format
+#@ tesseract
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: footer.php:17
+#, php-format
+#@ tesseract
+msgid "Tesseract %1$s by %2$s"
+msgstr ""
+
+#: footer.php:19
+#@ tesseract
+msgid "http://wordpress.org/"
+msgstr ""
+
+#: footer.php:19
+#, php-format
+#@ tesseract
+msgid "Runs on %s"
+msgstr ""
+
+#: functions.php:68
+#@ tesseract
+msgid "Primary Menu"
+msgstr ""
+
+#: functions.php:103
+#@ tesseract
+msgid "Primary Sidebar"
+msgstr ""
+
+#: functions.php:105
+#@ tesseract
+msgid "Appears on the left."
+msgstr ""
+
+#: functions.php:113
+#@ tesseract
+msgid "Featured Widget"
+msgstr ""
+
+#: functions.php:115
+#@ tesseract
+msgid "Appears on the top."
+msgstr ""
+
+#: functions.php:123
+#@ tesseract
+msgid "Left Middle Widget"
+msgstr ""
+
+#: functions.php:125
+#: functions.php:135
+#@ tesseract
+msgid "Appears after the featured widget."
+msgstr ""
+
+#: functions.php:133
+#@ tesseract
+msgid "Right Middle Widget"
+msgstr ""
+
+#: functions.php:143
+#@ tesseract
+msgid "Left Footer Widget"
+msgstr ""
+
+#: functions.php:145
+#: functions.php:155
+#@ tesseract
+msgid "Appears in the footer area."
+msgstr ""
+
+#: functions.php:153
+#@ tesseract
+msgid "Right Footer Widget"
+msgstr ""
+
+#: functions.php:171
+#@ tesseract
+msgid "Your Name"
+msgstr ""
+
+#: functions.php:172
+#@ tesseract
+msgid "E-mail"
+msgstr ""
+
+#: functions.php:173
+#@ tesseract
+msgid "Website"
+msgstr ""
+
+#: functions.php:174
+#@ tesseract
+msgid "Your Comment"
+msgstr ""
+
+#: functions.php:212
+#@ tesseract
+msgctxt "Google font: on or off"
+msgid "on"
+msgstr ""
+
+#: header.php:22
+#@ tesseract
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:31
+#@ tesseract
+msgid "Menu"
+msgstr ""
+
+#: inc/extras.php:74
+#, php-format
+#@ tesseract
+msgid "Page %s"
+msgstr ""
+
+#: inc/template-tags.php:21
+#@ tesseract
+msgid "Posts navigation"
+msgstr ""
+
+#: inc/template-tags.php:25
+#@ tesseract
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr ""
+
+#: inc/template-tags.php:29
+#@ tesseract
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: inc/template-tags.php:52
+#@ tesseract
+msgid "Post navigation"
+msgstr ""
+
+#: inc/template-tags.php:55
+#, php-format
+#@ tesseract
+msgctxt "Previous post link"
+msgid "<span class=\"meta-nav\">&larr;</span>&nbsp;%title"
+msgstr ""
+
+#: inc/template-tags.php:56
+#, php-format
+#@ tesseract
+msgctxt "Next post link"
+msgid "%title&nbsp;<span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: inc/template-tags.php:82
+#, php-format
+#@ tesseract
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr ""
+
+#: inc/template-tags.php:87
+#, php-format
+#@ tesseract
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:104
+#: inc/template-tags.php:110
+#@ tesseract
+msgid ", "
+msgstr ""
+
+#: inc/template-tags.php:106
+#, php-format
+#@ tesseract
+msgid "Posted in %1$s"
+msgstr ""
+
+#: inc/template-tags.php:112
+#, php-format
+#@ tesseract
+msgid "Tagged %1$s"
+msgstr ""
+
+#: inc/template-tags.php:118
+#@ tesseract
+msgid "Leave a comment"
+msgstr ""
+
+#: inc/template-tags.php:118
+#@ tesseract
+msgid "1 Comment"
+msgstr ""
+
+#: inc/template-tags.php:118
+#@ tesseract
+msgid "% Comments"
+msgstr ""
+
+#: inc/template-tags.php:139
+#, php-format
+#@ tesseract
+msgid "Category: %s"
+msgstr ""
+
+#: inc/template-tags.php:141
+#, php-format
+#@ tesseract
+msgid "Tag: %s"
+msgstr ""
+
+#: inc/template-tags.php:143
+#, php-format
+#@ tesseract
+msgid "Author: %s"
+msgstr ""
+
+#: inc/template-tags.php:145
+#, php-format
+#@ tesseract
+msgid "Year: %s"
+msgstr ""
+
+#: inc/template-tags.php:145
+#@ tesseract
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr ""
+
+#: inc/template-tags.php:147
+#, php-format
+#@ tesseract
+msgid "Month: %s"
+msgstr ""
+
+#: inc/template-tags.php:147
+#@ tesseract
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr ""
+
+#: inc/template-tags.php:149
+#, php-format
+#@ tesseract
+msgid "Day: %s"
+msgstr ""
+
+#: inc/template-tags.php:149
+#@ tesseract
+msgctxt "daily archives date format"
+msgid "F j, Y"
+msgstr ""
+
+#: inc/template-tags.php:151
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Asides"
+msgstr ""
+
+#: inc/template-tags.php:153
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Galleries"
+msgstr ""
+
+#: inc/template-tags.php:155
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Images"
+msgstr ""
+
+#: inc/template-tags.php:157
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Videos"
+msgstr ""
+
+#: inc/template-tags.php:159
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Quotes"
+msgstr ""
+
+#: inc/template-tags.php:161
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Links"
+msgstr ""
+
+#: inc/template-tags.php:163
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Statuses"
+msgstr ""
+
+#: inc/template-tags.php:165
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Audio"
+msgstr ""
+
+#: inc/template-tags.php:167
+#@ tesseract
+msgctxt "post format archive title"
+msgid "Chats"
+msgstr ""
+
+#: inc/template-tags.php:169
+#, php-format
+#@ tesseract
+msgid "Archives: %s"
+msgstr ""
+
+#. translators: 1: Taxonomy singular name, 2: Current taxonomy term
+#: inc/template-tags.php:173
+#, php-format
+#@ tesseract
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: inc/template-tags.php:175
+#@ tesseract
+msgid "Archives"
+msgstr ""
+
+#: search.php:16
+#, php-format
+#@ tesseract
+msgid "Search Results for: %s"
+msgstr ""
+
+#: sidebar-featured.php:14
+#@ tesseract
+msgid "Headline"
+msgstr ""
+
+#: sidebar-featured.php:16
+#@ tesseract
+msgid "Create a website and build your business."
+msgstr ""
+
+#: sidebar-featured.php:17
+#: sidebar-featured.php:18
+#@ tesseract
+msgid "/"
+msgstr ""
+
+#: sidebar-featured.php:17
+#@ tesseract
+msgid "Watch the Video"
+msgstr ""
+
+#: sidebar-featured.php:18
+#@ tesseract
+msgid "Start"
+msgstr ""
