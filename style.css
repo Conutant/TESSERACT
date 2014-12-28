@@ -533,7 +533,6 @@ table,
 blockquote,
 .wp-caption,
 .entry-footer,
-.comment-body,
 .footer-menu,
 .page-links,
 .page-content,
@@ -660,6 +659,10 @@ h6 {
 
 .entry-title {
     margin-bottom: 20px;
+}
+
+.comment-body {
+    margin-bottom: 5px;
 }
 
 .comment-author.vcard img {
