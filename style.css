@@ -663,6 +663,11 @@ h6 {
     margin-bottom: 20px;
 }
 
+.comment-author.vcard img {
+    float: left;
+    margin-bottom: 50px;
+}
+
 .comment-reply-title {
     text-align: center;
 }
