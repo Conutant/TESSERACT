@@ -9,6 +9,8 @@ Getting Started
 
 = Custom Menus =
 
+Stuff?
+
 Tesseract theme supports two custom menus. One is your primary and second one is for social links.
 
 The first step is to create a new custom menu, by heading to Appearance => Menus and following the guide.
