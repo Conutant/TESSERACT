@@ -1744,6 +1744,7 @@ figure {
     border-radius: 1px;
 	display: block;
     float: left;
+    margin-right: 30px;
 }
 
 .says {
