@@ -158,6 +158,15 @@ function tesseract_widgets_init() {
 		'before_title'  => '<h6 class="widget-title">',
 		'after_title'   => '</h6>',
 	) );
+	register_sidebar( array(
+		'name'          => __( 'Right Sidebar', 'tesseract' ),
+		'id'            => 'sidebar-7',
+		'description'   => __( 'Appears in the right area.', 'tesseract' ),
+		'before_widget' => '<aside id="%1$s" class="right-widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h6 class="widget-title">',
+		'after_title'   => '</h6>',
+	) );
 }
 add_action( 'widgets_init', 'tesseract_widgets_init' );
 

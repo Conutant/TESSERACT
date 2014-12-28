@@ -2047,13 +2047,31 @@ figure {
 }
 
 /* === Banner and Top Nav === */
-.site-banner{
+.home .site-banner{
     background-color: rgba(66, 66, 66, 0.74);
 }
 .site-header-image{
     margin-top: -58px;
     z-index: -10000;
     height: 620px;
+}
+
+/* === Rounded Photos === */
+.entry-content img{
+    margin: 10px;
+    float: left;
+    margin-left: 0px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+/* === Template with Right Sidebar  === */
+.content-area.left{
+    float: left!important;
+}
+.widget-area.right{
+    float: right!important;
 }
 
 @media screen and (max-width: 700px){
@@ -2075,4 +2093,5 @@ figure {
         background-color: #424242;
     }
 }
+
 
