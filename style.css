@@ -2045,6 +2045,17 @@ figure {
 .site-title{
         margin-left: 10px!important;
 }
+
+/* === Banner and Top Nav === */
+.site-banner{
+    background-color: rgba(66, 66, 66, 0.74);
+}
+.site-header-image{
+    margin-top: -58px;
+    z-index: -10000;
+    height: 620px;
+}
+
 @media screen and (max-width: 700px){
     .menu-toggle{
         background: url('images/white-mobile.png')!important;
@@ -2060,4 +2071,8 @@ figure {
     .site-title{
         margin-bottom: -10px;
     }
+    .site-banner{
+        background-color: #424242;
+    }
 }
+
