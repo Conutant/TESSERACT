@@ -665,6 +665,10 @@ h6 {
     margin-bottom: 5px;
 }
 
+ol .children {
+    padding-left: 100px;
+}
+
 .comment-author.vcard img {
     float: left;
     margin-bottom: 50px;
