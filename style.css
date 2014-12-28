@@ -2037,10 +2037,25 @@ figure {
     
 }
 
+
 /* === Custom CSS by Andrei === */
 
 /* === Logo === */
 
-.site-title{
-    margin-left: 10px!important
+@media screen and (max-width: 700px){
+    .menu-toggle{
+        background: url('images/white-mobile.png')!important;
+        border: none!important;
+        float: left!important;
+        width: 27px;
+        height: 15px;
+        margin-top: -10px;
+    }
+    .menu{
+        clear: both!important;
+    }
+    .site-title{
+        margin-left: 10px!important;
+        margin-bottom: -10px;
+    }
 }
