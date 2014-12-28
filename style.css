@@ -681,6 +681,10 @@ h6 {
     width: 50px;
 }
 
+.reply {
+    margin-left: 110px;
+}
+
 .featured-widget h1 {
     color: #fff;
     font-size: 100px;
@@ -1720,6 +1724,11 @@ figure {
 .comment-list .children {
 	list-style: none;
 }
+
+.comment-content {
+    display: flex;
+}
+
 
 .comment-content a {
 	word-wrap: break-word;
