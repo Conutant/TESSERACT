@@ -1743,6 +1743,7 @@ figure {
 .comment-author .avatar {
     border-radius: 1px;
 	display: block;
+    float: left;
 }
 
 .says {
