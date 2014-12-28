@@ -2041,7 +2041,9 @@ figure {
 /* === Custom CSS by Andrei === */
 
 /* === Logo === */
-
+.site-title{
+        margin-left: 10px!important;
+}
 @media screen and (max-width: 700px){
     .menu-toggle{
         background: url('images/white-mobile.png')!important;
@@ -2055,7 +2057,6 @@ figure {
         clear: both!important;
     }
     .site-title{
-        margin-left: 10px!important;
         margin-bottom: -10px;
     }
 }
