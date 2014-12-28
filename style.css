@@ -536,7 +536,6 @@ blockquote,
 .comment-body,
 .footer-menu,
 .page-links,
-.comment-meta,
 .page-content,
 .entry-summary,
 .entry-thumbnail,
@@ -1727,6 +1726,12 @@ figure {
 
 .comment-content {
     display: flex;
+
+}
+
+.comment-content p {
+    margin-top: 3px;
+    
 }
 
 
