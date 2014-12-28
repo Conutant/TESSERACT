@@ -1,47 +1,20 @@
 Tesseract
 ===
-Make first impression count with a large headline & full-page background. Tesseract is super easy to use, works out-of-the-box and it’s great for your personal, business or even organization site.
+Tesseract is a 100% free wordpress theme that allow you to make a website beautiful. 
 
 
-Getting Started
----------------
+
+= Features =
+
+Hero Headline
+
+The theme will have a main featured image with featued text and sub headline.  You can change the text and featured image right from the WordPress customizer.  The featured area will also be able to have buttons to change.  
+
+Navgiation
+
+The navigation will be able to be transpaernt on the homepage showing the featured image in the background.  You will also be able to change the font, font size, spacing, float and add buttons, text and social media. 
 
 
-= Custom Menus =
-
-Tesseract theme supports two custom menus. One is your primary and second one is for social links.
-
-The first step is to create a new custom menu, by heading to Appearance => Menus and following the guide.
-
-Add the link for each social profile to your menu as a custom link. For example, http://twitter.com/catchthemes is our Twitter link.
-
-= Included Icons =
-
-* Facebook
-* Twitter
-* Dribbble
-* Google Plus
-* Pinterest 
-* GitHub
-* Tumblr
-* YouTube
-* Flickr
-* Vimeo
-* Instagram
-* LinkedIn
-* Feed - add your feed URL
-
-= Widgets =
-
-Theme supports two widgets, one is your main one and second one is used for your homepage area and used as intro for your site. Please note that Intro Widget is available only if you are using default frontpage settings.
-
-= Featured Images =
-
-Before getting started with your featured images, regenerate them first and you can do that easily with this plugin: https://wordpress.org/plugins/regenerate-thumbnails/. The plugin allows you to regenerateyour thumbnails after changing the thumbnail sizes, which occurs by switching from one theme to another.
-
-= Jetpack =
-
-Theme supports Jetpack logo and it can be easily uploaded from Customizer area. It also supports Responsive videos and Infinite Scroll as well.
 
 == Credits ==
 
