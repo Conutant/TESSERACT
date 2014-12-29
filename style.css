@@ -2067,6 +2067,10 @@ figure {
     margin-left: 0px;
     border-radius: 5px;
     border: 1px solid;
+    opacity: 0.85
+}
+.entry-content img:hover{
+    opacity: 1
 }
 
 /* === Template with Right Sidebar  === */
@@ -2092,6 +2096,21 @@ textarea#comment{
 p.form-submit{
     background: #f9f9f9;
     border: 1px #f9f9f9;
+}
+div#comments{
+    padding: 10px;
+    border: 1px solid #B2A7A7;
+}
+article.comment-body{
+    background: none!important;
+    border:none;
+    border-bottom: 1px solid rgba(0, 0, 0 ,0.1);
+}
+.comments-title{
+    margin-left: 15px
+}
+.comment-author.vcard img{
+    width: 50px
 }
 
 /* === Mobile Properties  === */
