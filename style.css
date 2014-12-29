@@ -2065,9 +2065,8 @@ figure {
     margin: 10px;
     float: left;
     margin-left: 0px;
-    padding: 5px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px;
+    border: 1px solid;
 }
 
 /* === Template with Right Sidebar  === */
@@ -2084,6 +2083,15 @@ figure {
 }
 .main-navigation {
     padding: 6px;   
+}
+/* === Comment Part  === */
+textarea#comment{
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+}
+p.form-submit{
+    background: #f9f9f9;
+    border: 1px #f9f9f9;
 }
 
 /* === Mobile Properties  === */
@@ -2108,6 +2116,26 @@ figure {
     .main-navigation ul li{
         text-align: center;
     }
+    #site-navigation{
+        position: absolute;
+        height: auto;
+        top: 62px;
+        z-index: 1000;
+    }
+    .site-branding{
+        position: absolute;
+        z-index: 1001;
+        margin: 0 auto;
+        margin-left: 42%;
+    }
+    #site-navigation .menu{
+        margin-top: 15px;
+    }
 }
 
-
+@media screen and (max-width: 820px){
+    .content-area{
+        width: 100%;
+        padding: 0 20px;
+    }
+}
