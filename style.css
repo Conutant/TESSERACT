@@ -2077,6 +2077,7 @@ figure {
 .widget-area.right{
     float: right!important;
 }
+
 /* === 50px Navigation  === */
 .site-logo, .site-title{
     padding: 6px 0;
@@ -2085,6 +2086,7 @@ figure {
     padding: 6px;   
 }
 
+/* === Mobile Properties  === */
 @media screen and (max-width: 700px){
     .menu-toggle{
         background: url('images/white-mobile.png')!important;
@@ -2102,6 +2104,9 @@ figure {
     }
     .main-navigation {
         padding: 10px;
+    }
+    .main-navigation ul li{
+        text-align: center;
     }
 }
 
