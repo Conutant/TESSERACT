@@ -574,7 +574,11 @@ blockquote,
 .middle-widget, 
 .footer-widget
 .comment-reply-title {
-    
+
+}
+
+p {
+    margin-top: 0px;
 }
 
 p:last-item {
@@ -1864,7 +1868,7 @@ figure {
     
     .site-info,
     .site-content {
-		padding: 20px;
+        padding: 0 20px 20px;
 	}
     
     .site-logo,
