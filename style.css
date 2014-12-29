@@ -2077,6 +2077,13 @@ figure {
 .widget-area.right{
     float: right!important;
 }
+/* === 50px Navigation  === */
+.site-logo, .site-title{
+    padding: 6px 0;
+}
+.main-navigation {
+    padding: 6px;   
+}
 
 @media screen and (max-width: 700px){
     .menu-toggle{
@@ -2093,8 +2100,11 @@ figure {
     .site-title{
         margin-bottom: -10px;
     }
-    .site-banner{
+    .home .site-banner{
         background-color: #424242;
+    }
+    .main-navigation {
+        padding: 10px;
     }
 }
 
