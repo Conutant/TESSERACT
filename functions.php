@@ -32,7 +32,7 @@ function tesseract_setup() {
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
-	
+
 	// Add tyles the visual editor to resemble the theme style.
 	add_editor_style( array( 'css/editor-style.css', tesseract_fonts_url() ) );
 
@@ -50,16 +50,16 @@ function tesseract_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	add_theme_support( 'post-thumbnails' );
-	
+
 	// Set default size.
 	set_post_thumbnail_size( 1580, 480, true );
-	
+
 	// Add default size for single pages.
 	add_image_size( 'tesseract-large', '1580', '480', true );
 
 	// Add default size for homepage.
 	add_image_size( 'tesseract-thumbnail', '210', '150', true );
-		
+
 	// Add default logo size for Jetpack.
 	add_image_size( 'tesseract-site-logo', '300', '9999', false );
 
@@ -108,7 +108,7 @@ function tesseract_widgets_init() {
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
 	) );
-	
+
 	register_sidebar( array(
 		'name'          => __( 'Featured Widget', 'tesseract' ),
 		'id'            => 'sidebar-2',
@@ -118,7 +118,7 @@ function tesseract_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
-	
+
 	register_sidebar( array(
 		'name'          => __( 'Left Middle Widget', 'tesseract' ),
 		'id'            => 'sidebar-3',
@@ -128,7 +128,7 @@ function tesseract_widgets_init() {
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
 	) );
-	
+
 	register_sidebar( array(
 		'name'          => __( 'Right Middle Widget', 'tesseract' ),
 		'id'            => 'sidebar-4',
@@ -138,7 +138,7 @@ function tesseract_widgets_init() {
 		'before_title'  => '<h4 class="widget-title">',
 		'after_title'   => '</h4>',
 	) );
-	
+
 	register_sidebar( array(
 		'name'          => __( 'Left Footer Widget', 'tesseract' ),
 		'id'            => 'sidebar-5',
@@ -148,7 +148,7 @@ function tesseract_widgets_init() {
 		'before_title'  => '<h6 class="widget-title">',
 		'after_title'   => '</h6>',
 	) );
-	
+
 	register_sidebar( array(
 		'name'          => __( 'Right Footer Widget', 'tesseract' ),
 		'id'            => 'sidebar-6',
@@ -176,28 +176,28 @@ add_action( 'widgets_init', 'tesseract_widgets_init' );
 function tesseract_scripts() {
 
 	// Localize script (only few lines in helpers.js)
-    wp_localize_script( 'tesseract-helpers', 'tesseract-vars', array(  
- 	    'author'   => __( 'Your Name', 'tesseract' ), 
+    wp_localize_script( 'tesseract-helpers', 'tesseract-vars', array(
+ 	    'author'   => __( 'Your Name', 'tesseract' ),
  	    'email'    => __( 'E-mail', 'tesseract' ),
 		'url'      => __( 'Website', 'tesseract' ),
-		'comment'  => __( 'Your Comment', 'tesseract' ) 
- 	) );	
-	
+		'comment'  => __( 'Your Comment', 'tesseract' )
+ 	) );
+
 	// Enqueue default style
 	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri() );
-	
+
 	// Google fonts
 	wp_enqueue_style( 'tesseract-fonts', tesseract_fonts_url(), array(), '1.0.0' );
-	
-    // Social icons style	
+
+    // Social icons style
 	wp_enqueue_style( 'tesseract-icons', get_template_directory_uri() . '/css/typicons.css', array(), '1.0.0' );
-	
+
     // JS helpers (This is also the place where we call the jQuery in array)
 	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'jquery' ), '1.0.0', true );
 
 	// Mobile navigation
 	wp_enqueue_script( 'tesseract-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0.0', true );
-	
+
 	// Skip link fix
 	wp_enqueue_script( 'tesseract-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '1.0.0', true );
 
@@ -247,7 +247,10 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
-
+/**
+ * Theme custromizer class
+ */
+require get_template_directory(). '/inc/theme-customizer-class.php';
 /**
  * Customizer additions.
  */
@@ -257,3 +260,4 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
