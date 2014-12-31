@@ -2066,7 +2066,6 @@ figure {
     float: left;
     margin-left: 0px;
     border-radius: 5px;
-    border: 1px solid;
 }
 .entry-content img:hover{
     opacity: 0.7
@@ -2098,7 +2097,8 @@ p.form-submit{
 }
 div#comments{
     padding: 10px;
-    border: 1px solid #B2A7A7;
+    border: 1px solid rgba(178, 167, 167, 0.31);
+    border-radius: 5px;
 }
 article.comment-body{
     background: none!important;
