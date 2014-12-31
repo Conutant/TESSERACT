@@ -2067,10 +2067,9 @@ figure {
     margin-left: 0px;
     border-radius: 5px;
     border: 1px solid;
-    opacity: 0.85
 }
 .entry-content img:hover{
-    opacity: 1
+    opacity: 0.7
 }
 
 /* === Template with Right Sidebar  === */
@@ -2138,14 +2137,14 @@ article.comment-body{
     #site-navigation{
         position: absolute;
         height: auto;
-        top: 62px;
+        margin-top: 16px;
         z-index: 1000;
     }
     .site-branding{
         position: absolute;
         z-index: 1001;
         margin: 0 auto;
-        margin-left: 42%;
+        margin-left: 44%;
     }
     #site-navigation .menu{
         margin-top: 15px;
@@ -2158,3 +2157,16 @@ article.comment-body{
         padding: 0 20px;
     }
 }
+
+@media (min-width: 401px) and (max-width: 550px){
+    .site-branding{
+        margin-left: 42%;
+    }
+}
+@media screen and (max-width: 400px){
+    .site-branding{
+        margin-left: 40%;
+    }
+}
+
+
