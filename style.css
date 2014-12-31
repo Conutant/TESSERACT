@@ -2112,6 +2112,25 @@ article.comment-body{
     width: 50px
 }
 
+/* === Blog Page  === */
+.navigation.post-navigation{
+    padding: 10px
+}
+.tesseract-featured .entry-content{
+    margin-top: 0px
+}
+.page article{
+    border-bottom: 1px dotted rgb(190, 175, 175);
+}
+h1.entry-title{
+    text-transform: capitalize;
+}
+span.posted-on{
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+}
+
 /* === Mobile Properties  === */
 @media screen and (max-width: 700px){
     .menu-toggle{

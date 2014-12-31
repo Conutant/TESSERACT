@@ -23,7 +23,7 @@
         <div class="entry-meta">
 	        <?php tesseract_posted_on(); ?>
 		</div><!-- .entry-meta -->
-		<?php the_content(); ?>
+		<?php the_excerpt(); ?>
 		<?php
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . __( 'Pages:', 'tesseract' ),
