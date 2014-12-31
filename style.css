@@ -2132,7 +2132,16 @@ span.posted-on{
     font-style: italic;
     font-weight: bold;
 }
-.page #comments{display: none}
+.page #comments{
+    display: none
+}
+.moretag{
+    display: block;
+    font-style: italic;
+    text-align: right;
+    clear: both;
+}
+
 /* === Mobile Properties  === */
 @media screen and (max-width: 700px){
     .menu-toggle{
