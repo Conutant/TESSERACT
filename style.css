@@ -2124,13 +2124,15 @@ article.comment-body{
 }
 h1.entry-title{
     text-transform: capitalize;
+    font-size: 35px;
+    margin: 30px 0px;
 }
 span.posted-on{
     font-size: 16px;
     font-style: italic;
     font-weight: bold;
 }
-
+.page #comments{display: none}
 /* === Mobile Properties  === */
 @media screen and (max-width: 700px){
     .menu-toggle{
