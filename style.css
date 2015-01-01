@@ -1874,6 +1874,11 @@ figure {
     .site-content {
         padding: 0 20px 0px;
 	}
+
+    .site-info{
+        padding-bottom:10px;
+        padding-top:10px;
+    }
     
     .site-logo,
     .site-title {
