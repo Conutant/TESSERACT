@@ -2149,6 +2149,12 @@ span.posted-on{
     clear: both;
 }
 
+.wpcf7-submit{
+    float: right;
+    clear: both;
+    margin-bottom: 20px; 
+}
+
 /* === Mobile Properties  === */
 @media screen and (max-width: 700px){
     .menu-toggle{
