@@ -2099,10 +2099,11 @@ p.form-submit{
     background: #f9f9f9;
     border: 1px #f9f9f9;
 }
-div#comments{
+#comments{
     padding: 10px;
     border: 1px solid rgba(178, 167, 167, 0.31);
     border-radius: 5px;
+    margin-bottom: 30px;
 }
 article.comment-body{
     background: none!important;
@@ -2135,9 +2136,6 @@ span.posted-on{
     font-size: 16px;
     font-style: italic;
     font-weight: bold;
-}
-.page #comments{
-    display: none
 }
 .moretag{
     display: block;
