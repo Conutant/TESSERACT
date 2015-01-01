@@ -2109,6 +2109,7 @@ p.form-submit{
     border: 1px solid rgba(178, 167, 167, 0.31);
     border-radius: 5px;
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 article.comment-body{
     background: none!important;
