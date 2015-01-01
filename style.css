@@ -1657,6 +1657,10 @@ figure {
     border-bottom: none;
 }
 
+.entry-footer{
+    display:none;
+}
+
 .entry-footer span {
     padding-right: 5px;
 }
