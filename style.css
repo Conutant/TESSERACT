@@ -2129,8 +2129,8 @@ article.comment-body{
 .tesseract-featured .entry-content{
     margin-top: 0px
 }
-.page article{
-
+.page-template-blog-php article{
+    border-bottom: 1px dotted rgb(190, 175, 175);
 }
 h1.entry-title{
     text-transform: capitalize;
@@ -2153,6 +2153,10 @@ span.posted-on{
     float: right;
     clear: both;
     margin-bottom: 20px; 
+}
+
+.full-width-page {
+    width: 860px;
 }
 
 /* === Mobile Properties  === */
@@ -2211,5 +2215,12 @@ span.posted-on{
         margin-left: 40%;
     }
 }
+
+@media screen and (max-width: 900px){
+    .full-width-page {
+        width: 96%;
+    }
+}
+
 
 
