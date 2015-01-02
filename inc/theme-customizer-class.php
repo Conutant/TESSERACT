@@ -20,12 +20,12 @@ class Tesseract_Customize {
 	 */
 	public static function register ( $wp_customize ) {
 		//1. Define a new section (if desired) to the Theme Customizer
-		$wp_customize->add_section( 'mytheme_options',
+		/* $wp_customize->add_section( 'mytheme_options',
 				array(
-						'title' => __( 'XXXX Options', 'mytheme' ), //Visible title of section
+						'title' => __( 'XXXX Options', 'tesseract' ), //Visible title of section
 						'priority' => 95, //Determines what order this appears in
 						'capability' => 'edit_theme_options', //Capability needed to tweak
-						'description' => __('Allows you to customize some example settings for Tesseract.', 'mytheme'), //Descriptive tooltip
+						'description' => __('Allows you to customize some example settings for Tesseract.', 'tesseract'), //Descriptive tooltip
 				)
 		);
 
@@ -44,7 +44,51 @@ class Tesseract_Customize {
 				$wp_customize, //Pass the $wp_customize object (required)
 				'mytheme_link_textcolor', //Set a unique ID for the control
 				array(
-						'label' => __( 'Linkxxxx Color', 'mytheme' ), //Admin-visible name of the control
+						'label' => __( 'Linkxxxx Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'colors', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'link_textcolor', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+ */
+		//4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
+		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+		$wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
+
+		//here we add individual sections and settings...
+		self::register_featured_section($wp_customize);
+	}
+
+	//navigation panel
+	public static function register_navigation_section( $wp_customize ) {
+		//1. Define a new section (if desired) to the Theme Customizer
+		$wp_customize->add_section( 'tesseract_navigation_options',
+				array(
+						'title' => __( 'Navigation Menu', 'tesseract' ), //Visible title of section
+						'priority' => 105, //Determines what order this appears in
+						'capability' => 'edit_theme_options', //Capability needed to tweak
+						'description' => __('Allows you to customize navigation menu for Tesseract.', 'tesseract'), //Descriptive tooltip
+				)
+		);
+
+		//2. Register new settings to the WP database...
+		$wp_customize->add_setting( 'link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#2BA6CB', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'mytheme_link_textcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Linkxxxx Color', 'tesseract' ), //Admin-visible name of the control
 						'section' => 'colors', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'link_textcolor', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
