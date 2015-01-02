@@ -58,7 +58,7 @@ class Tesseract_Customize {
 		$wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
 
 		//here we add individual sections and settings...
-		self::register_featured_section($wp_customize);
+		self::register_navigation_section($wp_customize);
 	}
 
 	//navigation panel
@@ -74,7 +74,8 @@ class Tesseract_Customize {
 		);
 
 		//2. Register new settings to the WP database...
-		$wp_customize->add_setting( 'link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		//menu text color
+		$wp_customize->add_setting( 'menu_link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
 						'default' => '#2BA6CB', //Default setting/value to save
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
@@ -82,24 +83,59 @@ class Tesseract_Customize {
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
 		);
-
+		//menu hover color
+		$wp_customize->add_setting( 'menu_link_hovercolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#ffffff', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//menu background color
+		$wp_customize->add_setting( 'menu_link_bgcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#303647', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
 		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		//menu text color control
 		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
 				$wp_customize, //Pass the $wp_customize object (required)
-				'mytheme_link_textcolor', //Set a unique ID for the control
+				'tesseract_menu_link_textcolor', //Set a unique ID for the control
 				array(
-						'label' => __( 'Linkxxxx Color', 'tesseract' ), //Admin-visible name of the control
-						'section' => 'colors', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
-						'settings' => 'link_textcolor', //Which setting to load and manipulate (serialized is okay)
+						'label' => __( 'Menu Text Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'menu_link_textcolor', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
 				)
 		) );
 
-		//4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
-		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-		$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
-		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-		$wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
+		//menu text hover color control
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_menu_link_hovercolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Hover Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'menu_link_hovercolor', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+	 	//menu background color
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_menu_link_bgcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Background Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'menu_link_bgcolor', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
 	}
 
 	/**
