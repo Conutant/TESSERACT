@@ -22,8 +22,8 @@ class Tesseract_Customize {
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'mytheme_options',
 				array(
-						'title' => __( 'Feature Options', 'mytheme' ), //Visible title of section
-						'priority' => 35, //Determines what order this appears in
+						'title' => __( 'XXXX Options', 'mytheme' ), //Visible title of section
+						'priority' => 95, //Determines what order this appears in
 						'capability' => 'edit_theme_options', //Capability needed to tweak
 						'description' => __('Allows you to customize some example settings for Tesseract.', 'mytheme'), //Descriptive tooltip
 				)
@@ -44,7 +44,7 @@ class Tesseract_Customize {
 				$wp_customize, //Pass the $wp_customize object (required)
 				'mytheme_link_textcolor', //Set a unique ID for the control
 				array(
-						'label' => __( 'Link Color', 'mytheme' ), //Admin-visible name of the control
+						'label' => __( 'Linkxxxx Color', 'mytheme' ), //Admin-visible name of the control
 						'section' => 'colors', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'link_textcolor', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
