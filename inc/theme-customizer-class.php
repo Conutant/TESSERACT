@@ -101,6 +101,17 @@ class Tesseract_Customize {
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
 		);
+
+		//menu background opacity
+		$wp_customize->add_setting( 'menu_link_bgopacity', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '7', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
 		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
 		//menu text color control
 		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
@@ -135,6 +146,17 @@ class Tesseract_Customize {
 						'settings' => 'menu_link_bgcolor', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
 				)
+		) );
+
+		//menu background opacity
+		$wp_customize->add_control( 'tesseract_menu_link_bgopacity',
+				 array(
+					'label'   =>  __('Menu Background Opacity', 'tesseract'),
+					'section' => 'tesseract_navigation_options',
+				 	'settings'=> 'menu_link_bgopacity',
+					'type'    => 'select',
+					'choices' => array("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"),
+					'priority' => 10
 		) );
 	}
 
