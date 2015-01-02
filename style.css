@@ -2084,9 +2084,6 @@ figure {
     margin-left: 0px;
     border-radius: 5px;
 }
-.entry-content img:hover{
-    opacity: 0.7
-}
 
 /* === Template with Right Sidebar  === */
 .content-area.left{
