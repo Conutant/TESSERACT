@@ -1044,6 +1044,8 @@ a:active {
 .site-banner {
     background-color: #424242;
     min-height: 45px;
+    z-index: 5;
+    position: relative;
 }
 
 .site-logo, /* Jetpack */
@@ -1378,7 +1380,7 @@ figure {
 
 .entry-background {
     position: absolute;
-    top: 58px;
+    top: 51px;
 }
 
 .entry-background:before {
@@ -2134,7 +2136,7 @@ article.comment-body{
     padding: 10px
 }
 .tesseract-featured .entry-content{
-    margin-top: 0px
+    margin-top: 480px
 }
 .page-template-blog-php article{
     border-bottom: 1px dotted rgb(190, 175, 175);
