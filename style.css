@@ -564,7 +564,7 @@ blockquote,
 .site-content,
 .middle-widget, 
 .footer-widget {
-    padding-bottom: 35px;
+
 }
 
 .page-links,
@@ -579,6 +579,8 @@ blockquote,
 
 p {
     margin-top: 0px;
+    margin-bottom:0px;
+    padding-bottom: 20px;
 }
 
 p:last-item {
@@ -661,6 +663,10 @@ h6 {
     font-size: 14px;
 }
 
+span{
+    display:inline-block;
+}
+
 .entry-title {
     margin-bottom: 20px;
 }
@@ -692,7 +698,7 @@ ol .children {
 }
 
 .reply {
-    margin-left: 110px;
+    margin-left: 80px;
 }
 
 .featured-widget h1 {
@@ -1657,6 +1663,10 @@ figure {
     border-bottom: none;
 }
 
+.entry-footer{
+    display:none;
+}
+
 .entry-footer span {
     padding-right: 5px;
 }
@@ -1766,7 +1776,7 @@ figure {
     border: 1px solid rgba(0, 0, 0 ,0.1);
     border-top: none;
     margin: -10px 0 0 0;
-    padding: 10px;
+    padding: 10px 0px;
     text-align: right;
 }
 
@@ -1868,8 +1878,13 @@ figure {
     
     .site-info,
     .site-content {
-        padding: 0 20px 20px;
+        padding: 0 20px 0px;
 	}
+
+    .site-info{
+        padding-bottom:10px;
+        padding-top:10px;
+    }
     
     .site-logo,
     .site-title {
@@ -2066,11 +2081,9 @@ figure {
     float: left;
     margin-left: 0px;
     border-radius: 5px;
-    border: 1px solid;
-    opacity: 0.85
 }
 .entry-content img:hover{
-    opacity: 1
+    opacity: 0.7
 }
 
 /* === Template with Right Sidebar  === */
@@ -2097,9 +2110,12 @@ p.form-submit{
     background: #f9f9f9;
     border: 1px #f9f9f9;
 }
-div#comments{
+#comments{
     padding: 10px;
-    border: 1px solid #B2A7A7;
+    border: 1px solid rgba(178, 167, 167, 0.31);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 article.comment-body{
     background: none!important;
@@ -2111,6 +2127,43 @@ article.comment-body{
 }
 .comment-author.vcard img{
     width: 50px
+}
+
+/* === Blog Page  === */
+.navigation.post-navigation{
+    padding: 10px
+}
+.tesseract-featured .entry-content{
+    margin-top: 0px
+}
+.page-template-blog-php article{
+    border-bottom: 1px dotted rgb(190, 175, 175);
+}
+h1.entry-title{
+    text-transform: capitalize;
+    font-size: 35px;
+    margin: 30px 0px;
+}
+span.posted-on{
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+}
+.moretag{
+    display: block;
+    font-style: italic;
+    text-align: right;
+    clear: both;
+}
+
+.wpcf7-submit{
+    float: right;
+    clear: both;
+    margin-bottom: 20px; 
+}
+
+.full-width-page {
+    width: 860px;
 }
 
 /* === Mobile Properties  === */
@@ -2138,14 +2191,14 @@ article.comment-body{
     #site-navigation{
         position: absolute;
         height: auto;
-        top: 62px;
+        margin-top: 16px;
         z-index: 1000;
     }
     .site-branding{
         position: absolute;
         z-index: 1001;
         margin: 0 auto;
-        margin-left: 42%;
+        margin-left: 44%;
     }
     #site-navigation .menu{
         margin-top: 15px;
@@ -2158,3 +2211,23 @@ article.comment-body{
         padding: 0 20px;
     }
 }
+
+@media (min-width: 401px) and (max-width: 550px){
+    .site-branding{
+        margin-left: 42%;
+    }
+}
+@media screen and (max-width: 400px){
+    .site-branding{
+        margin-left: 40%;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .full-width-page {
+        width: 96%;
+    }
+}
+
+
+

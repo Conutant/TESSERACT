@@ -1,30 +1,31 @@
 <?php
 /**
- * Template Name: Right Sidebar 
+ * Template Name: Blog Page
  *
  * @package Tesseract
  */
 
 get_header(); ?>
 
-	<div id="primary" class="content-area left">
+	<div id="primary" class="full-width-page">
 		<main id="main" class="site-main" role="main">
+ 		<?php $args = array(
+			    'order'         => 'DESC',
+			    'posts_per_page'        => '10',
+			);
+			$query = new WP_Query($args);
 
-		<?php if ( have_posts() ) : ?>
-
+		?>
+		<?php if ( $query->have_posts() ) : ?>
 			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 				<?php
 					/* Include the Post-Format-specific template for the content.
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
-					get_template_part( 'content', get_post_format() );
-					// If comments are open or we have at least one comment, load up the comment template
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
+					get_template_part( 'content', 'blog' );
 				?>
 
 			<?php endwhile; ?>
@@ -40,9 +41,4 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-
-
-<div id="secondary" class="widget-area right" role="complementary">
-	<?php dynamic_sidebar( 'sidebar-7' ); ?>
-</div>
 <?php get_footer(); ?>
