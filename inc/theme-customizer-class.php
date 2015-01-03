@@ -59,9 +59,11 @@ class Tesseract_Customize {
 
 		//here we add individual sections and settings...
 		self::register_navigation_section($wp_customize);
+		self::register_featured_text_section($wp_customize);
+		self::register_featured_subheadline_section($wp_customize);
 	}
 
-	//navigation panel
+	//navigation options
 	public static function register_navigation_section( $wp_customize ) {
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'tesseract_navigation_options',
@@ -158,6 +160,170 @@ class Tesseract_Customize {
 					'choices' => array("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"),
 					'priority' => 10
 		) );
+	}
+
+	//Featured text options
+	public static function register_featured_text_section( $wp_customize ) {
+		//1. Define a new section (if desired) to the Theme Customizer
+		$wp_customize->add_section( 'tesseract_featured_text_options',
+				array(
+						'title' => __( 'Featured Headline Options', 'tesseract' ), //Visible title of section
+						'priority' => 96, //Determines what order this appears in
+						'capability' => 'edit_theme_options', //Capability needed to tweak
+						'description' => __('Allows you to customize featured text for Tesseract.', 'tesseract'), //Descriptive tooltip
+				)
+		);
+
+		//2. Register new settings to the WP database...
+		//featured text color
+		$wp_customize->add_setting( 'featured_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#ffffff', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+		//featured text fontsize
+		$wp_customize->add_setting( 'featured_text_fontsize', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '12', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+		//featured text dropshadow
+		$wp_customize->add_setting( 'featured_text_hasshadow', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '0', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		//menu text color control
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_featured_textcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Featured Text Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_featured_text_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'featured_textcolor', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+
+
+
+		//featured text fontsize
+		$wp_customize->add_control( 'tesseract_featured_text_fontsize',
+				array(
+						'label'   =>  __('Featured Text Fontsize', 'tesseract'),
+						'section' => 'tesseract_featured_text_options',
+						'settings'=> 'featured_text_fontsize',
+						'type'    => 'select',
+						'choices' => array(8,10,12,14,16,24,36,40,48,62,72),
+						'priority' => 10
+				) );
+
+		//featured text shadow
+		$wp_customize->add_control( 'tesseract_featured_text_hasshadow',
+				array(
+						'label'   =>  __('Featured Text Shadow', 'tesseract'),
+						'section' => 'tesseract_featured_text_options',
+						'settings'=> 'featured_text_hasshadow',
+						'type'    => 'radio',
+						'choices' => array('No','Yes'),
+						'priority' => 10
+				) );
+	}
+
+	//Featured text sub options
+	public static function register_featured_subheadline_section( $wp_customize ) {
+		//1. Define a new section (if desired) to the Theme Customizer
+		$wp_customize->add_section( 'tesseract_featured_subheadline_options',
+				array(
+						'title' => __( 'Featured Sub Headline Options', 'tesseract' ), //Visible title of section
+						'priority' => 97, //Determines what order this appears in
+						'capability' => 'edit_theme_options', //Capability needed to tweak
+						'description' => __('Allows you to customize featured sub headline text for Tesseract.', 'tesseract'), //Descriptive tooltip
+				)
+		);
+
+		//2. Register new settings to the WP database...
+		//featured _subheadline_ color
+		$wp_customize->add_setting( 'featured_subheadline_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#ffffff', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+		//featured _subheadline_ fontsize
+		$wp_customize->add_setting( 'featured_subheadline_fontsize', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '0', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+		//featured _subheadline_ dropshadow
+		$wp_customize->add_setting( 'featured_subheadline_hasshadow', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '0', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		//menu text color control
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_featured_subheadline_textcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Featured Text Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_featured_subheadline_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'featured_subheadline_textcolor', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 11, //Determines the order this control appears in for the specified section
+				)
+		) );
+
+
+
+		//featured text fontsize
+		$wp_customize->add_control( 'tesseract_featured_text_fontsize',
+				array(
+						'label'   =>  __('Featured Text Fontsize', 'tesseract'),
+						'section' => 'tesseract_featured_subheadline_options',
+						'settings'=> 'featured_subheadline_fontsize',
+						'type'    => 'select',
+						'choices' => array(8,10,12),
+						'priority' => 11
+				) );
+
+		//featured text shadow
+		$wp_customize->add_control( 'tesseract_featured_text_hasshadow',
+				array(
+						'label'   =>  __('Featured Text Shadow', 'tesseract'),
+						'section' => 'tesseract_featured_subheadline_options',
+						'settings'=> 'featured_subheadline_hasshadow',
+						'type'    => 'radio',
+						'choices' => array('No','Yes'),
+						'priority' => 11
+				) );
 	}
 
 	/**
