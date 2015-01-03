@@ -382,6 +382,11 @@ class Tesseract_Customize {
            <?php self::generate_css('#site-title a', 'color', 'header_textcolor', '#'); ?>
            <?php self::generate_css('body', 'background-color', 'background_color', '#'); ?>
            <?php self::generate_css('a', 'color', 'link_textcolor'); ?>
+           <!-- Featured Headline -->
+           <?php //self::generate_css($selector, $style, $mod_name)?>
+           <!-- Featured Sub Headline -->
+
+           <!-- Navigation Menu -->
       </style>
       <!--/Customizer CSS-->
       <?php

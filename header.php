@@ -37,8 +37,8 @@
 	<?php if ( get_header_image() && is_home() ) : ?>
 		<div class="site-header-image" style="background-image: url('<?php header_image(); ?>')"></div>
 	<?php endif; // End header image check. ?>
-        
-    <?php if ( is_home() ) 
-	    get_sidebar( 'featured' ) || get_sidebar( 'middle' ); 
+
+    <?php if ( is_home() )
+	    get_sidebar( 'featured' ) || get_sidebar( 'middle' );
 	?>
     <div id="content" class="site-content">
