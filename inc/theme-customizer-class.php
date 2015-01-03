@@ -176,6 +176,15 @@ class Tesseract_Customize {
 
 		//2. Register new settings to the WP database...
 		//featured text color
+		$wp_customize->add_setting( 'featured_text', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => 'HEADLINE', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//featured text color
 		$wp_customize->add_setting( 'featured_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
 						'default' => '#ffffff', //Default setting/value to save
@@ -207,6 +216,18 @@ class Tesseract_Customize {
 
 
 		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		//featured text content
+		$wp_customize->add_control( new WP_Customize_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_featured_text', //Set a unique ID for the control
+				array(
+						'label' => __( 'Featured Text', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_featured_text_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'featured_text', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+
 		//menu text color control
 		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
 				$wp_customize, //Pass the $wp_customize object (required)
@@ -257,6 +278,15 @@ class Tesseract_Customize {
 		);
 
 		//2. Register new settings to the WP database...
+		//featured text color
+		$wp_customize->add_setting( 'featured_subheadline_text', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => 'Create a website and build your business.', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
 		//featured _subheadline_ color
 		$wp_customize->add_setting( 'featured_subheadline_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
@@ -289,6 +319,19 @@ class Tesseract_Customize {
 
 
 		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+
+		//featured subheadline text content
+		$wp_customize->add_control( new WP_Customize_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_featured_subheadline_text', //Set a unique ID for the control
+				array(
+						'label' => __( 'Sub Headline Text', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_featured_subheadline_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'featured_subheadline_text', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+
 		//menu text color control
 		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
 				$wp_customize, //Pass the $wp_customize object (required)
@@ -360,7 +403,7 @@ class Tesseract_Customize {
    public static function live_preview() {
       wp_enqueue_script(
            'mytheme-themecustomizer', // Give the script a unique ID
-           get_template_directory_uri() . '/assets/js/theme-customizer.js', // Define the path to the JS file
+           get_template_directory_uri() . '/assets/js/customizer.js', // Define the path to the JS file
            array(  'jquery', 'customize-preview' ), // Define dependencies
            '', // Define a version (optional)
            true // Specify whether to put in footer (leave this true)
