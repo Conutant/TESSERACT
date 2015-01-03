@@ -304,7 +304,7 @@ class Tesseract_Customize {
 
 
 		//featured text fontsize
-		$wp_customize->add_control( 'tesseract_featured_text_fontsize',
+		$wp_customize->add_control( 'tesseract_featured_subheadline_fontsize',
 				array(
 						'label'   =>  __('Featured Text Fontsize', 'tesseract'),
 						'section' => 'tesseract_featured_subheadline_options',
@@ -315,7 +315,7 @@ class Tesseract_Customize {
 				) );
 
 		//featured text shadow
-		$wp_customize->add_control( 'tesseract_featured_text_hasshadow',
+		$wp_customize->add_control( 'tesseract_featured_subheadline_hasshadow',
 				array(
 						'label'   =>  __('Featured Text Shadow', 'tesseract'),
 						'section' => 'tesseract_featured_subheadline_options',
