@@ -62,7 +62,9 @@
 
 	//menu background color
 	wp.customize( 'menu_link_bgcolor', function( value ) {
+
 		value.bind( function( to ) {
+			//console.log($('li#accordion-section-tesseract_navigation_options ul.accordion-section-content li#customize-control-tesseract_menu_link_bgopacity label select').val());
 			$( '.site-banner' ).css('background-color',to);
 		} );
 	} );

@@ -34,3 +34,7 @@ add_action( 'wp_head' , array( 'Tesseract_Customize' , 'header_output' ) );
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init' , array( 'Tesseract_Customize' , 'live_preview' ) );
+
+//Enqueue customizer custom control stylesheets
+add_action( 'customize_controls_print_styles',array( 'Tesseract_Customize' , 'tesseract_enqueue_customizer_controls_styles') );
+add_action( 'admin_enqueue_scripts', array( 'Tesseract_Customize' ,'tesseract_enqueue_customizer_admin_scripts') );

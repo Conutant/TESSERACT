@@ -5,6 +5,7 @@
 * @link http://codex.wordpress.org/Theme_Customization_API
 * @since MyTheme 1.0
 */
+require_once('customizer-controls/custom-controllers.php');
 class Tesseract_Customize {
 	/**
 	 * This hooks into 'customize_register' (available as of WP 3.4) and allows
@@ -139,7 +140,7 @@ class Tesseract_Customize {
 				)
 		) );
 	 	//menu background color
-		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+		/* $wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
 				$wp_customize, //Pass the $wp_customize object (required)
 				'tesseract_menu_link_bgcolor', //Set a unique ID for the control
 				array(
@@ -148,10 +149,22 @@ class Tesseract_Customize {
 						'settings' => 'menu_link_bgcolor', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
 				)
+		) ); */
+
+		$wp_customize->add_control( new Tesseract_Customize_Alpha_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_menu_link_bgcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Background Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'menu_link_bgcolor', //Which setting to load and manipulate (serialized is okay)
+						'palette' => true,
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
 		) );
 
 		//menu background opacity
-		$wp_customize->add_control( 'tesseract_menu_link_bgopacity',
+		/* $wp_customize->add_control( 'tesseract_menu_link_bgopacity',
 				 array(
 					'label'   =>  __('Menu Background Opacity', 'tesseract'),
 					'section' => 'tesseract_navigation_options',
@@ -159,7 +172,7 @@ class Tesseract_Customize {
 					'type'    => 'select',
 					'choices' => array("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"),
 					'priority' => 10
-		) );
+		) ); */
 	}
 
 	//Featured text options
@@ -416,6 +429,8 @@ class Tesseract_Customize {
     * @since MyTheme 1.0
     */
    public static function live_preview() {
+
+
       wp_enqueue_script(
            'tesseract-themecustomizer', // Give the script a unique ID
            get_template_directory_uri() . '/js/theme-customizer.js', // Define the path to the JS file
@@ -423,7 +438,24 @@ class Tesseract_Customize {
            '', // Define a version (optional)
            true // Specify whether to put in footer (leave this true)
       );
+
    }
+   /**
+    * customizer css load
+    */
+   public static function tesseract_enqueue_customizer_controls_styles() {
+
+   	wp_register_style( 'tesseract-customizer-controls', get_template_directory_uri() . '/css/admin/customizer-controls.css', NULL, NULL, 'all' );
+   	wp_enqueue_style( 'tesseract-customizer-controls' );
+
+   }
+   public static function tesseract_enqueue_customizer_admin_scripts() {
+
+   	wp_register_script( 'customizer-admin-js', get_template_directory_uri() . '/js/custom-controllers.js', array( 'jquery' ), NULL, true );
+   	wp_enqueue_script( 'customizer-admin-js' );
+
+   }
+
 
     /**
      * This will generate a line of CSS for use in header output. If the setting
