@@ -98,17 +98,7 @@ class Tesseract_Customize {
 		//menu background color
 		$wp_customize->add_setting( 'menu_link_bgcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
-						'default' => '#303647', //Default setting/value to save
-						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
-						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
-						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-				)
-		);
-
-		//menu background opacity
-		$wp_customize->add_setting( 'menu_link_bgopacity', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
-				array(
-						'default' => '7', //Default setting/value to save
+						'default' => 'rgba(66, 66, 66, 0.74)', //Default setting/value to save
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
@@ -140,16 +130,6 @@ class Tesseract_Customize {
 				)
 		) );
 	 	//menu background color
-		/* $wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
-				$wp_customize, //Pass the $wp_customize object (required)
-				'tesseract_menu_link_bgcolor', //Set a unique ID for the control
-				array(
-						'label' => __( 'Menu Background Color', 'tesseract' ), //Admin-visible name of the control
-						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
-						'settings' => 'menu_link_bgcolor', //Which setting to load and manipulate (serialized is okay)
-						'priority' => 10, //Determines the order this control appears in for the specified section
-				)
-		) ); */
 
 		$wp_customize->add_control( new Tesseract_Customize_Alpha_Color_Control( //Instantiate the color control class
 				$wp_customize, //Pass the $wp_customize object (required)
@@ -163,16 +143,6 @@ class Tesseract_Customize {
 				)
 		) );
 
-		//menu background opacity
-		/* $wp_customize->add_control( 'tesseract_menu_link_bgopacity',
-				 array(
-					'label'   =>  __('Menu Background Opacity', 'tesseract'),
-					'section' => 'tesseract_navigation_options',
-				 	'settings'=> 'menu_link_bgopacity',
-					'type'    => 'select',
-					'choices' => array("10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"),
-					'priority' => 10
-		) ); */
 	}
 
 	//Featured text options
