@@ -383,10 +383,14 @@ class Tesseract_Customize {
            <?php self::generate_css('body', 'background-color', 'background_color', '#'); ?>
            <?php self::generate_css('a', 'color', 'link_textcolor'); ?>
            <!-- Featured Headline -->
-           <?php //self::generate_css($selector, $style, $mod_name)?>
+
+
            <!-- Featured Sub Headline -->
 
            <!-- Navigation Menu -->
+           <?php self::generate_css('.main-navigation a', 'color', 'menu_link_textcolor');?>
+           <?php self::generate_css('.main-navigation a:hover', 'color', 'menu_link_hovercolor');?>
+           <?php self::generate_css('.site-banner', 'background-color', 'menu_link_bgcolor');?>
       </style>
       <!--/Customizer CSS-->
       <?php
