@@ -79,7 +79,7 @@ class Tesseract_Customize {
 		//menu text color
 		$wp_customize->add_setting( 'menu_link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
-						'default' => '#2BA6CB', //Default setting/value to save
+						'default' => '#ffffff', //Default setting/value to save
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
@@ -197,7 +197,7 @@ class Tesseract_Customize {
 		//featured text fontsize
 		$wp_customize->add_setting( 'featured_text_fontsize', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
-						'default' => '12', //Default setting/value to save
+						'default' => '100', //Default setting/value to save
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
@@ -249,7 +249,18 @@ class Tesseract_Customize {
 						'section' => 'tesseract_featured_text_options',
 						'settings'=> 'featured_text_fontsize',
 						'type'    => 'select',
-						'choices' => array(8,10,12,14,16,24,36,40,48,62,72),
+						'choices' => array('8'=>'8',
+								'10'=>'10',
+								'12'=>'12',
+								'14'=>'14',
+								'16'=>'16',
+								'24'=>'24',
+								'36'=>'36',
+								'40'=>'40',
+								'48'=>'48',
+								'62'=>'62',
+								'72'=>'72',
+								'100'=>'100'),
 						'priority' => 10
 				) );
 
@@ -300,7 +311,7 @@ class Tesseract_Customize {
 		//featured _subheadline_ fontsize
 		$wp_customize->add_setting( 'featured_subheadline_fontsize', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
-						'default' => '0', //Default setting/value to save
+						'default' => '12', //Default setting/value to save
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
@@ -353,7 +364,11 @@ class Tesseract_Customize {
 						'section' => 'tesseract_featured_subheadline_options',
 						'settings'=> 'featured_subheadline_fontsize',
 						'type'    => 'select',
-						'choices' => array(8,10,12),
+						'choices' => array(
+								'8'=>'8',
+								'10'=>'10',
+								'12'=>'12',
+								'14'=>'14'),
 						'priority' => 11
 				) );
 
