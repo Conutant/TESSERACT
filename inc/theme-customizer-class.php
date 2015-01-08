@@ -182,7 +182,7 @@ class Tesseract_Customize {
 		//featured text fontsize
 		$wp_customize->add_setting( 'featured_text_fontsize', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
-						'default' => '100', //Default setting/value to save
+						'default' => '80', //Default setting/value to save
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?

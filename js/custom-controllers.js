@@ -111,7 +111,7 @@ jQuery(document).ready(function($) {
 					var v = $(this).slider('value');
 					$(this).find('.ui-slider-handle').text(v);
 				},
-				value: 12,
+				value: $control.val(),
 				range: "max",
 				step: 1,
 				min: 1,
@@ -123,7 +123,10 @@ jQuery(document).ready(function($) {
 				// fix relationship between alpha slider and the 'side slider not updating.
 				$control.val(new_font_size);
 				var get_val = $control.val();
-
+				var key = $control.attr('data-customize-setting-link');
+				wp.customize(key, function(obj) {
+					obj.set(get_val);
+				});
 			});
 
 	  });
