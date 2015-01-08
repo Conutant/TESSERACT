@@ -5,7 +5,7 @@
 * @link http://codex.wordpress.org/Theme_Customization_API
 * @since MyTheme 1.0
 */
-require_once('customizer-controls/custom-controllers.php');
+
 class Tesseract_Customize {
 	/**
 	 * This hooks into 'customize_register' (available as of WP 3.4) and allows
@@ -20,6 +20,8 @@ class Tesseract_Customize {
 	 * @since MyTheme 1.0
 	 */
 	public static function register ( $wp_customize ) {
+		require_once('customizer-controls/custom-controllers.php');
+
 		//1. Define a new section (if desired) to the Theme Customizer
 		/* $wp_customize->add_section( 'mytheme_options',
 				array(
@@ -226,7 +228,7 @@ class Tesseract_Customize {
 
 
 		//featured text fontsize
-		$wp_customize->add_control( 'tesseract_featured_text_fontsize',
+		/* $wp_customize->add_control( 'tesseract_featured_text_fontsize',
 				array(
 						'label'   =>  __('Featured Text Fontsize', 'tesseract'),
 						'section' => 'tesseract_featured_text_options',
@@ -245,7 +247,18 @@ class Tesseract_Customize {
 								'72'=>'72',
 								'100'=>'100'),
 						'priority' => 10
-				) );
+				) ); */
+
+		$wp_customize->add_control(new Tesseract_Customize_Size_Control(
+			$wp_customize,
+			'tesseract_featured_text_fontsize',
+				array(
+						'label' => __( 'Featured Text Fontsize', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_featured_text_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'featured_text_fontsize', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
 
 		//featured text shadow
 		$wp_customize->add_control( 'tesseract_featured_text_hasshadow',

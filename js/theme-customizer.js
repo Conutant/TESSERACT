@@ -20,6 +20,7 @@
 	//Featured headline Font size
 	wp.customize( 'featured_text_fontsize', function( value ) {
 		value.bind( function( to ) {
+			console.log('reflect: ' +to);
 			$( 'aside.featured-widget h1.widget-title' ).eq(0).css('font-size',to+'px' );
 		} );
 	} );

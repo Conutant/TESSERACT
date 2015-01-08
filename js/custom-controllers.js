@@ -91,4 +91,41 @@ jQuery(document).ready(function($) {
 		});
 	}); // each
 
+
+	  //font-size-slider
+	  $('.font-size-container').each(function(index,element){
+			$control = $(element).parent().find('input');
+		  var $font_size_slider = $(element).find('.font-size-slider');
+		  $font_size_slider.slider({
+			  slide: function(event, ui) {
+					$(this).find('.ui-slider-handle').text(ui.value); // show value on slider handle
+					// send ajax request to wp.customizer to enable Save & Publish button
+					var _new_value = $control.val();
+					var key = $control.attr('data-customize-setting-link');
+					wp.customize(key, function(obj) {
+						obj.set(_new_value);
+					});
+				  	console.log(ui.value);
+				},
+				create: function(event, ui) {
+					var v = $(this).slider('value');
+					$(this).find('.ui-slider-handle').text(v);
+				},
+				value: 12,
+				range: "max",
+				step: 1,
+				min: 1,
+				max: 100
+		  });
+
+		  $font_size_slider.slider().on('slidechange', function(event, ui) {
+				var new_font_size = parseFloat(ui.value);
+				// fix relationship between alpha slider and the 'side slider not updating.
+				$control.val(new_font_size);
+				var get_val = $control.val();
+
+			});
+
+	  });
+
 	});

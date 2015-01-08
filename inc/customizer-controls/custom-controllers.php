@@ -21,3 +21,29 @@ class Tesseract_Customize_Alpha_Color_Control extends WP_Customize_Control {
             </label>
         <?php }
     }
+
+    class Tesseract_Customize_Size_Control extends WP_Customize_Control {
+
+    	public $type = 'fontsizeselect';
+    	public $default = '12';
+
+    	protected function render() {
+    		$id = 'customize-control-' . str_replace( '[', '-', str_replace( ']', '', $this->id ) );
+                $class = 'customize-control customize-control-' . $this->type; ?>
+                <li id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $class ); ?>">
+                    <?php $this->render_content(); ?>
+                </li>
+            <?php }
+
+            public function render_content() { ?>
+                <label>
+                    <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+                    <input type="text" value="<?php echo intval( $this->value() ); ?>" class="font-size-control" <?php $this->link(); ?>  />
+
+                </label>
+					<div class="font-size-container">
+	                	<div class="font-size-slider"></div>
+	                	<div class="font-size"></div>
+	                </div>
+            <?php }
+        }
