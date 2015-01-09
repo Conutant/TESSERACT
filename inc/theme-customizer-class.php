@@ -354,19 +354,17 @@ class Tesseract_Customize {
 
 
 		//featured text fontsize
-		$wp_customize->add_control( 'tesseract_featured_subheadline_fontsize',
+
+		$wp_customize->add_control(new Tesseract_Customize_Size_Control(
+				$wp_customize,
+				'tesseract_featured_subheadline_fontsize',
 				array(
-						'label'   =>  __('Featured Text Fontsize', 'tesseract'),
-						'section' => 'tesseract_featured_subheadline_options',
-						'settings'=> 'featured_subheadline_fontsize',
-						'type'    => 'select',
-						'choices' => array(
-								'8'=>'8',
-								'10'=>'10',
-								'12'=>'12',
-								'14'=>'14'),
-						'priority' => 11
-				) );
+						'label' => __( 'Sub Headline Fontsize', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_featured_subheadline_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'featured_subheadline_fontsize', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
 
 		//featured text shadow
 		$wp_customize->add_control( 'tesseract_featured_subheadline_hasshadow',

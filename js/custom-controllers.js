@@ -94,18 +94,24 @@ jQuery(document).ready(function($) {
 
 	  //font-size-slider
 	  $('.font-size-container').each(function(index,element){
-			$control = $(element).parent().find('input');
+
 		  var $font_size_slider = $(element).find('.font-size-slider');
+		  $control = $(element).parent().find('input.font-size-control');
+
 		  $font_size_slider.slider({
 			  slide: function(event, ui) {
 					$(this).find('.ui-slider-handle').text(ui.value); // show value on slider handle
 					// send ajax request to wp.customizer to enable Save & Publish button
+
+					$control = $($(ui)[0].handle).parent().parent().parent().find('input');
 					var _new_value = $control.val();
+
 					var key = $control.attr('data-customize-setting-link');
+					console.log(key);
 					wp.customize(key, function(obj) {
 						obj.set(_new_value);
 					});
-				  	console.log(ui.value);
+
 				},
 				create: function(event, ui) {
 					var v = $(this).slider('value');
@@ -121,9 +127,11 @@ jQuery(document).ready(function($) {
 		  $font_size_slider.slider().on('slidechange', function(event, ui) {
 				var new_font_size = parseFloat(ui.value);
 				// fix relationship between alpha slider and the 'side slider not updating.
+				$control = $($(ui)[0].handle).parent().parent().parent().find('input');
 				$control.val(new_font_size);
 				var get_val = $control.val();
 				var key = $control.attr('data-customize-setting-link');
+				console.log(key);
 				wp.customize(key, function(obj) {
 					obj.set(get_val);
 				});
