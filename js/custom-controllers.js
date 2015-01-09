@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
 	}); // each
 
 
-	  //font-size-slider
+	  //font-size-slider for both featured headline and subheadline
 	  $('.font-size-container').each(function(index,element){
 
 		  var $font_size_slider = $(element).find('.font-size-slider');
