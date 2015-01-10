@@ -159,7 +159,7 @@ class Tesseract_Customize {
 
 
 	}
-	//logo options
+	//featured buttons
 	public static function register_feature_action_buttons( $wp_customize ) {
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'featured_button_options',
@@ -198,6 +198,45 @@ class Tesseract_Customize {
 
 
 	}
+	//Navigation buttons
+	public static function register_navigation_action_buttons( $wp_customize ) {
+		//1. Define a new section (if desired) to the Theme Customizer
+		$wp_customize->add_section( 'featured_button_options',
+				array(
+						'title' => __( 'Buttons', 'tesseract' ), //Visible title of section
+						'priority' => 90, //Determines what order this appears in
+						'capability' => 'edit_theme_options', //Capability needed to tweak
+						'description' => __('Allows you to customize action buttons', 'tesseract'), //Descriptive tooltip,
+						/* 'panel'				=>'feature_panel' */
+				)
+		);
+		//2. Define a new setting (if desired) to the Theme Customizer
+		$wp_customize->add_setting( 'feactured_action_button', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => 'jjj',
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
+
+		//3. Finally, we define th control itself (which links a setting to a section and renders the HTML controls)...
+		//menu text color control
+		$wp_customize->add_control( new WP_Customize_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_featured_action_button', //Set a unique ID for the control
+				array(
+						'label' => __( 'Featured Action Button', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'featured_button_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'feactured_action_button', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+						 'type'		=> 'textarea'
+				)
+		) );
+
+
+	}
 	//Featured  options
 	public static function register_featured_section( $wp_customize ) {
 		//First we create panel to subgroup all featured components
@@ -224,7 +263,7 @@ class Tesseract_Customize {
 		$wp_customize->add_section( 'tesseract_featured_text_options',
 				array(
 						'title' => __( 'Featured Headline', 'tesseract' ), //Visible title of section
-						'priority' => 96, //Determines what order this appears in
+						'priority' => 90, //Determines what order this appears in
 						'capability' => 'edit_theme_options', //Capability needed to tweak
 						'description' => __('Allows you to customize featured text for Tesseract.', 'tesseract'), //Descriptive tooltip
 						'panel'		=>'feature_panel'
@@ -330,7 +369,7 @@ class Tesseract_Customize {
 		$wp_customize->add_section( 'tesseract_featured_subheadline_options',
 				array(
 						'title' => __( 'Featured Sub Headline', 'tesseract' ), //Visible title of section
-						'priority' => 97, //Determines what order this appears in
+						'priority' => 90, //Determines what order this appears in
 						'capability' => 'edit_theme_options', //Capability needed to tweak
 						'description' => __('Allows you to customize featured sub headline text for Tesseract.', 'tesseract'), //Descriptive tooltip
 						'panel'		=> 'feature_panel'
