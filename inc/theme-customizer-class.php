@@ -35,6 +35,7 @@ class Tesseract_Customize {
 		self::register_navigation_section($wp_customize);
 		//featured section
 		self::register_featured_section($wp_customize);
+		self::register_featured_header_image_section($wp_customize);
 		self::register_featured_headline_section($wp_customize);
 		self::register_featured_subheadline_section($wp_customize);
 
@@ -163,9 +164,19 @@ class Tesseract_Customize {
 		$wp_customize->add_panel('feature_panel',array(
 				'priority'			=> 10,
 				'capability'		=>'edit_theme_options',
-				'theme_supporters'	=>'',
+				'theme_supports'	=>'',
 				'title'				=>'Feature Options',
 				'description'		=>'You can customize all featured part here'
+		));
+	}
+	//Header Image
+	public static function register_featured_header_image_section( $wp_customize ) {
+		//First we create panel to subgroup all featured components
+		$wp_customize->add_section('header_image',array(
+			'title'				=> __('Featured Image'),
+			'theme_supports'	=>'custom-header',
+			'panel'				=>'feature_panel',
+			'priority'			=> 90,
 		));
 	}
 	public static function register_featured_headline_section( $wp_customize ) {
