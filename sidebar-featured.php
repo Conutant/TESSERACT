@@ -14,8 +14,10 @@
 	    <h1 class="widget-title"><?php _e( 'Headline', 'tesseract' ); ?></h1>
         <div class="textwidget">
 		    <p><?php _e( 'Create a website and build your business.', 'tesseract' ); ?></p>
+		    <div id="action_buttons">
             <a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button primary-button"><?php _e( 'Watch the Video', 'tesseract' ); ?></a>
             <a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button secondary-button"><?php _e( 'Start', 'tesseract' ); ?></a>
+            </div>
         </div>
     </aside><!-- .featured-widget -->
 
