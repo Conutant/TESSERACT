@@ -564,7 +564,7 @@ blockquote,
 .site-content,
 .middle-widget, 
 .footer-widget {
-    padding-bottom: 35px;
+
 }
 
 .page-links,
@@ -579,6 +579,8 @@ blockquote,
 
 p {
     margin-top: 0px;
+    margin-bottom:0px;
+    padding-bottom: 20px;
 }
 
 p:last-item {
@@ -661,6 +663,10 @@ h6 {
     font-size: 14px;
 }
 
+span{
+    display:inline-block;
+}
+
 .entry-title {
     margin-bottom: 20px;
 }
@@ -692,7 +698,7 @@ ol .children {
 }
 
 .reply {
-    margin-left: 110px;
+    margin-left: 80px;
 }
 
 .featured-widget h1 {
@@ -935,6 +941,179 @@ input[type="button"]:active {
     background-color: #199cd8;   
 }
 
+/* === Differnt Colors and Sizes Of Primary and Secondary Buttons  === */
+
+
+/* Featured */
+
+.primary-button {
+    background-color: #199cd8;
+}
+
+.primary-button:hover{
+    background-color: #1581b2;
+}
+
+.secondary-button {
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+.secondary-button:hover {
+    background-color: #fff;
+    color: #199cd8;
+}
+
+
+/* === Default Color === */
+
+
+
+
+/* === Brown  === */
+.brown{
+    background-color: #AB541A;
+}
+.brown:hover{
+    background-color: #823A09;
+}
+.brown-outline {
+    background-color: transparent;
+    border: 1px solid #ab541a;
+    color: #ab541a;
+}
+.brown-outline:hover{
+    background-color: #fff;
+    color: #823A09;
+    border: 1px solid #823A09;
+}
+/* === Green  === */
+.green{
+    background-color: #49b70f;
+}
+.green:hover{
+    background-color: #32770f;
+}
+.green-outline {
+    background-color: transparent;
+    border: 1px solid #49b70f;
+    color: #49b70f;
+}
+.green-outline:hover{
+    background-color: #fff;
+    color: #32770f;
+    border: 1px solid #32770f;
+}
+/* === Dark Blue  === */
+.darkblue{
+    background-color: #0f5289;
+}
+.darkblue:hover{
+    background-color: #0c2b44;
+}
+.darkblue-outline {
+    background-color: transparent;
+    border: 1px solid #0f5289;
+    color: #0f5289;
+}
+.darkblue-outline:hover{
+    background-color: #fff;
+    color: #0c2b44;
+    border: 1px solid #0c2b44;
+}
+/* === red  === */
+.red{
+    background-color: #cd1212;
+}
+.red:hover{
+    background-color: #a90e0e;
+}
+.red-outline {
+    background-color: transparent;
+    border: 1px solid #cd1212;
+    color: #cd1212;
+}
+.red-outline:hover{
+    background-color: #fff;
+    color: #a90e0e;
+    border: 1px solid #a90e0e;
+}
+/* === pink  === */
+.pink{
+    background-color: #ff1dfc;
+}
+.pink:hover{
+    background-color: #d214cf;
+}
+.pink-outline {
+    background-color: transparent;
+    border: 1px solid #ff1dfc;
+    color: #ff1dfc;
+}
+.pink-outline:hover{
+    background-color: #fff;
+    color: #d214cf;
+    border: 1px solid #d214cf;
+}
+/* === Yellow  === */
+.yellow{
+    background-color: #F0FF00;
+}
+.yellow:hover{
+    background-color: #F4EA01;
+}
+.yellow-outline {
+    background-color: transparent;
+    border: 1px solid #F0FF00;
+    color: #F0FF00;
+}
+.yellow-outline:hover{
+    background-color: #fff;
+    color: #F4EA01;
+    border: 1px solid #F4EA01;
+}
+
+/* === Black  === */
+.black{
+    background-color: #000000;
+}
+.black:hover{
+    background-color: #626262;
+}
+.black-outline {
+    background-color: transparent;
+    border: 1px solid #000000;
+    color: #000000;
+}
+.black-outline:hover{
+    background-color: #fff;
+    color: #626262;
+    border: 1px solid #626262;
+}
+
+/* === Default Size  === */
+
+.button.darktext{
+    color:#000000;
+}
+
+
+/* === Small Size  === */
+.small {
+    padding: 8px 20px;
+    font-size: 10px;
+    letter-spacing: 0px;
+}
+
+/* === Large Size  === */
+.large {
+    padding: 16px 40px;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+/* === End of buttons  === */
+
 /* Disabled */
 
 button:disabled,
@@ -955,22 +1134,7 @@ select {
     vertical-align: middle;
 }
 
-/* Featured */
 
-.primary-button {
-    padding: 12px 25px;
-}
-
-.secondary-button {
-    background-color: transparent;
-    border: 1px solid #fff;
-    padding: 12px 25px;
-}
-
-.secondary-button:hover {
-    background-color: #fff;
-    color: #199cd8;
-}
 
 /* Toggle button */
 
@@ -1038,6 +1202,8 @@ a:active {
 .site-banner {
     background-color: #424242;
     min-height: 45px;
+    z-index: 5;
+    position: relative;
 }
 
 .site-logo, /* Jetpack */
@@ -1372,7 +1538,7 @@ figure {
 
 .entry-background {
     position: absolute;
-    top: 58px;
+    top: 51px;
 }
 
 .entry-background:before {
@@ -1657,6 +1823,10 @@ figure {
     border-bottom: none;
 }
 
+.entry-footer{
+    display:none;
+}
+
 .entry-footer span {
     padding-right: 5px;
 }
@@ -1766,7 +1936,7 @@ figure {
     border: 1px solid rgba(0, 0, 0 ,0.1);
     border-top: none;
     margin: -10px 0 0 0;
-    padding: 10px;
+    padding: 10px 0px;
     text-align: right;
 }
 
@@ -1842,7 +2012,8 @@ figure {
 }
 
 .site-info {
-    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom:5px;
 }
 
 /* =24. Responsive design
@@ -1868,8 +2039,13 @@ figure {
     
     .site-info,
     .site-content {
-        padding: 0 20px 20px;
+        padding: 0 20px 0px;
 	}
+
+    .site-info{
+        padding-bottom:10px;
+        padding-top:10px;
+    }
     
     .site-logo,
     .site-title {
@@ -2062,15 +2238,7 @@ figure {
 
 /* === Rounded Photos === */
 .entry-content img{
-    margin: 10px;
-    float: left;
-    margin-left: 0px;
-    border-radius: 5px;
-    border: 1px solid;
-    opacity: 0.85
-}
-.entry-content img:hover{
-    opacity: 1
+
 }
 
 /* === Template with Right Sidebar  === */
@@ -2097,9 +2265,12 @@ p.form-submit{
     background: #f9f9f9;
     border: 1px #f9f9f9;
 }
-div#comments{
+#comments{
     padding: 10px;
-    border: 1px solid #B2A7A7;
+    border: 1px solid rgba(178, 167, 167, 0.31);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 article.comment-body{
     background: none!important;
@@ -2112,6 +2283,68 @@ article.comment-body{
 .comment-author.vcard img{
     width: 50px
 }
+
+/* === Blog Page  === */
+.navigation.post-navigation{
+    padding: 10px
+}
+.tesseract-featured .entry-content{
+    margin-top: 480px
+}
+.page-template-blog-php article{
+    border-bottom: 1px dotted rgb(190, 175, 175);
+}
+h1.entry-title {
+    font-size: 35px;
+    margin: 60px 0 30px;
+    text-transform: capitalize;
+}
+span.posted-on{
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+}
+.moretag{
+    display: block;
+    font-style: italic;
+    text-align: right;
+    clear: both;
+}
+
+.wpcf7-submit{
+    float: right;
+    clear: both;
+    margin-bottom: 20px; 
+}
+
+.full-width-page {
+    width: 860px;
+}
+
+/* === Footer Menu  === */
+
+.footer-menu {
+    display: inline-block;
+    float: left;
+    margin: 0 0 10px;
+}
+
+.footer-menu ul {
+    float: left;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-menu ul li{
+    display:inline-block;
+    padding-right: 10px;
+}
+
+#designer{
+    float:right;
+}
+
 
 /* === Mobile Properties  === */
 @media screen and (max-width: 700px){
@@ -2138,19 +2371,22 @@ article.comment-body{
     #site-navigation{
         position: absolute;
         height: auto;
-        top: 62px;
+        margin-top: 16px;
         z-index: 1000;
     }
     .site-branding{
         position: absolute;
         z-index: 1001;
         margin: 0 auto;
-        margin-left: 42%;
+        margin-left: 44%;
     }
     #site-navigation .menu{
         margin-top: 15px;
     }
 }
+
+
+
 
 @media screen and (max-width: 820px){
     .content-area{
@@ -2158,3 +2394,23 @@ article.comment-body{
         padding: 0 20px;
     }
 }
+
+@media (min-width: 401px) and (max-width: 550px){
+    .site-branding{
+        margin-left: 42%;
+    }
+}
+@media screen and (max-width: 400px){
+    .site-branding{
+        margin-left: 40%;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .full-width-page {
+        width: 96%;
+    }
+}
+
+
+

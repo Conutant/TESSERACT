@@ -14,9 +14,10 @@
     
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<?php printf( __( 'Tesseract %1$s by %2$s', 'tesseract' ), 'Theme', '<a href="http://tyler.com/" rel="designer">Tyler Moore</a>' ); ?>
-			<span class="sep"> / </span>
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'tesseract' ) ); ?>"><?php printf( __( 'Runs on %s', 'tesseract' ), 'WordPress' ); ?></a>
+			<?php wp_nav_menu( array( 'theme_location' => 'footer-menu', 'container_class' => 'footer-menu' ) ); ?>
+			<div id="designer">
+				<?php printf( __( '%1$s by %2$s', 'tesseract' ), 'Theme', '<a href="http://tyler.com/" rel="designer">Tyler Moore</a>' ); ?>
+		    </div>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

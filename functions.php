@@ -66,6 +66,7 @@ function tesseract_setup() {
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'tesseract' ),
+		'footer-menu' => __( 'Footer Menu' )
 	) );
 
 	/*
@@ -272,7 +273,13 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
 /**
  * Load Dom Parse library
  */
 require get_template_directory(). '/inc/simple_html_dom.php';
+function new_excerpt_more($more) {
+       global $post;
+	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">  Read More ...</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
