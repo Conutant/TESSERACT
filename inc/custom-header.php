@@ -133,26 +133,8 @@ add_filter('wp_nav_menu_items','tesseract_navigation_widget', 11,2);
 function tesseract_navigation_widget($items, $args)
 {
 	// for wp_page_menu args is array
-	//if($args['theme_location'] =='primary')
-	$str = <<<EOT
-			<a href="/" class="button primary-button">Watch the Video</a>
-			<a href="/" class="button secondary-button">Start</a>
-EOT;
-
 	if($args->theme_location == 'primary')
 	{
-		/*
-		ob_start();
-		?>
-		<li>
-			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button primary-button"><?php _e( 'Watch the Video', 'tesseract' ); ?></a>
-		</li>
-		<li>
-			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button secondary-button"><?php _e( 'Start', 'tesseract' ); ?></a>
-		</li>
-		<?php
-		$items .= ob_get_clean();
-		*/
 		if(get_theme_mod('navigation-widget'))
 			$items .= "<span id='navigation-widget'>".get_theme_mod('navigation-widget')."</span>";
 		return $items;

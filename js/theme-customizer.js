@@ -124,16 +124,13 @@
 	//action buttons
 	wp.customize( 'navigation-widget', function( value ) {
 		value.bind( function( to ) {
-
 			$('ul#menu-top-menu').find('[id=navigation-widget]').html(to);
-
 		} );
 	} );
 	//footer navigation widget
 	//action buttons
 	wp.customize( 'footer-navigation-widget', function( value ) {
 		value.bind( function( to ) {
-
 			$('ul#menu-footer-menu').find('[id=footer-navigation-widget]').html(to);
 
 		} );
