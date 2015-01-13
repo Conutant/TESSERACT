@@ -63,11 +63,7 @@ function tesseract_setup() {
 	// Add default logo size for Jetpack.
 	add_image_size( 'tesseract-site-logo', '300', '9999', false );
 
-	// This theme uses wp_nav_menu() in two locations.
-	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'tesseract' ),
-		'footer-menu' => __( 'Footer Menu' )
-	) );
+
 
 	/*
 	 * Switch default core markup for search form, comment form, and comments
@@ -94,6 +90,16 @@ function tesseract_setup() {
 endif; // tesseract_setup
 add_action( 'after_setup_theme', 'tesseract_setup' );
 
+function register_my_menus() {
+	// This theme uses wp_nav_menu() in two locations.
+	/* register_nav_menus( array(
+	'primary' => __( 'Primary Menu', 'tesseract' ),
+	'footermenu' => __( 'Footer Menu','tesseract' )
+	) ); */
+	register_nav_menu('primary',__('Primary Menu', 'tesseract'));
+	register_nav_menu('secondary',__('Footer Menu','tesseract'));
+}
+add_action('init','register_my_menus');
 /**
  * Register widget area.
  *

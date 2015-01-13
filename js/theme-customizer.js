@@ -124,12 +124,20 @@
 	//action buttons
 	wp.customize( 'navigation-widget', function( value ) {
 		value.bind( function( to ) {
-
-			$('#site-navigation').find('ul').append(to);
+			alert('boom');
+			$('ul#menu-top-menu').find('[id^=navigation-widget]').html(to);
 
 		} );
 	} );
+	//footer navigation widget
+	//action buttons
+	wp.customize( 'footer-navigation-widget', function( value ) {
+		value.bind( function( to ) {
+			alert('boom');
+			$('ul#menu-footer-menu').find('[id^=footer-navigation-widget]').html(to);
 
+		} );
+	} );
 	/**
 	 * Navigation Ends
 	 */

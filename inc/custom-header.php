@@ -154,7 +154,13 @@ EOT;
 		$items .= ob_get_clean();
 		*/
 		if(get_theme_mod('navigation-widget'))
-			$items .= get_theme_mod('navigation-widget');
+			$items .= "<span id='navigation-widget'>".get_theme_mod('navigation-widget')."</span>";
 		return $items;
+	}else if($args->theme_location =='secondary')
+	{
+		if(get_theme_mod('footer-navigation-widget'))
+			$items .= "<span id='footer-navigation-widget'>".get_theme_mod('footer-navigation-widget')."</span>";
 	}
+	return $items;
+
 }
