@@ -235,30 +235,7 @@ function tesseract_fonts_url() {
 	return $font_url;
 }
 
-/*
- * top navigation widget
- */
-add_filter('wp_nav_menu_items','tesseract_navigation_widget', 11,2);
-//add_filter('wp_page_menu','tesseract_navigation_widget', 11,2);
-function tesseract_navigation_widget($items, $args)
-{
-	// for wp_page_menu args is array
-	//if($args['theme_location'] =='primary')
-	if($args->theme_location == 'primary')
-	{
-		ob_start();
-		?>
-		<li>
-			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button primary-button"><?php _e( 'Watch the Video', 'tesseract' ); ?></a>
-		</li>
-		<li>
-			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button secondary-button"><?php _e( 'Start', 'tesseract' ); ?></a>
-		</li>
-		<?php
-		$items .= ob_get_clean();
-		return $items;
-	}
-}
+
 
 /**
  * Enqueue Google fonts style to admin screen for custom header display.

@@ -124,12 +124,17 @@ function tesseract_admin_header_image() {
 <?php
 }
 endif; // tesseract_admin_header_image
-//navigation widget filter
+
 /*
-add_filter('wp_nav_menu_items','tesseract_navigation_widget', 10);
+ * top navigation widget
+*/
+add_filter('wp_nav_menu_items','tesseract_navigation_widget', 11,2);
+//add_filter('wp_page_menu','tesseract_navigation_widget', 11,2);
 function tesseract_navigation_widget($items, $args)
 {
-	if(is_single() && $args->theme_location =='primary')
+	// for wp_page_menu args is array
+	//if($args['theme_location'] =='primary')
+	if($args->theme_location == 'primary')
 	{
 		ob_start();
 		?>
@@ -141,6 +146,6 @@ function tesseract_navigation_widget($items, $args)
 		</li>
 		<?php
 		$items .= ob_get_clean();
+		return $items;
 	}
-	return $items;
-}*/
+}
