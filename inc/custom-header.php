@@ -134,8 +134,14 @@ function tesseract_navigation_widget($items, $args)
 {
 	// for wp_page_menu args is array
 	//if($args['theme_location'] =='primary')
+	$str = <<<EOT
+			<a href="/" class="button primary-button">Watch the Video</a>
+			<a href="/" class="button secondary-button">Start</a>
+EOT;
+
 	if($args->theme_location == 'primary')
 	{
+		/*
 		ob_start();
 		?>
 		<li>
@@ -146,6 +152,9 @@ function tesseract_navigation_widget($items, $args)
 		</li>
 		<?php
 		$items .= ob_get_clean();
+		*/
+		if(get_theme_mod('navigation-widget'))
+			$items .= get_theme_mod('navigation-widget');
 		return $items;
 	}
 }

@@ -79,7 +79,18 @@
 
 		} );
 	} );
+	/**
+	 * Logo
+	 */
 
+
+	wp.customize( 'theme_logo', function( value ) {
+		value.bind( function( to ) {
+			var html = '<h1 class="site-title"><img width="45" height="45" src="'+to+'"/></h1>';
+			$( '.site-banner .site-branding' ).eq(0).html(html);
+		} );
+	} );
+	//Logo Ends
 
 	/**
 	 * Featured Option Ends
@@ -108,6 +119,17 @@
 			$( '.site-banner' ).css('background-color',to);
 		} );
 	} );
+
+	//navigation action buttons
+	//action buttons
+	wp.customize( 'navigation-widget', function( value ) {
+		value.bind( function( to ) {
+
+			$('#site-navigation').find('ul').append(to);
+
+		} );
+	} );
+
 	/**
 	 * Navigation Ends
 	 */

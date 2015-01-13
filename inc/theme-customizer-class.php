@@ -33,12 +33,16 @@ class Tesseract_Customize {
 		self::register_logo_section($wp_customize);
 		//navigation section
 		self::register_navigation_section($wp_customize);
+		//navigation menu action buttons
+		self::register_navigation_action_buttons($wp_customize);
 		//featured section
 		self::register_featured_section($wp_customize);
 		self::register_featured_header_image_section($wp_customize);
 		self::register_featured_headline_section($wp_customize);
 		self::register_featured_subheadline_section($wp_customize);
 		self::register_feature_action_buttons($wp_customize);
+
+
 
 	}
 
@@ -48,7 +52,7 @@ class Tesseract_Customize {
 		$wp_customize->add_section( 'tesseract_navigation_options',
 				array(
 						'title' => __( 'Navigation Menu', 'tesseract' ), //Visible title of section
-						'priority' => 105, //Determines what order this appears in
+						'priority' => 110, //Determines what order this appears in
 						'capability' => 'edit_theme_options', //Capability needed to tweak
 						'description' => __('Allows you to customize navigation menu for Tesseract.', 'tesseract'), //Descriptive tooltip
 				)
@@ -77,6 +81,15 @@ class Tesseract_Customize {
 		$wp_customize->add_setting( 'menu_link_bgcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
 						'default' => 'rgba(66, 66, 66, 0.74)', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//menu action buttons
+		$wp_customize->add_setting( 'navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '<a>test</a>',
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
@@ -121,6 +134,19 @@ class Tesseract_Customize {
 				)
 		) );
 
+		//menu action buttons control
+		$wp_customize->add_control( new WP_Customize_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_navigation_action_button', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Action Button', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'navigation-widget', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+						'type'		=> 'textarea'
+				)
+		) );
+
 	}
 
 	//logo options
@@ -161,18 +187,9 @@ class Tesseract_Customize {
 	}
 	//featured buttons
 	public static function register_navigation_action_buttons( $wp_customize ) {
-		//1. Define a new section (if desired) to the Theme Customizer
-		$wp_customize->add_section( 'featured_button_options',
-				array(
-						'title' => __( 'Buttons', 'tesseract' ), //Visible title of section
-						'priority' => 105, //Determines what order this appears in
-						'capability' => 'edit_theme_options', //Capability needed to tweak
-						'description' => __('Allows you to customize action buttons', 'tesseract'), //Descriptive tooltip,
-						/* 'panel'				=>'feature_panel' */
-				)
-		);
+
 		//2. Define a new setting (if desired) to the Theme Customizer
-		$wp_customize->add_setting( 'xxxxxxxxxxxxxxxx', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		$wp_customize->add_setting( 'navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
 						'default' => 'jjj',
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
@@ -190,9 +207,9 @@ class Tesseract_Customize {
 				array(
 						'label' => __( 'Featured Action Button', 'tesseract' ), //Admin-visible name of the control
 						'section' => 'featured_button_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
-						'settings' => 'xxxxxxxxxxxxxxxx', //Which setting to load and manipulate (serialized is okay)
+						'settings' => 'navigation-widget', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
-						/* 'type'		=> 'textarea' */
+						'type'		=> 'textarea'
 				)
 		) );
 
