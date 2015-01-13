@@ -160,12 +160,12 @@ class Tesseract_Customize {
 
 	}
 	//featured buttons
-	public static function register_feature_action_buttons( $wp_customize ) {
+	public static function register_navigation_action_buttons( $wp_customize ) {
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'featured_button_options',
 				array(
 						'title' => __( 'Buttons', 'tesseract' ), //Visible title of section
-						'priority' => 75, //Determines what order this appears in
+						'priority' => 105, //Determines what order this appears in
 						'capability' => 'edit_theme_options', //Capability needed to tweak
 						'description' => __('Allows you to customize action buttons', 'tesseract'), //Descriptive tooltip,
 						/* 'panel'				=>'feature_panel' */
@@ -199,7 +199,7 @@ class Tesseract_Customize {
 
 	}
 	//Navigation buttons
-	public static function register_navigation_action_buttons( $wp_customize ) {
+	public static function register_feature_action_buttons ( $wp_customize ) {
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'featured_button_options',
 				array(
@@ -213,7 +213,7 @@ class Tesseract_Customize {
 		//2. Define a new setting (if desired) to the Theme Customizer
 		$wp_customize->add_setting( 'feactured_action_button', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
-						'default' => 'jjj',
+						'default' => '<a href="/" class="button primary-button">Watch the Video</a><a href="/" class="button secondary-button">Start</a>',
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?

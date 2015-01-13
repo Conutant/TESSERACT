@@ -124,3 +124,23 @@ function tesseract_admin_header_image() {
 <?php
 }
 endif; // tesseract_admin_header_image
+//navigation widget filter
+/*
+add_filter('wp_nav_menu_items','tesseract_navigation_widget', 10);
+function tesseract_navigation_widget($items, $args)
+{
+	if(is_single() && $args->theme_location =='primary')
+	{
+		ob_start();
+		?>
+		<li>
+			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button primary-button"><?php _e( 'Watch the Video', 'tesseract' ); ?></a>
+		</li>
+		<li>
+			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button secondary-button"><?php _e( 'Start', 'tesseract' ); ?></a>
+		</li>
+		<?php
+		$items .= ob_get_clean();
+	}
+	return $items;
+}*/

@@ -120,6 +120,16 @@ function tesseract_widgets_init() {
 	) );
 
 	register_sidebar( array(
+	'name'          => __( 'Navigation Widget', 'tesseract' ),
+	'id'            => 'nav-widget',
+	'description'   => __( 'Appears on the menu.', 'tesseract' ),
+	'before_widget' => '<aside id="%1$s" class="featured-widget %2$s">',
+	'after_widget'  => '</aside>',
+	'before_title'  => '<h1 class="widget-title">',
+	'after_title'   => '</h1>',
+	) );
+
+	register_sidebar( array(
 		'name'          => __( 'Left Middle Widget', 'tesseract' ),
 		'id'            => 'sidebar-3',
 		'description'   => __( 'Appears after the featured widget.', 'tesseract' ),
@@ -223,6 +233,31 @@ function tesseract_fonts_url() {
 	}
 
 	return $font_url;
+}
+
+/*
+ * top navigation widget
+ */
+add_filter('wp_nav_menu_items','tesseract_navigation_widget', 11,2);
+//add_filter('wp_page_menu','tesseract_navigation_widget', 11,2);
+function tesseract_navigation_widget($items, $args)
+{
+	// for wp_page_menu args is array
+	//if($args['theme_location'] =='primary')
+	if($args->theme_location == 'primary')
+	{
+		ob_start();
+		?>
+		<li>
+			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button primary-button"><?php _e( 'Watch the Video', 'tesseract' ); ?></a>
+		</li>
+		<li>
+			<a href="<?php echo esc_url( __( '/', 'tesseract' ) ); ?>" class="button secondary-button"><?php _e( 'Start', 'tesseract' ); ?></a>
+		</li>
+		<?php
+		$items .= ob_get_clean();
+		return $items;
+	}
 }
 
 /**
