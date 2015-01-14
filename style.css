@@ -2112,6 +2112,33 @@ figure {
         z-index: 99;
         width: 100%;
     }
+	.footer-menu {
+        clear: both;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+        z-index: 99;
+        width: 100%;
+    }
+    .footer-menu ul {
+		width: 100%;
+    }
+    .footer-menu ul li {
+		display: block !important;
+    	text-align: center;
+    }
+    .footer-menu li {
+		position: relative;
+    }
+  	.footer-menu ul li a {
+        padding-left: 30px;
+        width: 100%;
+    }
+	.footer-menu ul #footer-navigation-widget {
+		padding-top:10px;
+		display: block;
+	}
 
 	.main-navigation ul {
 		display: none;
