@@ -23,7 +23,7 @@
 	//Featured headline Font size
 	wp.customize( 'featured_text_fontsize', function( value ) {
 		value.bind( function( to ) {
-			console.log('reflect: ' +to);
+
 			$( 'aside.featured-widget h1.widget-title' ).eq(0).css('font-size',to+'px' );
 		} );
 	} );
@@ -31,7 +31,7 @@
 	//Featured Headline Dropshadow
 	wp.customize( 'featured_text_hasshadow', function( value ) {
 		value.bind( function( to ) {
-			console.log(to);
+
 			if(to==1)
 				$( 'aside.featured-widget h1.widget-title' ).eq(0).css('text-shadow','5px 3px 3px rgba(150, 150, 150, 0.79)');
 			else
@@ -124,6 +124,7 @@
 	//action buttons
 	wp.customize( 'navigation-widget', function( value ) {
 		value.bind( function( to ) {
+
 			$('ul#menu-top-menu').find('[id=navigation-widget]').html(to);
 		} );
 	} );
@@ -131,6 +132,7 @@
 	//action buttons
 	wp.customize( 'footer-navigation-widget', function( value ) {
 		value.bind( function( to ) {
+
 			$('ul#menu-footer-menu').find('[id=footer-navigation-widget]').html(to);
 
 		} );

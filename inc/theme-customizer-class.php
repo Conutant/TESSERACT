@@ -557,6 +557,7 @@ class Tesseract_Customize {
            /* Navigation Menu */
            <?php self::generate_css('.main-navigation a', 'color', 'menu_link_textcolor');?>
            <?php self::generate_css('.main-navigation a:hover', 'color', 'menu_link_hovercolor');?>
+           <?php self::generate_css('span#navigation-widget', 'float','','right');?>
 			/* Navigation bgcolor : rgba(81,29,130,0.74) */
 
            <?php

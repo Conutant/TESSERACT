@@ -1215,8 +1215,8 @@ a:active {
 }
 
 .site-logo img {
-	width: 45px;
-	height: 34px;
+	width: 100%;
+	height: 40px;
 }
 .site-title a {
     color: #fff;
@@ -2060,7 +2060,7 @@ figure {
     }
 
     .site-logo img {
-		width:45x;
+		width: 100%;
     	height:34px;
     }
 
