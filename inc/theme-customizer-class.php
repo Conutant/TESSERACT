@@ -532,28 +532,49 @@ class Tesseract_Customize {
 		?>
       <!--Customizer CSS-->
       <style type="text/css">
+		   <?php ob_start(); ?>
            <?php self::generate_css('#site-title a', 'color', 'header_textcolor', '#'); ?>
            <?php self::generate_css('body', 'background-color', 'background_color', '#'); ?>
            <?php self::generate_css('a', 'color', 'link_textcolor'); ?>
-           <!-- Featured Headline -->
-			<?php wp_add_inline_style('testboom',self::generate_css('aside.featured-widget h1.widget-title', 'color','featured_textcolor',false)); ?>
-			<?php self::generate_css('aside.featured-widget h1.widget-title', 'font-size','featured_text_fontsize','','px'); ?>
+           /* Featured Headline  */
+			<?php
+				self::generate_css('.featured-widget h1', 'color','featured_textcolor');
+				self::generate_css('.featured-widget h1', 'font-size','featured_text_fontsize','','px');
+			?>
 
 			<?php
-				if(!get_theme_mod('featured_text_hasshadow'))
-					self::generate_css('aside.featured-widget h1.widget-title', 'text-shadow','5px 3px 3px rgba(150, 150, 150, 0.79)');
+
+				if(get_theme_mod('featured_text_hasshadow'))
+					self::generate_css('.featured-widget h1', 'text-shadow','','5px 3px 3px rgba(150, 150, 150, 0.79)');
 			 ?>
-           <!-- Featured Sub Headline -->
-			<?php self::generate_css('aside.featured-widget div.textwidget p', 'color','featured_subheadline_textcolor'); ?>
-			<?php self::generate_css('aside.featured-widget div.textwidget p', 'font-size','featured_subheadline_fontsize','','px'); ?>
+           	/* Featured Sub Headline */
+			<?php self::generate_css('.featured-widget .textwidget p', 'color','featured_subheadline_textcolor'); ?>
+			<?php self::generate_css('.featured-widget .textwidget p', 'font-size','featured_subheadline_fontsize','','px'); ?>
 			<?php
-				if(!get_theme_mod('featured_subheadline_hasshadow'))
-					self::generate_css('aside.featured-widget div.textwidget p', 'text-shadow','5px 3px 3px rgba(150, 150, 150, 0.79)');
+				if(get_theme_mod('featured_subheadline_hasshadow'))
+					self::generate_css('.featured-widget .textwidget p', 'text-shadow','','5px 3px 3px rgba(150, 150, 150, 0.79)');
 				?>
-           <!-- Navigation Menu -->
+           /* Navigation Menu */
            <?php self::generate_css('.main-navigation a', 'color', 'menu_link_textcolor');?>
            <?php self::generate_css('.main-navigation a:hover', 'color', 'menu_link_hovercolor');?>
-           <?php self::generate_css('.site-banner', 'background-color', 'menu_link_bgcolor');?>
+			/* Navigation bgcolor : rgba(81,29,130,0.74) */
+
+           <?php
+           	  if(is_home())
+           	 	self::generate_css('.site-banner', 'background-color', 'menu_link_bgcolor');
+           	  else
+           	  {
+           	  	$rgba = get_theme_mod('menu_link_bgcolor');
+           	  	//rgba(x,y,z,b)
+           	  	$values = explode(',',$rgba);
+           	  	if(count($values)==4)
+           	  		unset($values[3]);
+           	  	$rgb = str_replace('rgba','rgb',implode(',',$values)).')';
+
+           	  	self::generate_css('.site-banner', 'background-color', '',$rgb);
+           	  }
+           	 ?>
+           <?php echo ob_get_clean();?>
       </style>
       <!--/Customizer CSS-->
       <?php
@@ -629,7 +650,17 @@ class Tesseract_Customize {
          if ( $echo ) {
             echo $return;
          }
-      }
+      }else if(empty($mod)){
+		$return = sprintf('%s { %s:%s; }',
+			$selector,
+			$style,
+			$prefix.$postfix
+		);
+		if($echo)
+			echo $return;
+		else
+			return $return;
+	 }
       return $return;
     }
 }
