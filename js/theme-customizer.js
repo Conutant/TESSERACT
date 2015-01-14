@@ -86,7 +86,7 @@
 
 	wp.customize( 'theme_logo', function( value ) {
 		value.bind( function( to ) {
-			var html = '<h1 class="site-title"><img width="45" height="45" src="'+to+'"/></h1>';
+			var html = '<div class="site-logo"><img src="'+to+'"/></h1>';
 			$( '.site-banner .site-branding' ).eq(0).html(html);
 		} );
 	} );

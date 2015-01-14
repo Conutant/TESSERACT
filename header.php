@@ -29,9 +29,9 @@
 			<?php if(!get_theme_mod('theme_logo')): ?>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<?php else:?>
-			<h1 class="site-title">
-			<img width="45" height="45" src="<?php echo get_theme_mod('theme_logo');?>"/>
-			</h1>
+			<div class="site-logo">
+				<img src="<?php echo get_theme_mod('theme_logo');?>"/>
+			</div>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 
