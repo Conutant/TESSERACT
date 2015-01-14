@@ -536,10 +536,20 @@ class Tesseract_Customize {
            <?php self::generate_css('body', 'background-color', 'background_color', '#'); ?>
            <?php self::generate_css('a', 'color', 'link_textcolor'); ?>
            <!-- Featured Headline -->
+			<?php wp_add_inline_style('testboom',self::generate_css('aside.featured-widget h1.widget-title', 'color','featured_textcolor',false)); ?>
+			<?php self::generate_css('aside.featured-widget h1.widget-title', 'font-size','featured_text_fontsize','','px'); ?>
 
-
+			<?php
+				if(!get_theme_mod('featured_text_hasshadow'))
+					self::generate_css('aside.featured-widget h1.widget-title', 'text-shadow','5px 3px 3px rgba(150, 150, 150, 0.79)');
+			 ?>
            <!-- Featured Sub Headline -->
-
+			<?php self::generate_css('aside.featured-widget div.textwidget p', 'color','featured_subheadline_textcolor'); ?>
+			<?php self::generate_css('aside.featured-widget div.textwidget p', 'font-size','featured_subheadline_fontsize','','px'); ?>
+			<?php
+				if(!get_theme_mod('featured_subheadline_hasshadow'))
+					self::generate_css('aside.featured-widget div.textwidget p', 'text-shadow','5px 3px 3px rgba(150, 150, 150, 0.79)');
+				?>
            <!-- Navigation Menu -->
            <?php self::generate_css('.main-navigation a', 'color', 'menu_link_textcolor');?>
            <?php self::generate_css('.main-navigation a:hover', 'color', 'menu_link_hovercolor');?>
@@ -548,6 +558,9 @@ class Tesseract_Customize {
       <!--/Customizer CSS-->
       <?php
    }
+   public static function header_outputtest() {
+   		wp_add_inline_style('testboom','h1 { color: #ff0000 !important;}');
+      }
 
    /**
     * This outputs the javascript needed to automate the live settings preview.
@@ -605,6 +618,7 @@ class Tesseract_Customize {
      */
     public static function generate_css( $selector, $style, $mod_name, $prefix='', $postfix='', $echo=true ) {
       $return = '';
+
       $mod = get_theme_mod($mod_name);
       if ( ! empty( $mod ) ) {
          $return = sprintf('%s { %s:%s; }',
