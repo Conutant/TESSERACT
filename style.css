@@ -2056,11 +2056,12 @@ figure {
         float: none;
         margin: 0 auto;
         text-align: center;
+    	padding: 12px 0;
     }
 
     .site-logo img {
-		width:34px;
-    	height: 20px;
+		width:45x;
+    	height:34px;
     }
 
     .featured-widget-area {
@@ -2102,7 +2103,7 @@ figure {
 	}
 
     .main-navigation {
-        /* background-color: #424242; */
+        background-color: #424242;
         clear: both;
         height: 100%;
         overflow: hidden;
@@ -2154,6 +2155,10 @@ figure {
 
     .entry-title {
         display: block;
+    }
+
+    #navigation-widget {
+		width: 100%;
     }
 
 }

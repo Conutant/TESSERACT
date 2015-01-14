@@ -533,15 +533,15 @@ class Tesseract_Customize {
       <!--Customizer CSS-->
       <style type="text/css">
 		   <?php ob_start(); ?>
-           <?php self::generate_css('#site-title a', 'color', 'header_textcolor', '#'); ?>
-           <?php self::generate_css('body', 'background-color', 'background_color', '#'); ?>
-           <?php self::generate_css('a', 'color', 'link_textcolor'); ?>
+           <?php // self::generate_css('#site-title a', 'color', 'header_textcolor', '#'); ?>
+           <?php // self::generate_css('body', 'background-color', 'background_color', '#'); ?>
+           <?php // self::generate_css('a', 'color', 'link_textcolor'); ?>
            /* Featured Headline  */
 			<?php
+				//self::generate_css('.featured-widget h1', 'color','featured_textcolor','','',true,'@media screen and (min-width: 980px)');
 				self::generate_css('.featured-widget h1', 'color','featured_textcolor');
 				self::generate_css('.featured-widget h1', 'font-size','featured_text_fontsize','','px');
 			?>
-
 			<?php
 
 				if(get_theme_mod('featured_text_hasshadow'))
@@ -561,7 +561,7 @@ class Tesseract_Customize {
 
            <?php
            	  if(is_home())
-           	 	self::generate_css('.site-banner', 'background-color', 'menu_link_bgcolor');
+           	 	self::generate_css('.site-banner', 'background-color', 'menu_link_bgcolor','','',true,'@media screen and (min-width: 980px)');
            	  else
            	  {
            	  	$rgba = get_theme_mod('menu_link_bgcolor');
@@ -637,7 +637,7 @@ class Tesseract_Customize {
      * @return string Returns a single line of CSS with selectors and a property.
      * @since MyTheme 1.0
      */
-    public static function generate_css( $selector, $style, $mod_name, $prefix='', $postfix='', $echo=true ) {
+    public static function generate_css( $selector, $style, $mod_name, $prefix='', $postfix='', $echo=true, $media_query ='' ) {
       $return = '';
 
       $mod = get_theme_mod($mod_name);
@@ -647,20 +647,23 @@ class Tesseract_Customize {
             $style,
             $prefix.$mod.$postfix
          );
-         if ( $echo ) {
-            echo $return;
-         }
+
       }else if(empty($mod)){
 		$return = sprintf('%s { %s:%s; }',
 			$selector,
 			$style,
 			$prefix.$postfix
 		);
-		if($echo)
-			echo $return;
-		else
-			return $return;
 	 }
+	 //media query
+     if(!empty($media_query))
+     	$return  = sprintf('%s { %s }', $media_query, $return);
+	 if ( $echo ) {
+	 	echo $return;
+	 }else
+	 {
       return $return;
+	 }
+
     }
 }
