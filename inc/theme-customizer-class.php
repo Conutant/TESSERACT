@@ -545,14 +545,14 @@ class Tesseract_Customize {
 			<?php
 
 				if(get_theme_mod('featured_text_hasshadow'))
-					self::generate_css('.featured-widget h1', 'text-shadow','','5px 3px 3px rgba(150, 150, 150, 0.79)');
+					self::generate_css('.featured-widget h1', 'text-shadow','','rgba(81, 81, 81, 0.8) 1px 1px 1px');
 			 ?>
            	/* Featured Sub Headline */
 			<?php self::generate_css('.featured-widget .textwidget p', 'color','featured_subheadline_textcolor'); ?>
 			<?php self::generate_css('.featured-widget .textwidget p', 'font-size','featured_subheadline_fontsize','','px'); ?>
 			<?php
 				if(get_theme_mod('featured_subheadline_hasshadow'))
-					self::generate_css('.featured-widget .textwidget p', 'text-shadow','','5px 3px 3px rgba(150, 150, 150, 0.79)');
+					self::generate_css('.featured-widget .textwidget p', 'text-shadow','','rgba(81, 81, 81, 0.8) 1px 1px 1px');
 				?>
            /* Navigation Menu */
            <?php self::generate_css('.main-navigation a', 'color', 'menu_link_textcolor');?>

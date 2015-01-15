@@ -33,7 +33,7 @@
 		value.bind( function( to ) {
 
 			if(to==1)
-				$( 'aside.featured-widget h1.widget-title' ).eq(0).css('text-shadow','5px 3px 3px rgba(150, 150, 150, 0.79)');
+				$( 'aside.featured-widget h1.widget-title' ).eq(0).css('text-shadow','rgba(81, 81, 81, 0.8) 1px 1px 1px');
 			else
 				$( 'aside.featured-widget h1.widget-title' ).eq(0).css('text-shadow','none');
 		} );
@@ -66,7 +66,7 @@
 	wp.customize( 'featured_subheadline_hasshadow', function( value ) {
 		value.bind( function( to ) {
 			if(to==1)
-				$( 'aside.featured-widget div.textwidget p' ).eq(0).css('text-shadow','5px 3px 3px rgba(150, 150, 150, 0.79)');
+				$( 'aside.featured-widget div.textwidget p' ).eq(0).css('text-shadow','rgba(81, 81, 81, 0.8) 1px 1px 1px');
 			else
 				$( 'aside.featured-widget div.textwidget p' ).eq(0).css('text-shadow','none');
 		} );
