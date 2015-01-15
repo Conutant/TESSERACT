@@ -1215,7 +1215,6 @@ a:active {
 }
 
 .site-logo img {
-	width: 100%;
 	height: 40px;
 }
 .site-title a {
@@ -2060,7 +2059,6 @@ figure {
     }
 
     .site-logo img {
-		width: 100%;
     	height:34px;
     }
 
