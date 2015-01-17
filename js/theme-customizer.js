@@ -102,23 +102,48 @@
 	//menu text color
 	wp.customize( 'menu_link_textcolor', function( value ) {
 		value.bind( function( to ) {
-			$( '.main-navigation a' ).css('color',to);
+			$( '.main-navigation ul >li > a' ).css('color',to);
 		} );
 	} );
 
 	//menu link hover color
 	wp.customize( 'menu_link_hovercolor', function( value ) {
 		value.bind( function( to ) {
-			$( '.main-navigation a:hover' ).css('color',to);
+			$( '.main-navigation ul > li > a:hover' ).css('color',to);
 		} );
 	} );
 
-	//menu background color
+	//footer menu background color
 	wp.customize( 'menu_link_bgcolor', function( value ) {
 		value.bind( function( to ) {
 			$( '.site-banner' ).css('background-color',to);
 		} );
 	} );
+
+	/**
+	 * Footer Navigation Menu Customization
+	 */
+	//menu text color
+	wp.customize( 'footer_menu_link_textcolor', function( value ) {
+		value.bind( function( to ) {
+			$( '.footer-navigation ul > li > a' ).css('color',to);
+		} );
+	} );
+
+	//menu link hover color
+	wp.customize( 'footer_menu_link_hovercolor', function( value ) {
+		value.bind( function( to ) {
+			$( '.footer-navigation ul > li > a:hover' ).css('color',to);
+		} );
+	} );
+
+	//menu background color
+	wp.customize( 'footer_menu_link_bgcolor', function( value ) {
+		value.bind( function( to ) {
+			$( '.site-footer' ).css('background-color',to);
+		} );
+	} );
+
 
 	//navigation action buttons
 	//action buttons
@@ -129,14 +154,17 @@
 
 			container.html(to).find('a').each(function(index,element){
 				$(element).wrap('<li></li>');
-			});;
+			});
 		} );
 	} );
 	//footer navigation widget
 	//action buttons
 	wp.customize( 'footer-navigation-widget', function( value ) {
 		value.bind( function( to ) {
-			$('ul#menu-footer-menu').find('[id=footer-navigation-widget]').html(to);
+			var container = $('ul#menu-footer-menu').find('[id=footer-navigation-widget]');
+			container.html(to).find('a').each(function(index,element){
+				$(element).wrap('<li></li>');
+			});
 
 		} );
 	} );

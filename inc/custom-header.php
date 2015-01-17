@@ -157,7 +157,11 @@ function tesseract_navigation_widget($items, $args)
 	}else if($args->theme_location =='secondary')
 	{
 		if(get_theme_mod('footer-navigation-widget'))
-			$items .= "<span id='footer-navigation-widget'>".get_theme_mod('footer-navigation-widget')."</span>";
+		{
+			$widget = get_theme_mod('footer-navigation-widget');
+			$altered_widget = tesseract_navigation_widget_filter($widget);
+			$items .= "<span id='footer-navigation-widget'>".$altered_widget."</span>";
+		}
 	}
 	return $items;
 

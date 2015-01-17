@@ -14,7 +14,7 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-		<nav role="navigation" class="navigation site-navigation secondary-navigation">
+		<nav role="navigation" class="navigation site-navigation footer-navigation">
 			<?php
 				if(has_nav_menu('secondary'))
 				{

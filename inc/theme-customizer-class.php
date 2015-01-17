@@ -30,12 +30,15 @@ class Tesseract_Customize {
 
 		//here we add individual sections and settings...
 		//logo section
-		self::register_logo_section($wp_customize);
+		//self::register_logo_section($wp_customize);
 		//navigation section
-		self::register_navigation_section($wp_customize);
+		self::register_top_navigation_section($wp_customize);
 		//navigation menu action buttons
-		self::register_navigation_action_buttons($wp_customize);
+		self::register_top_navigation_action_buttons($wp_customize);
 		//footer menu navigation
+		self::register_footer_navigation_section($wp_customize);
+		//navigation menu action buttons
+		self::register_footer_navigation_action_buttons($wp_customize);
 		// don't need this as of now
 		//self::register_footer_navigation_action_buttons($wp_customize);
 		//featured section
@@ -49,8 +52,8 @@ class Tesseract_Customize {
 
 	}
 
-	//navigation options
-	public static function register_navigation_section( $wp_customize ) {
+	//top navigation options
+	public static function register_top_navigation_section( $wp_customize ) {
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'tesseract_navigation_options',
 				array(
@@ -63,6 +66,15 @@ class Tesseract_Customize {
 
 		//2. Register new settings to the WP database...
 		//menu text color
+		$wp_customize->add_setting( 'theme_logo', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' =>'', /* get_bloginfo('template_directory').'/images/logo.png',  *///Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+
 		$wp_customize->add_setting( 'menu_link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
 						'default' => '#ffffff', //Default setting/value to save
@@ -90,14 +102,14 @@ class Tesseract_Customize {
 				)
 		);
 		//menu action buttons
-		$wp_customize->add_setting( 'navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		/* $wp_customize->add_setting( 'navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
 						'default' => '<a>test</a>',
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
-		);
+		); */
 
 		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
 		//menu text color control
@@ -149,11 +161,123 @@ class Tesseract_Customize {
 						'type'		=> 'textarea'
 				)
 		) );
+		//menu logo
+		$wp_customize->add_control( new WP_Customize_Image_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_theme_logo', //Set a unique ID for the control
+				array(
+						'label' => __( 'Logo', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'theme_logo', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
 
 	}
+	//footer navigation section
+	//top navigation options
+	public static function register_footer_navigation_section( $wp_customize ) {
+		//1. Define a new section (if desired) to the Theme Customizer
+		$wp_customize->add_section( 'tesseract_footer_navigation_options',
+				array(
+						'title' => __( 'Footer Menu', 'tesseract' ), //Visible title of section
+						'priority' => 115, //Determines what order this appears in
+						'capability' => 'edit_theme_options', //Capability needed to tweak
+						'description' => __('Allows you to customize footer navigation menu for Tesseract.', 'tesseract'), //Descriptive tooltip
+				)
+		);
 
+		$wp_customize->add_setting( 'footer_menu_link_textcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#ffffff', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//menu hover color
+		$wp_customize->add_setting( 'footer_menu_link_hovercolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#ffffff', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//menu background color
+		$wp_customize->add_setting( 'footer_menu_link_bgcolor', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => 'rgba(66, 66, 66, 0.74)', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//menu action buttons
+		/* $wp_customize->add_setting( 'footer_navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '<a>test</a>',
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		); */
+
+		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+		//menu text color control
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_footer_menu_link_textcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Text Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_footer_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'footer_menu_link_textcolor', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+
+		//menu text hover color control
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_footer_menu_link_hovercolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Hover Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_footer_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'footer_menu_link_hovercolor', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+		//menu background color
+
+		$wp_customize->add_control( new Tesseract_Customize_Alpha_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_footer_menu_link_bgcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Background Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_footer_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'footer_menu_link_bgcolor', //Which setting to load and manipulate (serialized is okay)
+						'palette' => true,
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+
+		//menu action buttons control
+		/* $wp_customize->add_control( new WP_Customize_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_footer_navigation_action_button', //Set a unique ID for the control
+				array(
+						'label' => __( 'Menu Action Button', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_footer_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'footer-navigation-widget', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+						'type'		=> 'textarea'
+				)
+		) ); */
+
+	}
 	//logo options
 	public static function register_logo_section( $wp_customize ) {
+		return;
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'tesseract_logo',
 				array(
@@ -189,7 +313,7 @@ class Tesseract_Customize {
 
 	}
 	//Navigation buttons
-	public static function register_navigation_action_buttons( $wp_customize ) {
+	public static function register_top_navigation_action_buttons( $wp_customize ) {
 
 		//2. Define a new setting (if desired) to the Theme Customizer
 		$wp_customize->add_setting( 'navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
@@ -239,7 +363,7 @@ class Tesseract_Customize {
 				'tesseract_footer_navigation_action_button', //Set a unique ID for the control
 				array(
 						'label' => __( 'Footer Navigation Action Button', 'tesseract' ), //Admin-visible name of the control
-						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'section' => 'tesseract_footer_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'footer-navigation-widget', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
 						'type'		=> 'textarea'
@@ -295,7 +419,7 @@ class Tesseract_Customize {
 				'priority'			=> 10,
 				'capability'		=>'edit_theme_options',
 				'theme_supports'	=>'',
-				'title'				=>'Feature Options',
+				'title'				=>'Homepage Options',
 				'description'		=>'You can customize all featured part here'
 		));
 	}
@@ -560,13 +684,22 @@ class Tesseract_Customize {
            <?php self::generate_css('.main-navigation ul > li > a:hover', 'color', 'menu_link_hovercolor');?>
            <?php self::generate_css('span#navigation-widget', 'float','','right');?>
            <?php self::generate_css('span#navigation-widget li', 'margin-right','','5px');?>
+             /* Footer Navigation Menu */
+           <?php self::generate_css('.footer-navigation ul > li >a', 'color', 'footer_menu_link_textcolor');?>
+           <?php self::generate_css('.footer-navigation ul > li > a:hover', 'color', 'footer_menu_link_hovercolor');?>
+           <?php // self::generate_css('span#footer-navigation-widget', 'float','','right');?>
+           <?php // self::generate_css('span#footer-navigation-widget li', 'margin-right','','5px');?>
            /*centering */
            <?php self::generate_css('span#navigation-widget', 'margin-top','','3px');?>
 			/* Navigation bgcolor : rgba(81,29,130,0.74) */
 
            <?php
            	  if(is_home())
+           	  {
            	 	self::generate_css('.site-banner', 'background-color', 'menu_link_bgcolor','','',true,'@media screen and (min-width: 980px)');
+           	 	self::generate_css('.site-footer', 'background-color', 'footer_menu_link_bgcolor','','',true,'@media screen and (min-width: 980px)');
+           	  }
+
            	  else
            	  {
            	  	$rgba = get_theme_mod('menu_link_bgcolor');
