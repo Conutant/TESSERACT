@@ -125,14 +125,17 @@
 	wp.customize( 'navigation-widget', function( value ) {
 		value.bind( function( to ) {
 
-			$('ul#menu-top-menu').find('[id=navigation-widget]').html(to);
+			var container = $('ul#menu-top-menu').find('[id=navigation-widget]');
+
+			container.html(to).find('a').each(function(index,element){
+				$(element).wrap('<li></li>');
+			});;
 		} );
 	} );
 	//footer navigation widget
 	//action buttons
 	wp.customize( 'footer-navigation-widget', function( value ) {
 		value.bind( function( to ) {
-
 			$('ul#menu-footer-menu').find('[id=footer-navigation-widget]').html(to);
 
 		} );

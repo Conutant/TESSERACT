@@ -49,9 +49,9 @@
 }
 
 /*
- * font-size-slider
+ * tesseract-size-slider
  */
-.font-size-container .font-size {
+.tesseract-size-container .tesseract-size {
     height:24px;
     width:100%;
     background-color:#FFF;
@@ -62,7 +62,7 @@
     border-radius: 3px;
     padding:0;
 }
-.font-size-container .ui-slider-handle {
+.tesseract-size-container .ui-slider-handle {
     color:#777;
     background-color:#FFF;
     text-shadow:0 1px 0 #FFF;
@@ -78,18 +78,18 @@
     margin-top:-2px;
     height:20px;
     cursor:ew-resize;
-    font-size:12px;
+    tesseract-size:12px;
     padding:3px;
 }
-.font-size-container .ui-slider {
+.tesseract-size-container .ui-slider {
     position:relative;
     text-align:center;
     width:88%;
 }
-div.font-size-container {
+div.tesseract-size-container {
     display:block;
 }
-.font-size-container {
+.tesseract-size-container {
     box-sizing:padding-box;
     display:none;
     border-top:none;

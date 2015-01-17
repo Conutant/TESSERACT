@@ -38,12 +38,12 @@ class Tesseract_Customize_Alpha_Color_Control extends WP_Customize_Control {
             public function render_content() { ?>
                 <label>
                     <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-                    <input type="text" value="<?php echo intval( $this->value() ); ?>" class="font-size-control" <?php $this->link(); ?>  />
+                    <input type="text" value="<?php echo intval( $this->value() ); ?>" class="tesseract-size-control" <?php $this->link(); ?>  />
 
                 </label>
-					<div class="font-size-container">
-	                	<div class="font-size-slider"></div>
-	                	<div class="font-size"></div>
+					<div class="tesseract-size-container">
+	                	<div class="tesseract-size-slider"></div>
+	                	<div class="tesseract-size"></div>
 	                </div>
             <?php }
         }

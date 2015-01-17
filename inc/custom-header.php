@@ -125,6 +125,16 @@ function tesseract_admin_header_image() {
 }
 endif; // tesseract_admin_header_image
 
+function tesseract_navigation_widget_filter($widget)
+{
+	//echo $widget;
+	$tags = preg_split('/(?=<a)|(?<=\/a>)/',$widget);
+
+	foreach($tags as $key=>$tag)
+		$tags[$key] = '<li>'.$tag.'</li>';
+
+	return implode(' ',$tags);
+}
 /*
  * top navigation widget
 */
@@ -136,7 +146,13 @@ function tesseract_navigation_widget($items, $args)
 	if($args->theme_location == 'primary')
 	{
 		if(get_theme_mod('navigation-widget'))
-			$items .= "<span id='navigation-widget'>".get_theme_mod('navigation-widget')."</span>";
+		{
+			$widget = get_theme_mod('navigation-widget');
+
+			$altered_widget = tesseract_navigation_widget_filter($widget);
+
+			$items .= "<span id='navigation-widget'>".$altered_widget."</span>";
+		}
 		return $items;
 	}else if($args->theme_location =='secondary')
 	{

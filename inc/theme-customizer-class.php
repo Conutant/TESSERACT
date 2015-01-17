@@ -36,7 +36,8 @@ class Tesseract_Customize {
 		//navigation menu action buttons
 		self::register_navigation_action_buttons($wp_customize);
 		//footer menu navigation
-		self::register_footer_navigation_action_buttons($wp_customize);
+		// don't need this as of now
+		//self::register_footer_navigation_action_buttons($wp_customize);
 		//featured section
 		self::register_featured_section($wp_customize);
 		self::register_featured_header_image_section($wp_customize);
@@ -555,9 +556,12 @@ class Tesseract_Customize {
 					self::generate_css('.featured-widget .textwidget p', 'text-shadow','','rgba(81, 81, 81, 0.8) 1px 1px 1px');
 				?>
            /* Navigation Menu */
-           <?php self::generate_css('.main-navigation a', 'color', 'menu_link_textcolor');?>
-           <?php self::generate_css('.main-navigation a:hover', 'color', 'menu_link_hovercolor');?>
+           <?php self::generate_css('.main-navigation ul > li >a', 'color', 'menu_link_textcolor');?>
+           <?php self::generate_css('.main-navigation ul > li > a:hover', 'color', 'menu_link_hovercolor');?>
            <?php self::generate_css('span#navigation-widget', 'float','','right');?>
+           <?php self::generate_css('span#navigation-widget li', 'margin-right','','5px');?>
+           /*centering */
+           <?php self::generate_css('span#navigation-widget', 'margin-top','','3px');?>
 			/* Navigation bgcolor : rgba(81,29,130,0.74) */
 
            <?php

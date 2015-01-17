@@ -92,11 +92,11 @@ jQuery(document).ready(function($) {
 	}); // each
 
 
-	  //font-size-slider for both featured headline and subheadline
-	  $('.font-size-container').each(function(index,element){
+	  //tesseract-size-slider for both featured headline and subheadline
+	  $('.tesseract-size-container').each(function(index,element){
 
-		  var $font_size_slider = $(element).find('.font-size-slider');
-		  $control = $(element).parent().find('input.font-size-control');
+		  var $font_size_slider = $(element).find('.tesseract-size-slider');
+		  $control = $(element).parent().find('input.tesseract-size-control');
 
 		  $font_size_slider.slider({
 			  slide: function(event, ui) {
