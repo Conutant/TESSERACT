@@ -435,7 +435,16 @@ class Tesseract_Customize {
 				'panel'				=>'website_styling_panel',
 				'priority'			=> 90,
 		));
-
+		//text color
+		$wp_customize->add_setting( 'tesseract_text_color', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '#757575', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//And th
 		//3. font-size
 		//featured text fontsize
 		$wp_customize->add_section( 'tesseract_website_text_options',
@@ -450,12 +459,13 @@ class Tesseract_Customize {
 
 		$wp_customize->add_setting( 'tesseract_text_fontsize', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
-						'default' => '12', //Default setting/value to save
+						'default' => '16', //Default setting/value to save
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
 						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
 		);
+		//And th
 		//And then create controls
 		//featured text fontsize
 		$wp_customize->add_control(new Tesseract_Customize_Size_Control(
@@ -465,6 +475,17 @@ class Tesseract_Customize {
 						'label' => __( 'Text Fontsize', 'tesseract' ), //Admin-visible name of the control
 						'section' => 'tesseract_website_text_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'tesseract_text_fontsize', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
+		//text color control
+		$wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
+				$wp_customize, //Pass the $wp_customize object (required)
+				'tesseract_webstyling_textcolor', //Set a unique ID for the control
+				array(
+						'label' => __( 'Text Color', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'colors', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'tesseract_text_color', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
 				)
 		) );
@@ -749,7 +770,9 @@ class Tesseract_Customize {
            /*centering */
            <?php self::generate_css('span#navigation-widget', 'margin-top','','3px');?>
 			/* Navigation bgcolor : rgba(81,29,130,0.74) */
-
+			/*Normal Setting */
+			<?php self::generate_css('body','font-size','tesseract_text_fontsize','','px');?>
+		   <?php self::generate_css('body','color','tesseract_text_color');?>
            <?php
            	  if(is_home())
            	  {

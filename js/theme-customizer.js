@@ -172,4 +172,16 @@
 	 * Navigation Ends
 	 */
 
+	//Default Styling
+	wp.customize('tesseract_text_color',function(value){
+		value.bind(function(to){
+			$(document.body).css('color',to);
+		});
+	});
+
+	wp.customize('tesseract_text_fontsize',function(value){
+		value.bind(function(to){
+			$(document.body).css('font-size',to+'px');
+		});
+	});
 } )( jQuery );
