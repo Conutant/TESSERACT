@@ -73,7 +73,7 @@
 
 	} );
 	//action buttons
-	wp.customize( 'feactured_action_button', function( value ) {
+	wp.customize( 'featured_action_button', function( value ) {
 		value.bind( function( to ) {
 				$( 'aside.featured-widget div.textwidget div#action_buttons').html(to);
 

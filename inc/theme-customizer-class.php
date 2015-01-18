@@ -41,12 +41,16 @@ class Tesseract_Customize {
 		self::register_footer_navigation_action_buttons($wp_customize);
 		// don't need this as of now
 		//self::register_footer_navigation_action_buttons($wp_customize);
+
 		//featured section
 		self::register_featured_section($wp_customize);
 		self::register_featured_header_image_section($wp_customize);
 		self::register_featured_headline_section($wp_customize);
 		self::register_featured_subheadline_section($wp_customize);
 		self::register_feature_action_buttons($wp_customize);
+
+		//website styling
+		self::register_webstyling_section($wp_customize);
 
 
 
@@ -213,15 +217,6 @@ class Tesseract_Customize {
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
 		);
-		//menu action buttons
-		/* $wp_customize->add_setting( 'footer_navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
-				array(
-						'default' => '<a>test</a>',
-						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
-						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
-						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-				)
-		); */
 
 		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
 		//menu text color control
@@ -378,15 +373,15 @@ class Tesseract_Customize {
 		//1. Define a new section (if desired) to the Theme Customizer
 		$wp_customize->add_section( 'featured_button_options',
 				array(
-						'title' => __( 'Buttons', 'tesseract' ), //Visible title of section
+						'title' => __( 'Action Buttons', 'tesseract' ), //Visible title of section
 						'priority' => 90, //Determines what order this appears in
 						'capability' => 'edit_theme_options', //Capability needed to tweak
 						'description' => __('Allows you to customize action buttons', 'tesseract'), //Descriptive tooltip,
-						/* 'panel'				=>'feature_panel' */
-				)
+						'panel'				=>'feature_panel'
+					)
 		);
 		//2. Define a new setting (if desired) to the Theme Customizer
-		$wp_customize->add_setting( 'feactured_action_button', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+		$wp_customize->add_setting( 'featured_action_button', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
 				array(
 						'default' => '<a href="/" class="button primary-button">Watch the Video</a><a href="/" class="button secondary-button">Start</a>',
 						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
@@ -404,13 +399,75 @@ class Tesseract_Customize {
 				array(
 						'label' => __( 'Featured Action Button', 'tesseract' ), //Admin-visible name of the control
 						'section' => 'featured_button_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
-						'settings' => 'feactured_action_button', //Which setting to load and manipulate (serialized is okay)
+						'settings' => 'featured_action_button', //Which setting to load and manipulate (serialized is okay)
 						'priority' => 10, //Determines the order this control appears in for the specified section
 						 'type'		=> 'textarea'
 				)
 		) );
 
 
+	}
+	//Website Styling
+	public static function register_webstyling_section( $wp_customize ) {
+		//First we create panel to subgroup all featured components
+		$wp_customize->add_panel('website_styling_panel',array(
+				'priority'			=> 10,
+				'capability'		=>'edit_theme_options',
+				'theme_supports'	=>'',
+				'title'				=>'Website Styling',
+				'description'		=>'You can customize all basic settings here.'
+		));
+
+		//And then  create sections
+		//we do move default settings here
+		//1.background image
+
+		$wp_customize->add_section('background_image',array(
+				'title'				=> __('Background Image'),
+				'theme_supports'	=>'custom-background',
+				'panel'				=>'website_styling_panel',
+				'priority'			=> 90,
+		));
+
+		//2.background color
+		$wp_customize->add_section('colors',array(
+				'title'				=> __('Colors'),
+				'panel'				=>'website_styling_panel',
+				'priority'			=> 90,
+		));
+
+		//3. font-size
+		//featured text fontsize
+		$wp_customize->add_section( 'tesseract_website_text_options',
+				array(
+						'title' => __( 'Text Font', 'tesseract' ), //Visible title of section
+						'priority' => 90, //Determines what order this appears in
+						'capability' => 'edit_theme_options', //Capability needed to tweak
+						'description' => __('Allows you to customize normal text for Tesseract.', 'tesseract'), //Descriptive tooltip
+						'panel'		=>'website_styling_panel'
+				)
+		);
+
+		$wp_customize->add_setting( 'tesseract_text_fontsize', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
+				array(
+						'default' => '12', //Default setting/value to save
+						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
+						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
+						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+				)
+		);
+		//And then create controls
+		//featured text fontsize
+		$wp_customize->add_control(new Tesseract_Customize_Size_Control(
+				$wp_customize,
+				'tesseract_website_text_fontsize',
+				array(
+						'label' => __( 'Text Fontsize', 'tesseract' ), //Admin-visible name of the control
+						'section' => 'tesseract_website_text_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
+						'settings' => 'tesseract_text_fontsize', //Which setting to load and manipulate (serialized is okay)
+						'priority' => 10, //Determines the order this control appears in for the specified section
+				)
+		) );
 	}
 	//Featured  options
 	public static function register_featured_section( $wp_customize ) {
