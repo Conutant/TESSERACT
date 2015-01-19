@@ -154,7 +154,7 @@ function tesseract_navigation_widget($items, $args)
 			$items .= "<span id='navigation-widget'>".$altered_widget."</span>";
 		}
 		return $items;
-	}else if($args->theme_location =='secondary')
+	}/* else if($args->theme_location =='secondary')
 	{
 		if(get_theme_mod('footer-navigation-widget'))
 		{
@@ -162,7 +162,7 @@ function tesseract_navigation_widget($items, $args)
 			$altered_widget = tesseract_navigation_widget_filter($widget);
 			$items .= "<span id='footer-navigation-widget'>".$altered_widget."</span>";
 		}
-	}
+	} */
 	return $items;
 
 }

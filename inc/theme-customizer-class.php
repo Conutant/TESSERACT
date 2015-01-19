@@ -38,9 +38,8 @@ class Tesseract_Customize {
 		//footer menu navigation
 		self::register_footer_navigation_section($wp_customize);
 		//navigation menu action buttons
-		self::register_footer_navigation_action_buttons($wp_customize);
-		// don't need this as of now
 		//self::register_footer_navigation_action_buttons($wp_customize);
+
 
 		//featured section
 		self::register_featured_section($wp_customize);
@@ -105,15 +104,6 @@ class Tesseract_Customize {
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
 		);
-		//menu action buttons
-		/* $wp_customize->add_setting( 'navigation-widget', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
-				array(
-						'default' => '<a>test</a>',
-						'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
-						'capability' => 'edit_theme_options', //Optional. Special permissions for accessing this setting.
-						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
-				)
-		); */
 
 		//3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
 		//menu text color control
@@ -136,7 +126,7 @@ class Tesseract_Customize {
 						'label' => __( 'Menu Hover Color', 'tesseract' ), //Admin-visible name of the control
 						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'menu_link_hovercolor', //Which setting to load and manipulate (serialized is okay)
-						'priority' => 10, //Determines the order this control appears in for the specified section
+						'priority' => 11, //Determines the order this control appears in for the specified section
 				)
 		) );
 	 	//menu background color
@@ -149,7 +139,7 @@ class Tesseract_Customize {
 						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'menu_link_bgcolor', //Which setting to load and manipulate (serialized is okay)
 						'palette' => true,
-						'priority' => 10, //Determines the order this control appears in for the specified section
+						'priority' => 12, //Determines the order this control appears in for the specified section
 				)
 		) );
 
@@ -173,7 +163,7 @@ class Tesseract_Customize {
 						'label' => __( 'Logo', 'tesseract' ), //Admin-visible name of the control
 						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'theme_logo', //Which setting to load and manipulate (serialized is okay)
-						'priority' => 10, //Determines the order this control appears in for the specified section
+						'priority' => 9, //Determines the order this control appears in for the specified section
 				)
 		) );
 
@@ -330,7 +320,7 @@ class Tesseract_Customize {
 						'label' => __( 'Navigation Action Button', 'tesseract' ), //Admin-visible name of the control
 						'section' => 'tesseract_navigation_options', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
 						'settings' => 'navigation-widget', //Which setting to load and manipulate (serialized is okay)
-						'priority' => 10, //Determines the order this control appears in for the specified section
+						'priority' => 13, //Determines the order this control appears in for the specified section
 						'type'		=> 'textarea'
 				)
 		) );
@@ -444,6 +434,9 @@ class Tesseract_Customize {
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
 		);
+		//remove header text color
+		//$wp_customize->remove_setting('header_textcolor');
+		$wp_customize->remove_control('header_textcolor');
 		//And th
 		//3. font-size
 		//featured text fontsize
@@ -465,6 +458,7 @@ class Tesseract_Customize {
 						'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
 				)
 		);
+
 		//And th
 		//And then create controls
 		//featured text fontsize
@@ -760,6 +754,8 @@ class Tesseract_Customize {
            /* Navigation Menu */
            <?php self::generate_css('.main-navigation ul > li >a', 'color', 'menu_link_textcolor');?>
            <?php self::generate_css('.main-navigation ul > li > a:hover', 'color', 'menu_link_hovercolor');?>
+           <?php  self::generate_css('.main-navigation ul > li > a', 'font-size', '','14px');?>
+
            <?php self::generate_css('span#navigation-widget', 'float','','right');?>
            <?php self::generate_css('span#navigation-widget li', 'margin-right','','5px');?>
              /* Footer Navigation Menu */
@@ -771,7 +767,7 @@ class Tesseract_Customize {
            <?php self::generate_css('span#navigation-widget', 'margin-top','','3px');?>
 			/* Navigation bgcolor : rgba(81,29,130,0.74) */
 			/*Normal Setting */
-			<?php self::generate_css('body','font-size','tesseract_text_fontsize','','px');?>
+			<?php // self::generate_css('body','font-size','tesseract_text_fontsize','','px');?>
 		   <?php self::generate_css('body','color','tesseract_text_color');?>
            <?php
            	  if(is_home())
