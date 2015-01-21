@@ -37,8 +37,6 @@ get_header(); ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 
 		<?php endif; ?>
-
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
 <?php get_footer(); ?>

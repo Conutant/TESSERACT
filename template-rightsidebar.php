@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Right Sidebar 
+ * Template Name: Right Sidebar
  *
  * @package Tesseract
  */

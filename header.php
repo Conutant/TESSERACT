@@ -24,12 +24,23 @@
 	<header id="masthead" class="site-header" role="banner">
     <div class="site-banner">
 		<div class="site-branding">
+			<!--  ignore sit -->
+
+			<?php if(!get_theme_mod('theme_logo')): ?>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			<?php else:?>
+			<div class="site-logo">
+				<img src="<?php echo get_theme_mod('theme_logo');?>"/>
+			</div>
+			<?php endif; ?>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( '', 'tesseract' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			<?php
+				 wp_nav_menu( array( 'theme_location' => 'primary' ) );
+
+			?>
 		</nav><!-- #site-navigation -->
     </div><!-- .site-banner -->
 	</header><!-- #masthead -->
@@ -37,8 +48,8 @@
 	<?php if ( get_header_image() && is_home() ) : ?>
 		<div class="site-header-image" style="background-image: url('<?php header_image(); ?>')"></div>
 	<?php endif; // End header image check. ?>
-        
-    <?php if ( is_home() ) 
-	    get_sidebar( 'featured' ) || get_sidebar( 'middle' ); 
+
+    <?php if ( is_home() )
+	    get_sidebar( 'featured' ) || get_sidebar( 'middle' );
 	?>
     <div id="content" class="site-content">

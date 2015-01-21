@@ -20,7 +20,7 @@ Tesseract is based on Underscores http://underscores.me/, (C) 2012-2014 Automatt
 /* =Table of Contents
 -------------------------------------------------------------- */
 
-/* 
+/*
     01. CSS Reset (Normalize)
     02. Theme Base
     03. Clearfix
@@ -150,7 +150,7 @@ a:hover {
     outline: 0;
 }
 
-   
+
 /* =Text-level semantics
 -------------------------------------------------------------- */
 
@@ -464,9 +464,9 @@ th {
 
 /* Apply a natural box layout model to all elements */
 
-*, 
-*:before, 
-*:after { 
+*,
+*:before,
+*:after {
     box-sizing: border-box;
 }
 
@@ -562,7 +562,7 @@ blockquote,
 }
 
 .site-content,
-.middle-widget, 
+.middle-widget,
 .footer-widget {
 
 }
@@ -571,7 +571,7 @@ blockquote,
 .navigation,
 .site-content,
 .comments-title,
-.middle-widget, 
+.middle-widget,
 .footer-widget
 .comment-reply-title {
 
@@ -742,7 +742,7 @@ ol .children {
 
 /* =07. Forms
 -------------------------------------------------------------- */
- 
+
 select,
 textarea,
 input:not([type]),
@@ -809,7 +809,7 @@ input[type="url"]:disabled,
 input[type="search"]:disabled,
 input[type="tel"]:disabled,
 input[type="color"]:disabled {
-    cursor: none;  
+    cursor: none;
 }
 
 /*
@@ -938,7 +938,7 @@ button:active,
 input[type="reset"]:active,
 input[type="submit"]:active,
 input[type="button"]:active {
-    background-color: #199cd8;   
+    background-color: #199cd8;
 }
 
 /* === Differnt Colors and Sizes Of Primary and Secondary Buttons  === */
@@ -1121,7 +1121,7 @@ button:disabled,
 input[type="reset"]:disabled,
 input[type="submit"]:disabled,
 input[type="button"]:disabled {
-    cursor: none;  
+    cursor: none;
 }
 
 /*
@@ -1214,6 +1214,9 @@ a:active {
     padding: 10px 0;
 }
 
+.site-logo img {
+	height: 40px;
+}
 .site-title a {
     color: #fff;
 }
@@ -1242,7 +1245,7 @@ a:active {
 	margin-right: auto;
 }
 
-@viewport{ 
+@viewport{
     width: device-width;
 }
 
@@ -1313,7 +1316,7 @@ a:active {
 
 .main-navigation ul li {
 	display: inline-block;
-} 
+}
 
 .main-navigation ul li a {
 	padding: 5px 12px;
@@ -1502,7 +1505,7 @@ a:active {
 /*
  * Responsive media.
  */
- 
+
 img,
 embed,
 object,
@@ -1566,7 +1569,7 @@ figure {
 .alignleft {
     display: inline;
     float: left;
-    margin: 0 18px 18px 0; 
+    margin: 0 18px 18px 0;
 }
 
 .alignright {
@@ -1597,7 +1600,7 @@ figure {
 }
 
 .wp-caption .wp-caption-text {
-    margin-bottom: 0.8075em; 
+    margin-bottom: 0.8075em;
     margin-top: 0.8075em;
 }
 
@@ -1912,7 +1915,7 @@ figure {
 
 .comment-content p {
     margin-top: 3px;
-    
+
 }
 
 
@@ -2018,16 +2021,16 @@ figure {
 
 /* =24. Responsive design
 -------------------------------------------------------------- */
- 
+
 @media screen and (max-width: 700px) { /* Mobile Devices */
- 
+
     img {
         display: block;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
     }
-      
+
     .archive .entry-thumbnail {
         display: block;
         float: none;
@@ -2036,7 +2039,7 @@ figure {
         margin-right: auto;
         text-align: center;
     }
-    
+
     .site-info,
     .site-content {
         padding: 0 20px 0px;
@@ -2046,36 +2049,41 @@ figure {
         padding-bottom:10px;
         padding-top:10px;
     }
-    
+
     .site-logo,
     .site-title {
         float: none;
         margin: 0 auto;
         text-align: center;
+    	padding: 12px 0;
     }
-    
+
+    .site-logo img {
+    	height:34px;
+    }
+
     .featured-widget-area {
         top: 30%;
     }
-    
+
     .featured-widget h1 {
         font-size: 60px;
     }
-    
+
     .tesseract-featured .entry-title {
         font-size: 45px;
     }
-        
+
     .col-50 {
         float: none;
         padding: 20px;
         width: 100%;
     }
-    
+
     .col-50:last-of-type {
         padding-right: 20px;
     }
-        
+
     .widget-area,
     .content-area,
     .middle-widget,
@@ -2087,11 +2095,11 @@ figure {
         float: none;
         width: 100%;
     }
-    
+
     .comment-list .children {
 		padding-left: 0;
 	}
-    
+
     .main-navigation {
         background-color: #424242;
         clear: both;
@@ -2102,11 +2110,38 @@ figure {
         z-index: 99;
         width: 100%;
     }
-    
+	.footer-menu {
+        clear: both;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+        z-index: 99;
+        width: 100%;
+    }
+    .footer-menu ul {
+		width: 100%;
+    }
+    .footer-menu ul li {
+		display: block !important;
+    	text-align: center;
+    }
+    .footer-menu li {
+		position: relative;
+    }
+  	.footer-menu ul li a {
+        padding-left: 30px;
+        width: 100%;
+    }
+	.footer-menu ul #footer-navigation-widget {
+		padding-top:10px;
+		display: block;
+	}
+
 	.main-navigation ul {
 		display: none;
 	}
-    
+
     .main-navigation ul ul,
     .main-navigation ul ul ul {
         float: none;
@@ -2114,43 +2149,47 @@ figure {
         position: relative;
         top: auto;
     }
-    
+
     .main-navigation ul ul a,
     .main-navigation ul ul ul a {
         background-color: transparent;
         color: #dbdada;
         padding: inherit;
     }
-    
+
     .main-navigation ul li {
         display: inline;
     }
-    
+
     .main-navigation ul ul li a {
         padding-left: 30px;
         width: 100%;
     }
-    
+
     .main-navigation ul li:hover > ul,
     .main-navigation ul ul li:hover > ul {
 	    left: auto;
     }
-    
+
     .menu-toggle,
-    .main-navigation.toggled ul, 
+    .main-navigation.toggled ul,
 	.main-navigation.toggled .nav-menu {
 		display: block;
         margin: 0 auto;
 	}
-    
+
     .entry-title {
         display: block;
     }
-    
+
+    #navigation-widget {
+		width: 100%;
+    }
+
 }
 
 @media screen and (min-width: 980px) { /* Desktop */
-    
+
     .site-info,
     .site-branding,
     .site-content,
@@ -2158,7 +2197,7 @@ figure {
     .middle-widget-content {
 		width: 980px;
 	}
-    
+
 }
 
 /* =25. Print styles
@@ -2167,7 +2206,7 @@ figure {
 /* Print styles inlined to avoid extra HTTP connection */
 
 @media print {
-    
+
 	* {
 		background: transparent !important;
 		color: black !important; /* Black prints faster: sanbeiji.com/archives/953 */
@@ -2190,7 +2229,7 @@ figure {
 
 	/* Do not show javascript and internal links */
 	a[href^="javascript:"]:after, a[href^="#"]:after {
-		content: ""; 
+		content: "";
 	}
 
 	/* Printing Tables: css-discuss.incutio.com/wiki/Printing_Tables */
@@ -2214,7 +2253,7 @@ figure {
 	h2, h3 {
 		page-break-after: avoid;
 	}
-    
+
 }
 
 
@@ -2254,7 +2293,7 @@ figure {
     padding: 6px 0;
 }
 .main-navigation {
-    padding: 6px;   
+    padding: 6px;
 }
 /* === Comment Part  === */
 textarea#comment{
@@ -2314,7 +2353,7 @@ span.posted-on{
 .wpcf7-submit{
     float: right;
     clear: both;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
 .full-width-page {
@@ -2384,7 +2423,6 @@ span.posted-on{
         margin-top: 15px;
     }
 }
-
 
 
 

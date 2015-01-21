@@ -124,3 +124,45 @@ function tesseract_admin_header_image() {
 <?php
 }
 endif; // tesseract_admin_header_image
+
+function tesseract_navigation_widget_filter($widget)
+{
+	//echo $widget;
+	$tags = preg_split('/(?=<a)|(?<=\/a>)/',$widget);
+
+	foreach($tags as $key=>$tag)
+		$tags[$key] = '<li>'.$tag.'</li>';
+
+	return implode(' ',$tags);
+}
+/*
+ * top navigation widget
+*/
+add_filter('wp_nav_menu_items','tesseract_navigation_widget', 11,2);
+//add_filter('wp_page_menu','tesseract_navigation_widget', 11,2);
+function tesseract_navigation_widget($items, $args)
+{
+	// for wp_page_menu args is array
+	if($args->theme_location == 'primary')
+	{
+		if(get_theme_mod('navigation-widget'))
+		{
+			$widget = get_theme_mod('navigation-widget');
+
+			$altered_widget = tesseract_navigation_widget_filter($widget);
+
+			$items .= "<span id='navigation-widget'>".$altered_widget."</span>";
+		}
+		return $items;
+	}/* else if($args->theme_location =='secondary')
+	{
+		if(get_theme_mod('footer-navigation-widget'))
+		{
+			$widget = get_theme_mod('footer-navigation-widget');
+			$altered_widget = tesseract_navigation_widget_filter($widget);
+			$items .= "<span id='footer-navigation-widget'>".$altered_widget."</span>";
+		}
+	} */
+	return $items;
+
+}

@@ -24,3 +24,19 @@ function tesseract_customize_preview_js() {
 	wp_enqueue_script( 'tesseract_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '1.0.0', true );
 }
 add_action( 'customize_preview_init', 'tesseract_customize_preview_js' );
+
+//load theme-customizer-class.php
+// Setup the Theme Customizer settings and controls...
+add_action( 'customize_register' , array( 'Tesseract_Customize' , 'register' ) );
+
+// Output custom CSS to live site
+add_action( 'wp_head' , array( 'Tesseract_Customize' , 'header_output' ) );
+
+
+// Enqueue live preview javascript in Theme Customizer admin screen
+//add_action( 'customize_preview_init' , array( 'Tesseract_Customize' , 'live_preview' ) );
+add_action( 'wp_footer' , array( 'Tesseract_Customize' , 'live_preview' ) );
+
+//Enqueue customizer custom control stylesheets
+add_action( 'customize_controls_print_styles',array( 'Tesseract_Customize' , 'tesseract_enqueue_customizer_controls_styles') );
+add_action( 'admin_enqueue_scripts', array( 'Tesseract_Customize' ,'tesseract_enqueue_customizer_admin_scripts') );
