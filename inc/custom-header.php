@@ -1,126 +1,151 @@
 <?php
 /**
- * Sample implementation of the Custom Header feature
- * http://codex.wordpress.org/Custom_Headers
+ * Implement a custom header for Twenty Thirteen
  *
- * You can add an optional custom header image to header.php like so ...
-
-	<?php if ( get_header_image() ) : ?>
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-		<img src="<?php header_image(); ?>" width="<?php echo esc_attr( get_custom_header()->width ); ?>" height="<?php echo esc_attr( get_custom_header()->height ); ?>" alt="">
-	</a>
-	<?php endif; // End header image check. ?>
-
+ * @link http://codex.wordpress.org/Custom_Headers
  *
- * @package Tesseract
+ * @package WordPress
+ * @subpackage Tesseract
+ * @since Twenty Thirteen 1.0
  */
 
 /**
- * Set up the WordPress core custom header feature.
+ * Set up the WordPress core custom header arguments and settings.
  *
- * @uses tesseract_header_style()
- * @uses tesseract_admin_header_style()
- * @uses tesseract_admin_header_image()
+ * @uses add_theme_support() to register support for 3.4 and up.
+ * @uses tesseract_header_style() to style front-end.
+ * @uses tesseract_admin_header_style() to style wp-admin form.
+ * @uses tesseract_admin_header_image() to add custom markup to wp-admin form.
+ * @uses register_default_headers() to set up the bundled header images.
+ *
+ * @since Twenty Thirteen 1.0
  */
 function tesseract_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'tesseract_custom_header_args', array(
-	    'default-image'          => '%s/images/default-header.jpg',
-		'default-text-color'     => '000000',
-		'width'                  => 1580,
+	$args = array(
+		// Text color and image (empty to use none).
+		'default-text-color'     => '220e10',
+		'default-image'          => '%s/images/default-header.jpg',
+
+		// Set height and width, with a maximum value for the width.
 		'height'                 => 480,
-		'flex-height'            => true,
-		'wp-head-callback'       => 'tesseract_header_style',
+		'width'                  => 1580,
+
+		// Callbacks for styling the header and the admin preview.
+		//'wp-head-callback'       => 'tesseract_header_style',
 		'admin-head-callback'    => 'tesseract_admin_header_style',
 		'admin-preview-callback' => 'tesseract_admin_header_image',
-	) ) );
-}
-add_action( 'after_setup_theme', 'tesseract_custom_header_setup' );
+	);
 
-if ( ! function_exists( 'tesseract_header_style' ) ) :
+	add_theme_support( 'custom-header', $args );
+
+	/*
+	 * Default custom headers packaged with the theme.
+	 * %s is a placeholder for the theme template directory URI.
+	 */
+	register_default_headers( array(
+		'circle' => array(
+			'url'           => '%s/images/default-header.jpg',
+			'thumbnail_url' => '%s/images/default-header-thumbnail.jpg',
+			'description'   => _x( 'Default', '', 'tesseract' )
+		)
+	) );
+}
+add_action( 'after_setup_theme', 'tesseract_custom_header_setup', 11 );
+
 /**
- * Styles the header image and text displayed on the blog
+ * Load our special font CSS files.
  *
- * @see tesseract_custom_header_setup().
+ * @since Twenty Thirteen 1.0
  */
-function tesseract_header_style() {
-	$header_text_color = get_header_textcolor();
+function tesseract_custom_header_fonts() {
+	// Add Source Sans Pro and Bitter fonts.
+	wp_enqueue_style( 'tesseract-fonts', tesseract_fonts_url(), array(), null );
 
-	// If no custom options for text are set, let's bail
-	// get_header_textcolor() options: HEADER_TEXTCOLOR is default, hide text (returns 'blank') or any hex value
-	if ( HEADER_TEXTCOLOR == $header_text_color ) {
-		return;
-	}
-
-	// If we get this far, we have custom styles. Let's do this.
-	?>
-	<style type="text/css">
-	<?php
-		// Has the text been hidden?
-		if ( 'blank' == $header_text_color ) :
-	?>
-		.site-title,
-		.site-description {
-			position: absolute;
-			clip: rect(1px, 1px, 1px, 1px);
-		}
-	<?php
-		// If the user has set a custom color for the text use that
-		else :
-	?>
-		.site-title a,
-		.site-description {
-			color: #<?php echo esc_attr( $header_text_color ); ?>;
-		}
-	<?php endif; ?>
-	</style>
-	<?php
+	// Add Genericons font.
+	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.03' );
 }
-endif; // tesseract_header_style
+add_action( 'admin_print_styles-appearance_page_custom-header', 'tesseract_custom_header_fonts' );
 
-if ( ! function_exists( 'tesseract_admin_header_style' ) ) :
+
+
 /**
- * Styles the header image displayed on the Appearance > Header admin panel.
+ * Style the header image displayed on the Appearance > Header admin panel.
  *
- * @see tesseract_custom_header_setup().
+ * @since Twenty Thirteen 1.0
  */
 function tesseract_admin_header_style() {
+	$header_image = get_header_image();
 ?>
-	<style type="text/css">
-		.appearance_page_custom-header #headimg {
-			border: none;
-		}
-		#headimg h1,
-		#desc {
-		}
-		#headimg h1 {
-		}
-		#headimg h1 a {
-		}
-		#desc {
-		}
-		#headimg img {
-		}
+	<style type="text/css" id="tesseract-admin-header-css">
+	.appearance_page_custom-header #headimg {
+		border: none;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing:    border-box;
+		box-sizing:         border-box;
+		<?php
+		if ( ! empty( $header_image ) ) {
+			echo 'background: url(' . esc_url( $header_image ) . ') no-repeat scroll top; background-size: 1600px auto;';
+		} ?>
+		padding: 0 20px;
+	}
+	#headimg .home-link {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing:    border-box;
+		box-sizing:         border-box;
+		margin: 0 auto;
+		max-width: 1040px;
+		<?php
+		if ( ! empty( $header_image ) || display_header_text() ) {
+			echo 'min-height: 230px;';
+		} ?>
+		width: 100%;
+	}
+	<?php if ( ! display_header_text() ) : ?>
+	#headimg h1,
+	#headimg h2 {
+		position: absolute !important;
+		clip: rect(1px 1px 1px 1px); /* IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+	<?php endif; ?>
+	#headimg h1 {
+		font: bold 60px/1 Bitter, Georgia, serif;
+		margin: 0;
+		padding: 58px 0 10px;
+	}
+	#headimg h1 a {
+		text-decoration: none;
+	}
+	#headimg h1 a:hover {
+		text-decoration: underline;
+	}
+	#headimg h2 {
+		font: 200 italic 24px "Source Sans Pro", Helvetica, sans-serif;
+		margin: 0;
+		text-shadow: none;
+	}
+	.default-header img {
+		max-width: 230px;
+		width: auto;
+	}
 	</style>
 <?php
 }
-endif; // tesseract_admin_header_style
 
-if ( ! function_exists( 'tesseract_admin_header_image' ) ) :
 /**
- * Custom header image markup displayed on the Appearance > Header admin panel.
+ * Output markup to be displayed on the Appearance > Header admin panel.
  *
- * @see tesseract_custom_header_setup().
+ * This callback overrides the default markup displayed there.
+ *
+ * @since Twenty Thirteen 1.0
  */
 function tesseract_admin_header_image() {
-	$style = sprintf( ' style="color:#%s;"', get_header_textcolor() );
-?>
-	<div id="headimg">
-		<h1 class="displaying-header-text"><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-		<div class="displaying-header-text" id="desc"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></div>
-		<?php if ( get_header_image() ) : ?>
-		<img src="<?php header_image(); ?>" alt="">
-		<?php endif; ?>
+	?>
+	<div id="headimg" style="background: url(<?php header_image(); ?>) no-repeat scroll top; background-size: 1600px auto;">
+		<?php $style = ' style="color:#' . get_header_textcolor() . ';"'; ?>
+		<div class="home-link">
+			<h1 class="displaying-header-text"><a id="name"<?php echo $style; ?> onclick="return false;" href="#" tabindex="-1"><?php bloginfo( 'name' ); ?></a></h1>
+			<h2 id="desc" class="displaying-header-text"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></h2>
+		</div>
 	</div>
-<?php
-}
-endif; // tesseract_admin_header_image
+<?php }

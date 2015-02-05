@@ -8,7 +8,7 @@ Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: tesseract
-Tags: responsive-layout, custom-background, custom-header, custom-menu, editor-style, one-column, two-columns, featured-images, full-width-template, left sidebar, threaded-comments, translation-ready, microformats, dark, white, light
+Tags: responsive-layout, custom-background, custom-header, custom-menu, editor-style, one-column, two-columns, featured-images, full-width-template, left-sidebar, threaded-comments, translation-ready, microformats, dark, white, light
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -68,9 +68,8 @@ html {
  * Remove default margin.
  */
 
-body {
-    margin: 0;
-}
+body { margin: 0; }
+#page { position: relative; }
 
 
 /* =HTML5 display definitions
@@ -459,6 +458,35 @@ th {
   padding: 0;
 }
 
+/**
+ * CLEARFIX
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
 /* =02. Theme base
 -------------------------------------------------------------- */
 
@@ -485,11 +513,7 @@ body {
 .clear:before,
 .clear:after,
 .gallery:before,
-.gallery:after,
-.middle-widget-area:before,
-.middle-widget-area:after,
-.footer-widget-area:before,
-.footer-widget-area:after,
+.gallery:after
 .entry-content:before,
 .entry-content:after,
 .comment-content:before,
@@ -505,9 +529,7 @@ body {
 }
 
 .clear:after,
-.gallery:after,
-.middle-widget-area:after,
-.footer-widget-area:after,
+.gallery:after
 .entry-content:after,
 .comment-content:after,
 .site-header:after,
@@ -538,8 +560,7 @@ blockquote,
 .page-content,
 .entry-summary,
 .entry-thumbnail,
-.comments-title,
-.middle-widget,
+.comments-title
 .comment-respond,
 .wp-caption-text,
 .comment-reply-title,
@@ -558,23 +579,7 @@ blockquote,
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
-    margin-top: 35px;
-}
-
-.site-content,
-.middle-widget, 
-.footer-widget {
-
-}
-
-.page-links,
-.navigation,
-.site-content,
-.comments-title,
-.middle-widget, 
-.footer-widget
-.comment-reply-title {
-
+    margin-top: 45px;
 }
 
 p {
@@ -665,10 +670,11 @@ h6 {
 
 span{
     display:inline-block;
+	zoom: 1; *display: inline;
 }
 
 .entry-title {
-    margin-bottom: 20px;
+    margin: 17px 0 20px 0;
 }
 
 .comment-body {
@@ -699,23 +705,6 @@ ol .children {
 
 .reply {
     margin-left: 80px;
-}
-
-.featured-widget h1 {
-    color: #fff;
-    font-size: 100px;
-    line-height: 1;
-    margin-bottom: 0;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
-    top: 25%;
-}
-
-.footer-widget h6 {
-    color: #919191;
-    font-size: 16px;
-    text-transform: uppercase;
 }
 
 .archive .entry-title {
@@ -906,8 +895,11 @@ input[type="button"] {
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 1px;
-    padding: 10px 25px;
+    padding: 0 20px;
     text-transform: uppercase;
+	line-height: 40px;
+	display: inline-block;
+	zoom: 1; *display: inline;
 }
 
 /*
@@ -946,23 +938,44 @@ input[type="button"]:active {
 
 /* Featured */
 
+.primary-button,
+.secondary-button {
+	margin: 0 10px
+	}
+
 .primary-button {
     background-color: #199cd8;
 }
 
+#header-button-container .primary-button {
+	color: #fff!important;
+	}
+	
 .primary-button:hover{
     background-color: #1581b2;
-}
+}	
 
 .secondary-button {
     background-color: transparent;
     border: 1px solid #fff;
 }
 
-.secondary-button:hover {
+.site-header .secondary-button { color: #fff; }
+	
+/*#header-button-container .secondary-button {
+	color: #000;
+	border-color: #000;
+	}	
+	
+.secondary-button:hover,
+#header-button-container .secondary-button:hover {
     background-color: #fff;
-    color: #199cd8;
-}
+    color: #199cd8;	
+	}
+
+#header-button-container .secondary-button:hover {
+	border-color: #199cd8;
+}*/
 
 
 /* === Default Color === */
@@ -1134,19 +1147,15 @@ select {
     vertical-align: middle;
 }
 
+/* New custom styles */
 
-
-/* Toggle button */
-
-.menu-toggle {
-    background-color: #a3a4a5;
-    padding: 5px 15px;
+.no-bottom-space * {
+	padding-bottom: 0px;
+	margin-bottom:0px;
 }
 
-.menu-toggle:active,
-.menu-toggle:hover,
-.menu-toggle:focus {
-    background-color: #c7c8c8;
+.top-rounded {
+	border-radius: .3em .3em 0 0;
 }
 
 /* =09. Tables
@@ -1174,9 +1183,9 @@ a {
 	text-decoration: none;
 }
 
-a:hover,
-a:focus,
-a:active {
+#content a:hover,
+#content a:focus,
+#content a:active {
 	color: #adacac;
 }
 
@@ -1199,28 +1208,15 @@ a:active {
 /* =11. Header area
 -------------------------------------------------------------- */
 
-.site-banner {
-    background-color: #424242;
-    min-height: 45px;
-    z-index: 5;
-    position: relative;
+.site-header {
+	width: 100%;
+	}
+
+.site-header-image{
+    z-index: -10000;
+    height: 620px;
 }
 
-.site-logo, /* Jetpack */
-.site-title {
-    float: left;
-    margin: 0;
-    margin-right: 20px;
-    padding: 10px 0;
-}
-
-.site-title a {
-    color: #fff;
-}
-
-.site-title a:hover {
-    color: #199cd8;
-}
 
 /* =12. Layout
 -------------------------------------------------------------- */
@@ -1231,13 +1227,20 @@ a:active {
     width: 100%;
 }
 
+
 .site-info,
-.site-branding,
+.site-content,
+#colophon > .menu,
+#footer-banner,
+.full-width-page {
+	max-width: 980px;
+}
+
+.site-info,
 .site-content,
 .full-width-page,
-.middle-widget-area,
-.footer-widget-content,
-.middle-widget-content {
+#colophon > .menu,
+#footer-banner {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -1249,91 +1252,9 @@ a:active {
 /* =13. Menus
 -------------------------------------------------------------- */
 
-.main-navigation {
-    padding: 10px;
-	text-align: left;
-}
-
-.main-navigation ul {
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
-.main-navigation li {
-	position: relative;
-}
-
-.main-navigation a {
-    color: #fff;
-	display: block;
-    font-weight: 300;
-	text-decoration: none;
-}
-
-.main-navigation a:hover {
-    color: #199cd8;
-}
-
-.main-navigation ul ul {
-	float: left;
-	position: absolute;
-	padding-top: 10px;
-	left: -999em;
-	z-index: 99999;
-    top: auto;
-}
-
-.main-navigation ul ul ul {
-	left: -999em;
-	padding-top: 0;
-    top: 0;
-}
-
-.main-navigation ul ul a {
-    background-color: #f0f0f0;
-    display: block;
-    color: #242424;
-    text-transform: none;
-	width: 200px;
-}
-
-.main-navigation ul ul li {
-    text-align: left;
-}
-
-.main-navigation li:hover > a {
-}
-
-.main-navigation ul ul :hover > a {
-}
-
-.main-navigation ul ul a:hover {
-}
-
-.main-navigation ul li {
-	display: inline-block;
-} 
-
-.main-navigation ul li a {
-	padding: 5px 12px;
-}
-
-.main-navigation ul li:hover > ul {
-	left: auto;
-}
-
-.main-navigation ul ul li:hover > ul {
-	left: 100%;
-}
-
-.main-navigation .current_page_item > a,
-.main-navigation .current-menu-item > a,
-.main-navigation .current_page_ancestor > a {
-}
-
 /* Small menu */
-.menu-toggle {
+.menu-toggle,
+.menu-toggle.dashicons {
 	display: none;
 }
 
@@ -1457,7 +1378,7 @@ a:active {
 .post-navigation .nav-next {
     float: right;
     text-align: right;
-}
+}	
 
 /* =14. Icons
 -------------------------------------------------------------- */
@@ -1534,6 +1455,7 @@ figure {
     padding: 10px;
     position: relative;
     width: 100%;
+	margin-top: -60px;
 }
 
 .entry-background {
@@ -1722,10 +1644,12 @@ figure {
 /* =18. Widgets
 -------------------------------------------------------------- */
 
-.widget,
-.middle-widget,
-.footer-widget,
-.featured-widget {
+.widget-area a {
+	color: #82888a;
+	text-decoration: none;
+}
+
+.widget {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -1743,63 +1667,24 @@ figure {
     padding-right: 0;
 }
 
-.widget ul,
-.middle-widget ul,
-.footer-widget ul,
-.featured-widget ul {
-    font-size: 13px;
+.widget ul {
+    font-size: 16px;
     list-style: none;
     padding: 0;
 }
 
-.widget ol,
-.middle-widget ol,
-.footer-widget ol,
-.featured-widget ol {
+.widget ol {
     list-style: inside;
     padding: 0;
 }
 
-.widget ul ul,
-.middle-widget ul ul,
-.footer-widget ul ul,
-.featured-widget ul ul {
+.widget ul ul {
     padding-left: 20px;
-}
-
-.widget-area {
-    float: left;
-    width: 240px;
-}
-
-.middle-widget-area {
-    background-color: #fff;
-    text-align: center;
-    width: 100%;
-}
-
-.footer-widget-area {
-    background-color: #424242;
-    width: 100%;
-}
-
-.featured-widget-area {
-    color: #fff;
-    left: 0;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 105px;
-}
-
-.featured-widget-area p {
-    margin-top: 0;
 }
 
 /* Make sure select elements fit in widgets */
 
-.widget select,
-.featured-widget select {
+.widget select {
     max-width: 100%;
     margin-bottom: 25px;
 }
@@ -1810,6 +1695,8 @@ figure {
 .entry-content {
     border-bottom: 1px solid #ddd;
 }
+
+.home .entry-content { border: none; }
 
 .home .site-content {
     padding: 0;
@@ -1823,12 +1710,9 @@ figure {
     border-bottom: none;
 }
 
-.entry-footer{
-    display:none;
-}
-
-.entry-footer span {
+#primary .entry-footer span {
     padding-right: 5px;
+	vertical-align: middle;
 }
 
 .sticky {
@@ -1850,20 +1734,39 @@ figure {
 .entry-footer,
 .logged-in-as {
     font-size: 13px;
+	display: none;
 }
 
 .page-links {
     clear: both;
 }
 
-.content-area {
+#primary {
     float: right;
-    width: 700px;
+    width: 66.6666%;
 }
 
-.full-width-page {
-    width: 700px;
+#secondary {
+    float: left;
+    width: 33.3333%;
+	padding-right: 60px;
 }
+
+.blog #primary,
+.home #primary,
+.page-template-full-width-page #primary,
+.page-template-blog-php #primary,
+.error404 #primary,
+.single #primary { width: 100%; }
+
+.page-template-page-rightsidebar #primary {
+	float: left;
+	}
+	
+.page-template-page-rightsidebar #secondary {
+	float: right;
+	padding: 0 0 0 60px;
+	}
 
 .home .content-area {
 	width: 100%;
@@ -1872,6 +1775,39 @@ figure {
 .post-edit-link {
     float: right;
 }
+
+/* Archives + Search */
+
+.archive #primary article,
+.search #primary article {
+	padding: 25px 0 0 0;
+	}
+
+.archive #primary .entry-content,
+.search .entry-summary {
+	padding-bottom: 20px;
+	}	
+	
+.search .page-title,
+.error404 .page-title {
+	margin: 35px 0 0;
+	}	
+
+.search h1.entry-title {
+	margin: 17px 0 20px 0;
+	font-size: 21px;
+	}
+	
+.search .entry-summary {
+	margin: 0;
+	padding: 0;
+	}
+	
+.search .entry-footer {
+	margin-bottom: 0;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 40px;
+	}			
 
 /* =20. Asides
 -------------------------------------------------------------- */
@@ -2012,154 +1948,76 @@ figure {
 }
 
 .site-info {
-    padding-top: 10px;
-    padding-bottom:5px;
+    padding: 10px 0;
+	margin-top: 10px;
+	border-top: #eee solid 1px;
 }
+
+#colophon ul {
+	list-style-type: none;	
+	padding-left: 0;
+	list-style-position: inside;
+	}
+	
+#sidebar-footer {
+	text-align: left;
+	word-spacing: -0.29em;
+	}
+
 
 /* =24. Responsive design
 -------------------------------------------------------------- */
- 
-@media screen and (max-width: 700px) { /* Mobile Devices */
- 
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-      
-    .archive .entry-thumbnail {
-        display: block;
-        float: none;
-        margin-bottom: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
-    
-    .site-info,
-    .site-content {
-        padding: 0 20px 0px;
+
+@media screen and (max-width: 980px) {
+	
+	#sidebar-footer,
+	#content,
+	#masthead {
+		padding: 0 20px;
+		}
+		
+	#sidebar-footer aside {
+		width: 50%!important;
+		padding: 0;
+		border-width: 1px 0 1px 0;
+		}	
+		
+	#sidebar-footer aside.odd:last-child { width: 100%!important; }	
+	
+	}
+	
+@media screen and (max-width: 800px) {
+	
+	#primary, 
+	#secondary {
+		width: 100%;
+		padding: 0!important;
+		}
+	
+	} 	
+
+
+@media screen and (max-width: 620px) {
+		
+	button, 
+	.button, 
+	input[type="reset"], 
+	input[type="submit"], 
+	input[type="button"] {
+		line-height: 30px;
+		padding: 0 10px;
+		}		
+	
 	}
 
-    .site-info{
-        padding-bottom:10px;
-        padding-top:10px;
-    }
-    
-    .site-logo,
-    .site-title {
-        float: none;
-        margin: 0 auto;
-        text-align: center;
-    }
-    
-    .featured-widget-area {
-        top: 30%;
-    }
-    
-    .featured-widget h1 {
-        font-size: 60px;
-    }
-    
-    .tesseract-featured .entry-title {
-        font-size: 45px;
-    }
-        
-    .col-50 {
-        float: none;
-        padding: 20px;
-        width: 100%;
-    }
-    
-    .col-50:last-of-type {
-        padding-right: 20px;
-    }
-        
-    .widget-area,
-    .content-area,
-    .middle-widget,
-    .footer-widget,
-    .full-width-page {
-        display: block;
-        margin-right: auto;
-        margin-left: auto;
-        float: none;
-        width: 100%;
-    }
-    
-    .comment-list .children {
-		padding-left: 0;
+@media screen and (max-width: 480px) {
+		
+	#sidebar-footer aside {
+		width: 100%!important;
+		}	
+	
 	}
-    
-    .main-navigation {
-        background-color: #424242;
-        clear: both;
-        height: 100%;
-        overflow: hidden;
-        position: relative;
-        text-align: left;
-        z-index: 99;
-        width: 100%;
-    }
-    
-	.main-navigation ul {
-		display: none;
-	}
-    
-    .main-navigation ul ul,
-    .main-navigation ul ul ul {
-        float: none;
-        left: 0;
-        position: relative;
-        top: auto;
-    }
-    
-    .main-navigation ul ul a,
-    .main-navigation ul ul ul a {
-        background-color: transparent;
-        color: #dbdada;
-        padding: inherit;
-    }
-    
-    .main-navigation ul li {
-        display: inline;
-    }
-    
-    .main-navigation ul ul li a {
-        padding-left: 30px;
-        width: 100%;
-    }
-    
-    .main-navigation ul li:hover > ul,
-    .main-navigation ul ul li:hover > ul {
-	    left: auto;
-    }
-    
-    .menu-toggle,
-    .main-navigation.toggled ul, 
-	.main-navigation.toggled .nav-menu {
-		display: block;
-        margin: 0 auto;
-	}
-    
-    .entry-title {
-        display: block;
-    }
-    
-}
 
-@media screen and (min-width: 980px) { /* Desktop */
-    
-    .site-info,
-    .site-branding,
-    .site-content,
-    .footer-widget-content,
-    .middle-widget-content {
-		width: 980px;
-	}
-    
-}
 
 /* =25. Print styles
 -------------------------------------------------------------- */
@@ -2217,25 +2075,6 @@ figure {
     
 }
 
-
-/* === Custom CSS by Andrei === */
-
-/* === Logo === */
-
-.site-title{
-        margin-left: 10px!important;
-}
-
-/* === Banner and Top Nav === */
-.home .site-banner{
-    background-color: rgba(66, 66, 66, 0.74);
-}
-.site-header-image{
-    margin-top: -58px;
-    z-index: -10000;
-    height: 620px;
-}
-
 /* === Rounded Photos === */
 .entry-content img{
 
@@ -2249,13 +2088,6 @@ figure {
     float: right!important;
 }
 
-/* === 50px Navigation  === */
-.site-logo, .site-title{
-    padding: 6px 0;
-}
-.main-navigation {
-    padding: 6px;   
-}
 /* === Comment Part  === */
 textarea#comment{
     border: 1px solid #dfdfdf;
@@ -2285,25 +2117,52 @@ article.comment-body{
 }
 
 /* === Blog Page  === */
+
 .navigation.post-navigation{
     padding: 10px
 }
 .tesseract-featured .entry-content{
     margin-top: 480px
 }
-.page-template-blog-php article{
+
+.page-template-blog-php article {
     border-bottom: 1px dotted rgb(190, 175, 175);
+	padding-bottom: 30px;
 }
+
+.page-template-blog-php #primary article:last-of-type {
+	border-bottom: none;
+	}
+	
+.page-template-blog-php #colophon {
+	border-top: 1px solid #ddd;
+	}	
+
 h1.entry-title {
     font-size: 35px;
     margin: 60px 0 30px;
     text-transform: capitalize;
 }
+
+.blog h1.entry-title,
+.page-template-blog-php h1.entry-title	 {
+	margin-top: 40px;
+	}
+	
+.blog #header-image { display: none; }
+
+.blog.home #header-image { display: block; }
+
+.blog.home #primary article:first-of-type {
+	padding-top: 40px;
+	}	
+
 span.posted-on{
     font-size: 16px;
     font-style: italic;
     font-weight: bold;
 }
+
 .moretag{
     display: block;
     font-style: italic;
@@ -2315,10 +2174,6 @@ span.posted-on{
     float: right;
     clear: both;
     margin-bottom: 20px; 
-}
-
-.full-width-page {
-    width: 860px;
 }
 
 /* === Footer Menu  === */
@@ -2341,76 +2196,14 @@ span.posted-on{
     padding-right: 10px;
 }
 
-#designer{
-    float:right;
+/*== Fixes for sitebuilder no padding on image ==*/
+
+.no-padding-bottom p, .no-padding-bottom img {
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 
-/* === Mobile Properties  === */
-@media screen and (max-width: 700px){
-    .menu-toggle{
-        background: url('images/white-mobile.png')!important;
-        border: none!important;
-        float: left!important;
-        width: 27px;
-        height: 15px;
-        margin-top: -10px;
-    }
-    .menu{
-        clear: both!important;
-    }
-    .home .site-banner{
-        background-color: #424242;
-    }
-    .main-navigation {
-        padding: 10px;
-    }
-    .main-navigation ul li{
-        text-align: center;
-    }
-    #site-navigation{
-        position: absolute;
-        height: auto;
-        margin-top: 16px;
-        z-index: 1000;
-    }
-    .site-branding{
-        position: absolute;
-        z-index: 1001;
-        margin: 0 auto;
-        margin-left: 44%;
-    }
-    #site-navigation .menu{
-        margin-top: 15px;
-    }
-}
-
-
-
-
-@media screen and (max-width: 820px){
-    .content-area{
-        width: 100%;
-        padding: 0 20px;
-    }
-}
-
-@media (min-width: 401px) and (max-width: 550px){
-    .site-branding{
-        margin-left: 42%;
-    }
-}
-@media screen and (max-width: 400px){
-    .site-branding{
-        margin-left: 40%;
-    }
-}
-
-@media screen and (max-width: 900px){
-    .full-width-page {
-        width: 96%;
-    }
-}
 
 
 

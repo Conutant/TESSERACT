@@ -43,6 +43,20 @@ function tesseract_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
+	/* Backwards compatibility 
+	 * @ https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
+	 * To enable support in existing themes without breaking backwards compatibility, 
+	 * theme authors can check if the callback function exists, and add a shiv in case 
+	 * it does not:
+	 */
+	if ( ! function_exists( '_wp_render_title_tag' ) ) :
+		function theme_slug_render_title() {
+			?>
+			<title><?php wp_title( '|', true, 'right' ); ?></title>
+			<?php
+		}
+		add_action( 'wp_head', 'theme_slug_render_title' );
+	endif;	
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -66,7 +80,7 @@ function tesseract_setup() {
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'tesseract' ),
-		'footer-menu' => __( 'Footer Menu' )
+		'secondary' => __( 'Secondary Menu', 'tesseract' )
 	) );
 
 	/*
@@ -110,64 +124,6 @@ function tesseract_widgets_init() {
 		'after_title'   => '</h4>',
 	) );
 	
-	register_sidebar( array(
-		'name'          => __( 'Featured Widget', 'tesseract' ),
-		'id'            => 'sidebar-2',
-		'description'   => __( 'Appears on the top.', 'tesseract' ),
-		'before_widget' => '<aside id="%1$s" class="featured-widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
-	
-	register_sidebar( array(
-		'name'          => __( 'Left Middle Widget', 'tesseract' ),
-		'id'            => 'sidebar-3',
-		'description'   => __( 'Appears after the featured widget.', 'tesseract' ),
-		'before_widget' => '<aside id="%1$s" class="middle-widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title">',
-		'after_title'   => '</h4>',
-	) );
-	
-	register_sidebar( array(
-		'name'          => __( 'Right Middle Widget', 'tesseract' ),
-		'id'            => 'sidebar-4',
-		'description'   => __( 'Appears after the featured widget.', 'tesseract' ),
-		'before_widget' => '<aside id="%1$s" class="middle-widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title">',
-		'after_title'   => '</h4>',
-	) );
-	
-	register_sidebar( array(
-		'name'          => __( 'Left Footer Widget', 'tesseract' ),
-		'id'            => 'sidebar-5',
-		'description'   => __( 'Appears in the footer area.', 'tesseract' ),
-		'before_widget' => '<aside id="%1$s" class="footer-widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h6 class="widget-title">',
-		'after_title'   => '</h6>',
-	) );
-	
-	register_sidebar( array(
-		'name'          => __( 'Right Footer Widget', 'tesseract' ),
-		'id'            => 'sidebar-6',
-		'description'   => __( 'Appears in the footer area.', 'tesseract' ),
-		'before_widget' => '<aside id="%1$s" class="footer-widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h6 class="widget-title">',
-		'after_title'   => '</h6>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Right Sidebar', 'tesseract' ),
-		'id'            => 'sidebar-7',
-		'description'   => __( 'Appears in the right area.', 'tesseract' ),
-		'before_widget' => '<aside id="%1$s" class="right-widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h6 class="widget-title">',
-		'after_title'   => '</h6>',
-	) );
 }
 add_action( 'widgets_init', 'tesseract_widgets_init' );
 
@@ -193,11 +149,16 @@ function tesseract_scripts() {
     // Social icons style	
 	wp_enqueue_style( 'tesseract-icons', get_template_directory_uri() . '/css/typicons.css', array(), '1.0.0' );
 	
+    // Horizontal menu style	
+	wp_enqueue_style( 'tesseract-footer-banner', get_template_directory_uri() . '/css/footer-banner.css', array('tesseract-style'), '1.0.0' );
+	wp_enqueue_style( 'tesseract-site-banner', get_template_directory_uri() . '/css/site-banner.css', array('tesseract-style'), '1.0.0' );	
+	wp_enqueue_style( 'dashicons' );	
+	
+	// Fittext
+	wp_enqueue_script( 'tesseract-fittext', get_template_directory_uri() . '/js/jquery.fittext.js', array( 'jquery' ), '1.0.0', true );
+	
     // JS helpers (This is also the place where we call the jQuery in array)
-	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'jquery' ), '1.0.0', true );
-
-	// Mobile navigation
-	wp_enqueue_script( 'tesseract-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0.0', true );
+	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'jquery', 'tesseract-fittext' ), '1.0.0', true );
 	
 	// Skip link fix
 	wp_enqueue_script( 'tesseract-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '1.0.0', true );
@@ -208,6 +169,7 @@ function tesseract_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'tesseract_scripts' );
+
 
 /**
  * Register Google fonts.
@@ -252,6 +214,8 @@ require get_template_directory() . '/inc/extras.php';
 /**
  * Customizer additions.
  */
+require get_template_directory() . '/inc/customizer-functions.php';
+require get_template_directory() . '/inc/customizer-frontend-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
@@ -264,6 +228,4 @@ function new_excerpt_more($more) {
 	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">  Read More ...</a>';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
-
-
 
