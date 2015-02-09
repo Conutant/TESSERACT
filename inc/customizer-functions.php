@@ -276,6 +276,15 @@ function tesseract_sanitize_noinput( $value ) {
 
 /*========================== ACTIVE CALLBACK FUNCTIONS ==========================*/
 
+function tesseract_footer_content_enable_enable() {
+
+	$tesseract_menu_selector_menus = get_terms( 'nav_menu' );
+	$bool = $tesseract_menu_selector_menus ? true : false;
+	
+	return $bool;
+	
+}
+
 function tesseract_footer_menu_options_enable() {
 	
 	$menu_enable = get_theme_mod( 'tfo_footer_content_enable' );

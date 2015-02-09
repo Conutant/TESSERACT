@@ -44,8 +44,9 @@ Tesseract is based on Underscores http://underscores.me/, (C) 2012-2014 Automatt
     21. Comments
     22. Infinite scroll (Jetpack plugin)
     23. Footer
-    24. Responsive design
-    25. Print styles
+	24. Plugins
+    25. Responsive design
+    26. Print styles
 */
 
 
@@ -910,15 +911,10 @@ input[type="button"] {
  */
 
 button:hover,
-button:focus,
 .button:hover,
-.button:focus,
 input[type="reset"]:hover,
-input[type="reset"]:focus,
 input[type="submit"]:hover,
-input[type="submit"]:focus,
-input[type="button"]:hover,
-input[type="button"]:focus {
+input[type="button"]:hover {
     background-color: #1581b2;
     color: #fff;
 }
@@ -938,11 +934,6 @@ input[type="button"]:active {
 
 /* Featured */
 
-.primary-button,
-.secondary-button {
-	margin: 0 10px
-	}
-
 .primary-button {
     background-color: #199cd8;
 }
@@ -959,6 +950,10 @@ input[type="button"]:active {
     background-color: transparent;
     border: 1px solid #fff;
 }
+
+.secondary-button:hover{
+    background-color: #199cd8;
+}	
 
 .site-header .secondary-button { color: #fff; }
 	
@@ -977,6 +972,16 @@ input[type="button"]:active {
 	border-color: #199cd8;
 }*/
 
+
+/* === Default Styles === */
+
+.button {
+	margin: 5px;
+	}
+	
+.button:hover {
+	color: #fff!important;
+	}	
 
 /* === Default Color === */
 
@@ -997,7 +1002,7 @@ input[type="button"]:active {
 }
 .brown-outline:hover{
     background-color: #fff;
-    color: #823A09;
+    color: #823A09!important;
     border: 1px solid #823A09;
 }
 /* === Green  === */
@@ -1014,7 +1019,7 @@ input[type="button"]:active {
 }
 .green-outline:hover{
     background-color: #fff;
-    color: #32770f;
+    color: #32770f!important;
     border: 1px solid #32770f;
 }
 /* === Dark Blue  === */
@@ -1031,7 +1036,7 @@ input[type="button"]:active {
 }
 .darkblue-outline:hover{
     background-color: #fff;
-    color: #0c2b44;
+    color: #0c2b44!important;
     border: 1px solid #0c2b44;
 }
 /* === red  === */
@@ -1048,7 +1053,7 @@ input[type="button"]:active {
 }
 .red-outline:hover{
     background-color: #fff;
-    color: #a90e0e;
+    color: #a90e0e!important;
     border: 1px solid #a90e0e;
 }
 /* === pink  === */
@@ -1065,25 +1070,43 @@ input[type="button"]:active {
 }
 .pink-outline:hover{
     background-color: #fff;
-    color: #d214cf;
+    color: #d214cf!important;
     border: 1px solid #d214cf;
 }
 /* === Yellow  === */
-.yellow{
-    background-color: #F0FF00;
+.yellow {
+    background-color: #F7CA18;
 }
-.yellow:hover{
-    background-color: #F4EA01;
+.yellow:hover {
+    background-color: #f8b516;
 }
 .yellow-outline {
     background-color: transparent;
-    border: 1px solid #F0FF00;
-    color: #F0FF00;
+    border: 1px solid #F7CA18;
+    color: #F7CA18;
 }
-.yellow-outline:hover{
+.yellow-outline:hover {
     background-color: #fff;
-    color: #F4EA01;
-    border: 1px solid #F4EA01;
+    color: #f8b516!important;
+    border: 1px solid #f8b516;
+}
+
+/* === Yellow  === */
+.orange {
+    background-color: #E87E04;
+}
+.orange:hover {
+    background-color: #ea7104;
+}
+.orange-outline {
+    background-color: transparent;
+    border: 1px solid #E87E04;
+    color: #E87E04;
+}
+.orange-outline:hover {
+    background-color: #fff;
+    color: #ea7104!important;
+    border: 1px solid #ea7104;
 }
 
 /* === Black  === */
@@ -1100,22 +1123,28 @@ input[type="button"]:active {
 }
 .black-outline:hover{
     background-color: #fff;
-    color: #626262;
+    color: #626262!important;
     border: 1px solid #626262;
 }
 
 /* === Default Size  === */
 
-.button.darktext{
-    color:#000000;
+.button.darktext,
+.button.darktext:hover  {
+    color: #000000!important;
 }
+
+.button.darktext:hover {
+	text-shadow: rgba(255, 255, 255, 0.15) 0 2px 2px;
+	}
 
 
 /* === Small Size  === */
 .small {
-    padding: 8px 20px;
+    padding: 1px 20px;
     font-size: 10px;
     letter-spacing: 0px;
+	line-height: 24px;
 }
 
 /* === Large Size  === */
@@ -1183,9 +1212,7 @@ a {
 	text-decoration: none;
 }
 
-#content a:hover,
-#content a:focus,
-#content a:active {
+#content a:hover {
 	color: #adacac;
 }
 
@@ -1231,14 +1258,12 @@ a {
 .site-info,
 .site-content,
 #colophon > .menu,
-#footer-banner,
-.full-width-page {
+#footer-banner {
 	max-width: 980px;
 }
 
 .site-info,
 .site-content,
-.full-width-page,
 #colophon > .menu,
 #footer-banner {
 	margin-left: auto;
@@ -1488,19 +1513,18 @@ figure {
 .alignleft {
     display: inline;
     float: left;
-    margin: 0 18px 18px 0; 
+    margin: 18px 18px 18px 0; 
 }
 
 .alignright {
     display: inline;
     float: right;
-    margin: 0 0 18px 18px;
+    margin: 18px 0 18px 18px;
 }
 
 .aligncenter {
-    clear: both;
     display: block;
-    margin: 0 auto 18px auto;
+    margin: 18px auto 18px auto;
 }
 
 .wp-caption {
@@ -1649,6 +1673,14 @@ figure {
 	text-decoration: none;
 }
 
+/* === Template with Right Sidebar  === */
+.content-area.left{
+    float: left!important;
+}
+.widget-area.right{
+    float: right!important;
+}
+
 .widget {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
@@ -1776,6 +1808,68 @@ figure {
     float: right;
 }
 
+.page-template-blog #content,
+.blog #content,
+.page-template-full-width-page #content {
+	max-width: 720px;
+	}
+.navigation.post-navigation{
+    padding: 10px
+}
+.tesseract-featured .entry-content{
+    margin-top: 480px
+}
+
+.page-template-blog-php article {
+    border-bottom: 1px dotted rgb(190, 175, 175);
+	padding-bottom: 30px;
+}
+
+.page-template-blog-php #primary article:last-of-type {
+	border-bottom: none;
+	}
+	
+.page-template-blog-php #colophon {
+	border-top: 1px solid #ddd;
+	}	
+
+h1.entry-title {
+    font-size: 35px;
+    margin: 60px 0 30px;
+    text-transform: capitalize;
+}
+
+.page h1.entry-title {
+	margin-top: 42px;
+	}
+	
+.blog #header-image { display: none; }
+
+.blog.home #header-image { display: block; }
+
+.blog.home #primary article:first-of-type {
+	padding-top: 40px;
+	}	
+
+span.posted-on{
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.moretag{
+    display: block;
+    font-style: italic;
+    text-align: right;
+    clear: both;
+}
+
+.wpcf7-submit{
+    float: right;
+    clear: both;
+    margin-bottom: 20px; 
+}	
+
 /* Archives + Search */
 
 .archive #primary article,
@@ -1786,12 +1880,18 @@ figure {
 .archive #primary .entry-content,
 .search .entry-summary {
 	padding-bottom: 20px;
-	}	
+	}
+	
+.archive #primary article:last-child .entry-content {
+	border-bottom: none;
+	}			
 	
 .search .page-title,
 .error404 .page-title {
-	margin: 35px 0 0;
+	margin: 47px 0 0;
 	}	
+
+.archive #content article:first-child .entry-title { margin-top: 27px; }
 
 .search h1.entry-title {
 	margin: 17px 0 20px 0;
@@ -1860,18 +1960,15 @@ figure {
     display: none;
 }
 
-.bypostauthor {
-}
-
 .form-allowed-tags {
-	display: none;
-}
+	font-size: 12px;
+	}
 
 .form-submit {
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0 ,0.1);
     border-top: none;
-    margin: -10px 0 0 0;
+    margin: 0 0 0 0;
     padding: 10px 0px;
     text-align: right;
 }
@@ -1916,6 +2013,40 @@ figure {
 .archive .tags-links,
 .archive .comments-link {
     display: none;
+}
+
+textarea#comment{
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+	height: 190px;
+}
+
+p.comment-form-comment {
+	height: 190px;
+	margin-bottom: 10px;
+	}
+
+p.form-submit{
+    background: #f9f9f9;
+    border: 1px #f9f9f9;
+}
+#comments{
+    padding: 10px;
+    border: 1px solid rgba(178, 167, 167, 0.31);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+article.comment-body{
+    background: none!important;
+    border:none;
+    border-bottom: 1px solid rgba(0, 0, 0 ,0.1);
+}
+.comments-title{
+    margin-left: 15px
+}
+.comment-author.vcard img{
+    width: 50px
 }
 
 /* =22. Infinite scroll (Jetpack plugin)
@@ -1963,9 +2094,38 @@ figure {
 	text-align: left;
 	word-spacing: -0.29em;
 	}
+	
+/* === Footer Menu  === */
 
+.footer-menu {
+    display: inline-block;
+    float: left;
+    margin: 0 0 10px;
+}
 
-/* =24. Responsive design
+.footer-menu ul {
+    float: left;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-menu ul li{
+    display:inline-block;
+    padding-right: 10px;
+}	
+
+/* =24. Plugins
+-------------------------------------------------------------- */
+
+/*== Fixes for sitebuilder no padding on image ==*/
+
+.no-padding-bottom p, .no-padding-bottom img {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* =25. Responsive design
 -------------------------------------------------------------- */
 
 @media screen and (max-width: 980px) {
@@ -1993,6 +2153,11 @@ figure {
 		width: 100%;
 		padding: 0!important;
 		}
+		
+
+	.search-no-results #secondary aside.widget_search:first-child {
+		display: none;	
+		}		
 	
 	} 	
 
@@ -2003,23 +2168,46 @@ figure {
 	.button, 
 	input[type="reset"], 
 	input[type="submit"], 
-	input[type="button"] {
-		line-height: 30px;
+	input[type="button"],
+	button.small, 
+	.button.small,
+	button.large, 
+	.button.large	 {
 		padding: 0 10px;
-		}		
+		font-size: 12px;
+		line-height: 30px;
+		letter-spacing: 2px;		
+		}	
+
+.mobile-resize{
+font-size:30px !important;
+}
+
+
 	
-	}
+}
 
 @media screen and (max-width: 480px) {
 		
 	#sidebar-footer aside {
 		width: 100%!important;
 		}	
+		
+	textarea,
+	input:not([type]),
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="url"],
+	input[type="search"],
+	input[type="tel"] {
+		max-width: 100%;
+		}		
 	
 	}
 
 
-/* =25. Print styles
+/* =26. Print styles
 -------------------------------------------------------------- */
 
 /* Print styles inlined to avoid extra HTTP connection */
@@ -2073,134 +2261,6 @@ figure {
 		page-break-after: avoid;
 	}
     
-}
-
-/* === Rounded Photos === */
-.entry-content img{
-
-}
-
-/* === Template with Right Sidebar  === */
-.content-area.left{
-    float: left!important;
-}
-.widget-area.right{
-    float: right!important;
-}
-
-/* === Comment Part  === */
-textarea#comment{
-    border: 1px solid #dfdfdf;
-    border-radius: 5px;
-}
-p.form-submit{
-    background: #f9f9f9;
-    border: 1px #f9f9f9;
-}
-#comments{
-    padding: 10px;
-    border: 1px solid rgba(178, 167, 167, 0.31);
-    border-radius: 5px;
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
-article.comment-body{
-    background: none!important;
-    border:none;
-    border-bottom: 1px solid rgba(0, 0, 0 ,0.1);
-}
-.comments-title{
-    margin-left: 15px
-}
-.comment-author.vcard img{
-    width: 50px
-}
-
-/* === Blog Page  === */
-
-.navigation.post-navigation{
-    padding: 10px
-}
-.tesseract-featured .entry-content{
-    margin-top: 480px
-}
-
-.page-template-blog-php article {
-    border-bottom: 1px dotted rgb(190, 175, 175);
-	padding-bottom: 30px;
-}
-
-.page-template-blog-php #primary article:last-of-type {
-	border-bottom: none;
-	}
-	
-.page-template-blog-php #colophon {
-	border-top: 1px solid #ddd;
-	}	
-
-h1.entry-title {
-    font-size: 35px;
-    margin: 60px 0 30px;
-    text-transform: capitalize;
-}
-
-.blog h1.entry-title,
-.page-template-blog-php h1.entry-title	 {
-	margin-top: 40px;
-	}
-	
-.blog #header-image { display: none; }
-
-.blog.home #header-image { display: block; }
-
-.blog.home #primary article:first-of-type {
-	padding-top: 40px;
-	}	
-
-span.posted-on{
-    font-size: 16px;
-    font-style: italic;
-    font-weight: bold;
-}
-
-.moretag{
-    display: block;
-    font-style: italic;
-    text-align: right;
-    clear: both;
-}
-
-.wpcf7-submit{
-    float: right;
-    clear: both;
-    margin-bottom: 20px; 
-}
-
-/* === Footer Menu  === */
-
-.footer-menu {
-    display: inline-block;
-    float: left;
-    margin: 0 0 10px;
-}
-
-.footer-menu ul {
-    float: left;
-    list-style: outside none none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer-menu ul li{
-    display:inline-block;
-    padding-right: 10px;
-}
-
-/*== Fixes for sitebuilder no padding on image ==*/
-
-.no-padding-bottom p, .no-padding-bottom img {
-    margin-bottom: 0;
-    padding-bottom: 0;
 }
 
 

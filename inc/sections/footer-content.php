@@ -49,7 +49,8 @@
 							'social'     => 'Social Icons',
 							'search' 	 => 'Search Bar'						
 						),
-						'priority' 		 => 2
+						'priority' 		 => 2,
+						''
 					)
 				)
 			);	
@@ -68,13 +69,13 @@
 						'section'        => 'tfo_footer_content',
 						'settings'       => 'tfo_footer_content_enable',
 						'type'           => 'checkbox',
-						'priority' 		 => 3
+						'priority' 		 => 3,
+						'active_callback'=> 'tesseract_footer_content_enable_enable'	
 					)
 				)
 			);	
-					
-		$tesseract_menu_selector_menus = get_terms( 'nav_menu' );	
-	
+		
+		$tesseract_menu_selector_menus = get_terms( 'nav_menu' );		
 		if ( $tesseract_menu_selector_menus ) :
 			
 			$tesseract_menu_selector_items = array();
@@ -82,30 +83,29 @@
 			foreach ( $tesseract_menu_selector_menus as $items ) {
 				array_push( $item_keys, $items->slug);
 				array_push( $item_values, $items->name);
-			}
-	
-		endif;		
+			}	
+			
+			$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );
 		
-		$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );
-	
-		$wp_customize->add_setting( 'tfo_footer_content_select', array(
-			'sanitize_callback' => 'tesseract_sanitize_select',
-			'default' 			=> 'none'
-		) );
-		
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'tfo_footer_content_select_control',
-					array(
-						'label'          => __( 'Choose the menu to be displayed in the footer with a horizontal layout', 'tesseract' ),
-						'section'        => 'tfo_footer_content',
-						'settings'       => 'tfo_footer_content_select',
-						'type'           => 'select',
-						'choices'        => $tesseract_menu_selector_items,
-						'priority' 		 => 4,
-						'active_callback' 	=> 'tesseract_footer_menu_options_enable'										
+			$wp_customize->add_setting( 'tfo_footer_content_select', array(
+				'sanitize_callback' => 'tesseract_sanitize_select',
+				'default' 			=> 'none'
+			) );
+			
+				$wp_customize->add_control(
+					new WP_Customize_Control(
+						$wp_customize,
+						'tfo_footer_content_select_control',
+						array(
+							'label'          => __( 'Choose the menu to be displayed in the footer with a horizontal layout', 'tesseract' ),
+							'section'        => 'tfo_footer_content',
+							'settings'       => 'tfo_footer_content_select',
+							'type'           => 'select',
+							'choices'        => $tesseract_menu_selector_items,
+							'priority' 		 => 4,
+							'active_callback' 	=> 'tesseract_footer_menu_options_enable'										
+						)
 					)
-				)
-			);			
+				);	
+		endif;		
 					

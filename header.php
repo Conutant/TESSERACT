@@ -46,10 +46,12 @@ $rgba = $match ? true : false;
 
 if ( !$rgba ) {
 	list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-	$header_bckColor = "rgba($r, $g, $b, $header_bckOpacity)";
+	$header_bckColor = "rgb($r, $g, $b)";
+	$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
 } else {
 	sscanf($hex, 'rgb(%d,%d,%d,)', $r, $g, $b);
-	$header_bckColor = "rgba($r, $g, $b, $header_bckOpacity)";
+	$header_bckColor = "rgb($r, $g, $b)";
+	$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
 }
 
 ?>
@@ -58,6 +60,9 @@ if ( !$rgba ) {
 
 .site-header,
 .main-navigation ul ul a { background-color: <?php echo $header_bckColor; ?>; }
+
+.home .site-header,
+.home .main-navigation ul ul a { background-color: <?php echo $header_bckColor_home; ?>; }
 
 .site-header,
 .site-header h1, 

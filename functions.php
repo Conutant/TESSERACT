@@ -141,7 +141,7 @@ function tesseract_scripts() {
  	) );	
 	
 	// Enqueue default style
-	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri(), array(), '1.0.0' );
 	
 	// Google fonts
 	wp_enqueue_style( 'tesseract-fonts', tesseract_fonts_url(), array(), '1.0.0' );
