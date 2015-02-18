@@ -21,16 +21,16 @@ function tesseract_header_right_content( $content ) {
 		
 				<ul class="hr-social">
                 	<?php $sn = array(
-						'fb' => 'Facebook',
-						'tw' => 'Twitter',
-						'gplus' => 'Google Plus',
-						'li' => 'LinkedIn',
-						'yt' => 'YouTube',
-						'vim' => 'Vimeo',
-						'tumb' => 'Tumblr',
-						'fr' => 'FlickR',
-						'pin' => 'Pinterest',
-						'dr' => 'Dribbble'
+						'fb' => __( 'Facebook', 'tesseract' ),
+						'tw' => __( 'Twitter', 'tesseract' ),
+						'gplus' => __( 'Google Plus', 'tesseract' ),
+						'li' => __( 'LinkedIn', 'tesseract' ),
+						'yt' => __( 'YouTube', 'tesseract' ),
+						'vim' => __( 'Vimeo', 'tesseract' ),
+						'tumb' => __( 'Tumblr', 'tesseract' ),
+						'fr' => __( 'FlickR', 'tesseract' ),
+						'pin' => __( 'Pinterest', 'tesseract' ),
+						'dr' => __( 'Dribbble', 'tesseract' )
 					);
 					
 					foreach ( $sn as $sn_short => $sn_full ) {
@@ -39,7 +39,7 @@ function tesseract_header_right_content( $content ) {
 						$sn_url = get_theme_mod('tesseract_' . $sn_short . '_url');						
 						
 						if ( $sn_img && $sn_url ):
-							echo '<li><a title="Follow Us on ' . $sn_full . '" href="' . $sn_url . '" target="_blank"><img src="' . $sn_img . '" width="24" height="24" alt="' . $sn_full . ' icon" /></a></li>';
+							echo '<li><a title="' . __( 'Follow Us on ', 'tesseract' ) . $sn_full . '" href="' . $sn_url . '" target="_blank"><img src="' . $sn_img . '" width="24" height="24" alt="' . $sn_full . ' icon" /></a></li>';
 						endif;
 						
 					} ?>
@@ -92,16 +92,16 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 		
 				<ul class="hm-social">
                 	<?php $sn = array(
-						'fb' => 'Facebook',
-						'tw' => 'Twitter',
-						'gplus' => 'Google Plus',
-						'li' => 'LinkedIn',
-						'yt' => 'YouTube',
-						'vim' => 'Vimeo',
-						'tumb' => 'Tumblr',
-						'fr' => 'FlickR',
-						'pin' => 'Pinterest',
-						'dr' => 'Dribbble'
+						'fb' => __( 'Facebook', 'tesseract' ),
+						'tw' => __( 'Twitter', 'tesseract' ),
+						'gplus' => __( 'Google Plus', 'tesseract' ),
+						'li' => __( 'LinkedIn', 'tesseract' ),
+						'yt' => __( 'YouTube', 'tesseract' ),
+						'vim' => __( 'Vimeo', 'tesseract' ),
+						'tumb' => __( 'Tumblr', 'tesseract' ),
+						'fr' => __( 'FlickR', 'tesseract' ),
+						'pin' => __( 'Pinterest', 'tesseract' ),
+						'dr' => __( 'Dribbble', 'tesseract' )
 					);
 					
 					foreach ( $sn as $sn_short => $sn_full ) {

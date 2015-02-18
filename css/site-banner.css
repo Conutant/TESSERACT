@@ -7,9 +7,26 @@
 	top: 0;
 	left: 0;
 	}
+	
+.home .site-header.no-header-image {
+	position: relative;
+	top: auto;
+	left: auto;
+	}	
 
-#site-banner-left { width: 100%; }
-#site-banner-right { width: 40%; }
+#site-banner-left,
+#site-banner-right {
+	position: relative;
+	}
+
+#site-banner-left { 
+	width: 100%; 
+	z-index: 10;
+	}
+#site-banner-right { 
+	width: 40%; 
+	z-index: 1;
+	}
 
 /* EOF WIDTHS */
 

@@ -10,24 +10,19 @@
 
 	</div><!-- #content -->
     
-    <?php $footer_wrap_background_color = get_theme_mod('tesseract_footer_options_background_color'); ?>
-    
 	<footer id="colophon" class="site-footer" role="contentinfo">      
 
-		<?php if ( get_theme_mod('tfo_footer_additional_content') ) $additional = true;							
+		<?php $additional = get_theme_mod('tesseract_tfo_footer_additional_content') ? true : false;							
 
         $menuClass = 'only-menu';
         if ( $additional ) $menuClass = 'is-additional'; 
         
-        $menuEnable = get_theme_mod('tfo_footer_content_enable');
-        $menuSelect = get_theme_mod('tfo_footer_content_select');
-        $addcontent_hml = get_theme_mod('tfo_footer_additional_content');	
+        $menuEnable = get_theme_mod('tesseract_tfo_footer_content_enable');
+        $menuSelect = get_theme_mod('tesseract_tfo_footer_content_select');
+        $addcontent_hml = get_theme_mod('tesseract_tfo_footer_additional_content');	
 		?>
     
-    	<div id="footer-banner" class="cf<?php echo ' menu-' . $menuClass; if ( $footbarActive ) echo ' footbar-active'; ?>">		
-			
-			<?php // Let's start the map. Step 1 -> IF the user chooses to display a horizontal menu in the footer; 
-            if ( $menuEnable ) : ?>                 
+    	<div id="footer-banner" class="cf<?php echo ' menu-' . $menuClass; if ( $footbarActive ) echo ' footbar-active'; ?>">		               
                     
                     <div id="horizontal-menu-wrap" class="<?php echo $menuClass . ' ' . $addcontent_hml; ?>">
                     
@@ -38,7 +33,7 @@
                         
                         <?php endif; //EOF left menu - IS before content ?>
                         
-                        <?php if ( $menuSelect !== 'none' ) : ?>
+                        <?php if ( ( $menuEnable ) && ( $menuSelect !== 'none' ) ) : ?>
                             <section id="footer-horizontal-menu"<?php if ( $addcontent_hml !== 'nothing' ) echo ' class="is-before"'; ?>>
                                 
                                 <div>
@@ -51,11 +46,9 @@
                        	<?php endif; ?>                   
                                                 
            			</div><!-- EOF horizontal-menu-wrap -->                       
-                                
-            <?php endif; //EOF IS menu ?>  
             
-            <div id="designer">
-                <?php printf( __( '%1$s by %2$s', 'tesseract' ), 'Theme', '<a href="http://tyler.com/">Tyler Moore</a>' ); ?>
+            <div id="designer">               
+                <?php printf( __( 'Theme by %s', 'tesseract' ), '<a href="http://tyler.com">Tyler Moore</a>' ); ?>
             </div>            
             
       	</div>                  

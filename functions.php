@@ -43,20 +43,6 @@ function tesseract_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
-	/* Backwards compatibility 
-	 * @ https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
-	 * To enable support in existing themes without breaking backwards compatibility, 
-	 * theme authors can check if the callback function exists, and add a shiv in case 
-	 * it does not:
-	 */
-	if ( ! function_exists( '_wp_render_title_tag' ) ) :
-		function theme_slug_render_title() {
-			?>
-			<title><?php wp_title( '|', true, 'right' ); ?></title>
-			<?php
-		}
-		add_action( 'wp_head', 'theme_slug_render_title' );
-	endif;	
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -108,6 +94,21 @@ function tesseract_setup() {
 endif; // tesseract_setup
 add_action( 'after_setup_theme', 'tesseract_setup' );
 
+/* Backwards compatibility 
+ * @ https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
+ * To enable support in existing themes without breaking backwards compatibility, 
+ * theme authors can check if the callback function exists, and add a shiv in case 
+ * it does not:
+ */
+if ( ! function_exists( '_wp_render_title_tag' ) ) :
+	function theme_slug_render_title() {
+		?>
+		<title><?php wp_title( '|', true, 'right' ); ?></title>
+		<?php
+	}
+	add_action( 'wp_head', 'theme_slug_render_title' );
+endif;	
+
 /**
  * Register widget area.
  *
@@ -141,7 +142,7 @@ function tesseract_scripts() {
  	) );	
 	
 	// Enqueue default style
-	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri(), array(), '1.0.0' );
+	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri(), array(), '1.1.0' );
 	
 	// Google fonts
 	wp_enqueue_style( 'tesseract-fonts', tesseract_fonts_url(), array(), '1.0.0' );
@@ -150,8 +151,8 @@ function tesseract_scripts() {
 	wp_enqueue_style( 'tesseract-icons', get_template_directory_uri() . '/css/typicons.css', array(), '1.0.0' );
 	
     // Horizontal menu style	
+	wp_enqueue_style( 'tesseract-site-banner', get_template_directory_uri() . '/css/site-banner.css', array('tesseract-style'), '1.0.0' );		
 	wp_enqueue_style( 'tesseract-footer-banner', get_template_directory_uri() . '/css/footer-banner.css', array('tesseract-style'), '1.0.0' );
-	wp_enqueue_style( 'tesseract-site-banner', get_template_directory_uri() . '/css/site-banner.css', array('tesseract-style'), '1.0.0' );	
 	wp_enqueue_style( 'dashicons' );	
 	
 	// Fittext
@@ -167,9 +168,109 @@ function tesseract_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	$header_bckRGB = get_theme_mod('tesseract_tho_header_colors_bck_color') ? get_theme_mod('tesseract_tho_header_colors_bck_color') : 'rgb(0,163,239)';
+	
+	$header_bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') ? get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') : 100;
+	
+	$header_textColor = get_theme_mod('tesseract_tho_header_colors_text_color') ? get_theme_mod('tesseract_tho_header_colors_text_color') : '#ffffff';
+	
+	$header_linkColor = get_theme_mod('tesseract_tho_header_colors_link_color') ? get_theme_mod('tesseract_tho_header_colors_link_color') : '#ffffff';
+	
+	$header_linkHoverColor = get_theme_mod('tesseract_tho_header_colors_link_hover_color') ? get_theme_mod('tesseract_tho_header_colors_link_hover_color') : '#d1ecff';
+	
+	$footer_bckColor = get_theme_mod('tesseract_tfo_footer_colors_bck_color') ? get_theme_mod('tesseract_tfo_footer_colors_bck_color') : '#1e73be';
+	
+	$footer_textColor = get_theme_mod('tesseract_tfo_footer_colors_text_color') ? get_theme_mod('tesseract_tfo_footer_colors_text_color') : '#ffffff';
+	
+	$footer_headingColor = get_theme_mod('tesseract_tfo_footer_colors_heading_color') ? get_theme_mod('tesseract_tfo_footer_colors_heading_color') : '#ffffff';
+	
+	$footer_linkColor = get_theme_mod('tesseract_tfo_footer_colors_link_color') ? get_theme_mod('tesseract_tfo_footer_colors_link_color') : '#ffffff';
+	
+	$footer_linkHoverColor = get_theme_mod('tesseract_tfo_footer_colors_link_hover_color') ? get_theme_mod('tesseract_tfo_footer_colors_link_hover_color') : '#d1ecff'; 
+	
+	$hex = $header_bckRGB;
+	$header_bckOpacity = $header_bckOpacity / 100;
+	
+	preg_match("/\s*(rgba\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*,\d+\d*\.\d+\))/", $hex, $match);
+	$rgba = $match ? true : false; 
+	
+	if ( !$rgba ) {
+		list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+		$header_bckColor = "rgb($r, $g, $b)";
+		$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
+	} else {
+		sscanf($hex, 'rgb(%d,%d,%d,)', $r, $g, $b);
+		$header_bckColor = "rgb($r, $g, $b)";
+		$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
+	}
+	
+	$add_content_borderColor_array = tesseract_hex2rgb( $footer_linkColor );
+	$add_content_borderColor = implode( ', ', $add_content_borderColor_array );	
+
+	$dynamic_styles_header = ".site-header,
+	.main-navigation ul ul a { background-color: " . $header_bckColor . "; }
+	
+	.home .site-header,
+	.home .main-navigation ul ul a { background-color: " . $header_bckColor_home . "; }
+	
+	.site-header,
+	.site-header h1, 
+	.site-header h2,
+	.site-header h3,
+	.site-header h4,
+	.site-header h5,
+	.site-header h6 { color: " . $header_textColor . "; }
+	
+	.site-header a,
+	.main-navigation ul ul a,
+	.menu-open,
+	.dashicons.menu-open,
+	.menu-close,
+	.dashicons.menu-close { color: " . $header_linkColor . "; }
+	
+	.site-header a:hover,
+	.main-navigation ul ul a:hover,
+	.menu-open:hover,
+	.dashicons.menu-open:hover,
+	.menu-close:hover,
+	.dashicons.menu-open:hover { color: " . $header_linkHoverColor . "; }";
+	
+	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_header );	
+	
+	$dynamic_styles_footer = "#colophon { 
+		background-color: " . $footer_bckColor . ";
+		color: " . $footer_textColor . " 
+	}
+	#colophon h1, 
+	#colophon h2,
+	#colophon h3,
+	#colophon h4,
+	#colophon h5,
+	#colophon h6 { color: " . $footer_headingColor . "; }
+	
+	#colophon a { color: " . $footer_linkColor . "; }
+	
+	#colophon a:hover { color: " . $footer_linkHoverColor . "; }	
+	
+	#horizontal-menu-before,
+	#horizontal-menu-after { border-color: rgba(" . $add_content_borderColor . ", 0.25); }
+	
+	#footer-banner.footbar-active { border-color: rgba(" . $add_content_borderColor . ", 0.15); };";
+
+	wp_add_inline_style( 'tesseract-footer-banner', $dynamic_styles_footer );	
+	
 }
+
 add_action( 'wp_enqueue_scripts', 'tesseract_scripts' );
 
+function tesseract_noscript() {
+
+	echo '<noscript><style>#sidebar-footer aside {border: none!important;}</style></noscript>';
+	
+	}
+	
+add_action('wp_head', 'tesseract_noscript');	
 
 /**
  * Register Google fonts.
@@ -223,9 +324,9 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-function new_excerpt_more($more) {
+function tesseract_new_excerpt_more($more) {
        global $post;
-	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">  Read More ...</a>';
+	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">' . __( 'Read More ...', 'tesseract' ) . '</a>';
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+add_filter('excerpt_more', 'tesseract_new_excerpt_more');
 

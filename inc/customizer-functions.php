@@ -268,12 +268,6 @@ function tesseract_sanitize_rgba( $value ) {
 
 }
 
-function tesseract_sanitize_noinput( $value ) {
-	
-	//No need to validate, no user input here
-	
-}
-
 /*========================== ACTIVE CALLBACK FUNCTIONS ==========================*/
 
 function tesseract_footer_content_enable_enable() {
@@ -287,7 +281,7 @@ function tesseract_footer_content_enable_enable() {
 
 function tesseract_footer_menu_options_enable() {
 	
-	$menu_enable = get_theme_mod( 'tfo_footer_content_enable' );
+	$menu_enable = get_theme_mod( 'tesseract_tfo_footer_content_enable' );
 	$bool = ( $menu_enable == 1 ) ? true : false;
 	
 	return $bool;
@@ -296,7 +290,7 @@ function tesseract_footer_menu_options_enable() {
 
 function tesseract_header_button_textarea_enable() {
 
-	$textarea_enable = get_theme_mod( 'tho_header_content_content' );
+	$textarea_enable = get_theme_mod( 'tesseract_tho_header_content_content' );
 	$bool = ( $textarea_enable == 'buttons' ) ? true : false;
 	
 	return $bool;
