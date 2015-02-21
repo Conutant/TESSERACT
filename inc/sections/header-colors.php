@@ -16,7 +16,7 @@
 		$wp_customize->add_setting( 'tesseract_tho_header_colors_bck_color', array(
 				'transport'         => 'postMessage',
 				'sanitize_callback' => 'tesseract_sanitize_rgba',
-				'default' 			=> 'rgb(0,163,239)'
+				'default' 			=> '#59bcd9'
 		) );
 
 			$wp_customize->add_control( 
@@ -50,6 +50,7 @@
 					'class' => 'tesseract-tho-header-colors-bck-opacity',
 					'style' => 'color: #0a0',
 				),
+				'active_callback' => 'is_front_page'
 			) );			
 			
 		$wp_customize->add_setting( 'tesseract_tho_header_colors_text_color', array(
