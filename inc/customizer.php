@@ -42,6 +42,9 @@ function tesseract_customize_register( $wp_customize ) {
 		'title'          => 'Social'
 	) );
 	
+	$wp_customize->get_section('header_image')->panel = 'tesseract_header_options';
+	$wp_customize->get_section('header_image')->priority = 2;
+	
 	$wp_customize->get_section('title_tagline')->panel = 'tesseract_header_options';
 	$wp_customize->get_section('title_tagline')->priority = 3;	
 	
@@ -56,8 +59,7 @@ function tesseract_customize_register( $wp_customize ) {
 	$wp_customize->get_section('colors')->priority = 1;
 	$wp_customize->get_control('background_color')->label = __( 'Choose a background color', 'tesseract' );
 	$wp_customize->get_control('background_color')->description = __( '(This is only for the site\'s generic background color. You can define header and footer background colors in the Header Options and Footer Options respectively.)', 'tesseract' );
-
-	$wp_customize->remove_section('header_image');		
+		
 	$wp_customize->remove_section('nav');	
 	$wp_customize->remove_control('header_textcolor');	
 
@@ -143,14 +145,14 @@ function tesseract_customize_preview() {
 		
 		wp.customize( 'tesseract_tho_header_colors_link_color', function( value ) {
 			value.bind( function( to ) {
-				$( '.site-header a, .main-navigation ul ul a' ).not('a.button').css('color', to);		
+				$( '.site-header a, .main-navigation ul ul a' ).css('color', to);		
 			} );
 		} );
 		
 		wp.customize( 'tesseract_tho_header_colors_link_hover_color', function( value ) {
 			value.bind( function( to ) {
 				var origColor = $( '.site-header a' ).css('color');
-				$( '.site-header a' ).not('.a.button').hover(
+				$( '.site-header a' ).hover(
 					function() {
 						$(this).css('color', to);
 					}, function() {

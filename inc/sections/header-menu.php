@@ -21,12 +21,9 @@ if ( $tesseract_menu_selector_menus ) :
 		
 		$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );					
 	
-		$menu_id = $tesseract_menu_selector_menus[0]->term_id;						
-		$default_menu = $tesseract_menu_selector_menus ? wp_nav_menu( array( 'menu_id' => $menu_id, 'echo' => false ) ) : wp_nav_menu( array( 'echo' => false ) );		
-	
 		$wp_customize->add_setting( 'tesseract_tho_header_menu_select', array(
 			'sanitize_callback' => 'tesseract_sanitize_select',
-			'default' 			=> $default_menu
+			'default' 			=> 'none'
 		) );
 		
 			$wp_customize->add_control(

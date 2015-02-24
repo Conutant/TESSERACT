@@ -981,8 +981,7 @@ input[type="button"]:active {
     background-color: #199cd8;
 }
 
-#header-button-container .primary-button,
-#header-button-container .secondary-button {
+#header-button-container .primary-button {
 	color: #fff!important;
 	}
 	
@@ -1286,6 +1285,12 @@ a {
 	width: 100%;
 	}
 
+.site-header-image{
+    z-index: -10000;
+    height: 620px;
+}
+
+
 /* =12. Layout
 -------------------------------------------------------------- */
 
@@ -1512,7 +1517,8 @@ figure {
     padding: 0;
 }
 
-.entry-background {
+.entry-background,
+.site-header-image {
     background-position: center;
     background-size: cover;
     height: 480px;
@@ -1881,6 +1887,10 @@ h1.entry-title,
 .page h1.entry-title {
 	margin-top: 42px;
 	}
+	
+.blog #header-image { display: none; }
+
+.blog.home #header-image { display: block; }
 
 .blog.home #primary article:first-of-type {
 	padding-top: 40px;

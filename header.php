@@ -19,23 +19,22 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php //var_dump( get_theme_mods() ); ?>
+<?php if ( get_terms( 'nav_menu' ) ) $anyMenu = true;
+if ( $anyMenu ) : ?>
 
-<nav id="mobile-navigation" class="top-navigation" role="navigation">
+	<nav id="mobile-navigation" class="top-navigation" role="navigation">                        
+		
+		<?php $menuSelect = get_theme_mod('tesseract_tho_header_menu_select'); 
+		if ( ( !$menuSelect ) || ( $menuSelect == 'none' ) ) : 
+			wp_nav_menu( array( 'theme_location' => 'primary' ) );
+		else :
+			wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );
+		endif;  ?>  
+			
+	</nav><!-- #site-navigation -->                
 
-	<?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
-    	  $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');
-	
-	if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
-		wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );               		
-	elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
-		$menu = get_terms( 'nav_menu' ); 
-		$menu_id = $menu[0]->term_id;						
-		wp_nav_menu( array( 'menu_id' => $menu_id ) );
-	elseif ( !$anyMenu ) :
-		wp_page_menu('show_home=1&include=9999');
-	endif; ?>
-
-</nav><!-- #site-navigation -->  	
+<?php endif; ?>
 
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tesseract' ); ?></a>
@@ -69,27 +68,25 @@
                         <?php endif; ?>
                     </div><!-- .site-branding -->
               	<?php } ?>
-				
-                <nav id="site-navigation" class="main-navigation top-navigation" role="navigation">
-                	
-					<?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
-                          $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');
-                    
-						if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
-							wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );               		
-						elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
-							$menu = get_terms( 'nav_menu' ); 
-							$menu_id = $menu[0]->term_id;						
-							wp_nav_menu( array( 'menu_id' => $menu_id ) );
-						elseif ( !$anyMenu ) :
-							wp_page_menu('show_home=1&include=9999');
-						endif; ?>
 
-				</nav><!-- #site-navigation --> 
-                
+                <?php if ( get_terms( 'nav_menu' ) ) $anyMenu = true;
+                if ( $anyMenu ) : ?>
+
+                    <nav id="site-navigation" class="main-navigation top-navigation" role="navigation">                        
+                        <?php $menuSelect = get_theme_mod('tesseract_tho_header_menu_select'); 
+                        if ( ( !$menuSelect ) || ( $menuSelect == 'none' ) ) : 
+                            wp_nav_menu( array( 'theme_location' => 'primary' ) );
+                        else :
+                            wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );
+                        endif;  ?>  
+                            
+                    </nav><!-- #site-navigation -->                
+
+                <?Php endif; ?>
+
             </div>
 
-            <?php if ( $headright_content ) : ?>            
+            <?php if ( ( $headright_content ) && ( $headright_content !== 'nothing' ) ) : ?>            
 
                 <div id="site-banner-right"><?php tesseract_header_right_content($headright_content); ?></div>
 
@@ -97,12 +94,9 @@
 			
 				<div id="site-banner-right">
                 
-                	<div id="header-button-container">
-                    	<div id="header-button-container-inner">
-                        	<a href="/" class="button primary-button">Primary Button</a>
-                    		<a href="/" class="button secondary-button">Secondary Button</a>
-                		</div>
-                   	</div>
+                	<a href="/" class="button primary-button">Watch the Video</a>
+                    <a href="/" class="button secondary-button">Start</a>
+                
                 </div>				
 			
 			<?php endif; ?>
@@ -110,5 +104,11 @@
         </div>            
         
 	</header><!-- #masthead -->
+        
+    <?php if ( is_front_page() && get_header_image() ) : ?>
+	
+        <div id="header-image" class="featured-widget-area" role="complementary" style="background: url('<?php echo get_header_image(); ?>') repeat-y center center; background-size: cover; height: 480px;"></div> 
+	
+	<?php endif; ?>
     
     <div id="content" class="cf site-content">
