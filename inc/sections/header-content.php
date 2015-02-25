@@ -53,10 +53,13 @@
 					)
 				)
 			);	
+		
+		$defaultBtns = '<a href="/" class="button primary-button">Primary Button</a><a href="/" class="button secondary-button">Secondary Button</a>';
 			
 		$wp_customize->add_setting( 'tesseract_tho_header_content_if_button', array(
 			'sanitize_callback' => 'tesseract_sanitize_textarea_html',
-			'transport'			=> 'postMessage'
+			'transport'			=> 'postMessage',
+			'default' 			=> $defaultBtns
 		) );
 		
 			$wp_customize->add_control(
