@@ -2250,6 +2250,11 @@ article.comment-body{
 	.entry-content select {
 		width: calc( 100% - 20px );
 		}
+
+
+        .site-logo, .site-title {
+        margin: 0px !important;
+    }
 	
 	
 }
@@ -2269,7 +2274,11 @@ article.comment-body{
 	input[type="search"],
 	input[type="tel"] {
 		max-width: 100%;
-		}		
+		}	
+
+    .site-logo, .site-title	{
+        margin: 0px !important;
+    }
 	
 	}
 
