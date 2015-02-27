@@ -741,7 +741,6 @@ ol .children {
 .comment-reply-title:after {
     content: '';
     display: block;
-    background-color: #ddd;
     height: 1px;
     margin: 10px auto;
     width: 50px;
@@ -1765,7 +1764,16 @@ figure {
 -------------------------------------------------------------- */
 
 .entry-content {
-    border-bottom: 1px solid #ddd;
+
+}
+
+.headline-resize{
+    width:100%;
+}
+
+.post{
+    max-width: 720px;
+    margin:auto;
 }
 
 .home .entry-content { border: none; }
@@ -2081,8 +2089,7 @@ p.form-submit{
 }
 #comments{
     padding: 10px;
-    border: 1px solid rgba(178, 167, 167, 0.31);
-    border-radius: 5px;
+    border-top: 1px solid rgba(178, 167, 167, 0.31);
     margin-bottom: 30px;
     margin-top: 30px;
 }
@@ -2179,6 +2186,10 @@ article.comment-body{
 /* =25. Responsive design
 -------------------------------------------------------------- */
 
+
+
+
+
 @media screen and (max-width: 980px) {
 	
 	#sidebar-footer,
@@ -2218,6 +2229,7 @@ article.comment-body{
     #sidebar-footer aside {
         width: 100%!important;
     }
+
     
     textarea,
     input:not([type]),
@@ -2255,6 +2267,9 @@ article.comment-body{
         .site-logo, .site-title {
         margin: 0px !important;
     }
+
+
+
 	
 	
 }
