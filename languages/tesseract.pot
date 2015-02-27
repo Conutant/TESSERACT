@@ -12,441 +12,406 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: 404.php:15
-#@ tesseract
+#: ../404.php:15
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: 404.php:19
-#@ tesseract
+#: ../404.php:19
 msgid "It looks like nothing was found at this location. Maybe try a search?"
 msgstr ""
 
-#: comments.php:28
-#, php-format
-#@ tesseract
-msgctxt "comments title"
-msgid "One thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
-
-#: comments.php:35
-#: comments.php:53
-#@ tesseract
+#: ../comments.php:35 ../comments.php:53
 msgid "Comment navigation"
 msgstr ""
 
-#: comments.php:36
-#: comments.php:54
-#@ tesseract
+#: ../comments.php:36 ../comments.php:54
 msgid "&larr; Older Comments"
 msgstr ""
 
-#: comments.php:37
-#: comments.php:55
-#@ tesseract
+#: ../comments.php:37 ../comments.php:55
 msgid "Newer Comments &rarr;"
 msgstr ""
 
-#: comments.php:65
-#@ tesseract
+#: ../comments.php:65
 msgid "Comments are closed."
 msgstr ""
 
-#: content-none.php:13
-#@ tesseract
-msgid "Nothing Found"
-msgstr ""
-
-#: content-none.php:19
-#, php-format
-#@ tesseract
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr ""
-
-#: content-none.php:23
-#@ tesseract
-msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
-msgstr ""
-
-#: content-none.php:28
-#@ tesseract
-msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr ""
-
-#: content-page.php:18
-#: content-single.php:28
-#: content.php:47
-#@ tesseract
+#: ../content-blog.php:30 ../content-page.php:18 ../content-single.php:30
+#: ../content.php:39
 msgid "Pages:"
 msgstr ""
 
-#: content-page.php:25
-#: inc/template-tags.php:122
-#@ tesseract
-msgid "Edit"
+#: ../content-none.php:13
+msgid "Nothing Found"
 msgstr ""
 
-#. translators: %s: Name of current post
-#: content.php:38
+#: ../content-none.php:19
 #, php-format
-#@ tesseract
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: ../content-none.php:23
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: ../content-none.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: ../content.php:30
+#, php-format
 msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: footer.php:17
+#: ../footer.php:51
 #, php-format
-#@ tesseract
-msgid "Tesseract %1$s by %2$s"
+msgid "Theme by %s"
 msgstr ""
 
-#: footer.php:19
-#@ tesseract
-msgid "http://wordpress.org/"
-msgstr ""
-
-#: footer.php:19
-#, php-format
-#@ tesseract
-msgid "Runs on %s"
-msgstr ""
-
-#: functions.php:68
-#@ tesseract
+#: ../functions.php:68
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:103
-#@ tesseract
+#: ../functions.php:69
+msgid "Secondary Menu"
+msgstr ""
+
+#: ../functions.php:119
 msgid "Primary Sidebar"
 msgstr ""
 
-#: functions.php:105
-#@ tesseract
+#: ../functions.php:121
 msgid "Appears on the left."
 msgstr ""
 
-#: functions.php:113
-#@ tesseract
-msgid "Featured Widget"
-msgstr ""
-
-#: functions.php:115
-#@ tesseract
-msgid "Appears on the top."
-msgstr ""
-
-#: functions.php:123
-#@ tesseract
-msgid "Left Middle Widget"
-msgstr ""
-
-#: functions.php:125
-#: functions.php:135
-#@ tesseract
-msgid "Appears after the featured widget."
-msgstr ""
-
-#: functions.php:133
-#@ tesseract
-msgid "Right Middle Widget"
-msgstr ""
-
-#: functions.php:143
-#@ tesseract
-msgid "Left Footer Widget"
-msgstr ""
-
-#: functions.php:145
-#: functions.php:155
-#@ tesseract
-msgid "Appears in the footer area."
-msgstr ""
-
-#: functions.php:153
-#@ tesseract
-msgid "Right Footer Widget"
-msgstr ""
-
-#: functions.php:171
-#@ tesseract
+#: ../functions.php:138
 msgid "Your Name"
 msgstr ""
 
-#: functions.php:172
-#@ tesseract
+#: ../functions.php:139
 msgid "E-mail"
 msgstr ""
 
-#: functions.php:173
-#@ tesseract
+#: ../functions.php:140
 msgid "Website"
 msgstr ""
 
-#: functions.php:174
-#@ tesseract
+#: ../functions.php:141
 msgid "Your Comment"
 msgstr ""
 
-#: functions.php:212
-#@ tesseract
-msgctxt "Google font: on or off"
-msgid "on"
+#: ../functions.php:328
+msgid "Read More ..."
 msgstr ""
 
-#: header.php:22
-#@ tesseract
+#: ../header.php:40
 msgid "Skip to content"
 msgstr ""
 
-#: header.php:31
-#@ tesseract
-msgid "Menu"
+#: ../header.php:42
+msgid "Open Menu"
 msgstr ""
 
-#: inc/extras.php:74
+#: ../header.php:43
+msgid "Close Menu"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:24
+#: ../inc/customizer-frontend-functions.php:95
+#: ../inc/sections/social/facebook.php:3
+msgid "Facebook"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:25
+#: ../inc/customizer-frontend-functions.php:96
+#: ../inc/sections/social/twitter.php:3
+msgid "Twitter"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:26
+#: ../inc/customizer-frontend-functions.php:97
+#: ../inc/sections/social/googleplus.php:3
+msgid "Google Plus"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:27
+#: ../inc/customizer-frontend-functions.php:98
+#: ../inc/sections/social/linkedin.php:3
+msgid "LinkedIn"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:28
+#: ../inc/customizer-frontend-functions.php:99
+#: ../inc/sections/social/youtube.php:3
+msgid "YouTube"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:29
+#: ../inc/customizer-frontend-functions.php:100
+#: ../inc/sections/social/vimeo.php:3
+msgid "Vimeo"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:30
+#: ../inc/customizer-frontend-functions.php:101
+msgid "Tumblt"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:31
+#: ../inc/customizer-frontend-functions.php:102
+msgid "FlickR"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:32
+#: ../inc/customizer-frontend-functions.php:103
+#: ../inc/sections/social/pinterest.php:3
+msgid "Pinterest"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:33
+#: ../inc/customizer-frontend-functions.php:104
+#: ../inc/sections/social/dribbble.php:3
+msgid "Dribbble"
+msgstr ""
+
+#: ../inc/customizer-frontend-functions.php:42
+msgid "Follow Us on "
+msgstr ""
+
+#: ../inc/customizer.php:58
+msgid "Background Color"
+msgstr ""
+
+#: ../inc/customizer.php:60
+msgid "Choose a background color"
+msgstr ""
+
+#: ../inc/customizer.php:61
+msgid ""
+"(This is only for the site's generic background color. You can define header "
+"and footer background colors in the Header Options and Footer Options "
+"respectively.)"
+msgstr ""
+
+#: ../inc/extras.php:74
 #, php-format
-#@ tesseract
 msgid "Page %s"
 msgstr ""
 
-#: inc/template-tags.php:21
-#@ tesseract
+#: ../inc/sections/footer-colors.php:7
+msgid "Footer Colors"
+msgstr ""
+
+#: ../inc/sections/footer-colors.php:23
+msgid "Footer Background Color"
+msgstr ""
+
+#: ../inc/sections/footer-colors.php:41
+msgid "Footer Text Color"
+msgstr ""
+
+#: ../inc/sections/footer-colors.php:59
+msgid "Footer Heading Color"
+msgstr ""
+
+#: ../inc/sections/footer-colors.php:77
+msgid "Footer Link Color"
+msgstr ""
+
+#: ../inc/sections/footer-colors.php:95
+msgid "Footer Hovered Link Color"
+msgstr ""
+
+#: ../inc/sections/footer-content.php:7
+msgid "Footer Content"
+msgstr ""
+
+#: ../inc/sections/footer-content.php:25
+msgid "Choose the content to be displayed in the footer"
+msgstr ""
+
+#: ../inc/sections/footer-content.php:68
+msgid "Display a horizontal footer menu"
+msgstr ""
+
+#: ../inc/sections/footer-content.php:100
+msgid "Choose the menu to be displayed in the footer with a horizontal layout"
+msgstr ""
+
+#: ../inc/sections/header-colors.php:7
+msgid "Header Colors"
+msgstr ""
+
+#: ../inc/sections/header-colors.php:27
+msgid "Header Background Color"
+msgstr ""
+
+#: ../inc/sections/header-colors.php:66
+msgid "Header Text Color"
+msgstr ""
+
+#: ../inc/sections/header-colors.php:84
+msgid "Header Link Color"
+msgstr ""
+
+#: ../inc/sections/header-colors.php:102
+msgid "Header Hovered Link Color"
+msgstr ""
+
+#: ../inc/sections/header-content.php:7
+msgid "Header Right Block Content"
+msgstr ""
+
+#: ../inc/sections/header-content.php:25
+msgid ""
+"Choose the content to be displayed in the right block of the header area"
+msgstr ""
+
+#: ../inc/sections/header-content.php:67
+msgid "Button code"
+msgstr ""
+
+#: ../inc/sections/header-menu.php:10
+msgid "Header Menu"
+msgstr ""
+
+#: ../inc/sections/header-menu.php:34
+msgid "Choose the menu to be displayed in the header"
+msgstr ""
+
+#: ../inc/sections/logo.php:3
+msgid "Logo"
+msgstr ""
+
+#: ../inc/sections/logo.php:18
+msgid "Upload a logo"
+msgstr ""
+
+#: ../inc/sections/social/dribbble.php:18
+msgid "Dribbble URL"
+msgstr ""
+
+#: ../inc/sections/social/dribbble.php:37
+#: ../inc/sections/social/facebook.php:37 ../inc/sections/social/flickr.php:37
+#: ../inc/sections/social/googleplus.php:37
+#: ../inc/sections/social/linkedin.php:37
+#: ../inc/sections/social/pinterest.php:37
+#: ../inc/sections/social/tumblr.php:37 ../inc/sections/social/twitter.php:37
+#: ../inc/sections/social/vimeo.php:37 ../inc/sections/social/youtube.php:37
+msgid "Upload an icon"
+msgstr ""
+
+#: ../inc/sections/social/facebook.php:18
+msgid "Facebook URL"
+msgstr ""
+
+#: ../inc/sections/social/flickr.php:3
+msgid "Flickr"
+msgstr ""
+
+#: ../inc/sections/social/flickr.php:18
+msgid "Flickr URL"
+msgstr ""
+
+#: ../inc/sections/social/googleplus.php:18
+msgid "Google Plus URL"
+msgstr ""
+
+#: ../inc/sections/social/linkedin.php:18
+msgid "LinkedIn URL"
+msgstr ""
+
+#: ../inc/sections/social/pinterest.php:18
+msgid "Pinterest URL"
+msgstr ""
+
+#: ../inc/sections/social/tumblr.php:3
+msgid "Tumblr"
+msgstr ""
+
+#: ../inc/sections/social/tumblr.php:18
+msgid "Tumblr URL"
+msgstr ""
+
+#: ../inc/sections/social/twitter.php:18
+msgid "Twitter URL"
+msgstr ""
+
+#: ../inc/sections/social/vimeo.php:18
+msgid "Vimeo URL"
+msgstr ""
+
+#: ../inc/sections/social/youtube.php:18
+msgid "YouTube URL"
+msgstr ""
+
+#: ../inc/template-tags.php:21
 msgid "Posts navigation"
 msgstr ""
 
-#: inc/template-tags.php:25
-#@ tesseract
+#: ../inc/template-tags.php:25
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr ""
 
-#: inc/template-tags.php:29
-#@ tesseract
+#: ../inc/template-tags.php:29
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: inc/template-tags.php:52
-#@ tesseract
+#: ../inc/template-tags.php:52
 msgid "Post navigation"
 msgstr ""
 
-#: inc/template-tags.php:55
+#: ../inc/template-tags.php:109
 #, php-format
-#@ tesseract
-msgctxt "Previous post link"
-msgid "<span class=\"meta-nav\">&larr;</span>&nbsp;%title"
-msgstr ""
-
-#: inc/template-tags.php:56
-#, php-format
-#@ tesseract
-msgctxt "Next post link"
-msgid "%title&nbsp;<span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
-#: inc/template-tags.php:82
-#, php-format
-#@ tesseract
-msgctxt "post date"
-msgid "Posted on %s"
-msgstr ""
-
-#: inc/template-tags.php:87
-#, php-format
-#@ tesseract
-msgctxt "post author"
-msgid "by %s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:104
-#: inc/template-tags.php:110
-#@ tesseract
-msgid ", "
-msgstr ""
-
-#: inc/template-tags.php:106
-#, php-format
-#@ tesseract
-msgid "Posted in %1$s"
-msgstr ""
-
-#: inc/template-tags.php:112
-#, php-format
-#@ tesseract
-msgid "Tagged %1$s"
-msgstr ""
-
-#: inc/template-tags.php:118
-#@ tesseract
-msgid "Leave a comment"
-msgstr ""
-
-#: inc/template-tags.php:118
-#@ tesseract
-msgid "1 Comment"
-msgstr ""
-
-#: inc/template-tags.php:118
-#@ tesseract
-msgid "% Comments"
-msgstr ""
-
-#: inc/template-tags.php:139
-#, php-format
-#@ tesseract
 msgid "Category: %s"
 msgstr ""
 
-#: inc/template-tags.php:141
+#: ../inc/template-tags.php:111
 #, php-format
-#@ tesseract
 msgid "Tag: %s"
 msgstr ""
 
-#: inc/template-tags.php:143
+#: ../inc/template-tags.php:113
 #, php-format
-#@ tesseract
 msgid "Author: %s"
 msgstr ""
 
-#: inc/template-tags.php:145
+#: ../inc/template-tags.php:115
 #, php-format
-#@ tesseract
 msgid "Year: %s"
 msgstr ""
 
-#: inc/template-tags.php:145
-#@ tesseract
-msgctxt "yearly archives date format"
-msgid "Y"
-msgstr ""
-
-#: inc/template-tags.php:147
+#: ../inc/template-tags.php:117
 #, php-format
-#@ tesseract
 msgid "Month: %s"
 msgstr ""
 
-#: inc/template-tags.php:147
-#@ tesseract
-msgctxt "monthly archives date format"
-msgid "F Y"
-msgstr ""
-
-#: inc/template-tags.php:149
+#: ../inc/template-tags.php:119
 #, php-format
-#@ tesseract
 msgid "Day: %s"
 msgstr ""
 
-#: inc/template-tags.php:149
-#@ tesseract
-msgctxt "daily archives date format"
-msgid "F j, Y"
-msgstr ""
-
-#: inc/template-tags.php:151
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Asides"
-msgstr ""
-
-#: inc/template-tags.php:153
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Galleries"
-msgstr ""
-
-#: inc/template-tags.php:155
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Images"
-msgstr ""
-
-#: inc/template-tags.php:157
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Videos"
-msgstr ""
-
-#: inc/template-tags.php:159
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Quotes"
-msgstr ""
-
-#: inc/template-tags.php:161
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Links"
-msgstr ""
-
-#: inc/template-tags.php:163
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Statuses"
-msgstr ""
-
-#: inc/template-tags.php:165
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Audio"
-msgstr ""
-
-#: inc/template-tags.php:167
-#@ tesseract
-msgctxt "post format archive title"
-msgid "Chats"
-msgstr ""
-
-#: inc/template-tags.php:169
+#: ../inc/template-tags.php:139
 #, php-format
-#@ tesseract
 msgid "Archives: %s"
 msgstr ""
 
 #. translators: 1: Taxonomy singular name, 2: Current taxonomy term
-#: inc/template-tags.php:173
+#: ../inc/template-tags.php:143
 #, php-format
-#@ tesseract
 msgid "%1$s: %2$s"
 msgstr ""
 
-#: inc/template-tags.php:175
-#@ tesseract
+#: ../inc/template-tags.php:145
 msgid "Archives"
 msgstr ""
 
-#: search.php:16
+#: ../search.php:16
 #, php-format
-#@ tesseract
 msgid "Search Results for: %s"
-msgstr ""
-
-#: sidebar-featured.php:14
-#@ tesseract
-msgid "Headline"
-msgstr ""
-
-#: sidebar-featured.php:16
-#@ tesseract
-msgid "Create a website and build your business."
-msgstr ""
-
-#: sidebar-featured.php:17
-#: sidebar-featured.php:18
-#@ tesseract
-msgid "/"
-msgstr ""
-
-#: sidebar-featured.php:17
-#@ tesseract
-msgid "Watch the Video"
-msgstr ""
-
-#: sidebar-featured.php:18
-#@ tesseract
-msgid "Start"
 msgstr ""

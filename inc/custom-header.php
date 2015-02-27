@@ -24,7 +24,6 @@ function tesseract_custom_header_setup() {
 	$args = array(
 		// Text color and image (empty to use none).
 		'default-text-color'     => '220e10',
-		'default-image'          => '%s/images/default-header.jpg',
 
 		// Set height and width, with a maximum value for the width.
 		'height'                 => 480,

@@ -5,7 +5,7 @@
  * @package Tesseract
  */
 
-if ( ! is_active_sidebar || is_home ( 'sidebar-1' ) ) { /* Does not appear on frontpage */
+if ( ! is_active_sidebar( 'sidebar-1' ) || is_home () ) { /* Does not appear on frontpage */
 	return;
 }
 ?>

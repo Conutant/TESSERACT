@@ -1,6 +1,6 @@
 /*
 Theme Name: Tesseract
-Theme URI: http://tyler.com/tesseract
+Theme URI: http://tyler.com/tesseract-theme/
 Author: Tyler Moore
 Author URI: http://tyler.com/
 Description: Tesseract is a beautiful theme from the fourth dimension. Tesseract makes it easy to create a website that you are proud to show off to the world. It is responsive, has simple and useful navigation, an amazing featured image with buttons and is simple to use.
@@ -408,6 +408,35 @@ input[type="search"] {
     box-sizing: content-box;
 }
 
+.entry-content input[type=text],
+.entry-content input[type=email],
+.entry-content input[type=tel],
+.entry-content input[type=password],
+.entry-content input[type=date],
+.entry-content input[type=datetime-local],
+.entry-content input[type=file],
+.entry-content input[type=reset],
+.entry-content input[type=search],
+.entry-content input[type=url] {
+	width: 60%;
+	}
+
+.entry-content input[type=month],
+.entry-content input[type=week],
+.entry-content input[type=time] {
+	width: 30%;
+	}
+
+.entry-content textarea {
+	width: 100%;
+	}
+	
+.entry-content select {
+	width: calc( 60% - 20px );
+	}	
+	
+form span { width: 100%; }	
+
 /**
  * Define consistent border, margin, and padding.
  */
@@ -572,6 +601,11 @@ blockquote,
     margin-bottom: 35px;
 }
 
+ul ul,
+ol ol {
+	margin-bottom: 0;
+	}
+
 .page-links,
 .site-title,
 .widget-area,
@@ -602,9 +636,14 @@ p:last-item {
 -------------------------------------------------------------- */
 
 cite {
+	font-size: 1.1em;
     display: block;
-    opacity: 0.3;
-    filter: alpha(opacity=30);
+}
+
+blockquote cite {
+	text-align: right;
+	font-size: 17.6px;
+	border-top: rgba(0, 0, 0, .1) solid 1px;		
 }
 
 blockquote {
@@ -613,15 +652,19 @@ blockquote {
     font-family: 'Alegreya', Georgia, Time New Roman, serif;
     font-size: 36px;
     text-align: center;
+	padding-bottom: 2px;
 }
 
 blockquote:before{
     content: '\201C';
     font-size: 72px;
+	margin-top: -28px;
     float: left;
     opacity: 0.3;
     filter: alpha(opacity=30);
 }
+
+blockquote p { padding: 0; }
 
 /* =06. Headings
 -------------------------------------------------------------- */
@@ -1192,16 +1235,19 @@ select {
 
 table {
 	width: 100%;
+	border-collapse: collapse;
 }
 
 td,
 th {
-    padding: 4px 0;
+    padding: 4px 10px;
 	text-align: left;
+	border: #ddd solid 1px;
 }
 
 th {
 	font-weight: 700;
+	background: #fff;
 }
 
 /* =10. Links
@@ -1785,7 +1831,6 @@ figure {
 }
 
 .blog #primary,
-.home #primary,
 .page-template-full-width-page #primary,
 .page-template-blog-php #primary,
 .error404 #primary,
@@ -1809,8 +1854,7 @@ figure {
 }
 
 .page-template-blog #content,
-.blog #content,
-.page-template-full-width-page #content {
+.blog #content {
 	max-width: 720px;
 	}
 .navigation.post-navigation{
@@ -1833,7 +1877,8 @@ figure {
 	border-top: 1px solid #ddd;
 	}	
 
-h1.entry-title {
+h1.entry-title,
+.blog .page-title {
     font-size: 35px;
     margin: 60px 0 30px;
     text-transform: capitalize;
@@ -1891,7 +1936,19 @@ span.posted-on{
 	margin: 47px 0 0;
 	}	
 
-.archive #content article:first-child .entry-title { margin-top: 27px; }
+.archive .page-title { margin: 46px 0 10px; }
+
+.archive-description {
+	font-size: .85em;
+	font-style: italic;
+	line-height: 1.53;
+	margin: 25px 0 0;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #ddd;	
+	}
+	
+.archive-description p { padding-bottom: 17px; }	
+.archive-description > p:last-child { padding-bottom: 0; }
 
 .search h1.entry-title {
 	margin: 17px 0 20px 0;
@@ -2009,6 +2066,8 @@ span.posted-on{
     padding: 0;
 }
 
+.bypostauthor {}
+
 .archive .cat-links,
 .archive .tags-links,
 .archive .comments-link {
@@ -2125,6 +2184,8 @@ article.comment-body{
     padding-bottom: 0;
 }
 
+.wpcf7-form-control-wrap { width: 100%; }
+
 /* =25. Responsive design
 -------------------------------------------------------------- */
 
@@ -2164,26 +2225,42 @@ article.comment-body{
 
 @media screen and (max-width: 620px) {
 		
-	button, 
-	.button, 
-	input[type="reset"], 
-	input[type="submit"], 
-	input[type="button"],
-	button.small, 
-	.button.small,
-	button.large, 
-	.button.large	 {
-		padding: 0 10px;
-		font-size: 12px;
-		line-height: 30px;
-		letter-spacing: 2px;		
-		}	
-
-.mobile-resize{
-font-size:30px !important;
-}
-
-
+    #sidebar-footer aside {
+        width: 100%!important;
+    }
+    
+    textarea,
+    input:not([type]),
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"] {
+        max-width: 100%;
+    }
+	
+	.entry-content input[type=text],
+	.entry-content input[type=email],
+	.entry-content input[type=tel],
+	.entry-content input[type=password],
+	.entry-content input[type=date],
+	.entry-content input[type=datetime-local],
+	.entry-content input[type=file],
+	.entry-content input[type=reset],
+	.entry-content input[type=search],
+	.entry-content input[type=url],
+	.entry-content input[type=month],
+	.entry-content input[type=week],
+	.entry-content input[type=time],
+	.entry-content textarea {
+		width: 100%;
+		}
+		
+	.entry-content select {
+		width: calc( 100% - 20px );
+		}
+	
 	
 }
 

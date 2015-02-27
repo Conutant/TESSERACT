@@ -16,6 +16,12 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+        
+        <?php if ( is_home() && !is_front_page() ) { ?>
+			<header class="page-header">
+				<h1 class="page-title"><?php echo __( 'Blog', 'tesseract' ); ?></h1>
+			</header><!-- .page-header -->
+		<?php } ?>    
 
 		<?php if ( have_posts() ) : ?>
 

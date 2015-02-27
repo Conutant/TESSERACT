@@ -11,6 +11,12 @@ get_header(); ?>
 
 	<div id="primary" class="full-width-page">
 		<main id="main" class="site-main" role="main">
+        
+        <h1 class="page-title"><?php the_archive_title(); ?></h1>
+        
+        <?php if ( is_tag() || is_category() || is_tax() ) { ?>
+        	<div class="archive-description"><?php the_archive_description(); ?></div>
+		<?php } ?>
 
 		<?php if ( have_posts() ) : ?>
 
