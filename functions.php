@@ -169,7 +169,7 @@ function tesseract_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	$header_bckRGB = get_theme_mod('tesseract_tho_header_colors_bck_color') ? get_theme_mod('tesseract_tho_header_colors_bck_color') : 'rgb(0,163,239)';
+	$header_bckRGB = get_theme_mod('tesseract_tho_header_colors_bck_color') ? get_theme_mod('tesseract_tho_header_colors_bck_color') : '#59bcd9';
 	
 	$header_bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') ? get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') : 100;
 	
@@ -195,15 +195,9 @@ function tesseract_scripts() {
 	preg_match("/\s*(rgba\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*,\d+\d*\.\d+\))/", $hex, $match);
 	$rgba = $match ? true : false; 
 	
-	if ( !$rgba ) {
-		list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-		$header_bckColor = "rgb($r, $g, $b)";
-		$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
-	} else {
-		sscanf($hex, 'rgb(%d,%d,%d,)', $r, $g, $b);
-		$header_bckColor = "rgb($r, $g, $b)";
-		$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
-	}
+	list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+	$header_bckColor = "rgb($r, $g, $b)";
+	$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
 	
 	$add_content_borderColor_array = tesseract_hex2rgb( $footer_linkColor );
 	$add_content_borderColor = implode( ', ', $add_content_borderColor_array );	
@@ -220,7 +214,7 @@ function tesseract_scripts() {
 	.site-header h3,
 	.site-header h4,
 	.site-header h5,
-	.site-header h6 { color: " . $header_textColor . "; }
+	.site-header h6 { color: " . $header_textColor . "!important; }
 	
 	.site-header a,
 	.main-navigation ul ul a,

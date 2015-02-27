@@ -11,7 +11,7 @@ function tesseract_header_right_content( $content ) {
 		// Step 2 -> logo
 		case 'buttons': 
 		
-			$code = get_theme_mod('tho_header_content_if_button');
+			$code = get_theme_mod('tesseract_tho_header_content_if_button');
 			echo '<div id="header-button-container"><div id="header-button-container-inner">' . $code . '</div></div>';
  						
 			break; 

@@ -29,20 +29,37 @@
                         <?php // SHOUDLD some additional content added before the menu?
                         if ( $addcontent_hml !== 'nothing' ) : ?>
                         
-                        	<div id="horizontal-menu-before" class="switch thm-left-left<?php if ( $menuSelect && ( $menuSelect !== 'none' ) ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
+                        	<div id="horizontal-menu-before" class="switch thm-left-left<?php if ( $menuEnable || !$menuEnable ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
                         
                         <?php endif; //EOF left menu - IS before content ?>
                         
-                        <?php if ( ( $menuEnable ) && ( $menuSelect !== 'none' ) ) : ?>
+                        <?php if ( ( $menuEnable && ( $menuEnable == 1 ) ) || !$menuEnable ) : ?>
+                        
                             <section id="footer-horizontal-menu"<?php if ( $addcontent_hml !== 'nothing' ) echo ' class="is-before"'; ?>>
-                                
                                 <div>
-                                        
-                                    <?php wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'footer-menu', 'depth' => 1 ) ); ?>
                                     
+                                    <?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
+                                    
+                                    if ( $anyMenu ) :
+                                    
+                                        if ( $menuSelect !== 'none' ) :  
+                                            wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'footer-menu', 'depth' => 1 ) );
+                                        elseif ( ( $menuSelect == 'none' ) || !$menuSelect || !$menuEnable ) :
+                                            $menu = get_terms( 'nav_menu' ); 
+                                            $menu_id = $menu[0]->term_id;						
+                                            wp_nav_menu( array( 'menu_id' => $menu_id ) );																
+                                        endif; ?>  
+                                        
+                                    <?php else : 
+                                    
+                                        wp_page_menu('show_home=1&include=9999');
+                                   
+                                    endif; ?>   
+                                                                          
                                 </div>
-                            
-                            </section>   
+                                
+                            </section> 
+                       
                        	<?php endif; ?>                   
                                                 
            			</div><!-- EOF horizontal-menu-wrap -->                       
