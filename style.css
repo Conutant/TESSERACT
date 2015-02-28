@@ -1772,8 +1772,9 @@ figure {
 }
 
 .post{
-    max-width: 720px;
+    max-width: 640px;
     margin:auto;
+    font-size:18px;
 }
 
 .home .entry-content { border: none; }
