@@ -276,10 +276,10 @@
 	}	
 	
 #header-button-container {
-	height: 60px;
 	display: table;
 	table-layout: fixed;
 	float: right;
+	line-height: 60px;
 	}
 	
 #header-button-container-inner {

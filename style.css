@@ -1036,12 +1036,14 @@ input[type="button"]:active {
 .brown:hover{
     background-color: #823A09;
 }
-.brown-outline {
+.brown-outline,
+.site-header .brown-outline {
     background-color: transparent;
     border: 1px solid #ab541a;
     color: #ab541a;
 }
-.brown-outline:hover{
+.brown-outline:hover,
+.site-header .brown-outline:hover {
     background-color: #fff;
     color: #823A09!important;
     border: 1px solid #823A09;
@@ -1053,63 +1055,71 @@ input[type="button"]:active {
 .green:hover{
     background-color: #32770f;
 }
-.green-outline {
+.green-outline,
+.site-header .green-outline {
     background-color: transparent;
     border: 1px solid #49b70f;
     color: #49b70f;
 }
-.green-outline:hover{
+.green-outline:hover,
+.site-header .green-outline:hover {
     background-color: #fff;
     color: #32770f!important;
     border: 1px solid #32770f;
 }
 /* === Dark Blue  === */
-.darkblue{
+.darkblue {
     background-color: #0f5289;
 }
-.darkblue:hover{
+.darkblue:hover {
     background-color: #0c2b44;
 }
-.darkblue-outline {
+.darkblue-outline,
+.site-header .darkblue-outline {
     background-color: transparent;
     border: 1px solid #0f5289;
     color: #0f5289;
 }
-.darkblue-outline:hover{
+.darkblue-outline:hover,
+.site-header .darkblue-outline:hover {
     background-color: #fff;
     color: #0c2b44!important;
     border: 1px solid #0c2b44;
 }
 /* === red  === */
-.red{
+.red {
     background-color: #cd1212;
 }
-.red:hover{
+.red:hover {
     background-color: #a90e0e;
 }
-.red-outline {
+.red-outline,
+.site-header .red-outline {
     background-color: transparent;
     border: 1px solid #cd1212;
     color: #cd1212;
 }
-.red-outline:hover{
+.red-outline:hover,
+.site-header .red-outline:hover {
     background-color: #fff;
     color: #a90e0e!important;
     border: 1px solid #a90e0e;
 }
 /* === pink  === */
-.pink{
+.pink {
     background-color: #ff1dfc;
 }
-.pink:hover{
+.pink:hover {
     background-color: #d214cf;
 }
-.pink-outline {
+.pink-outline,
+.site-header .pink-outline {
     background-color: transparent;
     border: 1px solid #ff1dfc;
     color: #ff1dfc;
 }
-.pink-outline:hover{
+.pink-outline:hover,
+.site-header .pink-outline:hover {
     background-color: #fff;
     color: #d214cf!important;
     border: 1px solid #d214cf;
@@ -1121,12 +1131,14 @@ input[type="button"]:active {
 .yellow:hover {
     background-color: #f8b516;
 }
-.yellow-outline {
+.yellow-outline,
+.site-header .yellow-outline {
     background-color: transparent;
     border: 1px solid #F7CA18;
     color: #F7CA18;
 }
-.yellow-outline:hover {
+.yellow-outline:hover,
+.site-header .yellow-outline:hover {
     background-color: #fff;
     color: #f8b516!important;
     border: 1px solid #f8b516;
@@ -1139,30 +1151,34 @@ input[type="button"]:active {
 .orange:hover {
     background-color: #ea7104;
 }
-.orange-outline {
+.orange-outline,
+.site-header .orange-outline {
     background-color: transparent;
     border: 1px solid #E87E04;
     color: #E87E04;
 }
-.orange-outline:hover {
+.orange-outline:hover,
+.site-header .orange-outline:hover {
     background-color: #fff;
     color: #ea7104!important;
     border: 1px solid #ea7104;
 }
 
 /* === Black  === */
-.black{
+.black {
     background-color: #000000;
 }
-.black:hover{
+.black:hover {
     background-color: #626262;
 }
-.black-outline {
+.black-outline,
+.site-header .black-outline {
     background-color: transparent;
     border: 1px solid #000000;
     color: #000000;
 }
-.black-outline:hover{
+.black-outline:hover,
+.site-header .black-outline:hover {
     background-color: #fff;
     color: #626262!important;
     border: 1px solid #626262;
@@ -1171,17 +1187,21 @@ input[type="button"]:active {
 /* === Default Size  === */
 
 .button.darktext,
-.button.darktext:hover  {
+.button.darktext:hover,
+.site-header .button.darktext,
+.site-header .button.darktext:hover  {
     color: #000000!important;
 }
 
-.button.darktext:hover {
+.button.darktext:hover,
+.site-header .button.darktext:hover {
 	text-shadow: rgba(255, 255, 255, 0.15) 0 2px 2px;
 	}
 
 
 /* === Small Size  === */
-.small {
+.small,
+.site-header .small {
     padding: 1px 20px;
     font-size: 10px;
     letter-spacing: 0px;
@@ -1189,7 +1209,8 @@ input[type="button"]:active {
 }
 
 /* === Large Size  === */
-.large {
+.large,
+.site-header .large {
     padding: 16px 40px;
     font-size: 16px;
     letter-spacing: 2px;
@@ -1201,6 +1222,8 @@ input[type="button"]:active {
 
 button:disabled,
 .button:disabled,
+.site-header .button:disabled,
+.site-header button:disabled,
 input[type="reset"]:disabled,
 input[type="submit"]:disabled,
 input[type="button"]:disabled {
