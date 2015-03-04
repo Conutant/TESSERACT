@@ -1796,6 +1796,7 @@ figure {
 
 .headline-resize{
     width:100%;
+    white-space: nowrap;
 }
 
 .post{
