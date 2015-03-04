@@ -19,23 +19,24 @@
         
         $menuEnable = get_theme_mod('tesseract_tfo_footer_content_enable');
         $menuSelect = get_theme_mod('tesseract_tfo_footer_content_select');
-        $addcontent_hml = get_theme_mod('tesseract_tfo_footer_additional_content');	
+        $addcontent_hml = get_theme_mod('tesseract_tfo_footer_additional_content');		
+		$addcontent_hml = $addcontent_hml ? $addcontent_hml : 'notset';		
 		?>
     
-    	<div id="footer-banner" class="cf<?php echo ' menu-' . $menuClass; if ( $footbarActive ) echo ' footbar-active'; ?>">		               
+    	<div id="footer-banner" class="cf<?php echo ' menu-' . $menuClass; ?>">		               
                     
                     <div id="horizontal-menu-wrap" class="<?php echo $menuClass . ' ' . $addcontent_hml; ?>">
                     
                         <?php // SHOUDLD some additional content added before the menu?
-                        if ( $addcontent_hml !== 'nothing' ) : ?>
+                        if ( ( $addcontent_hml !== 'nothing' ) && ( $addcontent_hml !== 'notset' ) ) : ?>
                         
-                        	<div id="horizontal-menu-before" class="switch thm-left-left<?php if ( $menuEnable || !$menuEnable ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
+                        	<div id="horizontal-menu-before" class="switch thm-left-left<?php if ( ( $menuEnable && ( $menuEnable == 1 ) ) || !$menuEnable ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
                         
                         <?php endif; //EOF left menu - IS before content ?>
                         
                         <?php if ( ( $menuEnable && ( $menuEnable == 1 ) ) || !$menuEnable ) : ?>
                         
-                            <section id="footer-horizontal-menu"<?php if ( $addcontent_hml !== 'nothing' ) echo ' class="is-before"'; ?>>
+                            <section id="footer-horizontal-menu"<?php if ( $addcontent_hml && ( $addcontent_hml !== 'nothing' ) && ( $addcontent_hml !== 'notset' ) ) echo ' class="is-before"'; ?>>
                                 <div>
                                     
                                     <?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
@@ -52,7 +53,7 @@
                                         
                                     <?php else : 
                                     
-                                        wp_page_menu('show_home=1&include=9999');
+                                        wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu', 'depth' => 1 ) );
                                    
                                     endif; ?>   
                                                                           

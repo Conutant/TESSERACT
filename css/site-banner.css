@@ -114,7 +114,7 @@
 
 .site-title a {
 	display: block;
-	color: #fff;
+
 	line-height: 28px;
 	padding: 16px 0;	
 }
@@ -275,10 +275,10 @@
 	}	
 	
 #header-button-container {
-	height: 60px;
 	display: table;
 	table-layout: fixed;
 	float: right;
+	line-height: 60px;
 	}
 	
 #header-button-container-inner {

@@ -82,7 +82,7 @@
 							$menu_id = $menu[0]->term_id;						
 							wp_nav_menu( array( 'menu_id' => $menu_id ) );
 						elseif ( !$anyMenu ) :
-							wp_page_menu('show_home=1&include=9999');
+							wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
 						endif; ?>
 
 				</nav><!-- #site-navigation --> 
