@@ -1197,6 +1197,13 @@ input[type="button"]:active {
 	text-shadow: rgba(255, 255, 255, 0.15) 0 2px 2px;
 	}
 
+.button.lighttext,
+.button.lighttext:hover,
+.site-header .button.lighttext,
+.site-header .button.lighttext:hover  {
+    color: #FFFFFF!important;
+}
+
 
 /* === Small Size  === */
 .small,

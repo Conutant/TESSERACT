@@ -19,7 +19,7 @@ get_header();
         
         <?php if ( is_home() && !is_front_page() ) { ?>
 			<header class="page-header">
-				<h1 class="page-title"><?php echo __( 'Blog', 'tesseract' ); ?></h1>
+				</br></br>
 			</header><!-- .page-header -->
 		<?php } ?>    
 
