@@ -983,6 +983,7 @@ input[type="button"]:active {
 #header-button-container .primary-button,
 #header-button-container .secondary-button {
 	color: #fff!important;
+	vertical-align: baseline;
 	}
 	
 .primary-button:hover{

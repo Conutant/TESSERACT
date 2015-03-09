@@ -24,24 +24,24 @@
 
 	<?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
     	  $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');
-	
-	if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
-		wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );               		
-	elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
-		$menu = get_terms( 'nav_menu' ); 
-		$menu_id = $menu[0]->term_id;						
-		wp_nav_menu( array( 'menu_id' => $menu_id ) );
-	elseif ( !$anyMenu ) :
-		wp_page_menu('show_home=1&include=9999');
-	endif; ?>
+                    
+		if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
+			wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );               		
+		elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
+			$menu = get_terms( 'nav_menu' ); 
+			$menu_id = $menu[0]->term_id;						
+			wp_nav_menu( array( 'menu_id' => $menu_id ) );
+		elseif ( !$anyMenu ) :
+			wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
+		endif; ?>
 
 </nav><!-- #site-navigation -->  	
 
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tesseract' ); ?></a>
     
-    <a class="menu-open dashicons dashicons-menu" href="#mobile-navigation"><?php _e( 'Open Menu', 'tesseract' ); ?></a>
-    <a class="menu-close dashicons dashicons-no" href="#"><?php _e( 'Close Menu', 'tesseract' ); ?></a>            
+    <a class="menu-open dashicons dashicons-menu" href="#mobile-navigation"></a>
+    <a class="menu-close dashicons dashicons-no" href="#"></a>            
     
 
 	<header id="masthead" class="site-header <?php echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">

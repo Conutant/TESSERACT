@@ -214,7 +214,7 @@ function tesseract_scripts() {
 	.site-header h3,
 	.site-header h4,
 	.site-header h5,
-	.site-header h6 { color: " . $header_textColor . "!important; }
+	.site-header h6 { color: " . $header_textColor . "; }
 	
 	.site-header a,
 	.main-navigation ul ul a,
