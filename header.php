@@ -49,6 +49,7 @@
     <?php $logoImg = get_theme_mod('tesseract_logo_image'); 
 	$blogname = get_bloginfo('blogname'); 
 	$headright_content = get_theme_mod('tesseract_tho_header_content_content');
+	$headright_content_default_button = get_theme_mod('tesseract_tho_header_content_if_button');
 	
 	if ( !$logoImg && $blogname ) $brand_content = 'blogname';
 	if ( $logoImg ) $brand_content = 'logo';
@@ -91,7 +92,24 @@
 
             <?php if ( $headright_content ) : ?>            
 
-                <div id="site-banner-right"><?php tesseract_header_right_content($headright_content); ?></div>
+             	<div id="site-banner-right"><?php tesseract_header_right_content($headright_content); ?></div>
+               	<div id="site-banner-right">
+			
+					<?php tesseract_header_right_content($headright_content); ?>                  
+                   
+             	</div>
+         	
+			<?php elseif ( !$headright_content && $headright_content_default_button ) : ?>            
+
+            	<div id="site-banner-right">
+                
+                    <div id="header-button-container">
+                        <div id="header-button-container-inner">
+                            <?php echo $headright_content_default_button; ?>
+                        </div>
+                    </div> 
+                   
+               </div>
 
             <?php else : ?>
 			

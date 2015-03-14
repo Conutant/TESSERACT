@@ -13,7 +13,7 @@
 			'default'           => '',
 			'type'           	=> 'option',
 			'transport'         => 'refresh',
-			'sanitize_callback' => 'tesseract_sanitize_noinput'
+			'sanitize_callback' => '__return_false'
 			)
 		);
 		
@@ -38,7 +38,7 @@
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'tho_header_content_content_control',
+					'tesseract_tho_header_content_content_control',
 					array(
 						'section'        => 'tesseract_tho_header_content',
 						'settings'       => 'tesseract_tho_header_content_content',
