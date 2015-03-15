@@ -147,6 +147,8 @@
 			}		
 		
 		});
+
+		$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });	
 		
 		
 		$(window).resize(function(){
@@ -156,7 +158,8 @@
 			
 			if ( $(window).width() <= 620 ) {
 				$('.tesseract-featured .entry-title').fitText(0.6, { maxFontSize: '75px' });
-				$('.featured-widget h1').fitText(0.6, { maxFontSize: '100px' });				
+				$('.featured-widget h1').fitText(0.6, { maxFontSize: '100px' });
+				$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });		
 			}
 			
 		});	
