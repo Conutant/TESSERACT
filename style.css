@@ -929,6 +929,7 @@ button,
 input[type="reset"],
 input[type="submit"],
 input[type="button"] {
+	background: none;
     background-color: #199cd8;
     background-clip: border-box;
     border: 1px solid transparent;
@@ -943,6 +944,8 @@ input[type="button"] {
 	line-height: 40px;
 	display: inline-block;
 	zoom: 1; *display: inline;
+	box-shadow: none;
+	text-shadow: none;
 }
 
 /*
@@ -953,11 +956,14 @@ input[type="button"] {
  */
 
 button:hover,
+button:focus,
 .button:hover,
+.button:focus,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover {
-    background-color: #1581b2;
+    background: none;
+	background-color: #1581b2;
     color: #fff;
 }
 
@@ -968,7 +974,10 @@ button:active,
 input[type="reset"]:active,
 input[type="submit"]:active,
 input[type="button"]:active {
-    background-color: #199cd8;   
+    background: none;
+	background-color: #199cd8; 
+	box-shadow: none;
+	text-shadow: none;	  
 }
 
 /* === Differnt Colors and Sizes Of Primary and Secondary Buttons  === */
@@ -976,30 +985,44 @@ input[type="button"]:active {
 
 /* Featured */
 
-.primary-button {
+.primary-button,
+.woocommerce a.button.primary-button,
+.woocommerce-page a.button.primary-button {
     background-color: #199cd8;
 }
 
 #header-button-container .primary-button,
-#header-button-container .secondary-button {
+#header-button-container .secondary-button,
+.woocommerce #header-button-container a.button.primary-button,
+.woocommerce-page #header-button-container a.button.primary-button,
+.woocommerce #header-button-container a.button.secondary-button,
+.woocommerce-page #header-button-container a.button.secondary-button {
 	color: #fff!important;
 	vertical-align: baseline;
 	}
 	
-.primary-button:hover{
+.primary-button:hover,
+.woocommerce #header-button-container a.button.primary-button:hover,
+.woocommerce-page #header-button-container a.button.primary-button:hover {
     background-color: #1581b2;
 }	
 
-.secondary-button {
+.secondary-button,
+.woocommerce #header-button-container a.button.secondary-button,
+.woocommerce-page #header-button-container a.button.secondary-button {
     background-color: transparent;
     border: 1px solid #fff;
 }
 
-.secondary-button:hover{
+.secondary-button:hover,
+.woocommerce #header-button-container a.button.secondary-button:hover,
+.woocommerce-page #header-button-container a.button.secondary-button:hover {
     background-color: #199cd8;
 }	
 
-.site-header .secondary-button { color: #fff; }
+.site-header .secondary-button,
+.woocommerce .site-header a.button.secondary-button,
+.woocommerce-page .site-header a.button.secondary-button { color: #fff; }
 	
 /*#header-button-container .secondary-button {
 	color: #000;
@@ -1019,166 +1042,246 @@ input[type="button"]:active {
 
 /* === Default Styles === */
 
-.button {
+.button,
+.woocommerce .site-header a.button,
+.woocommerce-page .site-header a.button {
 	margin: 5px;
 	}
 	
-.button:hover {
+.button:hover,
+.woocommerce .site-header a.button:hover,
+.woocommerce-page .site-header a.button:hover {
 	color: #fff!important;
 	}	
 
 /* === Default Color === */
 
 /* === Brown  === */
-.brown{
+.brown,
+.woocommerce .site-header a.button.brown,
+.woocommerce-page .site-header a.button.brown {
     background-color: #AB541A;
 }
-.brown:hover{
+
+.brown:hover,
+.woocommerce .site-header a.button.brown:hover,
+.woocommerce-page .site-header a.button.brown:hover {
     background-color: #823A09;
 }
 .brown-outline,
-.site-header .brown-outline {
+.site-header .brown-outline,
+.woocommerce .site-header a.button.brown-outline,
+.woocommerce-page .site-header a.button.brown-outline {
     background-color: transparent;
     border: 1px solid #ab541a;
     color: #ab541a;
 }
 .brown-outline:hover,
-.site-header .brown-outline:hover {
+.site-header .brown-outline:hover,
+.woocommerce .site-header a.button.brown-outline:hover,
+.woocommerce-page .site-header a.button.brown-outline:hover {
     background-color: #fff;
     color: #823A09!important;
     border: 1px solid #823A09;
 }
 /* === Green  === */
-.green{
+.green,
+.woocommerce .site-header a.button.green,
+.woocommerce-page .site-header a.button.green {
     background-color: #49b70f;
 }
-.green:hover{
+
+.green:hover,
+.woocommerce .site-header a.button.green:hover,
+.woocommerce-page .site-header a.button.green:hover {
     background-color: #32770f;
 }
 .green-outline,
-.site-header .green-outline {
+.site-header .green-outline,
+.woocommerce .site-header a.button.green-outline,
+.woocommerce-page .site-header a.button.green-outline {
     background-color: transparent;
     border: 1px solid #49b70f;
     color: #49b70f;
 }
 .green-outline:hover,
-.site-header .green-outline:hover {
+.site-header .green-outline:hover,
+.woocommerce .site-header a.button.green-outline:hover,
+.woocommerce-page .site-header a.button.green-outline:hover {
     background-color: #fff;
     color: #32770f!important;
     border: 1px solid #32770f;
 }
 /* === Dark Blue  === */
-.darkblue {
+
+.darkblue,
+.woocommerce .site-header a.button.darkblue,
+.woocommerce-page .site-header a.button.darkblue {
     background-color: #0f5289;
 }
-.darkblue:hover {
+
+.darkblue:hover,
+.woocommerce .site-header a.button.darkblue:hover,
+.woocommerce-page .site-header a.button.darkblue:hover {
     background-color: #0c2b44;
 }
 .darkblue-outline,
-.site-header .darkblue-outline {
+.site-header .darkblue-outline,
+.woocommerce .site-header a.button.darkblue-outline,
+.woocommerce-page .site-header a.button.darkblue-outline {
     background-color: transparent;
     border: 1px solid #0f5289;
     color: #0f5289;
 }
 .darkblue-outline:hover,
-.site-header .darkblue-outline:hover {
+.site-header .darkblue-outline:hover,
+.woocommerce .site-header a.button.darkblue-outline:hover,
+.woocommerce-page .site-header a.button.darkblue-outline:hover {
     background-color: #fff;
     color: #0c2b44!important;
     border: 1px solid #0c2b44;
 }
 /* === red  === */
-.red {
+.red,
+.woocommerce .site-header a.button.red,
+.woocommerce-page .site-header a.button.red {
     background-color: #cd1212;
 }
-.red:hover {
+.red:hover,
+.woocommerce .site-header a.button.red:hover,
+.woocommerce-page .site-header a.button.red:hover {
     background-color: #a90e0e;
 }
 .red-outline,
-.site-header .red-outline {
+.site-header .red-outline,
+.woocommerce .site-header a.button.red-outline,
+.woocommerce-page .site-header a.button.red-outline {
     background-color: transparent;
     border: 1px solid #cd1212;
     color: #cd1212;
 }
 .red-outline:hover,
-.site-header .red-outline:hover {
+.site-header .red-outline:hover,
+.woocommerce .site-header a.button.red-outline:hover,
+.woocommerce-page .site-header a.button.red-outline:hover {
     background-color: #fff;
     color: #a90e0e!important;
     border: 1px solid #a90e0e;
 }
 /* === pink  === */
-.pink {
+
+.pink,
+.woocommerce .site-header a.button.pink,
+.woocommerce-page .site-header a.button.pink {
     background-color: #ff1dfc;
 }
-.pink:hover {
+
+.pink:hover,
+.woocommerce .site-header a.button.pink:hover,
+.woocommerce-page .site-header a.button.pink:hover {
     background-color: #d214cf;
 }
 .pink-outline,
-.site-header .pink-outline {
+.site-header .pink-outline,
+.woocommerce .site-header a.button.pink-outline,
+.woocommerce-page .site-header a.button.pink-outline {
     background-color: transparent;
     border: 1px solid #ff1dfc;
     color: #ff1dfc;
 }
 .pink-outline:hover,
-.site-header .pink-outline:hover {
+.site-header .pink-outline:hover,
+.woocommerce .site-header a.button.pink-outline:hover,
+.woocommerce-page .site-header a.button.pink-outline:hover {
     background-color: #fff;
     color: #d214cf!important;
     border: 1px solid #d214cf;
 }
 /* === Yellow  === */
-.yellow {
+
+.yellow,
+.woocommerce .site-header a.button.yellow,
+.woocommerce-page .site-header a.button.yellow {
     background-color: #F7CA18;
 }
-.yellow:hover {
+
+.yellow:hover,
+.woocommerce .site-header a.button.yellow:hover,
+.woocommerce-page .site-header a.button.yellow:hover {
     background-color: #f8b516;
 }
 .yellow-outline,
-.site-header .yellow-outline {
+.site-header .yellow-outline,
+.woocommerce .site-header a.button.yellow-outline,
+.woocommerce-page .site-header a.button.yellow-outline {
     background-color: transparent;
     border: 1px solid #F7CA18;
     color: #F7CA18;
 }
 .yellow-outline:hover,
-.site-header .yellow-outline:hover {
+.site-header .yellow-outline:hover,
+.woocommerce .site-header a.button.yellow-outline:hover,
+.woocommerce-page .site-header a.button.yellow-outline:hover {
     background-color: #fff;
     color: #f8b516!important;
     border: 1px solid #f8b516;
 }
 
-/* === Yellow  === */
-.orange {
+/* === Orange  === */
+
+.orange,
+.woocommerce .site-header a.button.orange,
+.woocommerce-page .site-header a.button.orange {
     background-color: #E87E04;
 }
-.orange:hover {
+
+.orange:hover,
+.woocommerce .site-header a.button.orange:hover,
+.woocommerce-page .site-header a.button.orange:hover {
     background-color: #ea7104;
 }
 .orange-outline,
-.site-header .orange-outline {
+.site-header .orange-outline,
+.woocommerce .site-header a.button.orange-outline,
+.woocommerce-page .site-header a.button.orange-outline {
     background-color: transparent;
     border: 1px solid #E87E04;
     color: #E87E04;
 }
 .orange-outline:hover,
-.site-header .orange-outline:hover {
+.site-header .orange-outline:hover,
+.woocommerce .site-header a.button.orange-outline:hover,
+.woocommerce-page .site-header a.button.orange-outline:hover {
     background-color: #fff;
     color: #ea7104!important;
     border: 1px solid #ea7104;
 }
 
 /* === Black  === */
-.black {
+
+.black,
+.woocommerce .site-header a.button.black,
+.woocommerce-page .site-header a.button.black {
     background-color: #000000;
 }
-.black:hover {
+
+.black:hover,
+.woocommerce .site-header a.button.black:hover,
+.woocommerce-page .site-header a.button.black:hover {
     background-color: #626262;
 }
 .black-outline,
-.site-header .black-outline {
+.site-header .black-outline,
+.woocommerce .site-header a.button.black-outline,
+.woocommerce-page .site-header a.button.black-outline {
     background-color: transparent;
     border: 1px solid #000000;
     color: #000000;
 }
 .black-outline:hover,
-.site-header .black-outline:hover {
+.site-header .black-outline:hover,
+.woocommerce .site-header a.button.black-outline:hover,
+.woocommerce-page .site-header a.button.black-outline:hover {
     background-color: #fff;
     color: #626262!important;
     border: 1px solid #626262;
@@ -1189,12 +1292,18 @@ input[type="button"]:active {
 .button.darktext,
 .button.darktext:hover,
 .site-header .button.darktext,
-.site-header .button.darktext:hover  {
+.site-header .button.darktext:hover,
+.woocommerce .site-header a.button.darktext,
+.woocommerce-page .site-header a.button.darktext,
+.woocommerce .site-header a.button.darktext:hover,
+.woocommerce-page .site-header a.button.darktext:hover  {
     color: #000000!important;
 }
 
 .button.darktext:hover,
-.site-header .button.darktext:hover {
+.site-header .button.darktext:hover,
+.woocommerce .site-header a.button.darktext:hover,
+.woocommerce-page .site-header a.button.darktext:hover {
 	text-shadow: rgba(255, 255, 255, 0.15) 0 2px 2px;
 	}
 
@@ -1208,7 +1317,9 @@ input[type="button"]:active {
 
 /* === Small Size  === */
 .small,
-.site-header .small {
+.site-header .small,
+.woocommerce .site-header a.button.small,
+.woocommerce-page .site-header a.button.small {
     padding: 1px 20px;
     font-size: 10px;
     letter-spacing: 0px;
@@ -1217,7 +1328,9 @@ input[type="button"]:active {
 
 /* === Large Size  === */
 .large,
-.site-header .large {
+.site-header .large,
+.woocommerce .site-header a.button.large,
+.woocommerce-page .site-header a.button.large {
     padding: 16px 40px;
     font-size: 16px;
     letter-spacing: 2px;
@@ -1231,6 +1344,8 @@ button:disabled,
 .button:disabled,
 .site-header .button:disabled,
 .site-header button:disabled,
+.woocommerce .site-header a.button:disabled,
+.woocommerce-page .site-header a.button:disabled,
 input[type="reset"]:disabled,
 input[type="submit"]:disabled,
 input[type="button"]:disabled {
@@ -1249,12 +1364,16 @@ select {
 
 /* New custom styles */
 
-.no-bottom-space * {
+.no-bottom-space *,
+.woocommerce .site-header a.button.no-bottom-space,
+.woocommerce-page .site-header a.button.no-bottom-space {
 	padding-bottom: 0px;
 	margin-bottom:0px;
 }
 
-.top-rounded {
+.top-rounded,
+.woocommerce .site-header a.button.top-rounded,
+.woocommerce-page .site-header a.button.top-rounded {
 	border-radius: .3em .3em 0 0;
 }
 
@@ -1844,6 +1963,8 @@ figure {
     clear: both;
 }
 
+#content { position: relative; }
+
 #primary {
     float: right;
     width: 66.6666%;
@@ -2245,21 +2366,49 @@ article.comment-body{
 
 @media screen and (max-width: 620px) {
 		
-    #sidebar-footer aside {
-        width: 100%!important;
-    }
-    
-    textarea,
-    input:not([type]),
-    input[type="text"],
-    input[type="password"],
-    input[type="email"],
-    input[type="url"],
-    input[type="search"],
-    input[type="tel"] {
-        max-width: 100%;
-    }
+	button, 
+	.button, 
+	input[type="reset"], 
+	input[type="submit"], 
+	input[type="button"],
+	button.small, 
+	.button.small,
+	button.large, 
+	.button.large	 {
+		padding: 0 10px;
+		font-size: 12px;
+		line-height: 30px;
+		letter-spacing: 2px;		
+		}	
+		
+	.mobile-resize{
+		font-size:30px !important;
+	}
 	
+	.aligncenter {
+		display: block;
+		margin: 0px auto 0px auto;
+	}		
+	
+}
+
+@media screen and (max-width: 480px) {
+		
+	#sidebar-footer aside {
+		width: 100%!important;
+		}	
+		
+	textarea,
+	input:not([type]),
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="url"],
+	input[type="search"],
+	input[type="tel"] {
+		max-width: 100%;
+		}		
+		
 	.entry-content input[type=text],
 	.entry-content input[type=email],
 	.entry-content input[type=tel],

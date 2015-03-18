@@ -254,6 +254,16 @@ function tesseract_sanitize_select( $value ) {
 			
 }
 
+function tesseract_sanitize_select_woocommerce_loop_layout( $value ) {
+
+	if ( ! in_array( $value, array( 'sidebar-left', 'sidebar-right', 'fullwidth' ) ) ) :
+        $value = 'sidebar-left';
+	endif;
+
+    return $value;
+			
+}
+
 function tesseract_sanitize_rgba( $value ) {
 	
 	//Check if string is rgba

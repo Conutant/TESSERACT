@@ -20,7 +20,7 @@
         $menuEnable = get_theme_mod('tesseract_tfo_footer_content_enable');
         $menuSelect = get_theme_mod('tesseract_tfo_footer_content_select');
         $addcontent_hml = get_theme_mod('tesseract_tfo_footer_additional_content');		
-		$addcontent_hml = $addcontent_hml ? $addcontent_hml : 'notset';		
+		$addcontent_hml = $addcontent_hml ? $addcontent_hml : 'notset';			
 		?>
     
     	<div id="footer-banner" class="cf<?php echo ' menu-' . $menuClass; ?>">		               
@@ -57,7 +57,7 @@
 												wp_nav_menu( array( 'menu_id' => $menu_id ) ); 
 											endif;
 																
-                                        endif; ?> 
+                                        endif; ?>  
                                         
                                     <?php else : 
                                     

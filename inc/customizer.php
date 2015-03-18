@@ -37,10 +37,10 @@ function tesseract_customize_register( $wp_customize ) {
 	) );	
 
 	$wp_customize->add_panel( 'tesseract_social', array(
-		'priority'       => 9999,
+		'priority'       => 6,
 		'capability'     => 'edit_theme_options',
 		'title'          => 'Social'
-	) );
+	) );	
 	
 	$wp_customize->get_section('title_tagline')->panel = 'tesseract_header_options';
 	$wp_customize->get_section('title_tagline')->priority = 3;	
@@ -78,7 +78,9 @@ function tesseract_customize_register( $wp_customize ) {
 	require get_template_directory() . '/inc/sections/social/dribbble.php';	
 	
 	require get_template_directory() . '/inc/sections/footer-colors.php';		
-	require get_template_directory() . '/inc/sections/footer-content.php';																										
+	require get_template_directory() . '/inc/sections/footer-content.php';
+	
+	require get_template_directory() . '/inc/sections/woocommerce.php';																										
 			
 	if ( $wp_customize->is_preview() && ! is_admin() )
 		add_action( 'wp_footer', 'tesseract_customize_preview', 21);									

@@ -50,6 +50,7 @@
 	$blogname = get_bloginfo('blogname'); 
 	$headright_content = get_theme_mod('tesseract_tho_header_content_content');
 	$headright_content_default_button = get_theme_mod('tesseract_tho_header_content_if_button');
+	$wc_headercart = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
 	
 	if ( !$logoImg && $blogname ) $brand_content = 'blogname';
 	if ( $logoImg ) $brand_content = 'logo';
@@ -89,6 +90,7 @@
 								$menu_id = $menu[0]->term_id;				
 								wp_nav_menu( array( 'menu_id' => $menu_id ) ); 
 							endif;
+							
 						elseif ( !$anyMenu ) :
 							wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
 						endif; ?>
@@ -99,38 +101,43 @@
 
             <?php if ( $headright_content ) : ?>            
 
-             	<div id="site-banner-right"><?php tesseract_header_right_content($headright_content); ?></div>
-               	<div id="site-banner-right">
-			
-					<?php tesseract_header_right_content($headright_content); ?>                  
-                   
-             	</div>
-         	
-			<?php elseif ( !$headright_content && $headright_content_default_button ) : ?>            
+                <div id="site-banner-right">
+				
+					<?php tesseract_header_right_content($headright_content); ?>
+                    
+					<?php if ( is_plugin_active('woocommerce/woocommerce.php') && $wc_headercart ) tesseract_wc_output_cart(); ?>                     
+                    
+              	</div>
+          	<?php elseif ( !$headright_content && $headright_content_default_button ) : ?>            
 
-            	<div id="site-banner-right">
-                
-                    <div id="header-button-container">
-                        <div id="header-button-container-inner">
-                            <?php echo $headright_content_default_button; ?>
-                        </div>
-                    </div> 
-                   
-               </div>
+                <div id="site-banner-right">
+                 
+                	<div id="header-button-container">
+                    	<div id="header-button-container-inner">
+                        	<?php echo $headright_content_default_button; ?>
+                		</div>
+                   	</div>
+                    
+                    <?php if ( is_plugin_active('woocommerce/woocommerce.php') && $wc_headercart ) tesseract_wc_output_cart(); ?> 
+                    
+                </div>
 
             <?php else : ?>
 			
-				<div id="site-banner-right">
-                
+				<div id="site-banner-right">      
+                          
                 	<div id="header-button-container">
                     	<div id="header-button-container-inner">
                         	<a href="/" class="button primary-button">Primary Button</a>
                     		<a href="/" class="button secondary-button">Secondary Button</a>
                 		</div>
                    	</div>
+                    
+                    <?php if ( is_plugin_active('woocommerce/woocommerce.php') && $wc_headercart ) tesseract_wc_output_cart(); ?> 
+                    
                 </div>				
 			
-			<?php endif; ?>
+			<?php endif; ?>      
 
         </div>            
         

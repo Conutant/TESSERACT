@@ -277,7 +277,7 @@
 #header-button-container {
 	display: table;
 	table-layout: fixed;
-	float: right;
+	float: left;
 	line-height: 60px;
 	}
 	
@@ -290,7 +290,7 @@
 	display: inline-block;
 	zoom: 1; *display: inline;
 	vertical-align: middle;
-	margin: 0 0 0 10px;
+	margin: -2px 0 0 10px;
 	text-align: center;
 	}	
 	

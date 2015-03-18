@@ -43,6 +43,11 @@ function tesseract_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
+	
+	/*
+	 * Add Woocommerce support
+	 */	
+	add_theme_support( 'woocommerce' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -144,6 +149,9 @@ function tesseract_scripts() {
 	// Enqueue default style
 	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri(), array(), '1.0.0' );
 	
+	// Enqueue WooCommerce style
+	wp_enqueue_style( 'woocommerce-style', get_template_directory_uri() . '/woocommerce/assets/css/woocommerce-style.css', array('tesseract-style'), '1.0.0' );
+	
 	// Google fonts
 	wp_enqueue_style( 'tesseract-fonts', tesseract_fonts_url(), array(), '1.0.0' );
 	
@@ -214,7 +222,7 @@ function tesseract_scripts() {
 	.site-header h3,
 	.site-header h4,
 	.site-header h5,
-	.site-header h6 { color: " . $header_textColor . "; }
+	.site-header h6 { color: " . $header_textColor . "!important; }
 	
 	.site-header a,
 	.main-navigation ul ul a,
@@ -312,6 +320,14 @@ require get_template_directory() . '/inc/extras.php';
 require get_template_directory() . '/inc/customizer-functions.php';
 require get_template_directory() . '/inc/customizer-frontend-functions.php';
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load WooCommerce compatibility file.
+ */
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+if ( is_plugin_active('woocommerce/woocommerce.php') ) 
+	require get_template_directory() . '/woocommerce/woocommerce-functions.php';
+
 
 /**
  * Load Jetpack compatibility file.
