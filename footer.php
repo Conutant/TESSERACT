@@ -47,9 +47,17 @@
                                             wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'footer-menu', 'depth' => 1 ) );
                                         elseif ( ( $menuSelect == 'none' ) || !$menuSelect || !$menuEnable ) :
                                             $menu = get_terms( 'nav_menu' ); 
-                                            $menu_id = $menu[0]->term_id;						
-                                            wp_nav_menu( array( 'menu_id' => $menu_id ) );																
-                                        endif; ?>  
+
+											//Check if a menu is assigned to the location 'secondary'
+											if ( has_nav_menu( 'secondary' ) ) :
+												wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_class' => 'nav-menu' ) );                        
+											//If there isn't, then display the first menu in the list of menus thrown by the function get_terms( 'nav_menu' )
+											else :
+												$menu_id = $menu[0]->term_id;
+												wp_nav_menu( array( 'menu_id' => $menu_id ) ); 
+											endif;
+																
+                                        endif; ?> 
                                         
                                     <?php else : 
                                     
