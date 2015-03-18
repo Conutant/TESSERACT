@@ -1963,8 +1963,6 @@ figure {
     clear: both;
 }
 
-#content { position: relative; }
-
 #primary {
     float: right;
     width: 66.6666%;
