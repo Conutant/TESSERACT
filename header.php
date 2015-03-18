@@ -92,7 +92,6 @@
 
             <?php if ( $headright_content ) : ?>            
 
-             	<div id="site-banner-right"><?php tesseract_header_right_content($headright_content); ?></div>
                	<div id="site-banner-right">
 			
 					<?php tesseract_header_right_content($headright_content); ?>                  
