@@ -238,6 +238,16 @@ function tesseract_scripts() {
 	.menu-close:hover,
 	.dashicons.menu-open:hover { color: " . $header_linkHoverColor . "; }";
 	
+	if ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') && ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') !== 100 ) ) { 
+		
+        $dynamic_styles_header .= ".home #masthead {
+			position: absolute;
+			top: 0;
+			left: 0;
+			}";
+        
+	}
+	
 	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_header );	
 	
 	$dynamic_styles_footer = "#colophon { 
@@ -273,6 +283,16 @@ function tesseract_noscript() {
 	}
 	
 add_action('wp_head', 'tesseract_noscript');	
+
+function tesseract_footer_branding() {
+	do_action( 'tesseract_footer_branding' );
+	}
+
+function tesseract_footer_branding_output() {
+    printf( __( 'Theme by %s', 'tesseract' ), '<a href="http://tyler.com">Tyler Moore</a>' );
+}
+
+add_action('tesseract_footer_branding','tesseract_footer_branding_output');
 
 /**
  * Register Google fonts.
@@ -339,4 +359,3 @@ function tesseract_new_excerpt_more($more) {
 	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">' . __( 'Read More ...', 'tesseract' ) . '</a>';
 }
 add_filter('excerpt_more', 'tesseract_new_excerpt_more');
-

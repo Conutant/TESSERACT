@@ -108,6 +108,7 @@
 					<?php if ( is_plugin_active('woocommerce/woocommerce.php') && $wc_headercart ) tesseract_wc_output_cart(); ?>                     
                     
               	</div>
+                
           	<?php elseif ( !$headright_content && $headright_content_default_button ) : ?>            
 
                 <div id="site-banner-right">
