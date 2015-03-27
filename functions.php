@@ -238,7 +238,7 @@ function tesseract_scripts() {
 	.menu-close:hover,
 	.dashicons.menu-open:hover { color: " . $header_linkHoverColor . "; }";
 	
-	if ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') && ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') !== 100 ) ) { 
+	if ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') && ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') < 100 ) ) { 
 		
         $dynamic_styles_header .= ".home #masthead {
 			position: absolute;
@@ -292,7 +292,7 @@ function tesseract_footer_branding_output() {
     printf( __( 'Theme by %s', 'tesseract' ), '<a href="http://tyler.com">Tyler Moore</a>' );
 }
 
-add_action('tesseract_footer_branding','tesseract_footer_branding_output');
+add_action('tesseract_footer_branding','tesseract_footer_branding_output', 10);
 
 /**
  * Register Google fonts.
@@ -359,3 +359,4 @@ function tesseract_new_excerpt_more($more) {
 	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">' . __( 'Read More ...', 'tesseract' ) . '</a>';
 }
 add_filter('excerpt_more', 'tesseract_new_excerpt_more');
+

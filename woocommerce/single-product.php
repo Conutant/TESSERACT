@@ -8,6 +8,8 @@
  * @package 	WooCommerce/Templates
  * @version     1.6.4
  */
+ 
+$layout = get_theme_mod('tesseract_woocommerce_product_layout'); 
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 

@@ -1,8 +1,9 @@
 <?php 
 
-global $layout;
+global $layout_loop;
+global $layout_product;
 global $isloop;
-$layout = get_theme_mod('tesseract_woocommerce_loop_layout');
+$layout_loop = get_theme_mod('tesseract_woocommerce_loop_layout');
 $isloop = ( is_shop() || is_product_category() || is_product_tag() ) ? true : false;
 
 // Basic integration config
@@ -14,26 +15,38 @@ add_action('woocommerce_after_main_content', 'tesseract_woocommerce_wrapper_end'
 
 function tesseract_woocommerce_wrapper_start() {
 	
-	$layout = get_theme_mod('tesseract_woocommerce_loop_layout');
-
-	if ( ( $layout == 'sidebar-left' ) || ( $layout == 'sidebar-right' ) || ( !$layout ) ) {
-		$primclass = 'with-sidebar';
-		if ( $layout == 'sidebar-left' ) $primclass .= ' sidebar-left';
-		if ( $layout == 'sidebar-right' ) $primclass .= ' sidebar-right';
-	} else if ( $layout == 'fullwidth' ) {
-		$primclass = 'no-sidebar';
-	}
+	$layout_loop = get_theme_mod('tesseract_woocommerce_loop_layout');
+	$layout_product = get_theme_mod('tesseract_woocommerce_product_layout');
+	
+	if ( is_shop() || is_product_category() || is_product_tag() ) {
+		if ( ( $layout_loop == 'sidebar-left' ) || ( $layout_loop == 'sidebar-right' ) || ( !$layout_loop ) ) {
+			$primclass = 'with-sidebar';
+			if ( $layout_loop == 'sidebar-left' ) $primclass .= ' sidebar-left';
+			if ( $layout_loop == 'sidebar-right' ) $primclass .= ' sidebar-right';
+		} else if ( $layout_loop == 'fullwidth' ) {
+			$primclass = 'no-sidebar';
+		}
+	} else if ( is_product() ) {
+		if ( ( $layout_product == 'sidebar-left' ) || ( $layout_product == 'sidebar-right' ) || ( !$layout_product ) ) {
+			$primclass = 'with-sidebar';
+			if ( $layout_product == 'sidebar-left' ) $primclass .= ' sidebar-left';
+			if ( $layout_product == 'sidebar-right' ) $primclass .= ' sidebar-right';
+		} else if ( $layout_product == 'fullwidth' ) {
+			$primclass = 'no-sidebar';
+		}
+	} else { $primclass = 'sidebar-default'; }
   
   echo '<div id="primary" class="content-area ' . $primclass . '">';
 
 }
 
+// Update number of columns on shop/pr. category/pr. tag pages when a layout with sidebar is active
 function tesseract_woocommerce_wrapper_end() {
   echo '</div>';
 }
 
 if ( ( !function_exists('loop_shop_columns') ) && 
-   ( ( $layout == 'sidebar-left' ) || ( $layout == 'sidebar-right' ) || ( !$layout ) ) ) {
+   ( ( $layout_loop == 'sidebar-left' ) || ( $layout_loop == 'sidebar-right' ) || ( !$layout_loop ) ) ) {
 	
 		// Change number or products per row to 2
 		add_filter('loop_shop_columns', 'tesseract_loop_columns'); 

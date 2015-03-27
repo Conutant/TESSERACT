@@ -254,7 +254,7 @@ function tesseract_sanitize_select( $value ) {
 			
 }
 
-function tesseract_sanitize_select_woocommerce_loop_layout( $value ) {
+function tesseract_sanitize_select_woocommerce_layout_types( $value ) {
 
 	if ( ! in_array( $value, array( 'sidebar-left', 'sidebar-right', 'fullwidth' ) ) ) :
         $value = 'sidebar-left';

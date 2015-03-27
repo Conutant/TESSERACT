@@ -133,6 +133,20 @@ function tesseract_customize_preview() {
 					var result = $('.site-header').css('background-color', 'rgba(' + colorsOnly[0] + ', ' + colorsOnly[1] + ', ' + colorsOnly[2] + ', ' + to/100 + ')');				
 				}
 				$('.site-header').css( 'background-color', result);
+				
+				if ( ( $('body.home').length > 0 ) && ( to < 100 ) ) {
+					$('#masthead').css({
+						position: 'absolute',
+						top: 0,
+						left: 0	
+					});	
+				} else {
+					$('#masthead').css({
+						position: 'relative',
+						top: 'auto',
+						left: 'auto'							
+					});	
+				}
 									
 			});
 		});		
