@@ -1,5 +1,9 @@
 /* Header shop icon */
 
+.woocommerce #content,
+.woocommerce-page #content {
+	position: relative;
+	}
 
 #site-banner-right .woocart-header {
 	height: 60px;

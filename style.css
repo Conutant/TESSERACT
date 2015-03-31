@@ -1664,14 +1664,10 @@ figure {
     height: 480px;
     left: 0;
     padding: 10px;
-    position: relative;
     width: 100%;
 	margin-top: -60px;
-}
-
-.entry-background {
     position: absolute;
-    top: 51px;
+    top: 51px;	
 }
 
 .entry-background:before {
@@ -1685,6 +1681,15 @@ figure {
     width: 100%;
     top: 0;
 }
+
+.entry-background-listing {
+	width: 100%;
+	height: 270px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	}
 
 .archive .entry-thumbnail {
     display: inline-block;
@@ -1910,10 +1915,6 @@ figure {
 /* =19. Content
 -------------------------------------------------------------- */
 
-#content {
-	position: relative;
-	}
-
 .entry-content {
 
 }
@@ -2008,7 +2009,8 @@ figure {
 .navigation.post-navigation{
     padding: 10px
 }
-.tesseract-featured .entry-content{
+.tesseract-featured .entry-content,
+.tesseract-featured #secondary {
     margin-top: 480px
 }
 

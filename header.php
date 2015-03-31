@@ -18,7 +18,9 @@
 
 </head>
 
-<body <?php body_class(); ?>>
+<?php $bodyclass = ( (is_page()) && (has_post_thumbnail()) ) ? 'tesseract-featured' : false; ?> 
+
+<body <?php body_class( $bodyclass ); ?>>
 
 <nav id="mobile-navigation" class="top-navigation" role="navigation">
 

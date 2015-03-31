@@ -279,7 +279,7 @@ function tesseract_scripts() {
 		
 		#site-banner-right {
 			padding: 25px 0;
-			height: 110px;	
+			height: 110	px;	
 		}
 		";
 		

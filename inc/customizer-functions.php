@@ -122,7 +122,20 @@ if ( class_exists( 'WP_Customize_Control' ) ) :
 			endif;
 		}
 		
-	}	
+	}
+	
+	class Tesseract_Customize_Textarea_Control extends WP_Customize_Control {
+	    public $type = 'textarea';
+
+	    public function render_content() {
+	        ?>
+	        <label>
+	        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+	        <textarea rows="5" style="width:100%;" <?php $this->link(); ?>><?php echo esc_textarea( $this->value() ); ?></textarea>
+	        </label>
+	        <?php
+	    }
+	}		
 
 endif;
 
@@ -170,7 +183,13 @@ function tesseract_sanitize_textarea_html( $value ) {
 
 	return wp_kses($value, $allowed, $allowed_prot);
 	
-	}
+}
+
+function tesseract_sanitize_shortcode_textarea_html( $value ) {	
+		
+	return wp_kses_post( $value ) ;	
+
+}
 
 function tesseract_sanitize_checkbox( $value ) {
 
