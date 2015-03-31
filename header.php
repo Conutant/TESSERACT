@@ -44,10 +44,9 @@
     <a class="menu-close dashicons dashicons-no" href="#"></a>            
     
 
-	<header id="masthead" class="site-header <?php echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
-    
     <?php $logoImg = get_theme_mod('tesseract_logo_image'); 
 	$blogname = get_bloginfo('blogname'); 
+	$headersize = get_theme_mod('tesseract_tho_header_menu_size');
 	$headright_content = get_theme_mod('tesseract_tho_header_content_content');
 	$headright_content_default_button = get_theme_mod('tesseract_tho_header_content_if_button');
 	$wc_headercart = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
@@ -57,6 +56,10 @@
 	if ( !$logoImg && !$blogname ) $brand_content = 'no-brand'; 
 
 	?>
+
+	<?php $mastclass = ( $headersize == 'none' ) ? 'menu-default' : 'menu-' . $headersize; ?>
+    
+    <header id="masthead" class="site-header <?php echo $mastclass . ' ' . get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
     
         <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  ' is-right' : ' no-right'; ?>">               
             

@@ -137,14 +137,6 @@ add_action( 'widgets_init', 'tesseract_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tesseract_scripts() {
-
-	// Localize script (only few lines in helpers.js)
-    wp_localize_script( 'tesseract-helpers', 'tesseract-vars', array(  
- 	    'author'   => __( 'Your Name', 'tesseract' ), 
- 	    'email'    => __( 'E-mail', 'tesseract' ),
-		'url'      => __( 'Website', 'tesseract' ),
-		'comment'  => __( 'Your Comment', 'tesseract' ) 
- 	) );	
 	
 	// Enqueue default style
 	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri(), array(), '1.0.0' );
@@ -167,7 +159,8 @@ function tesseract_scripts() {
 	wp_enqueue_script( 'tesseract-fittext', get_template_directory_uri() . '/js/jquery.fittext.js', array( 'jquery' ), '1.0.0', true );
 	
     // JS helpers (This is also the place where we call the jQuery in array)
-	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'jquery', 'tesseract-fittext' ), '1.0.0', true );
+	wp_enqueue_script( 'tesseract-helpers-functions', get_template_directory_uri() . '/js/helpers-functions.js', array( 'tesseract-fittext' ), '1.0.0', true );
+	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'tesseract-helpers-functions' ), '1.0.0', true );	
 	
 	// Skip link fix
 	wp_enqueue_script( 'tesseract-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '1.0.0', true );
@@ -176,6 +169,20 @@ function tesseract_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+	
+	// Register the script
+	wp_register_script( 'tesseract_helpers', get_template_directory_uri() . '/js/helpers.js' );
+
+	// Localize script (only few lines in helpers.js)
+    wp_localize_script( 'tesseract_helpers', 'tesseract_vars', array(  
+ 	    'author'   => __( 'Your Name', 'tesseract' ), 
+ 	    'email'    => __( 'E-mail', 'tesseract' ),
+		'url'      => __( 'Website', 'tesseract' ),
+		'comment'  => __( 'Your Comment', 'tesseract' ),
+		'themeuri'  => get_template_directory_uri()
+ 	) );	
+	
+	wp_enqueue_script( 'tesseract_helpers' );	
 
 	$header_bckRGB = get_theme_mod('tesseract_tho_header_colors_bck_color') ? get_theme_mod('tesseract_tho_header_colors_bck_color') : '#59bcd9';
 	
@@ -248,7 +255,65 @@ function tesseract_scripts() {
         
 	}
 	
-	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_header );	
+	if ( get_theme_mod('tesseract_tho_header_menu_size') == 'medium' ) {
+
+        $dynamic_styles_header .= "#site-banner-left {
+			padding: 25px 0;
+		}
+		
+		#site-banner.blogname h1.site-title,
+		#site-banner.blogname h1.site-title a {
+			font-size: 36px;
+		}	
+			
+		.site-logo a, .site-title a {
+			padding: 5px 0;	
+		}
+		
+		.site-title a { line-height: 36px; }	
+		
+		.site-logo img,
+		.site-logo a {
+			height: 50px;	
+		}
+		
+		#site-banner-right {
+			padding: 25px 0;
+			height: 110px;	
+		}
+		";
+		
+	} else 	if ( get_theme_mod('tesseract_tho_header_menu_size') == 'large' ) {
+
+        $dynamic_styles_header .= "#site-banner-left {
+			padding: 40px 0;
+		}
+		
+		#site-banner.blogname h1.site-title,
+		#site-banner.blogname h1.site-title a {
+			font-size: 60px;
+		}	
+			
+		.site-logo a, .site-title a {
+			padding: 0;	
+		}	
+
+		.site-title a { line-height: 48px; }	
+		
+		.site-logo img,
+		.site-logo a {
+			height: 60px;	
+		}
+		
+		#site-banner-right {
+			padding: 40px 0;
+			height: 140px;	
+		}
+		";
+		
+	}
+	
+	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_header );		
 	
 	$dynamic_styles_footer = "#colophon { 
 		background-color: " . $footer_bckColor . ";

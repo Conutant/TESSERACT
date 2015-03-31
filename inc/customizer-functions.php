@@ -254,6 +254,16 @@ function tesseract_sanitize_select( $value ) {
 			
 }
 
+function tesseract_sanitize_select_header_menu_size( $value ) {
+
+	if ( ! in_array( $value, array( 'none', 'small', 'medium', 'large' ) ) ) :
+        $value = 'none';
+	endif;
+	
+	return $value;
+	
+}
+
 function tesseract_sanitize_select_woocommerce_layout_types( $value ) {
 
 	if ( ! in_array( $value, array( 'sidebar-left', 'sidebar-right', 'fullwidth' ) ) ) :

@@ -10,7 +10,32 @@ if ( $tesseract_menu_selector_menus ) :
     	'title'      => __('Header Menu', 'tesseract'),
     	'priority'   => 3,
 		'panel'      => 'tesseract_header_options'
-	) );		
+	) );	
+	
+		$wp_customize->add_setting( 'tesseract_tho_header_menu_size', array(
+			'sanitize_callback' => 'tesseract_sanitize_select_header_menu_size',
+			'default' 			=> 'small'
+		) );
+		
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'tesseract_tho_header_menu_size_control',
+					array(
+						'label'          => __( 'Choose the menu height', 'tesseract' ),
+						'section'        => 'tesseract_tho_header_menu',
+						'settings'       => 'tesseract_tho_header_menu_size',
+						'type'           => 'select',
+						'choices'        => array(
+							'none'	=> '',
+							'small'	=> 'Small',
+							'medium'=> 'Medium',
+							'large'	=> 'Large'	
+						),
+						'priority' 		 => 1										
+					)
+				)
+			);			
 			
 		$tesseract_menu_selector_items = array();
 		$item_keys = array( 'none' ); $item_values = array( '' );
@@ -39,7 +64,7 @@ if ( $tesseract_menu_selector_menus ) :
 						'settings'       => 'tesseract_tho_header_menu_select',
 						'type'           => 'select',
 						'choices'        => $tesseract_menu_selector_items,
-						'priority' 		 => 1										
+						'priority' 		 => 2									
 					)
 				)
 			);			

@@ -1,12 +1,6 @@
 /* WIDHTS */
 
 .site-header { background-color: rgba(0, 0, 0, 0.2); }
-
-.home .site-header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	}
 	
 .home .site-header.no-header-image {
 	position: relative;
@@ -56,7 +50,10 @@
 	
 #site-banner-left > * {
 	display: table-cell;
-	vertical-align: top;
+	vertical-align: middle;
+	height: 100%;
+	padding: 0!important;
+	margin: 0;
 	}	
 
 #site-branding {
@@ -226,7 +223,7 @@
 	list-style-position: inside;
 	padding: 0;
 	margin: 0;
-	float: right;
+	float: left;
 	vertical-align: top;
 	height: 100%;	
 	}		
@@ -258,6 +255,7 @@
 #site-banner-right .search-form {
 	padding: 13px 0;
 	height: 60px;
+	float: left;
 	}
 
 #site-banner-right .search-form label { 
