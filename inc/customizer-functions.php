@@ -217,7 +217,7 @@ function tesseract_sanitize_radio_sepChar( $value ) {
     return $value;
 }
 
-function tesseract_sanitize_radio_nextToMenu_header( $value ) {
+function tesseract_sanitize_radio_nextToMenu_right( $value ) {
 
 	if ( ! in_array( $value, array( 'nothing', 'buttons', 'social', 'contact', 'search' ) ) ) :
         $value = 'search';
@@ -226,7 +226,7 @@ function tesseract_sanitize_radio_nextToMenu_header( $value ) {
     return $value;
 }
 
-function tesseract_sanitize_radio_nextToMenu_footer( $value ) {
+function tesseract_sanitize_radio_nextToMenu_left( $value ) {
 
 	if ( ! in_array( $value, array( 'nothing', 'logo', 'social', 'contact', 'search' ) ) ) :
         $value = 'search';
@@ -308,7 +308,7 @@ function tesseract_footer_menu_options_enable() {
 
 }
 
-function tesseract_header_button_textarea_enable() {
+function tesseract_button_textarea_enable() {
 
 	$textarea_enable = get_theme_mod( 'tesseract_tho_header_content_content' );
 	$bool = ( $textarea_enable == 'buttons' ) ? true : false;

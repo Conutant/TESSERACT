@@ -86,7 +86,7 @@ function tesseract_customize_register( $wp_customize ) {
 		add_action( 'wp_footer', 'tesseract_customize_preview', 21);									
 	
 }
-add_action( 'customize_register', 'tesseract_customize_register' );
+add_action( 'customize_register', 'tesseract_customize_register', 10 );
 
 function tesseract_customize_preview() {
     ?>

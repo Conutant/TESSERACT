@@ -14,7 +14,7 @@ if ( $tesseract_menu_selector_menus ) :
 	
 		$wp_customize->add_setting( 'tesseract_tho_header_menu_size', array(
 			'sanitize_callback' => 'tesseract_sanitize_select_header_menu_size',
-			'default' 			=> 'small'
+			'default' 			=> 'medium'
 		) );
 		
 			$wp_customize->add_control(

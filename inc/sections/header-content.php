@@ -31,7 +31,7 @@
 			);						
 			
 		$wp_customize->add_setting( 'tesseract_tho_header_content_content', array(
-				'sanitize_callback' => 'tesseract_sanitize_radio_nextToMenu_header',
+				'sanitize_callback' => 'tesseract_sanitize_radio_nextToMenu_right',
 				'default'			=> 'buttons'				
 		) );
 		
@@ -44,10 +44,10 @@
 						'settings'       => 'tesseract_tho_header_content_content',
 						'type'           => 'radio',
 						'choices' 		 => array( 
-							'nothing' 	 => 'Nothing',
-							'buttons' 	 => 'Buttons',
-							'social'     => 'Social Icons',
-							'search' 	 => 'Search Bar'						
+							'nothing' 	 => __( 'Nothing', 'tesseract'),
+							'buttons' 	 => __( 'Buttons', 'tesseract'),
+							'social'     => __( 'Social Icons', 'tesseract'),
+							'search' 	 => __( 'Search Bar', 'tesseract')						
 						),
 						'priority' 		 => 2
 					)
@@ -71,7 +71,7 @@
 						'settings'       => 'tesseract_tho_header_content_if_button',
 						'type'           => 'textarea',
 						'priority' 		 => 4,
-						'active_callback' 	=> 'tesseract_header_button_textarea_enable'										
+						'active_callback' 	=> 'tesseract_button_textarea_enable'										
 					)
 				)
 			);												

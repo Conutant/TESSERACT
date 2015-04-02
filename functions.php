@@ -279,7 +279,7 @@ function tesseract_scripts() {
 		
 		#site-banner-right {
 			padding: 25px 0;
-			height: 110	px;	
+			height: 110px;	
 		}
 		";
 		
@@ -418,6 +418,11 @@ if ( is_plugin_active('woocommerce/woocommerce.php') )
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Load TGM Plugin Activation class.
+ */
+require get_template_directory() . '/inc/tesseract-plugin-activation.php';
 
 function tesseract_new_excerpt_more($more) {
        global $post;

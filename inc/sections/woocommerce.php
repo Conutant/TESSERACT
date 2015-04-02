@@ -1,11 +1,16 @@
 <?php
 /*  
  * section FOOTER HORIZONTAL MENU
- */					 			
+ */		
+ 	
+	//Rename WooCommerce section to 'WooCommert Color Options' IF woocommerce-colors plugin is installed
+	if ( is_plugin_active( 'woocommerce-colors/woocommerce-colors.php' ) ) {
+	 	$wp_customize->get_section('woocommerce_colors')->title = __( 'WooCommerce Color Options', 'tesseract' );
+	}
 			
    	$wp_customize->add_section( 'tesseract_woocommerce' , array(
-    	'title'      => __('WooCommerce', 'tesseract'),
-    	'priority'   => 9999
+    	'title'      => __('WooCommerce Layout Options', 'tesseract'),
+    	'priority'   => 61
 	) );	
 
 		$wp_customize->add_setting( 'tesseract_woocommerce_loop_layout_header', array(

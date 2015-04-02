@@ -31,7 +31,7 @@
 			);						
 			
 		$wp_customize->add_setting( 'tesseract_tfo_footer_additional_content', array(
-				'sanitize_callback' => 'tesseract_sanitize_radio_nextToMenu_footer',
+				'sanitize_callback' => 'tesseract_sanitize_radio_nextToMenu_left',
 				'default'			=> 'nothing'				
 		) );
 		
