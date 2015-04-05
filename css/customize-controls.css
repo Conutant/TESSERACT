@@ -97,3 +97,6 @@
 #customize-control-tesseract_tho_header_content_select_control {
 	margin-top: 10px;
 	}
+
+#accordion-section-tesseract_tho_header_menu li { margin-top: 10px; }
+#accordion-section-tesseract_tho_header_menu li:first-child { margin-top: 0; }	

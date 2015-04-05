@@ -19,19 +19,19 @@ function tesseract_woocommerce_wrapper_start() {
 	$layout_product = get_theme_mod('tesseract_woocommerce_product_layout');
 	
 	if ( is_shop() || is_product_category() || is_product_tag() ) {
-		if ( ( $layout_loop == 'sidebar-left' ) || ( $layout_loop == 'sidebar-right' ) || ( !$layout_loop ) ) {
+		if ( ( $layout_loop == 'sidebar-left' ) || ( $layout_loop == 'sidebar-right' ) ) {
 			$primclass = 'with-sidebar';
 			if ( $layout_loop == 'sidebar-left' ) $primclass .= ' sidebar-left';
 			if ( $layout_loop == 'sidebar-right' ) $primclass .= ' sidebar-right';
-		} else if ( $layout_loop == 'fullwidth' ) {
+		} else if ( ( $layout_loop == 'fullwidth' ) || ( !$layout_loop ) ) {
 			$primclass = 'no-sidebar';
 		}
 	} else if ( is_product() ) {
-		if ( ( $layout_product == 'sidebar-left' ) || ( $layout_product == 'sidebar-right' ) || ( !$layout_product ) ) {
+		if ( ( $layout_product == 'sidebar-left' ) || ( $layout_product == 'sidebar-right' ) ) {
 			$primclass = 'with-sidebar';
 			if ( $layout_product == 'sidebar-left' ) $primclass .= ' sidebar-left';
 			if ( $layout_product == 'sidebar-right' ) $primclass .= ' sidebar-right';
-		} else if ( $layout_product == 'fullwidth' ) {
+		} else if ( ( $layout_product == 'fullwidth' ) || ( !$layout_product ) ) {
 			$primclass = 'no-sidebar';
 		}
 	} else { $primclass = 'sidebar-default'; }
@@ -46,7 +46,7 @@ function tesseract_woocommerce_wrapper_end() {
 }
 
 if ( ( !function_exists('loop_shop_columns') ) && 
-   ( ( $layout_loop == 'sidebar-left' ) || ( $layout_loop == 'sidebar-right' ) || ( !$layout_loop ) ) ) {
+   ( ( $layout_loop == 'sidebar-left' ) || ( $layout_loop == 'sidebar-right' ) ) ) {
 	
 		// Change number or products per row to 2
 		add_filter('loop_shop_columns', 'tesseract_loop_columns'); 
@@ -106,3 +106,30 @@ function tesseract_wc_version_number() {
 	}
 }
 
+//Woo header cart styles based on the selected Tesseract header size
+function tesseract_woocommerce_headercart_scripts() {
+	
+	$header_size = get_theme_mod('tesseract_tho_header_size');
+	
+	if ( $header_size == 'small' ) {
+	
+	    $dynamic_styles_woo_header = "#site-banner-right .woocart-header {
+			height: 100%;	
+		}
+		
+		#site-banner-right .woocart-header a:before {
+			margin-top: 4px;	
+		}
+		
+		#site-banner-right .woocart-header a {
+			line-height: 28px;
+		}
+		
+		";
+	
+		wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_woo_header );
+	
+	}
+	
+}
+add_action( 'wp_enqueue_scripts', 'tesseract_woocommerce_headercart_scripts' );

@@ -9,14 +9,18 @@ if ( ! is_active_sidebar( 'sidebar-1' ) || is_home () ) { /* Does not appear on 
 	return;
 }
 
-$layout_loop = get_theme_mod('tesseract_woocommerce_loop_layout');
-$layout_product = get_theme_mod('tesseract_woocommerce_product_layout');
-
-if ( is_plugin_active('woocommerce/woocommerce.php') && is_woocommerce() ) {
+if ( is_plugin_active('woocommerce/woocommerce.php') ) {
+	
+	$layout_loop = get_theme_mod('tesseract_woocommerce_loop_layout');
+	$layout_product = get_theme_mod('tesseract_woocommerce_product_layout');
+	$layout_default = get_theme_mod('tesseract_woocommerce_default_layout');	
+	
 	if ( ( is_shop() || is_product_category() || is_product_tag() ) && ( $layout_loop == 'sidebar-right' ) ) { 	
 		$sidebarClass = 'woo-archive woo-right-sidebar'; 
 	} else if ( is_product() && $layout_product == 'sidebar-right' ) {
 		$sidebarClass = 'woo-product woo-right-sidebar';
+	} if ( is_page() && $layout_default == 'sidebar-right' ) {
+		$sidebarClass = 'woo-default woo-right-sidebar';
 	} else {
 		$sidebarClass = 'woo sidebar-default';
 	}

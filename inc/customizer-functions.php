@@ -254,13 +254,27 @@ function tesseract_sanitize_select( $value ) {
 			
 }
 
-function tesseract_sanitize_select_header_menu_size( $value ) {
+function tesseract_sanitize_select_header_size( $value ) {
 
-	if ( ! in_array( $value, array( 'none', 'small', 'medium', 'large' ) ) ) :
-        $value = 'none';
+	if ( in_array( $value, array( 'small', 'medium', 'large' ) ) ) :
+        return $value;
 	endif;
 	
-	return $value;
+}
+
+function tesseract_sanitize_select_header_menu_size( $value ) {
+
+	if ( in_array( $value, array( 'default', 'fullwidth' ) ) ) :
+        return $value;
+	endif;
+	
+}
+
+function tesseract_sanitize_select_header_menu_sep( $value ) {
+
+	if ( in_array( $value, array( 'none', 'dark', 'light' ) ) ) :
+        return $value;
+	endif;
 	
 }
 
@@ -290,6 +304,24 @@ function tesseract_sanitize_rgba( $value ) {
 
 /*========================== ACTIVE CALLBACK FUNCTIONS ==========================*/
 
+function tesseract_button_textarea_enable() {
+
+	$textarea_enable = get_theme_mod( 'tesseract_tho_header_content_content' );
+	$bool = ( $textarea_enable == 'buttons' ) ? true : false;
+	
+	return $bool;
+	
+}
+
+function tesseract_tho_header_menu_sep_enable() {
+
+	$sep_enable = get_theme_mod( 'tesseract_tho_header_menu_size' );
+	$bool = ( $sep_enable == 'fullwidth' ) ? true : false;
+	
+	return $bool;
+	
+}
+
 function tesseract_footer_content_enable_enable() {
 
 	$tesseract_menu_selector_menus = get_terms( 'nav_menu' );
@@ -306,13 +338,4 @@ function tesseract_footer_menu_options_enable() {
 	
 	return $bool;
 
-}
-
-function tesseract_button_textarea_enable() {
-
-	$textarea_enable = get_theme_mod( 'tesseract_tho_header_content_content' );
-	$bool = ( $textarea_enable == 'buttons' ) ? true : false;
-	
-	return $bool;
-	
 }

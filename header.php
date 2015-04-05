@@ -27,15 +27,23 @@
 	<?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
     	  $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');
                     
-		if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
-			wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );               		
-		elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
-			$menu = get_terms( 'nav_menu' ); 
-			$menu_id = $menu[0]->term_id;						
-			wp_nav_menu( array( 'menu_id' => $menu_id ) );
-		elseif ( !$anyMenu ) :
-			wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
-		endif; ?>
+        if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
+            wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );             		
+        elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
+            $menu = get_terms( 'nav_menu' );  
+            
+            //Check if a menu is assigned to the location 'primary'
+            if ( has_nav_menu( 'primary' ) ) :
+                wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
+            //If there isn't, then display the first menu in the list of menus thrown by the function get_terms( 'nav_menu' )
+            else :
+                $menu_id = $menu[0]->term_id;				
+                wp_nav_menu( array( 'menu_id' => $menu_id ) ); 
+            endif;
+            
+        elseif ( !$anyMenu ) :
+            wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
+        endif; ?>
 
 </nav><!-- #site-navigation -->  	
 
@@ -48,10 +56,11 @@
 
     <?php $logoImg = get_theme_mod('tesseract_logo_image'); 
 	$blogname = get_bloginfo('blogname'); 
-	$headersize = get_theme_mod('tesseract_tho_header_menu_size');
+	$headersize = get_theme_mod('tesseract_tho_header_size');
 	$headright_content = get_theme_mod('tesseract_tho_header_content_content');
-	$headright_content_default_button = get_theme_mod('tesseract_tho_header_content_if_button');
-	$wc_headercart = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
+	$hmenusize = get_theme_mod('tesseract_tho_header_menu_size');
+	
+	$hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
 	
 	if ( !$logoImg && $blogname ) $brand_content = 'blogname';
 	if ( $logoImg ) $brand_content = 'logo';
@@ -61,11 +70,11 @@
 
 	<?php $mastclass = ( $headersize == 'none' ) ? 'menu-default' : 'menu-' . $headersize; ?>
     
-    <header id="masthead" class="site-header <?php echo $mastclass . ' ' . get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
+    <header id="masthead" class="site-header <?php echo $mastclass . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
     
         <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  ' is-right' : ' no-right'; ?>">               
             
-            <div id="site-banner-left" class="<?php echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  'is-right' : 'no-right'; ?>">
+            <div id="site-banner-main" class="<?php echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  'is-right' : 'no-right'; ?>">
 				
                 <?php if ( $logoImg || $blogname ) { ?>
                     <div class="site-branding">
@@ -77,73 +86,13 @@
                     </div><!-- .site-branding -->
               	<?php } ?>
 				
-                <nav id="site-navigation" class="main-navigation top-navigation" role="navigation">
-                	
-					<?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
-                          $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');
-                    
-						if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
-							wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );               		
-						elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
-							$menu = get_terms( 'nav_menu' ); 
-							
-							//Check if a menu is assigned to the location 'primary'
-							if ( has_nav_menu( 'primary' ) ) :
-								wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
-							//If there isn't, then display the first menu in the list of menus thrown by the function get_terms( 'nav_menu' )
-							else :
-								$menu_id = $menu[0]->term_id;				
-								wp_nav_menu( array( 'menu_id' => $menu_id ) ); 
-							endif;
-							
-						elseif ( !$anyMenu ) :
-							wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
-						endif; ?>
-
-				</nav><!-- #site-navigation --> 
+				<?php if ( !$hmenusize || ( $hmenusize == 'default' ) ) get_template_part( 'content', 'header-navigation' ); ?> 
+            
+				<?php get_template_part( 'content', 'header-rightcontent' ); ?>            
                 
             </div>
-
-            <?php if ( $headright_content ) : ?>            
-
-                <div id="site-banner-right">
-				
-					<?php tesseract_header_right_content($headright_content); ?>
-                    
-					<?php if ( is_plugin_active('woocommerce/woocommerce.php') && $wc_headercart ) tesseract_wc_output_cart(); ?>                     
-                    
-              	</div>
-                
-          	<?php elseif ( !$headright_content && $headright_content_default_button ) : ?>            
-
-                <div id="site-banner-right">
-                 
-                	<div id="header-button-container">
-                    	<div id="header-button-container-inner">
-                        	<?php echo $headright_content_default_button; ?>
-                		</div>
-                   	</div>
-                    
-                    <?php if ( is_plugin_active('woocommerce/woocommerce.php') && $wc_headercart ) tesseract_wc_output_cart(); ?> 
-                    
-                </div>
-
-            <?php else : ?>
-			
-				<div id="site-banner-right">      
-                          
-                	<div id="header-button-container">
-                    	<div id="header-button-container-inner">
-                        	<a href="/" class="button primary-button">Primary Button</a>
-                    		<a href="/" class="button secondary-button">Secondary Button</a>
-                		</div>
-                   	</div>
-                    
-                    <?php if ( is_plugin_active('woocommerce/woocommerce.php') && $wc_headercart ) tesseract_wc_output_cart(); ?> 
-                    
-                </div>				
-			
-			<?php endif; ?>      
+                        
+            <?php if ( $hmenusize == 'fullwidth' ) get_template_part( 'content', 'header-navigation' ); ?>    
 
         </div>            
         

@@ -47,7 +47,21 @@
 .woocommerce-page #secondary {
 	margin-top: 40px;
 	}
+
+/*-----------------------------------------------------------------------------------------------------------		
+
+												PAGE TEMPLATES 
+
+-----------------------------------------------------------------------------------------------------------*/
+
+/* PAGE TEMPLATE *** DEFAULT *** ( left sidebar ) */
 	
+.page-template-page-rightsidebar #secondary {
+	float: right;
+	padding: 0 0 0 60px;
+	}
+
+#primary.sidebar-right,	
 .woocommerce #primary.sidebar-right,
 .woocommerce-page #primary-right {
 	float: left;
@@ -56,6 +70,17 @@
 #secondary.woo-right-sidebar {
 	float: right;
 	padding: 0 0 0 60px;
+	}
+
+/* PAGE TEMPLATE *** RIGHT SIDEBAR *** */
+
+.page-template-page-rightsidebar #primary.sidebar-left {
+	float: right;
+	}	
+	
+.page-template-page-rightsidebar #secondary.sidebar-default {
+	float: left;
+	padding: 0 60px 0 0;
 	}
 
 .woocommerce #primary,
@@ -73,6 +98,13 @@
 .woocommerce-page #secondary {
 	padding-top: 40px;
 	}	
+
+/*-----------------------------------------------------------------------------------------------------------		
+
+												EOF PAGE TEMPLATES 
+
+-----------------------------------------------------------------------------------------------------------*/
+
 	
 .woocommerce #content a:hover,
 .woocommerce-page #content a:hover {
@@ -289,6 +321,13 @@
 	padding: 0 20px;
 	line-height: 40px;	
 	}
+
+@media screen and (max-width: 980px) {			
+	
+	.woocommerce .woocommerce-breadcrumb,
+	.woocommerce-page .woocommerce-breadcrumb { padding: 0 20px; }
+
+}
 
 @media screen and (min-width: 932px) and (max-width: 940px) {			
 	.woocommerce table.cart td.actions input[name="proceed"],  

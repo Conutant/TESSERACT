@@ -85,14 +85,11 @@
 				array_push( $item_values, $items->name);
 			}	
 			
-			$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );
-		
-			$menu_id = $tesseract_menu_selector_menus[0]->term_id;						
-			$default_menu = $tesseract_menu_selector_menus ? wp_nav_menu( array( 'menu_id' => $menu_id, 'echo' => false ) ) : wp_nav_menu( array( 'echo' => false ) );			
+			$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );		
 		
 			$wp_customize->add_setting( 'tesseract_tfo_footer_content_select', array(
 				'sanitize_callback' => 'tesseract_sanitize_select',
-				'default' 			=> $default_menu
+				'default' 			=> 'none'
 			) );
 			
 				$wp_customize->add_control(

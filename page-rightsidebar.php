@@ -5,9 +5,26 @@
  * @package Tesseract
  */
 
-get_header(); ?>
+get_header(); 
 
-	<div id="primary" class="content-area">
+if ( is_plugin_active('woocommerce/woocommerce.php') ) :
+	
+	$layout_default = get_theme_mod('tesseract_woocommerce_default_layout');
+	
+	if ( ( $layout_default == 'sidebar-left' ) || ( $layout_default == 'sidebar-right' ) ) {
+		$primclass = 'with-sidebar';
+		if ( $layout_default == 'sidebar-left' ) $primclass .= ' sidebar-left';
+		if ( $layout_default == 'sidebar-right' ) $primclass .= ' sidebar-right';
+	} else if ( ( $layout_default == 'fullwidth' ) || ( !$layout_default ) ) {
+		$primclass = 'no-sidebar';
+	} else {
+		$primclass = 'sidebar-default';	
+}
+
+endif;
+?>
+
+	<div id="primary" class="content-area <?php echo $primclass; ?>">
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -26,6 +43,6 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
+<?php if ( !is_plugin_active('woocommerce/woocommerce.php') || ( is_plugin_active('woocommerce/woocommerce.php') && ( ( $layout_default == 'sidebar-left' ) || ( $layout_default == 'sidebar-right' ) ) ) ) get_sidebar(); ?>
 	
 <?php get_footer(); ?>

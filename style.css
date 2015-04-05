@@ -1671,6 +1671,11 @@ figure {
 	background-repeat: no-repeat;
 	margin-top: 10px;
 	}
+	
+.entry-post-thumbnail {
+	width: 100%;
+	margin-top: 10px;	
+	}	
 
 .archive .entry-thumbnail {
     display: inline-block;

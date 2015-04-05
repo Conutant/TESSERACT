@@ -63,6 +63,7 @@ function tesseract_customize_register( $wp_customize ) {
 
 	require get_template_directory() . '/inc/sections/header-colors.php';	
 	require get_template_directory() . '/inc/sections/logo.php';
+	require get_template_directory() . '/inc/sections/header-size.php';
 	require get_template_directory() . '/inc/sections/header-menu.php';
 	require get_template_directory() . '/inc/sections/header-content.php';
 	

@@ -7,8 +7,8 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     
     <?php if ( has_post_thumbnail() ) {
-		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'tesseract-large' ); ?>
-    	<div class="entry-background-listing" style="background-image: url(<?php echo esc_url( $thumbnail[0] ); ?>)"></div><!-- .entry-background -->
+		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
+    	<a href="<?php the_permalink(); ?>"><img class="entry-post-thumbnail" src="<?php echo esc_url( $thumbnail[0] ); ?>" width="<?php echo $thumbnail[1]; ?>" height="<?php echo $thumbnail[2]; ?>" alt="Post '<?php echo get_the_title(); ?>' - featured image"></a><!-- .entry-background -->
     <?php } ?>
     
 	<header class="entry-header">

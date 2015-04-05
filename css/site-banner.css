@@ -8,12 +8,12 @@
 	left: auto;
 	}	
 
-#site-banner-left,
+#site-banner-main,
 #site-banner-right {
 	position: relative;
 	}
 
-#site-banner-left { 
+#site-banner-main { 
 	width: 100%; 
 	z-index: 10;
 	}
@@ -38,7 +38,7 @@
 	vertical-align: top;
 	}
 	
-#site-banner-left { 
+#site-banner-main { 
 	float: left;
 	display: table;
 	vertical-align: top;
@@ -46,13 +46,13 @@
 	z-index: 0;
 	}		
 	
-#site-banner.no-brand #site-banner-left { margin-left: -10px; }		
+#site-banner.no-brand #site-banner-main { margin-left: -10px; }		
 	
-#site-banner-left > * {
+#site-banner-main > * {
 	display: table-cell;
 	vertical-align: middle;
 	height: 100%;
-	padding: 0!important;
+	padding: 0;
 	margin: 0;
 	}	
 
@@ -120,6 +120,15 @@
 	color: #199cd8;
 }	
 
+
+.top-navigation.fullwidth.withborder {
+	border-top: rgba(255, 255, 255, .2) solid 1px;
+	}
+	
+.top-navigation.fullwidth.withborder.borderdark {
+	border-top-color: rgba(0, 0, 0, .075);	
+	}	
+
 .top-navigation ul li a {
 	line-height: 24px;
 	display: block;
@@ -177,6 +186,12 @@
 .top-navigation ul ul li:first-child a { padding-top: 18px; }
 .top-navigation ul ul li:last-child a { padding-bottom: 18px; }
 
+.top-navigation.fullwidth ul ul > li:first-child a { padding-top: 10px; }
+.top-navigation.fullwidth ul ul > li:last-child a { padding-bottom: 10px; }
+
+.top-navigation.fullwidth ul ul > li:first-child a { padding-top: 7px; }
+.top-navigation.fullwidth ul ul > li:last-child a { padding-bottom: 7px; }
+
 .top-navigation li:hover > a {
 }
 
@@ -193,6 +208,15 @@
 .top-navigation ul li a {
 	padding: 18px 10px;
 }
+
+.menu-large.menusize-autowidth .top-navigation.autowidth > div > ul > li > a { padding: 43px 10px; }
+.menu-large.menusize-autowidth .top-navigation.autowidth > div > ul > li > ul li a { padding: 9px 10px; }
+.menu-large.menusize-autowidth .top-navigation.autowidth > div > ul > li > ul li:first-child a { padding-top: 18px; }
+.menu-large.menusize-autowidth .top-navigation.autowidth > div > ul > li > ul li:last-child a { padding-bottom: 18px; }
+
+.top-navigation.fullwidth ul li a { padding: 5px 10px; }
+.top-navigation.fullwidth > div > ul > li:first-child a { padding-left: 0; }
+.top-navigation.fullwidth > div > ul > li:last-child a { padding-right: 0; }
 
 .top-navigation ul li:hover > ul {
 	left: auto;
@@ -322,7 +346,7 @@
 		position: relative;
 		}	
 	
-	#site-banner-left {
+	#site-banner-main {
 		text-align: center;
 		}
 	
@@ -414,7 +438,7 @@
 	#mobile-navigation ul li a:hover,
 	#mobile-navigation-jquery ul li a:hover { color: #12719d; }		
 		
-	#site-banner-left .site-branding {
+	#site-banner-main .site-branding {
 		display: inline-block;
 		zoom: 1; *display: inline;
 		}	
