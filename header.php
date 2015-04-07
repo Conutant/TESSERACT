@@ -68,9 +68,12 @@
 
 	?>
 
-	<?php $mastclass = ( $headersize == 'none' ) ? 'menu-default' : 'menu-' . $headersize; ?>
+	<?php $mastclass = ( $headersize == 'none' ) ? 'menu-default' : 'menu-' . $headersize; 
+	$bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
+	$headpos = ( $bckOpacity && ( $bckOpacity !== 100 ) ) ? 'pos-absolute' : 'pos-relative';
+	?>
     
-    <header id="masthead" class="site-header <?php echo $mastclass . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
+    <header id="masthead" class="site-header <?php echo $headpos . ' ' . $mastclass . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
     
         <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  ' is-right' : ' no-right'; ?>">               
             

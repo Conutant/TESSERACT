@@ -186,7 +186,7 @@ function tesseract_scripts() {
 
 	$header_bckRGB = get_theme_mod('tesseract_tho_header_colors_bck_color') ? get_theme_mod('tesseract_tho_header_colors_bck_color') : '#59bcd9';
 	
-	$header_bckOpacity = ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') || null !== (get_theme_mod('tesseract_tho_header_colors_bck_color_opacity')) ) ? get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') : 100;
+	$header_bckOpacity = ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') && ( null !== (get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') ) ) ) ? get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') : 100;
 	
 	$header_textColor = get_theme_mod('tesseract_tho_header_colors_text_color') ? get_theme_mod('tesseract_tho_header_colors_text_color') : '#ffffff';
 	
@@ -245,7 +245,7 @@ function tesseract_scripts() {
 	.menu-close:hover,
 	.dashicons.menu-open:hover { color: " . $header_linkHoverColor . "; }";
 	
-	if ( null !== $header_bckOpacity || ( $header_bckOpacity && ( $header_bckOpacity < 1 ) ) ) { 
+	if ( ( null == $header_bckOpacity ) || ( $header_bckOpacity && ( $header_bckOpacity < 1 ) ) ) { 
 		
         $dynamic_styles_header .= ".home #masthead {
 			position: absolute;

@@ -23,7 +23,7 @@
 			if ( $(window).height() > $('#page').height() ) {
 				
 				var wheight = $(window).height(),
-				hheight = parseInt( $('#masthead').height() ),
+				hheight = parseInt( $('#masthead').not('.pos-absolute').height() ),
 				fheight = parseInt( $('#colophon').height() ),
 				offset = parseInt( wheight - ( hheight + fheight ) );					
 				
@@ -33,7 +33,7 @@
 					var offsetFinal = offset;	
 				}
 				
-				if ( $('#page').height() < offsetFinal ) {
+				if ( $('#content').height() < offsetFinal ) {
 					$('#content').animate({
 						'height': offsetFinal
 					}, 500 )

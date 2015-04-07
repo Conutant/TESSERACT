@@ -1,11 +1,12 @@
 #colophon {
-	padding: 40px 0;
+	padding: 0;
 	margin-top: 0px;
 	border-top: none;
 	}
 
 #footer-banner {
 	text-align: left;
+	margin: 40px auto;
 	}
 	
 #footer-banner > * {
@@ -152,7 +153,7 @@
 @media screen and (max-width: 980px) {
 
 	#footer-banner {
-		padding: 30px 20px;
+		padding: 0 20px;
 		}
 
 }
