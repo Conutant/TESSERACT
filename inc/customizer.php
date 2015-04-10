@@ -78,7 +78,8 @@ function tesseract_customize_register( $wp_customize ) {
 	require get_template_directory() . '/inc/sections/social/pinterest.php';
 	require get_template_directory() . '/inc/sections/social/dribbble.php';	
 	
-	require get_template_directory() . '/inc/sections/footer-colors.php';		
+	require get_template_directory() . '/inc/sections/footer-colors.php';
+	require get_template_directory() . '/inc/sections/footer-size.php';		
 	require get_template_directory() . '/inc/sections/footer-content.php';
 	
 	require get_template_directory() . '/inc/sections/woocommerce.php';																										
@@ -93,6 +94,8 @@ function tesseract_customize_preview() {
     ?>
     <script type="text/javascript">
     ( function( $ ){
+		
+		$('#content').unbind('load');	
 		
 		function hexToRgb(hex) {
 			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

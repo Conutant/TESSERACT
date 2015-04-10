@@ -6,7 +6,7 @@
  */
 ?>
 
-<?php $hmenusize = get_theme_mod('tesseract_tho_header_menu_size'); 
+<?php $hmenusize = get_theme_mod('tesseract_tho_header_width'); 
 $hmenusep = get_theme_mod('tesseract_tho_header_menu_sep'); 
 
 $hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 

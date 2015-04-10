@@ -8,13 +8,14 @@
 	margin-top: 25px; 
 	}	
 	
-#accordion-section-tfo_footer_colors .customize-control-title {
+#accordion-section-tfo_footer_colors .customize-control-title,
+#customize-control-tesseract_tho_header_width_control,
+#customize-control-tesseract_tfo_footer_content_select_control,
+#accordion-section-tesseract_tho_header_menu li {
 	margin-top: 10px;
 	}
 	
-#customize-control-tesseract_tfo_footer_content_select_control {
-	margin-top: 10px;
-	}
+#accordion-section-tesseract_tho_header_menu li:first-child { margin-top: 0; }		
 	
 #accordion-section-tesseract_contacts .customize-control-title {
 	font-weight: normal;
@@ -93,10 +94,3 @@
 	margin-bottom: 1em;
 	color: #aaa;
 	}
-	
-#customize-control-tesseract_tho_header_content_select_control {
-	margin-top: 10px;
-	}
-
-#accordion-section-tesseract_tho_header_menu li { margin-top: 10px; }
-#accordion-section-tesseract_tho_header_menu li:first-child { margin-top: 0; }	

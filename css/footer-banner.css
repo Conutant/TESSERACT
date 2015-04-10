@@ -20,6 +20,8 @@
 	width: 80%;	
 	display: table;
 	vertical-align: top;
+	position: relative;
+	z-index: 1;
 	}		
 	
 #horizontal-menu-wrap > * {
@@ -51,10 +53,11 @@
 	
 #footer-horizontal-menu	{
 	width: auto;
-	padding: 6px 0 0 0;
+	padding: 8px 0 0 0;
 	display: table-cell;
 	width: 100%;
 	border-right: none;
+	line-height: 1;
 	}	
 	
 #footer-horizontal-menu.is-before {
@@ -68,12 +71,18 @@
 
 #footer-banner .site-logo a,
 #footer-banner .site-name a {
-	padding: 5px 0 5px 5px;
+	padding: 0;
 	}
 	
+#footer-banner .site-logo a {
+	height: auto;
+	margin: 0;
+	}	
+	
 #footer-banner .site-logo img {
-	height: 30px;
+	height: 40px;
 	max-width: inherit;
+	padding: 0;
 	}
 	
 		
@@ -156,6 +165,9 @@
 		padding: 0 20px;
 		}
 
+	#horizontal-menu-wrap { width: 35%; }		
+	#designer { width: 25%; }	
+
 }
 
 @media screen and (max-width: 720px) {
@@ -164,20 +176,105 @@
 		float: none;
 		width: 100%;		
 	}
+
+	#horizontal-menu-before,
+	#horizontal-menu-wrap.logo #horizontal-menu-before,
+	#footer-horizontal-menu,
+	#footer-horizontal-menu.is-before {
+		display: block;
+		width: 100%;
+		padding: 0;
+		padding-left: 0;
+	}
+	
+	#horizontal-menu-before {
+		margin-right: 0;
+		padding-right: 0;
+		border: none!important;
+		}
+	
+	#footer-banner .site-branding {
+		display: block;
+		}
+	
+	#footer-banner .site-title {
+		text-align: center;
+		padding: 0;
+		margin: 0;
+		}
+	
+	#footer-banner .site-logo a,
+	#footer-banner .site-logo img {
+		height: auto;
+		padding: 0;
+		}
+		
+	#footer-banner .site-logo h1 {
+		text-align: center;
+		}	
+		
+	#footer-banner .site-logo img {
+		max-height: 60px;
+		margin: auto;
+		}	
+		
+	#footer-horizontal-menu > div { 
+		display: table; 
+		table-layout: fixed;
+		width: 100%;
+		margin-top: 40px;
+		}	
+		
+	#horizontal-menu-wrap.nothing #footer-horizontal-menu > div { margin-top: 0; }	
+		
+	#footer-horizontal-menu > div > .footer-menu {
+		float: none;
+		margin: 0;
+		display: table-cell;
+		width: 100%;
+		}		
+		
+	#horizontal-menu-before ul,
+	#footer-horizontal-menu ul {
+		width: 100%;
+		text-align: center;
+		}		
+	
+	#horizontal-menu-before ul li,
+	#footer-horizontal-menu ul li {
+		display: inline-block;
+		zoom: 1; *display: inline;
+		float: none;	
+		}
+		
+	#footer-horizontal-menu ul li { padding: 0 12px; }	
+		
+	#footer-horizontal-menu ul li:first-child { padding-left: 0; }
+	#footer-horizontal-menu ul li:last-child { padding-right: 0; }		
+	
+	 #horizontal-menu-before .search-form {
+		display: block;
+		width: 240px;
+		margin: auto;		 
+		}
+		
+	 #horizontal-menu-before .search-field {
+		width: 100%;		 
+		}		
 	
 	#designer {
 		float: none;
 		display: block;
 		text-align: center;
 		width: 100%;
-		padding: 5px 20px 0;
-		margin-top: 20px;
+		padding: 10px 20px 0;
+		margin-top: 12px;
 		border-top: rgba(255, 255, 255, 0.1) solid 1px;	
-		line-height: 24px;	
+		line-height: 24px;			
 	}
 	
 	#footer-banner {
-		padding: 20px 20px 5px;		
+		padding: 0 20px 5px;		
 		}	
 	
 }

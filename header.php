@@ -18,9 +18,10 @@
 
 </head>
 
-<?php $bodyclass = ( (is_page()) && (has_post_thumbnail()) ) ? 'tesseract-featured' : false; ?> 
+<?php $bodyClass = ( (is_page()) && (has_post_thumbnail()) ) ? 'tesseract-featured' : false;
+$bodyClass .= ( version_compare($wp_version, '4.0.0', '>') && is_customize_preview() ) ? ' backend' : ' frontend'; ?> 
 
-<body <?php body_class( $bodyclass ); ?>>
+<body <?php body_class( $bodyClass ); ?>>
 
 <nav id="mobile-navigation" class="top-navigation" role="navigation">
 
@@ -56,9 +57,9 @@
 
     <?php $logoImg = get_theme_mod('tesseract_logo_image'); 
 	$blogname = get_bloginfo('blogname'); 
-	$headersize = get_theme_mod('tesseract_tho_header_size');
+	$headersize = get_theme_mod('tesseract_tho_header_height');
 	$headright_content = get_theme_mod('tesseract_tho_header_content_content');
-	$hmenusize = get_theme_mod('tesseract_tho_header_menu_size');
+	$hmenusize = get_theme_mod('tesseract_tho_header_width');
 	
 	$hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
 	
@@ -89,13 +90,11 @@
                     </div><!-- .site-branding -->
               	<?php } ?>
 				
-				<?php if ( !$hmenusize || ( $hmenusize == 'default' ) ) get_template_part( 'content', 'header-navigation' ); ?> 
+				<?php get_template_part( 'content', 'header-navigation' ); ?> 
             
 				<?php get_template_part( 'content', 'header-rightcontent' ); ?>            
                 
-            </div>
-                        
-            <?php if ( $hmenusize == 'fullwidth' ) get_template_part( 'content', 'header-navigation' ); ?>    
+            </div>    
 
         </div>            
         

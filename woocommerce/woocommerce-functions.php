@@ -109,19 +109,19 @@ function tesseract_wc_version_number() {
 //Woo header cart styles based on the selected Tesseract header size
 function tesseract_woocommerce_headercart_scripts() {
 	
-	$header_size = get_theme_mod('tesseract_tho_header_size');
+	$header_size = get_theme_mod('tesseract_tho_header_height');
 	
 	if ( $header_size == 'small' ) {
 	
-	    $dynamic_styles_woo_header = "#site-banner-right .woocart-header {
+	    $dynamic_styles_woo_header = ".banner-right .woocart-header {
 			height: 100%;	
 		}
 		
-		#site-banner-right .woocart-header a:before {
+		.banner-right .woocart-header a:before {
 			margin-top: 4px;	
 		}
 		
-		#site-banner-right .woocart-header a {
+		.banner-right .woocart-header a {
 			line-height: 28px;
 		}
 		

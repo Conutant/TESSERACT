@@ -255,9 +255,14 @@ function tesseract_scripts() {
         
 	}
 	
-	if ( get_theme_mod('tesseract_tho_header_size') == 'small' ) {
+	//Vertical - small header
+	if ( get_theme_mod('tesseract_tho_header_height') == 'small' ) {
 		
-        $dynamic_styles_header .= "#site-banner { min-height: 38px; }
+        $dynamic_styles_header .= "#site-banner-main {
+			margin: 8px 0;	
+		}
+		
+		#site-banner { min-height: 38px; }
 		
 		.site-logo a, .site-title a {
 			
@@ -275,7 +280,7 @@ function tesseract_scripts() {
 			padding: 3px 0;
 		}
 		
-		#site-banner-right {
+		.banner-right {
 			line-height: 28px;
 			height: 100%;	
 		}
@@ -290,40 +295,52 @@ function tesseract_scripts() {
 			line-height: 26px;	
 		}		
 		
-		#site-banner-right button, 
-		#site-banner-right .button, 
-		#site-banner-right input[type='reset'], 
-		#site-banner-right input[type='submit'], 
-		#site-banner-right input[type='button'] {
+		.banner-right button, 
+		.banner-right .button, 
+		.banner-right input[type='reset'], 
+		.banner-right input[type='submit'], 
+		.banner-right input[type='button'] {
 			padding: 0 10px;	
 		}		
 		
-		#site-banner-right .search-form {
+		.banner-right .search-form {
 			padding: 0;
 			height: 100%;
 			display: table;
 			table-layout: fixed;				
 		}
 
-		#site-banner-right .search-form label {
+		.banner-right .search-form label {
 			display: table-cell;
 			vertical-align: middle;			
 			float: none;
 		}
 		
-		#site-banner-right .search-form input[type='search'],
-		#site-banner-right .search-form input[type='text'] {
+		.banner-right .search-form input[type='search'],
+		.banner-right .search-form input[type='text'] {
 			height: initial;
 			line-height: 16px;
 			padding: 6px 10px;
 		}
 		
-		";		
+		.menu-open,
+		.dashicons.menu-open,
+		.menu-close,
+		.dashicons.menu-close,
+		.dashicons, 
+		.dashicons-before::before {
+			padding: 2px 12px;
+			font-size: 24px!important;	
+			top: 8px;
+		}		
 		
-	} else 	if ( get_theme_mod('tesseract_tho_header_size') == 'large' ) {
+		";		
+	
+	//Vertical - large header
+	} else 	if ( get_theme_mod('tesseract_tho_header_height') == 'large' ) {
 
         $dynamic_styles_header .= "#site-banner-main {
-			padding: 25px 0;
+			padding: 0;
 		}
 		
 		.menu-large.menusize-autowidth #site-banner-main { padding: 0; }
@@ -345,12 +362,44 @@ function tesseract_scripts() {
 			height: 60px;	
 		}
 		
-		#site-banner-right {
+		.site-logo a {
+			margin: 25px 0;	
+		}
+		
+		.top-navigation > div > ul > li > a { padding: 43px 10px; }
+		.top-navigation > div > ul > li > ul li a { padding: 9px 10px; }
+		.top-navigation > div > ul > li > ul li:first-child a { padding-top: 18px; }
+		.top-navigation > div > ul > li > ul li:last-child a { padding-bottom: 18px; }		
+		
+		#masthead .banner-right,
+		#site-banner-main > .banner-right {
 			padding: 25px 0;
 			height: 110px;	
 		}
+		
+		.menu-open,
+		.dashicons.menu-open,
+		.menu-close,
+		.dashicons.menu-close,
+		.dashicons, 
+		.dashicons-before::before {
+			top: 25px;	
+		}		
+		
 		";
 		
+	}
+	
+	//Horizontal - fullwidth footer
+	if ( get_theme_mod('tesseract_tho_header_width') == 'fullwidth' ) {
+		
+        $dynamic_styles_header .= "#site-banner {
+			max-width: 100%;
+			padding: 0 20px;
+		}
+		
+		";
+	
 	}
 	
 	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_header );		
@@ -373,7 +422,17 @@ function tesseract_scripts() {
 	#horizontal-menu-before,
 	#horizontal-menu-after { border-color: rgba(" . $add_content_borderColor . ", 0.25); }
 	
-	#footer-banner.footbar-active { border-color: rgba(" . $add_content_borderColor . ", 0.15); };";
+	#footer-banner.footbar-active { border-color: rgba(" . $add_content_borderColor . ", 0.15); }";
+	
+	//Horizontal - fullwidth header
+	if ( get_theme_mod('tesseract_tfo_footer_width') == 'fullwidth' ) {
+		
+        $dynamic_styles_footer .= "#footer-banner {
+			max-width: 100%;
+			padding: 0 20px;
+		}";
+	
+	}	
 
 	wp_add_inline_style( 'tesseract-footer-banner', $dynamic_styles_footer );	
 	
@@ -394,7 +453,9 @@ function tesseract_footer_branding() {
 	}
 
 function tesseract_footer_branding_output() {
+	echo '<div id="designer">';
     printf( __( 'Theme by %s', 'tesseract' ), '<a href="http://tyler.com">Tyler Moore</a>' );
+	echo '</div>';
 }
 
 add_action('tesseract_footer_branding','tesseract_footer_branding_output', 10);

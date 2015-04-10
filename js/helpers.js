@@ -27,7 +27,8 @@
 				fheight = parseInt( $('#colophon').height() ),
 				offset = parseInt( wheight - ( hheight + fheight ) );					
 				
-				if ( $('body').hasClass('logged-in') ) {
+				// ]if ( self == top )[ = if content is sitting in an iframe 
+				if ( ( $('body').hasClass('logged-in') ) && ( self == top ) ) {
 					var offsetFinal = ( $(window).width() > 782 ) ? ( offset-32 ) : ( offset-46 ); 
 				} else {
 					var offsetFinal = offset;	
