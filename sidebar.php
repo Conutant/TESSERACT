@@ -19,7 +19,7 @@ if ( is_plugin_active('woocommerce/woocommerce.php') ) {
 		$sidebarClass = 'woo-archive woo-right-sidebar'; 
 	} else if ( is_product() && $layout_product == 'sidebar-right' ) {
 		$sidebarClass = 'woo-product woo-right-sidebar';
-	} if ( is_page() && $layout_default == 'sidebar-right' ) {
+	} else if ( is_page() && $layout_default == 'sidebar-right' ) {
 		$sidebarClass = 'woo-default woo-right-sidebar';
 	} else {
 		$sidebarClass = 'woo sidebar-default';

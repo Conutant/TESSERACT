@@ -34,10 +34,10 @@ function tesseract_customize_register( $wp_customize ) {
 		'capability'     => 'edit_theme_options',
 		'title'          => 'Footer Options',
 		//'description'  => ''
-	) );	
+	) );		
 
 	$wp_customize->add_panel( 'tesseract_social', array(
-		'priority'       => 6,
+		'priority'       => 7,
 		'capability'     => 'edit_theme_options',
 		'title'          => 'Social'
 	) );	
@@ -77,6 +77,8 @@ function tesseract_customize_register( $wp_customize ) {
 	require get_template_directory() . '/inc/sections/social/flickr.php';
 	require get_template_directory() . '/inc/sections/social/pinterest.php';
 	require get_template_directory() . '/inc/sections/social/dribbble.php';	
+	
+	require get_template_directory() . '/inc/sections/blog.php';
 	
 	require get_template_directory() . '/inc/sections/footer-colors.php';
 	require get_template_directory() . '/inc/sections/footer-size.php';		

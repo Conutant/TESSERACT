@@ -6,10 +6,10 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     
-    <?php if ( has_post_thumbnail() ) {
-		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
-    	<a href="<?php the_permalink(); ?>"><img class="entry-post-thumbnail" src="<?php echo esc_url( $thumbnail[0] ); ?>" width="<?php echo $thumbnail[1]; ?>" height="<?php echo $thumbnail[2]; ?>" alt="Post '<?php echo get_the_title(); ?>' - featured image"></a><!-- .entry-background -->
-    <?php } ?>
+    <?php $featImg_pos = get_theme_mod('tesseract_blog_featimg_pos'); 
+	
+	if ( has_post_thumbnail() && ( !$featImg_pos || ( $featImg_pos == 'above' ) ) ) 
+		tesseract_output_featimg_blog(); ?>
     
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
@@ -21,12 +21,20 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
+	<?php if ( has_post_thumbnail() && ( $featImg_pos == 'below' ) ) 
+		tesseract_output_featimg_blog(); ?>
+
 	<div class="entry-content">
 		<?php
 		
 		    if ( is_home() || is_archive() ) {
 				
-                the_excerpt();
+				$contentType = get_theme_mod('tesseract_blog_content');
+                if ( $contentType == 'content' ) {
+					the_content();
+				} else {
+					the_excerpt();
+				}
 				
             } else {
 				 

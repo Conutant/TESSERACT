@@ -17,7 +17,7 @@ function tesseract_paging_nav() {
 		return;
 	}
 	?>
-	<nav class="navigation paging-navigation" role="navigation">
+	<nav class="navigation paging-navigation cf" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'tesseract' ); ?></h1>
 		<div class="nav-links">
 
@@ -48,7 +48,7 @@ function tesseract_post_nav() {
 		return;
 	}
 	?>
-	<nav class="navigation post-navigation" role="navigation">
+	<nav class="navigation post-navigation cf" role="navigation">
 		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'tesseract' ); ?></h1>
 		<div class="nav-links">
 			<?php

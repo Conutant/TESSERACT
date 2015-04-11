@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section LOGO
+ */	
+ 
    	$wp_customize->add_section( 'tesseract_logo' , array(
     	'title'      => __('Logo', 'tesseract'),
     	'priority'   => 3,

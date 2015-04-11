@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/TUMBLER
+ */	
+ 
    	$wp_customize->add_section( 'tesseract_social_tumb' , array(
     	'title'      => __('Tumblr', 'tesseract'),
     	'priority'   => 7,

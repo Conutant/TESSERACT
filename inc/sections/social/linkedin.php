@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/LINKEDIN
+ */	
+ 
    	$wp_customize->add_section( 'tesseract_social_li' , array(
     	'title'      => __('LinkedIn', 'tesseract'),
     	'priority'   => 4,

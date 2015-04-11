@@ -1,6 +1,6 @@
 <?php
 /*  
- * section FOOTER HORIZONTAL MENU
+ * section FOOTER CONTENT
  */					 			
 			
    	$wp_customize->add_section( 'tesseract_tfo_footer_content' , array(

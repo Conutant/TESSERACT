@@ -610,12 +610,15 @@ ol ol {
 .site-title,
 .widget-area,
 .page-content,
-.entry-summary,
+.entry-summary {
+    margin-top: 45px;
+}
+
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
-    margin-top: 45px;
-}
+	margin: 1em 0 3em;
+	}
 
 p {
     margin-top: 0px;
@@ -1674,8 +1677,11 @@ figure {
 	
 .entry-post-thumbnail {
 	width: 100%;
-	margin-top: 10px;	
-	}	
+	margin-top: 28px;	
+	}			
+	
+.entry-post-thumbnail.below-title { margin: 20px auto; }
+.entry-post-thumbnail.above-title { margin-bottom: 28px; }	
 
 .archive .entry-thumbnail {
     display: inline-block;

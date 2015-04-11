@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/TWITTER
+ */	
+
    	$wp_customize->add_section( 'tesseract_social_tw' , array(
     	'title'      => __('Twitter', 'tesseract'),
     	'priority'   => 2,

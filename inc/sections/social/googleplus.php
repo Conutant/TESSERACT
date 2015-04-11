@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/GOOGLE PLUS
+ */	
+
    	$wp_customize->add_section( 'tesseract_social_gplus' , array(
     	'title'      => __('Google Plus', 'tesseract'),
     	'priority'   => 3,

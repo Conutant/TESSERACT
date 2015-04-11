@@ -1,6 +1,6 @@
 <?php
 /*  
- * section HEADER MENU
+ * section HEADER SIZE
  */					 			
 	
 $wp_customize->add_section( 'tesseract_tho_size' , array(

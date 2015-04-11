@@ -87,7 +87,7 @@ get_header( 'shop' ); ?>
 		 *
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
-		if ( ( ( $layout == 'sidebar-left' ) || ( $layout == 'sidebar-right' )  ) || ( $layout ) )
+		if ( ( $layout == 'sidebar-left' ) || ( $layout == 'sidebar-right' ) )
 			do_action( 'woocommerce_sidebar' );
 	?>
 

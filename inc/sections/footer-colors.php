@@ -1,6 +1,6 @@
 <?php
 /*  
- * section COLORS
+ * section FOOTER COLORS
  */		
 	
    	$wp_customize->add_section( 'tesseract_tfo_footer_colors' , array(

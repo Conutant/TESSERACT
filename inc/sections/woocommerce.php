@@ -1,6 +1,6 @@
 <?php
 /*  
- * section FOOTER HORIZONTAL MENU
+ * section WOOCOMMERCE
  */		
  	
 	//Rename WooCommerce section to 'WooCommert Color Options' IF woocommerce-colors plugin is installed

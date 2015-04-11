@@ -186,7 +186,12 @@ function tesseract_scripts() {
 
 	$header_bckRGB = get_theme_mod('tesseract_tho_header_colors_bck_color') ? get_theme_mod('tesseract_tho_header_colors_bck_color') : '#59bcd9';
 	
-	$header_bckOpacity = ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') && ( null !== (get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') ) ) ) ? get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') : 100;
+	$bckOpacity = ( get_theme_mod('tesseract_tho_header_colors_bck_color_opacity') == 0) ? '0' : get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
+	if ( isset($bckOpacity) ) { 
+		$header_bckOpacity = ( '0' == $bckOpacity ) ? 0 : $bckOpacity; 
+	} else { 
+		$header_bckOpacity = 100; 
+	}
 	
 	$header_textColor = get_theme_mod('tesseract_tho_header_colors_text_color') ? get_theme_mod('tesseract_tho_header_colors_text_color') : '#ffffff';
 	
@@ -459,6 +464,43 @@ function tesseract_footer_branding_output() {
 }
 
 add_action('tesseract_footer_branding','tesseract_footer_branding_output', 10);
+
+/**
+ * Output featured image on blog and archive pages.
+ */
+
+function tesseract_output_featimg_blog() {
+	
+	global $post;
+		
+	$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+	$featImg_display = get_theme_mod('tesseract_blog_display_featimg'); 
+	$featImg_pos = get_theme_mod('tesseract_blog_featimg_pos'); 
+	
+	$ratio = get_theme_mod( 'tesseract_blog_featimg_size' );
+	$ratio = ( isset($ratio) ) ? $ratio : 'default';
+	switch ( $ratio ) :
+		
+		case 'tv': $featImg_height = ( $thumbnail[2] >= 540 ) ? 540 : $thumbnail[2]; break;
+		case 'hdtv': $featImg_height = ( $thumbnail[2] >= 405 ) ? 405 : $thumbnail[2]; break;
+		case 'theater1': $featImg_height = ( $thumbnail[2] >= 390 ) ? 390 : $thumbnail[2]; break;
+		case 'theater2': $featImg_height = ( $thumbnail[2] >= 306 ) ? 306 : $thumbnail[2]; break;
+		case 'default';
+		case 'pixel';			
+		default: $featImg_height = $thumbnail[2]; break;
+		
+	endswitch;
+	
+	$pxratio = get_theme_mod( 'tesseract_blog_featimg_px_size' );
+	$featImg_height = ( isset($pxratio) && ( $ratio == 'pixel' ) ) ? $pxratio : $featImg_height;
+	
+	if ( isset($featImg_display) && ( $featImg_display == 1 ) ) { ?>
+	
+    	<a class="entry-post-thumbnail <?php echo ($featImg_pos == 'below') ? 'below-title' : 'above-title'; ?>" href="<?php the_permalink(); ?>" style="background: transparent url('<?php echo esc_url( $thumbnail[0] ); ?>') no-repeat center center; width: 100%; height: <?php echo $featImg_height; ?>px; display: block; background-size: cover;"></a><!-- .entry-background -->
+	
+	<?php }
+
+}
 
 /**
  * Register Google fonts.

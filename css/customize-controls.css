@@ -94,3 +94,12 @@
 	margin-bottom: 1em;
 	color: #aaa;
 	}
+	
+#customize-control-tesseract_blog_featimg_pos_control { margin-top: 10px; }
+
+#accordion-section-tesseract_blog > ul > #customize-control-tesseract_blog_display_featimg_control {
+	display: list-item;
+	margin: 5px 0 10px;
+	padding-top: 16px;
+	border-top: #e6e6e6 solid 1px!important;	
+	}

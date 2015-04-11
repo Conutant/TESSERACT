@@ -236,7 +236,11 @@
 	border-bottom: #eee solid 1px;
 	width: 100%;
 	}	
-
+	
+#primary > .woocommerce-pagination:last-child {
+	margin: 0 0 3em;
+	}
+	
 /* Single Product page */
 
 .single-product .type-product {
@@ -320,6 +324,12 @@
 .woocommerce-page #content table.cart td.actions .coupon .input-text {
 	padding: 0 20px;
 	line-height: 40px;	
+	}
+	
+/* Checkout */	
+
+form.woocommerce-checkout {
+	margin-bottom: 3em;
 	}
 
 @media screen and (max-width: 980px) {			

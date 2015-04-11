@@ -190,6 +190,36 @@ function tesseract_sanitize_radio( $value ) {
 	endif;
 }
 
+function tesseract_blog_sanitize_content( $value ) {
+	
+	if ( ! in_array( $value, array( 'excerpt', 'content' ) ) ):
+		$value = 'excerpt';
+	endif;
+	
+	return $value;
+	
+	}
+
+function tesseract_blog_sanitize_featimg_pos( $value ) {
+	
+	if ( ! in_array( $value, array( 'above', 'below' ) ) ):
+		$value = 'above';
+	endif;
+	
+	return $value;
+	
+	}
+
+function tesseract_blog_sanitize_featimg_size( $value ) {
+
+	if ( ! in_array( $value, array( 'default', 'tv', 'hdtv', 'theater1', 'theater2', 'pixel' ) ) ) :
+        $value = 'default';
+	endif;
+
+    return $value;
+	
+	}
+
 function tesseract_sanitize_radio_menuPos( $value ) {
 
 	if ( ! in_array( $value, array( 'left', 'center' ) ) ) :
@@ -308,6 +338,24 @@ function tesseract_button_textarea_enable() {
 
 	$textarea_enable = get_theme_mod( 'tesseract_tho_header_content_content' );
 	$bool = ( $textarea_enable == 'buttons' ) ? true : false;
+	
+	return $bool;
+	
+}
+
+function tesseract_blog_featimg_sizes_enable() {
+
+	$sizes_enable = get_theme_mod( 'tesseract_blog_display_featimg' );
+	$bool = ( $sizes_enable == 1 ) ? true : false;
+	
+	return $bool;
+	
+}
+
+function tesseract_blog_featimg_px_size_enable() {
+
+	$size_enable = get_theme_mod( 'tesseract_blog_featimg_size' );
+	$bool = ( $size_enable == 'pixel' ) ? true : false;
 	
 	return $bool;
 	

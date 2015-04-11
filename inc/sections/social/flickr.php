@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/FLICKR
+ */	
+ 
    	$wp_customize->add_section( 'tesseract_social_fr' , array(
     	'title'      => __('Flickr', 'tesseract'),
     	'priority'   => 8,

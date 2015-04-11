@@ -1,6 +1,6 @@
 <?php
 /*  
- * section HEADER MENU
+ * section FOOTER SIZE
  */					 			
 	
 $wp_customize->add_section( 'tesseract_tfo_size' , array(

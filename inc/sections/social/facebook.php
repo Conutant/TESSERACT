@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/FACEBOOK
+ */	
+ 
    	$wp_customize->add_section( 'tesseract_social_fb' , array(
     	'title'      => __('Facebook', 'tesseract'),
     	'priority'   => 1,

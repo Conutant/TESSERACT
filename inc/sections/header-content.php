@@ -1,6 +1,6 @@
 <?php
 /*  
- * section HEADER RIGHT CONTENT
+ * section HEADER CONTENT
  */					 			
 			
    	$wp_customize->add_section( 'tesseract_tho_header_content' , array(

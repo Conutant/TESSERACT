@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/YOUTUBE
+ */	
+ 
    	$wp_customize->add_section( 'tesseract_social_yt' , array(
     	'title'      => __('YouTube', 'tesseract'),
     	'priority'   => 5,

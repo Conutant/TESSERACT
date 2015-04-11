@@ -1,4 +1,8 @@
 <?php
+/*  
+ * section SOCIAL/VIMEO
+ */	
+ 
    	$wp_customize->add_section( 'tesseract_social_vim' , array(
     	'title'      => __('Vimeo', 'tesseract'),
     	'priority'   => 6,
