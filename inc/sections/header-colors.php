@@ -1,6 +1,6 @@
 <?php
 /*  
- * section COLORS
+ * section HEADER COLORS
  */		
 	
    	$wp_customize->add_section( 'tesseract_tho_header_colors' , array(
@@ -37,10 +37,11 @@
 				'default' 			=> 100
 		) );			
 			
-			$wp_customize->add_control( 'tesseract_tho_header_colors_bck_color_opacity', array(
+			$wp_customize->add_control( 'tesseract_tho_header_colors_bck_color_opacity_control', array(
 				'type'        => 'range',
 				'priority'    => 2,
 				'section'     => 'tesseract_tho_header_colors',
+				'settings'     => 'tesseract_tho_header_colors_bck_color_opacity',
 				'label'       => 'Header Background Color Opacity',
 				'description' => 'Use this range slider to set background opacity',
 				'input_attrs' => array(

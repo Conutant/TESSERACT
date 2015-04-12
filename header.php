@@ -18,8 +18,13 @@
 
 </head>
 
-<?php $bodyClass = ( (is_page()) && (has_post_thumbnail()) ) ? 'tesseract-featured' : false;
-$bodyClass .= ( version_compare($wp_version, '4.0.0', '>') && is_customize_preview() ) ? ' backend' : ' frontend'; ?> 
+<?php // Additional body classes
+$bodyClass = ( version_compare($wp_version, '4.0.0', '>') && is_customize_preview() ) ? 'backend' : 'frontend';
+if ( (is_page()) && (has_post_thumbnail()) ) $bodyClass .= ' tesseract-featured';
+if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin_active('beaver-builder/fl-builder.php') ) $bodyClass .= ' beaver-on';
+
+$bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
+if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity == 0 ) ) $bodyClass .= ' zero-opacity-header'; ?>
 
 <body <?php body_class( $bodyClass ); ?>>
 

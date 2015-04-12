@@ -24,8 +24,13 @@
 				
 				var wheight = $(window).height(),
 				hheight = parseInt( $('#masthead').not('.pos-absolute').height() ),
-				fheight = parseInt( $('#colophon').height() ),
-				offset = parseInt( wheight - ( hheight + fheight ) );					
+				fheight = parseInt( $('#colophon').height() );
+				
+				if ( $('body').hasClass('zero-opacity-header') ) {
+					var offset = parseInt( wheight - fheight );
+				} else {
+					var offset = parseInt( wheight - ( hheight + fheight ) );	
+				}
 				
 				// ]if ( self == top )[ = if content is sitting in an iframe 
 				if ( ( $('body').hasClass('logged-in') ) && ( self == top ) ) {

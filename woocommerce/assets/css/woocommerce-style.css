@@ -48,7 +48,7 @@
 	margin-top: 40px;
 	}
 
-/*-----------------------------------------------------------------------------------------------------------		
+/*----------------------------------------------------------------------------------------------------------
 
 												PAGE TEMPLATES 
 
@@ -99,7 +99,7 @@
 	padding-top: 40px;
 	}	
 
-/*-----------------------------------------------------------------------------------------------------------		
+/*----------------------------------------------------------------------------------------------------------	
 
 												EOF PAGE TEMPLATES 
 
@@ -227,7 +227,8 @@
 	text-transform: capitalize;
 	}
 	
-.woocommerce-breadcrumb {
+.woocommerce .woocommerce-breadcrumb, 
+.woocommerce-page .woocommerce-breadcrumb {
 	position: absolute;
 	top: 0;
 	left: 0;	
@@ -237,10 +238,18 @@
 	width: 100%;
 	}	
 	
+.woocommerce.beaver-on .woocommerce-breadcrumb, 
+.woocommerce-page.beaver-on .woocommerce-breadcrumb {
+	padding: 0 20px;	
+	}	
+	
 #primary > .woocommerce-pagination:last-child {
 	margin: 0 0 3em;
 	}
 	
+/* Shop page + Archive pages */
+
+
 /* Single Product page */
 
 .single-product .type-product {

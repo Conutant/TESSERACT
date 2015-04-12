@@ -9,33 +9,18 @@ function tesseract_register_required_plugins() {
 	
         array(
             'name'               => 'Beaver Builder Plugin (Lite Version)',
-            'slug'               => 'beaver-builder-lite-version', 
-            'source'             => '',
-            'required'           => false,
-            'version'            => '',
-            'force_activation'   => false,
-            'force_deactivation' => false, 
-            'external_url'       => ''
+            'slug'               => 'beaver-builder-lite-version',
+            'required'           => false
         ),
         array(
             'name'               => 'Easy Google Fonts',
-            'slug'               => 'easy-google-fonts', 
-            'source'             => '',
-            'required'           => false,
-            'version'            => '',
-            'force_activation'   => false,
-            'force_deactivation' => false, 
-            'external_url'       => ''
+            'slug'               => 'easy-google-fonts',
+            'required'           => false
         ),
         array(
             'name'               => 'MaxButtons',
-            'slug'               => 'maxbuttons', 
-            'source'             => '',
-            'required'           => false,
-            'version'            => '',
-            'force_activation'   => false,
-            'force_deactivation' => false, 
-            'external_url'       => ''
+            'slug'               => 'maxbuttons',
+            'required'           => false
         )		
 	
 	);

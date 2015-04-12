@@ -1433,6 +1433,11 @@ a:hover {
 	max-width: 980px;
 }
 
+.beaver-on .site-content {
+	max-width: 100%;
+	padding: 0 20px;	
+	}
+
 .site-info,
 .site-content,
 #colophon > .menu,
@@ -2321,6 +2326,17 @@ article.comment-body{
     padding-bottom: 0;
 }
 
+/* BEAVER BUILDER */
+.fl-row-full-width .fl-col-group,
+.fl-row-fixed-width {
+	max-width: 100%;
+	}
+	
+.zero-opacity-header .fl-row {
+	margin-top: -1px;
+	}	
+
+/* CONTACT FORM 7 */
 .wpcf7-form-control-wrap { width: 100%; }
 
 /* =25. Responsive design

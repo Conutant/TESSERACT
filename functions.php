@@ -477,17 +477,25 @@ function tesseract_output_featimg_blog() {
 	$featImg_display = get_theme_mod('tesseract_blog_display_featimg'); 
 	$featImg_pos = get_theme_mod('tesseract_blog_featimg_pos'); 
 	
+	$w = $thumbnail[1];
+	$h = $thumbnail[2];
+	$bw = 720;
+	$wr = $w/$bw;
+	$hr = $h/$wr;
+	
+	$origRatio = $hr;
+	
 	$ratio = get_theme_mod( 'tesseract_blog_featimg_size' );
 	$ratio = ( isset($ratio) ) ? $ratio : 'default';
 	switch ( $ratio ) :
 		
-		case 'tv': $featImg_height = ( $thumbnail[2] >= 540 ) ? 540 : $thumbnail[2]; break;
-		case 'hdtv': $featImg_height = ( $thumbnail[2] >= 405 ) ? 405 : $thumbnail[2]; break;
-		case 'theater1': $featImg_height = ( $thumbnail[2] >= 390 ) ? 390 : $thumbnail[2]; break;
-		case 'theater2': $featImg_height = ( $thumbnail[2] >= 306 ) ? 306 : $thumbnail[2]; break;
+		case 'tv': $featImg_height = ( $origRatio >= 540 ) ? 540 : $origRatio; break;
+		case 'hdtv': $featImg_height = ( $origRatio >= 405 ) ? 405 : $origRatio; break;
+		case 'theater1': $featImg_height = ( $origRatio >= 390 ) ? 390 : $origRatio; break;
+		case 'theater2': $featImg_height = ( $origRatio >= 306 ) ? 306 : $origRatio; break;
 		case 'default';
 		case 'pixel';			
-		default: $featImg_height = $thumbnail[2]; break;
+		default: $featImg_height = $origRatio; break;
 		
 	endswitch;
 	
