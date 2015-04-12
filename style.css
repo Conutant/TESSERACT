@@ -2311,7 +2311,7 @@ article.comment-body{
     padding: 0;
 }
 
-.footer-menu ul li{
+.footer-menu ul li {
     display:inline-block;
     padding-right: 10px;
 }	
@@ -2350,6 +2350,8 @@ article.comment-body{
 		padding: 0 20px;
 		}
 		
+	.beaver-on #content	{ padding:0; }
+		
 	#sidebar-footer aside {
 		width: 50%!important;
 		padding: 0;
@@ -2371,7 +2373,11 @@ article.comment-body{
 
 	.search-no-results #secondary aside.widget_search:first-child {
 		display: none;	
-		}		
+		}
+		
+	.fl-bg-video > video {
+
+	}			
 	
 	} 	
 
