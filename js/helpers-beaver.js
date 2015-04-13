@@ -37,7 +37,7 @@
 				nw = $(window).width();				
 			}
 			
-			$(tc).css('overflow', 'hidden');
+			$(tc).css({overflow: 'hidden', position: 'relative'});
 			$(pc).attr('style', 'height: ' + nh + 'px; left: 50%!important; width: ' + nw + 'px!important; margin-left: -' + nw/2 + 'px;');
 			$(this).attr('style', 'height: ' + nh + 'px!important;');				
 
