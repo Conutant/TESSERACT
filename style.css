@@ -435,7 +435,7 @@ input[type="search"] {
 	width: calc( 60% - 20px );
 	}	
 	
-form span { width: 100%; }	
+#content form span { width: 100%; }	
 
 /**
  * Define consistent border, margin, and padding.
@@ -1433,9 +1433,10 @@ a:hover {
 	max-width: 980px;
 }
 
-.beaver-on .site-content {
+.fl-builder .site-content {
 	max-width: 100%;
-	padding: 0 20px;	
+	padding: 0;
+	margin: 0;	
 	}
 
 .site-info,
@@ -2003,6 +2004,12 @@ figure {
 .blog #content {
 	max-width: 720px;
 	}
+	
+.fl-builder.page-template-blog #content,
+.fl-builder.blog #content {
+	max-width: none;
+	}	
+	
 .navigation.post-navigation{
     padding: 10px
 }
@@ -2327,8 +2334,7 @@ article.comment-body{
 }
 
 /* BEAVER BUILDER */
-.fl-row-full-width .fl-col-group,
-.fl-row-fixed-width {
+.fl-row-full-width .fl-col-group {
 	max-width: 100%;
 	}
 	

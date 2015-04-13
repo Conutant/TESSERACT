@@ -9,15 +9,22 @@
 	<?php if ( has_post_thumbnail() && 'post' == get_post_type() ) {
         $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'tesseract-large' ); ?>
         <div class="entry-background" style="background-image: url(<?php echo esc_url( $thumbnail[0] ); ?>)">
-            <header class="entry-header">
-                <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-            </header><!-- .entry-header -->
+			<?php if ( my_theme_show_page_header() ) : ?>
+                <header class="entry-header">
+                    <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+                </header><!-- .entry-header -->
+			<?php endif; ?>
+            
         </div><!-- .entry-background -->
     
     <?php } else { ?>
-        <header class="entry-header">
-            <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-        </header><!-- .entry-header -->
+
+		<?php if ( my_theme_show_page_header() ) : ?>
+            <header class="entry-header">
+                <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+            </header><!-- .entry-header -->
+        <?php endif; ?>
+
     <?php } ?>
 
 	<div class="entry-content">
