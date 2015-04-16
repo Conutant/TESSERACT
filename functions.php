@@ -341,7 +341,55 @@ function tesseract_scripts() {
 			padding: 2px 12px;
 			font-size: 24px!important;	
 			top: 8px;
-		}		
+		}	
+		
+		.menu-open.is-right,
+		.menu-open.no-right.is-woo,
+		.dashicons.menu-open.is-right,
+		.dashicons.menu-open.no-right.is-woo,
+		.menu-close.is-right,
+		.menu-close.no-right.is-woo,
+		.dashicons.menu-close.is-right,
+		.dashicons.menu-close.no-right.is-woo,
+		.dashicons.is-right,
+		.dashicons.no-right.is-woo, 
+		.dashicons-before.is-right:before,
+		.dashicons-before.no-right.is-woo:before {
+			top: 44px;	
+		}	
+		
+		@media screen and (max-width: 850px) {
+			
+			.banner-right .search-form,
+			.banner-right .search-form label {
+				display: inline-block;
+				zoom: 1; *display: inline;				
+			}
+			
+			.banner-right .search-form label {
+				vertical-align: top;	
+			}			
+			
+			#header-button-container {
+				height: auto;	
+			}
+			
+			#header-button-container-inner,
+			#header-button-container-inner > * {
+				vertical-align: baseline;	
+			}
+		
+		}	
+		
+		@media screen and (max-width: 620px) {
+			
+			.site-logo img, 
+			.site-logo a {
+				height: 40px;
+				padding: 0;	
+			}			
+		
+		}			
 		
 		";		
 	
@@ -371,8 +419,10 @@ function tesseract_scripts() {
 			height: 60px;	
 		}
 		
-		.site-logo a {
-			margin: 25px 0;	
+		.site-logo a,
+		.site-title {
+			margin-top: 25px;
+			margin-bottom: 25px;
 		}
 		
 		.top-navigation > div > ul > li > a { padding: 43px 10px; }
@@ -391,9 +441,24 @@ function tesseract_scripts() {
 		.menu-close,
 		.dashicons.menu-close,
 		.dashicons, 
-		.dashicons-before::before {
+		.dashicons-before:before {
 			top: 25px;	
-		}		
+		}	
+		
+		.menu-open.is-right,
+		.menu-open.no-right.is-woo,
+		.dashicons.menu-open.is-right,
+		.dashicons.menu-open.no-right.is-woo,
+		.menu-close.is-right,
+		.menu-close.no-right.is-woo,
+		.dashicons.menu-close.is-right,
+		.dashicons.menu-close.no-right.is-woo,
+		.dashicons.is-right,
+		.dashicons.no-right.is-woo, 
+		.dashicons-before.is-right:before,
+		.dashicons-before.no-right.is-woo:before {
+			top: 61px;	
+		}				
 		
 		";
 		

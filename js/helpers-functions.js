@@ -41,6 +41,14 @@
 				$('.menu-open, .menu-close').remove();
 				
 				$('#page').prepend( '<span class="menu-open dashicons dashicons-menu"></span><span class="menu-close dashicons dashicons-no"></span>' );
+				
+				if ( $('#masthead').hasClass('is-right') ) {
+					$('#page > .dashicons').addClass('is-right');	
+				}
+				
+				if ( $('#masthead').hasClass('no-right') && $('#masthead').hasClass('is-woo') ) {
+					$('#page > .dashicons').addClass('no-right is-woo');	
+				}
 					
 				$('#mobile-navigation').attr('id', 'mobile-navigation-jquery');
 				$('.menu-open').attr('href', '#mobile-navigation-jquery').on( 'click', function() { 

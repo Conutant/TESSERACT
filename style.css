@@ -45,7 +45,7 @@ Tesseract is based on Underscores http://underscores.me/, (C) 2012-2014 Automatt
     22. Infinite scroll (Jetpack plugin)
     23. Footer
 	24. Plugins
-    25. Responsive design
+	25. Responsive design
     26. Print styles
 */
 
@@ -2351,8 +2351,7 @@ article.comment-body{
 @media screen and (max-width: 980px) {
 	
 	#sidebar-footer,
-	#content,
-	#masthead {
+	#content {
 		padding: 0 20px;
 		}
 		
@@ -2368,7 +2367,7 @@ article.comment-body{
 	
 	}
 	
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
 	
 	#primary, 
 	#secondary {

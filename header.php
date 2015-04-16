@@ -54,16 +54,25 @@ if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity == 0 ) ) $bodyClass 
 </nav><!-- #site-navigation -->  	
 
 <div id="page" class="hfeed site">
+
+	<?php $headright_content = get_theme_mod('tesseract_tho_header_content_content');
+	$wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
+	if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
+		$rightclass = $wooheader ? $headright_content . ' is-right is-woo ' : $headright_content . ' is-right no-woo ';	
+	} else if ( ( $headright_content == 'nothing' ) && $wooheader ) {
+		$rightclass = $wooheader ? $headright_content . ' no-right is-woo ' : $headright_content . ' no-right no-woo ';	
+	}
+	?>
+
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tesseract' ); ?></a>
     
-    <a class="menu-open dashicons dashicons-menu" href="#mobile-navigation"></a>
-    <a class="menu-close dashicons dashicons-no" href="#"></a>            
+    <a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="#mobile-navigation"></a>
+    <a class="<?php echo $rightclass; ?>menu-close dashicons dashicons-no" href="#"></a>            
     
 
     <?php $logoImg = get_theme_mod('tesseract_logo_image'); 
 	$blogname = get_bloginfo('blogname'); 
 	$headersize = get_theme_mod('tesseract_tho_header_height');
-	$headright_content = get_theme_mod('tesseract_tho_header_content_content');
 	$hmenusize = get_theme_mod('tesseract_tho_header_width');
 	
 	$hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
@@ -79,9 +88,9 @@ if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity == 0 ) ) $bodyClass 
 	$headpos = ( $bckOpacity && ( $bckOpacity !== 100 ) ) ? 'pos-absolute' : 'pos-relative';
 	?>
     
-    <header id="masthead" class="site-header <?php echo $headpos . ' ' . $mastclass . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
+    <header id="masthead" class="site-header <?php echo $rightclass . $headpos . ' ' . $mastclass . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
     
-        <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  ' is-right' : ' no-right'; ?>">               
+        <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; ?>">               
             
             <div id="site-banner-main" class="<?php echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  'is-right' : 'no-right'; ?>">
 				
