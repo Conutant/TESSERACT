@@ -597,6 +597,39 @@ function my_theme_show_page_header() {
 
 }
 
+/*
+ * MaxButtons CSS overwrite on screen size < 850px
+ */
+ 
+add_action('wp_footer', 'tesseract_maxbuttons_mobile_css', 9999); 
+function tesseract_maxbuttons_mobile_css()
+{
+	global $maxbuttons_css; 
+	if (is_array($maxbuttons_css) && count($maxbuttons_css) > 0) 
+	{
+		$maxMobStyles = "@media screen and (max-width: 850px) {
+			a[class^=maxbutton], a[class^=maxbutton]:hover {		
+				padding: 0 10px!important;
+				line-height: 28px!important;
+				height: 28px!important;
+				display: inline-block!important;
+				zoom: 1!important; *display: inline!important;
+				font-size: 14px!important;	
+				border-radius: 3px!important;
+				box-shadow: none!important;
+				margin: 3px 0!important;		
+			}
+		
+			#header-button-container-inner div[align='center'] {
+				vertical-align: top!important;	
+			}
+		}";
+		
+		echo "<style type='text/css'>" . $maxMobStyles . "</style>"; 
+	}
+
+}
+
 /**
  * Register Google fonts.
  *

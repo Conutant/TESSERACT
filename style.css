@@ -2336,6 +2336,7 @@ article.comment-body{
 /* BEAVER BUILDER */
 .fl-row-full-width .fl-col-group {
 	max-width: 100%;
+	padding: 
 	}
 	
 .zero-opacity-header .fl-row {
@@ -2355,7 +2356,7 @@ article.comment-body{
 		padding: 0 20px;
 		}
 		
-	.beaver-on #content	{ padding:0; }
+	.fl-builder #content { padding:0; }
 		
 	#sidebar-footer aside {
 		width: 50%!important;
