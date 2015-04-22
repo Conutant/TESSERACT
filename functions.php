@@ -153,10 +153,15 @@ function tesseract_scripts() {
     // Horizontal menu style	
 	wp_enqueue_style( 'tesseract-site-banner', get_template_directory_uri() . '/css/site-banner.css', array('tesseract-style'), '1.0.0' );		
 	wp_enqueue_style( 'tesseract-footer-banner', get_template_directory_uri() . '/css/footer-banner.css', array('tesseract-style'), '1.0.0' );
-	wp_enqueue_style( 'dashicons' );	
+	wp_enqueue_style( 'dashicons' );
+	wp_enqueue_style( 'tesseract-sidr-style', get_template_directory_uri() . '/css/jquery.sidr.css', array('tesseract-style'), '1.0.0' );
+	wp_enqueue_style( 'tesseract-googlefonts', '//fonts.googleapis.com/css?family=Lato:300', array('tesseract-style'), '1.0.0' );
 	
 	// Fittext
 	wp_enqueue_script( 'tesseract-fittext', get_template_directory_uri() . '/js/jquery.fittext.js', array( 'jquery' ), '1.0.0', true );
+	
+	//Mobile menu
+	wp_enqueue_script( 'tesseract-sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array( 'tesseract-fittext' ), '1.0.0', true );
 	
     // JS helpers (This is also the place where we call the jQuery in array)
 	wp_enqueue_script( 'tesseract-helpers-functions', get_template_directory_uri() . '/js/helpers-functions.js', array( 'tesseract-fittext' ), '1.0.0', true );
@@ -268,7 +273,7 @@ function tesseract_scripts() {
 	if ( get_theme_mod('tesseract_tho_header_height') == 'small' ) {
 		
         $dynamic_styles_header .= "#site-banner-main {
-			margin: 8px 0;	
+			margin: 0;	
 		}
 		
 		#site-banner { min-height: 38px; }
@@ -281,7 +286,11 @@ function tesseract_scripts() {
 			padding: 5px 0;	
 		}	
 		
-		.top-navigation ul li a { padding: 7px 10px; }
+		.top-navigation ul li a { padding: 15px 10px; }
+		
+		#masthead .site-branding {
+			padding: 8px 0 8px 20px;	
+		}
 		
 		.site-logo img,
 		.site-logo a {
@@ -289,10 +298,14 @@ function tesseract_scripts() {
 			padding: 3px 0;
 		}
 		
-		.banner-right {
+		#masthead .banner-right {
 			line-height: 28px;
 			height: 100%;	
 		}
+		
+		#masthead.is-right .banner-right {
+			top: 0px;		
+		}		
 		
 		#header-button-container {
 			line-height: initial;	
@@ -419,10 +432,10 @@ function tesseract_scripts() {
 			height: 60px;	
 		}
 		
-		.site-logo a,
-		.site-title {
-			margin-top: 25px;
-			margin-bottom: 25px;
+		#masthead .site-logo a,
+		#masthead .site-title {
+			margin-top: 25px!important;
+			margin-bottom: 25px!important;
 		}
 		
 		.top-navigation > div > ul > li > a { padding: 43px 10px; }

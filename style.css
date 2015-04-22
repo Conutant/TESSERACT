@@ -535,6 +535,7 @@ body {
     font-weight: 300;
     line-height: 1.8;
     color: #757575;
+	position: relative;
 }
 
 /* =03. Clearfix

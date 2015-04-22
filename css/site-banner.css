@@ -80,8 +80,8 @@
 	vertical-align: top;
 	}	
 	
-.site-logo, /* Jetpack */
-.site-title {
+#masthead .site-logo, /* Jetpack */
+#masthead .site-title {
 	margin: 0;
 	margin-right: 20px;
 }
@@ -111,10 +111,6 @@
 	height: 40px;
 	max-width: inherit;
 	display: block;
-	}
-
-.site-title {
-	margin-right: 20px;
 	}
 
 .site-title a {
@@ -154,7 +150,8 @@
     color: #199cd8;
 }
 
-.top-navigation ul ul {
+.top-navigation ul ul,
+.top-navigation ul li > h2 {
 	float: left;
 	position: absolute;
 	left: -999em;
@@ -465,104 +462,21 @@
 		margin-right: 0;
 	}		
 	
-	#mobile-navigation,
-	#mobile-navigation-jquery {
-		display: block;
-		top: 0;
-		left: 0;
-		text-align: left;
-		height: 100%;
-		z-index: 9999;
-		transition: width 0.2s ease;
-		-webkit-transition: width 0.2s ease;		 
-		overflow: hidden;
-		background: #fff;
-		}		
-		
-	#mobile-navigation:target {
-		width: 40%;
-		}	
-		
-	#mobile-navigation:target + #page {
-	  	width: 60%;
-	}		
-		
-	#mobile-navigation > div > ul,
-	#mobile-navigation-jquery > div > ul {
-		background: #fff;
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		display: none;
-		overflow-y: auto;
-		}
-		
-	#mobile-navigation:target > div > ul,
-	#mobile-navigation-jquery.target > div > ul {
-		display: block;
-		width: 40%;
-		}	
-	
-	.logged-in #mobile-navigation:target > div > ul,
-	.logged-in #mobile-navigation-jquery.target > div > ul { 
-		top: 46px; 		
-		}
-		
-	#mobile-navigation:target > div > ul ul,
-	#mobile-navigation-jquery.target > div > ul ul {
-		width: 85%;
-		margin-left: 15%;		
-		}	
-		
-	#mobile-navigation:target > div > ul ul li a,
-	#mobile-navigation-jquery.target > div > ul ul li a { background: #f6f6f6; }	
-	
-	#mobile-navigation ul li,
-	#mobile-navigation-jquery ul li {
-		display: block;
-		}	
-	
-	#mobile-navigation ul li a,
-	#mobile-navigation-jquery ul li a {
-		color: #757575;
-		padding: 9px 10px;
-		}
-		
-	#mobile-navigation ul ul li a,
-	#mobile-navigation-jquery ul ul li a {
-		width: auto;
-		}	
-	
-	.menu-open,
-	.dashicons.menu-open { display: block; }	
-	
-	#mobile-navigation:target + #page > .menu-open,
-	#mobile-navigation:target + #page > .dashicons.menu-open { display: none; }			
-
-	.menu-close,
-	.dashicons.menu-close { display: none; }
-	
-	#mobile-navigation:target + #page > .menu-close,
-	#mobile-navigation:target + #page > .dashicons.menu-close { display: block; }		
-		
-	#mobile-navigation ul li a:hover,
-	#mobile-navigation-jquery ul li a:hover { color: #12719d; }		
-		
 	#site-banner-main .site-branding {
 		display: inline-block;
 		zoom: 1; *display: inline;
 		width: auto;
 		position: relative;
 		z-index: 1;
-		}	
-		
+		}		
+					
     .menu-open,
 	.dashicons.menu-open,
 	.menu-close,
 	.dashicons.menu-close,
 	.dashicons, 
 	.dashicons-before::before {
+		display: block;
 		position: absolute;
 		top: 0;
 		left: 0;		

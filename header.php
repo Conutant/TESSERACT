@@ -26,74 +26,47 @@ if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin
 $bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
 if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity == 0 ) ) $bodyClass .= ' zero-opacity-header'; ?>
 
-<body <?php body_class( $bodyClass ); ?>>
+<body <?php body_class( $bodyClass ); ?>> 	
 
-<nav id="mobile-navigation" class="top-navigation" role="navigation">
-
-	<?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
-    	  $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');
-                    
-        if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
-            wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu' ) );             		
-        elseif ( $anyMenu && ( !$menuSelect || ( $menuSelect == 'none' ) ) ) :
-            $menu = get_terms( 'nav_menu' );  
-            
-            //Check if a menu is assigned to the location 'primary'
-            if ( has_nav_menu( 'primary' ) ) :
-                wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
-            //If there isn't, then display the first menu in the list of menus thrown by the function get_terms( 'nav_menu' )
-            else :
-                $menu_id = $menu[0]->term_id;				
-                wp_nav_menu( array( 'menu_id' => $menu_id ) ); 
-            endif;
-            
-        elseif ( !$anyMenu ) :
-            wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) );                        
-        endif; ?>
-
-</nav><!-- #site-navigation -->  	
+<?php $headright_content = get_theme_mod('tesseract_tho_header_content_content');
+$wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
+if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
+	$rightclass = $wooheader ? $headright_content . ' is-right is-woo ' : $headright_content . ' is-right no-woo ';	
+} else if ( ( $headright_content == 'nothing' ) && $wooheader ) {
+	$rightclass = $wooheader ? $headright_content . ' no-right is-woo ' : $headright_content . ' no-right no-woo ';	
+}
+?>
 
 <div id="page" class="hfeed site">
-
-	<?php $headright_content = get_theme_mod('tesseract_tho_header_content_content');
-	$wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
-	if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
-		$rightclass = $wooheader ? $headright_content . ' is-right is-woo ' : $headright_content . ' is-right no-woo ';	
-	} else if ( ( $headright_content == 'nothing' ) && $wooheader ) {
-		$rightclass = $wooheader ? $headright_content . ' no-right is-woo ' : $headright_content . ' no-right no-woo ';	
-	}
-	?>
-
+    
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tesseract' ); ?></a>
-    
-    <a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="#mobile-navigation"></a>
-    <a class="<?php echo $rightclass; ?>menu-close dashicons dashicons-no" href="#"></a>            
-    
 
-    <?php $logoImg = get_theme_mod('tesseract_logo_image'); 
-	$blogname = get_bloginfo('blogname'); 
-	$headersize = get_theme_mod('tesseract_tho_header_height');
-	$hmenusize = get_theme_mod('tesseract_tho_header_width');
-	
-	$hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
-	
-	if ( !$logoImg && $blogname ) $brand_content = 'blogname';
-	if ( $logoImg ) $brand_content = 'logo';
-	if ( !$logoImg && !$blogname ) $brand_content = 'no-brand'; 
-
-	?>
-
-	<?php $mastclass = ( $headersize == 'none' ) ? 'menu-default' : 'menu-' . $headersize; 
-	$bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
-	$headpos = ( $bckOpacity && ( $bckOpacity !== 100 ) ) ? 'pos-absolute' : 'pos-relative';
-	?>
+    <a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="#site-navigation" id="mobile-menu-trigger"></a>
     
+	<?php $logoImg = get_theme_mod('tesseract_logo_image'); 
+    $blogname = get_bloginfo('blogname'); 
+    $headersize = get_theme_mod('tesseract_tho_header_height');
+    $hmenusize = get_theme_mod('tesseract_tho_header_width');
+    
+    $hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
+    
+    if ( !$logoImg && $blogname ) $brand_content = 'blogname';
+    if ( $logoImg ) $brand_content = 'logo';
+    if ( !$logoImg && !$blogname ) $brand_content = 'no-brand'; 
+    
+    ?>
+    
+    <?php $mastclass = ( $headersize == 'none' ) ? 'menu-default' : 'menu-' . $headersize; 
+    $bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
+    $headpos = ( $bckOpacity && ( $bckOpacity !== 100 ) ) ? 'pos-absolute' : 'pos-relative';
+    ?>
+
     <header id="masthead" class="site-header <?php echo $rightclass . $headpos . ' ' . $mastclass . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
     
-        <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; ?>">               
+        <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; ?>">
             
             <div id="site-banner-main" class="<?php echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  'is-right' : 'no-right'; ?>">
-				
+                
                 <?php if ( $logoImg || $blogname ) { ?>
                     <div class="site-branding">
                         <?php if ( $logoImg ) : ?>
@@ -102,16 +75,17 @@ if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity == 0 ) ) $bodyClass 
                             <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
                         <?php endif; ?>
                     </div><!-- .site-branding -->
-              	<?php } ?>
-				
-				<?php get_template_part( 'content', 'header-navigation' ); ?> 
-            
-				<?php get_template_part( 'content', 'header-rightcontent' ); ?>            
+                <?php } ?>
                 
-            </div>    
-
-        </div>            
+                <?php get_template_part( 'content', 'header-navigation' ); ?>
+            
+                <?php get_template_part( 'content', 'header-rightcontent' ); ?>
+                
+            </div>
+    
+        </div>
         
-	</header><!-- #masthead -->
+    </header><!-- #masthead -->
+    
     
     <div id="content" class="cf site-content">

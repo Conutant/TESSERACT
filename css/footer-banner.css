@@ -13,6 +13,10 @@
 	display: inline-block;
 	zoom: 1; *display: inline;
 	vertical-align: top;
+	}
+
+#footer-banner .site-title {
+	margin: 0;
 	}	
 	
 #horizontal-menu-wrap { 
@@ -247,10 +251,7 @@
 		float: none;	
 		}
 		
-	#footer-horizontal-menu ul li { padding: 0 12px; }	
-		
-	#footer-horizontal-menu ul li:first-child { padding-left: 0; }
-	#footer-horizontal-menu ul li:last-child { padding-right: 0; }		
+	#footer-horizontal-menu ul li { padding: 0 12px; }		
 	
 	 #horizontal-menu-before .search-form {
 		display: block;

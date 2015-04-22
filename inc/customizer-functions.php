@@ -133,6 +133,12 @@ function tesseract_sanitize_textarea_html( $value ) {
 	$allowed = array(
 		//container and button
 		'p' => array(),
+		'h1' => array(),
+		'h2' => array(),
+		'h3' => array(),
+		'h4' => array(),
+		'h5' => array(),
+		'h6' => array(),
 		'div'     => array(),
 		'input'    	=> array(
 			'height'	=> array(),

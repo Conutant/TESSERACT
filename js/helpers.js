@@ -10,11 +10,17 @@
 		$( '#url' ).attr( 'placeholder','Website' );
 		$( '#comment' ).attr( 'placeholder','Your Comment' );
 		
-		$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });	
+		$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });			
 				
-		$(window).load(function() {						
+		$(window).load(function() {	
+		
+			mobMenu();					
 			
-			equalheight('#sidebar-footer aside');
+			$('#mobile-menu-trigger').sidr({
+				source: '#site-banner-right, #site-navigation'	
+			});
+			
+			equalheight('#sidebar-footer aside');		
 		
 			if ( $(window).width() <= 620 ) {
 				$('.tesseract-featured .entry-title, .featured-widget h1').fitText(0.6);

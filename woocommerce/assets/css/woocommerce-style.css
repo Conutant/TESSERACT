@@ -431,7 +431,7 @@ form.woocommerce-checkout {
 	}
 
 	#masthead.is-right.menu-small .banner-right .woocart-header {
-		padding: 8px 0;
+		padding: 0;
 	}
 
 	#masthead.is-right .banner-right .woocart-header a {
@@ -444,11 +444,11 @@ form.woocommerce-checkout {
 	}
 	
 	#masthead.is-right.menu-small .banner-right .woocart-header a:before {
-		margin-top: 10px; 	
+		margin-top: 18px; 	
 	}			
 	
 	#masthead.is-right.menu-small .banner-right .woocart-header a {
-		line-height: 38px;	
+		line-height: 54px;	
 	}	
 	
 	/* EOF HEADER RIGHT SIDE CONTENT REPOSITIONING */
@@ -527,6 +527,14 @@ form.woocommerce-checkout {
 		zoom: 1; *display: inline;
 		padding: 0 20px 0 0;	
 	}
+	
+	#masthead.is-right.menu-small .banner-right .woocart-header a:before {
+		margin-top: 9px; 	
+	}			
+	
+	#masthead.is-right.menu-small .banner-right .woocart-header a {
+		line-height: 36px;	
+	}		
 
 	/* EOF HEADER RIGHT SIDE CONTENT REPOSITIONING */
 	
