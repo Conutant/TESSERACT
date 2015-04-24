@@ -17,8 +17,16 @@
 			mobMenu();					
 			
 			$('#mobile-menu-trigger').sidr({
-				source: '#site-banner-right, #site-navigation'	
+				source: '#site-banner-right, #site-navigation',
+				name: 'sidr-main'	
 			});
+			
+			// ]if ( self == top )[ = if content is sitting in an iframe 
+			if ( $('#site-navigation').hasClass('showit') && ( self !== top ) ) {
+							
+				$.sidr('open', 'sidr-main');
+					
+			}
 			
 			equalheight('#sidebar-footer aside');		
 		
@@ -38,8 +46,8 @@
 					var offset = parseInt( wheight - ( hheight + fheight ) );	
 				}
 				
-				// ]if ( self == top )[ = if content is sitting in an iframe 
-				if ( ( $('body').hasClass('logged-in') ) && ( self == top ) ) {
+				// ]if ( self !== top )[ = if content is sitting in an iframe 
+				if ( ( $('body').hasClass('logged-in') ) && ( self !== top ) ) {
 					var offsetFinal = ( $(window).width() > 782 ) ? ( offset-32 ) : ( offset-46 ); 
 				} else {
 					var offsetFinal = offset;	

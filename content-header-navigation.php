@@ -22,7 +22,11 @@ if ( $hmenusize == 'fullwidth' ) :
 endif;
 ?>
 
-<nav id="site-navigation" class="main-navigation top-navigation <?php echo $hmenusize_class; if ( $hmenusize == 'fullwidth' ) echo ' ' . $hmenusep_class; ?>" role="navigation">
+<?php 	$mmdisplay = get_theme_mod( 'tesseract_tho_mobmenu_opener' ); 
+		$mmdClass = ( $mmdisplay == 1 ) ? 'showit' : 'hideit';
+?>
+
+<nav id="site-navigation" class="<?php echo $mmdClass; ?> main-navigation top-navigation <?php echo $hmenusize_class; if ( $hmenusize == 'fullwidth' ) echo ' ' . $hmenusep_class; ?>" role="navigation">
     
     <?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
           $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');

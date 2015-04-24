@@ -230,6 +230,49 @@ function tesseract_scripts() {
 	
 	$add_content_borderColor_array = tesseract_hex2rgb( $footer_linkColor );
 	$add_content_borderColor = implode( ', ', $add_content_borderColor_array );	
+	
+	$mobmenu_bckColor = get_theme_mod('tesseract_tho_mobmenu_background_color') ? get_theme_mod('tesseract_tho_mobmenu_background_color') : '#336ca6';
+	$mobmenu_linkColor = get_theme_mod('tesseract_tho_mobmenu_link_color') ? get_theme_mod('tesseract_tho_mobmenu_link_color') : '#fff';
+	$mobmenu_linkHoverColor = get_theme_mod('tesseract_tho_mobmenu_link_hover_color') ? get_theme_mod('tesseract_tho_mobmenu_link_hover_color') : '#fff';
+	
+	$mobmenu_linkHoverBckColor_option = get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color') ? get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color') : 'dark';	
+	$mobmenu_linkHoverBckColor_option_custom = get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color_custom');		
+
+	switch ( $mobmenu_linkHoverBckColor_option ) {
+		
+		case 'custom':
+			$mobmenu_linkHoverBckColor = $mobmenu_linkHoverBckColor_option_custom;
+			break;
+		case 'light':
+			$mobmenu_linkHoverBckColor = 'rgba(255, 255, 255, 0.1)';
+			break;
+		default:
+			$mobmenu_linkHoverBckColor = 'rgba(0, 0, 0, 0.2)';
+		
+	}
+
+	$dynamic_styles_mobmenu = ".sidr {
+		background-color: " . $mobmenu_bckColor . ";
+		}
+		
+	.sidr .sidr-class-menu li a,
+	.sidr .sidr-class-menu li span { color: " . $mobmenu_linkColor . "; }
+	
+	.sidr .sidr-class-menu li a:hover,
+	.sidr .sidr-class-menu li span:hover,
+	.sidr .sidr-class-menu li:first-child a:hover,
+	.sidr .sidr-class-menu li:first-child span:hover { color: " . $mobmenu_linkHoverColor . "; }
+	
+	.sidr ul li > a:hover, 
+	.sidr ul li > span:hover, 
+	.sidr > div > ul > li:first-child > a:hover, 
+	.sidr > div > ul > li:first-child > span:hover, 
+	.sidr ul li ul li:hover > a, 
+	.sidr ul li ul li:hover > span { background: " . $mobmenu_linkHoverBckColor . "; }	
+	
+	";
+	
+	wp_add_inline_style( 'tesseract-sidr-style', $dynamic_styles_mobmenu );
 
 	$dynamic_styles_header = ".site-header,
 	.main-navigation ul ul a { background-color: " . $header_bckColor . "; }

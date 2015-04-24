@@ -271,6 +271,16 @@ function tesseract_sanitize_radio_nextToMenu_left( $value ) {
     return $value;
 }
 
+function tesseract_sanitize_radio_link_hover_background_color( $value ) {
+	
+	if ( ! in_array( $value, array( 'dark', 'light', 'custom' ) ) ) :
+        $value = 'dark';
+	endif;
+
+    return $value;	
+	
+}
+
 function tesseract_sanitize_select( $value ) {
 
 	$tesseract_menu_selector_menus = get_terms( 'nav_menu' );	
@@ -346,6 +356,15 @@ function tesseract_button_textarea_enable() {
 	$bool = ( $textarea_enable == 'buttons' ) ? true : false;
 	
 	return $bool;
+	
+}
+
+function tesseract_tho_mobmenu_link_hover_background_color_custom_enable() {
+
+	$color_option = get_theme_mod( 'tesseract_tho_mobmenu_link_hover_background_color' );
+	$bool = ( $color_option == 'custom' ) ? true : false;
+	
+	return $bool;	
 	
 }
 
