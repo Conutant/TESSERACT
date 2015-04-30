@@ -18,7 +18,8 @@ function tesseract_header_right_content( $content ) {
 			
 		// Step 3 -> social
 		case 'social': ?>
-		
+			
+            <div class="social-wrapper cf">	
 				<ul class="hr-social">
                 	<?php $sn = array(
 						'fb' => __( 'Facebook', 'tesseract' ),
@@ -45,8 +46,9 @@ function tesseract_header_right_content( $content ) {
 					} ?>
 
 				</ul>
-		
-			<?php break;
+			</div>
+            
+		<?php break;
 			
 		// Step 5 -> search
 		case 'search':

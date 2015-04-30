@@ -6,7 +6,7 @@
 			
 			var vow = $(this).attr('data-width'),
 			voh = $(this).attr('data-height'),
-			vratio = parseInt( vow ) / parseInt( voh ), ///.5625
+			vratio = parseInt( vow ) / parseInt( voh ), //.5625
 			pratio = parseInt( $(this).parent().width() )/ parseInt( $(this).parent().height() ); //.3248
 			
 			var tc = $(this).closest('.fl-row-content-wrap'),

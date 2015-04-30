@@ -87,8 +87,8 @@ function tesseract_customize_register( $wp_customize ) {
 	
 	require get_template_directory() . '/inc/sections/woocommerce.php';																										
 			
-	if ( $wp_customize->is_preview() && ! is_admin() )
-		add_action( 'wp_footer', 'tesseract_customize_preview', 21);									
+	//if ( $wp_customize->is_preview() && ! is_admin() )
+		//add_action( 'wp_footer', 'tesseract_customize_preview', 21);									
 	
 }
 add_action( 'customize_register', 'tesseract_customize_register', 10 );
@@ -98,16 +98,33 @@ add_action( 'customize_register', 'tesseract_customize_register', 10 );
  */
 function tesseract_customize_preview_js() {
 	
-	wp_enqueue_script( 'tesseract_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '1.0.0', true );
+	wp_register_script( 'tesseract_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '1.0.0', true );
 
-	// Localize script (only few lines in helpers.js)
-    wp_localize_script( 'tesseract_helpers', 'tesseract_vars', array(  
- 	    'author'   => __( 'Your Name', 'tesseract' ), 
- 	    'email'    => __( 'E-mail', 'tesseract' ),
-		'url'      => __( 'Website', 'tesseract' ),
-		'comment'  => __( 'Your Comment', 'tesseract' ),
-		'themeuri'  => get_template_directory_uri()
+		// Let's get a lighter version of the user-definedsearch iput color applied in the mobile menu - tricky
+		// See @ http://stackoverflow.com/questions/11091695/how-to-find-the-hex-code-for-a-lighter-or-darker-version-of-a-hex-code-in-php
+		$watermarkColor = get_theme_mod('tesseract_tho_mobmenu_search_color');
+		$col = Array(
+			hexdec(substr($watermarkColor,1,2)),
+			hexdec(substr($watermarkColor,3,2)),
+			hexdec(substr($watermarkColor,5,2))
+		);
+		$lighter = Array(
+			255-(255-$col[0])*0.8,
+			255-(255-$col[1])*0.8,
+			255-(255-$col[2])*0.8
+		);	
+		$lighter = "#".sprintf("%02X%02X%02X", $lighter[0], $lighter[1], $lighter[2]);
+
+	// Localize script
+    wp_localize_script( 'tesseract_customizer', 'tesseract_vars', array(  
+ 	    'mobmenu_link_hover_background_color_custom'   	=> get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color_custom'),
+		'mobmenu_shadow_color_custom'   				=> get_theme_mod('tesseract_tho_mobmenu_shadow_color_custom'),
+		'mobmenu_search_color'   						=> get_theme_mod('tesseract_tho_mobmenu_search_color'),
+		'mobmenu_buttons_background_color_custom' 		=> get_theme_mod('tesseract_tho_mobmenu_buttons_background_color_custom'),
+		'mobmenu_search_color_lighter'   				=> $lighter,
  	) );	
+	
+	wp_enqueue_script( 'tesseract_customizer' );
 
 }
 

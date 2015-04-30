@@ -24,9 +24,9 @@ if ( (is_page()) && (has_post_thumbnail()) ) $bodyClass .= ' tesseract-featured'
 if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin_active('beaver-builder/fl-builder.php') ) $bodyClass .= ' beaver-on';
 
 $bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
-if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity == 0 ) ) $bodyClass .= ' zero-opacity-header'; ?>
+if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity < 100 ) ) $bodyClass .= ' transparent-header'; ?>
 
-<body <?php body_class( $bodyClass ); ?>> 	
+<body <?php body_class( $bodyClass ); ?>>	
 
 <?php $headright_content = get_theme_mod('tesseract_tho_header_content_content');
 $wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
@@ -41,7 +41,7 @@ if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
     
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tesseract' ); ?></a>
 
-    <a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="#site-navigation" id="mobile-menu-trigger"></a>
+    <a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="" id="mobile-menu-trigger"></a>
     
 	<?php $logoImg = get_theme_mod('tesseract_logo_image'); 
     $blogname = get_bloginfo('blogname'); 

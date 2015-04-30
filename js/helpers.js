@@ -10,16 +10,20 @@
 		$( '#url' ).attr( 'placeholder','Website' );
 		$( '#comment' ).attr( 'placeholder','Your Comment' );
 		
-		$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });			
+		$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });
+		
+		$('.placeholdit').Watermark('Search …', '#ccc');			
 				
 		$(window).load(function() {	
 		
 			mobMenu();					
 			
 			$('#mobile-menu-trigger').sidr({
-				source: '#site-banner-right, #site-navigation',
+				source: '#site-navigation, #site-banner-right > *:not(".woocart-header")',
 				name: 'sidr-main'	
-			});
+			});					
+			
+			$('.sidr-class-placeholdit').Watermark('Search …', tesseract_vars.mobmenu_search_color_lighter );
 			
 			// ]if ( self == top )[ = if content is sitting in an iframe 
 			if ( $('#site-navigation').hasClass('showit') && ( self !== top ) ) {
@@ -30,7 +34,7 @@
 			
 			equalheight('#sidebar-footer aside');		
 		
-			if ( $(window).width() <= 620 ) {
+			if ( $(window).width() <= 768 ) {
 				$('.tesseract-featured .entry-title, .featured-widget h1').fitText(0.6);
 			} 
 			
@@ -40,14 +44,14 @@
 				hheight = parseInt( $('#masthead').not('.pos-absolute').height() ),
 				fheight = parseInt( $('#colophon').height() );
 				
-				if ( $('body').hasClass('zero-opacity-header') ) {
+				if ( $('body').hasClass('transparent-header') ) {
 					var offset = parseInt( wheight - fheight );
 				} else {
 					var offset = parseInt( wheight - ( hheight + fheight ) );	
 				}
 				
 				// ]if ( self !== top )[ = if content is sitting in an iframe 
-				if ( ( $('body').hasClass('logged-in') ) && ( self !== top ) ) {
+				if ( ( $('body').hasClass('logged-in') ) && ( self == top ) ) {
 					var offsetFinal = ( $(window).width() > 782 ) ? ( offset-32 ) : ( offset-46 ); 
 				} else {
 					var offsetFinal = offset;	
@@ -68,7 +72,7 @@
 		 	equalheight('#sidebar-footer aside');
 			mobMenu();	
 			
-			if ( $(window).width() <= 620 ) {
+			if ( $(window).width() <= 768 ) {
 				$('.tesseract-featured .entry-title').fitText(0.6, { maxFontSize: '75px' });
 				$('.featured-widget h1').fitText(0.6, { maxFontSize: '100px' });
 				$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });		

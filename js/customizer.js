@@ -206,11 +206,11 @@
 		value.bind( function( to ) {
 			switch(to) {
 				case 'dark':
-					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(0, 0, 0, .2)' );
+					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(0, 0, 0, .2)' ); break;
 				case 'light':
-					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(255, 255, 255, .1)' );
+					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(255, 255, 255, .1)' ); break;
 				case 'custom':
-					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', tesseract_vars.mobmenu_link_hover_background_color_custom );					
+					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', tesseract_vars.mobmenu_link_hover_background_color_custom ); break;			
 			}
 		} );
 	} );	
@@ -228,7 +228,124 @@
 				)				
 			})				
 		} );
+	} );
+	
+	wp.customize( 'tesseract_tho_mobmenu_shadow_color_custom', function( value ) {
+		value.bind( function( to ) {
+			
+			var shad_r = hexToRgb(to).r,
+			shad_g = hexToRgb(to).g,
+			shad_b = hexToRgb(to).b,
+			shad_rgbArray = shad_r + ', ' + shad_g + ', ' + shad_b;			
+			
+			$( '.sidr ul li > a, .sidr ul li > span, #sidr-id-header-button-container-inner > *' ).css({
+				'-webkit-box-shadow': 'inset 0 -1px rgba( ' + shad_rgbArray + ' , 0.2)',
+				'-moz-box-shadow': 'inset 0 -1px rgba( ' + shad_rgbArray + ' , 0.2)',
+				'box-shadow': 'inset 0 -1px rgba( ' + shad_rgbArray + ' , 0.2)'			
+			})		
+			
+			$('.sidr > div > ul > li:first-child > a, .sidr > div > ul > li:first-child > span').css({
+				'-webkit-box-shadow': 'inset 0 -1px rgba( ' + shad_rgbArray + ', 0.2), inset 0 1px rgba( ' + shad_rgbArray + ', 0.2)',
+				'-moz-box-shadow': 'inset 0 -1px rgba( ' + shad_rgbArray + ', 0.2), inset 0 1px rgba( ' + shad_rgbArray + ', 0.2)',
+				'box-shadow': 'inset 0 -1px rgba( ' + shad_rgbArray + ', 0.2), inset 0 1px rgba( ' + shad_rgbArray + ',  0.2)'					
+			});	
+			
+			$('.sidr ul.sidr-class-hr-social li a, .sidr ul.sidr-class-hr-social li a:first-child').css({
+				'-webkit-box-shadow': '0 1px 0 0 rgba( ' + shad_rgbArray + ' , 0.25)',
+				'-moz-box-shadow': '0 1px 0 0 rgba( ' + shad_rgbArray + ', 0.25)',
+				'box-shadow': '0 1px 0 0 rgba( ' + shad_rgbArray + ', 0.25)'				
+			});	
+					
+		} );
+	} );
+	
+	wp.customize( 'tesseract_tho_mobmenu_search_color', function( value ) {
+		value.bind( function( to ) {
+			$( '.sidr-class-search-field, .sidr .search-form input[type="search"]' ).css( 'color', to );
+						
+		} );
+	} );
+	
+	wp.customize( 'tesseract_tho_mobmenu_search_background_color', function( value ) {
+		value.bind( function( to ) {
+			var mobmenu_searchBckColor = ( to == 'dark' ) ? 'rgba(0, 0, 0, .15)': 'rgba(255, 255, 255, 0.15)';
+			$( '.sidr-class-search-field, .sidr-class-search-form input[type="search"]' ).css('background-color', mobmenu_searchBckColor);
+		} );
+	} );	
+
+	wp.customize( 'tesseract_tho_mobmenu_buttons_background_color', function( value ) {
+		value.bind( function( to ) {
+			switch(to) {
+				case 'dark':
+					$( '#sidr-id-header-button-container-inner' ).css( 'background', 'rgba(0, 0, 0, .2)' ); break;
+				case 'light':
+					$( '#sidr-id-header-button-container-inner' ).css( 'background', 'rgba(255, 255, 255, .1)' ); break;
+				case 'custom':
+					$( '#sidr-id-header-button-container-inner' ).css( 'background', tesseract_vars.mobmenu_buttons_background_color_custom ); break;			
+			}
+		} );
 	} );	
 	
+	wp.customize( 'tesseract_tho_mobmenu_buttons_background_color_custom', function( value ) {
+		value.bind( function( to ) {
+			$( '#sidr-id-header-button-container-inner' ).css( 'background', to );
+		} );					
+	} );
+	
+	wp.customize( 'tesseract_tho_mobmenu_buttons_text_color', function( value ) {
+		value.bind( function( to ) {
+			$( '#sidr-id-header-button-container-inner, #sidr-id-header-button-container-inner > h1, #sidr-id-header-button-container-inner > h2, #sidr-id-header-button-container-inner > h3, #sidr-id-header-button-container-inner > h4, #sidr-id-header-button-container-inner > h5, #sidr-id-header-button-container-inner > h6' ).css( 'color', to );
+		} );					
+	} );		
+	
+	wp.customize( 'tesseract_tho_mobmenu_buttons_link_color, #sidr-id-header-button-container-inner button', function( value ) {
+		value.bind( function( to ) {
+			$( '#sidr-id-header-button-container-inner a' ).css( 'color', to );
+		} );					
+	} );			
+	
+	
+	wp.customize( 'tesseract_tho_mobmenu_buttons_link_hover_color', function( value ) {
+		value.bind( function( to ) {
+			$( '#sidr-id-header-button-container-inner a, #sidr-id-header-button-container-inner button' ).each(function() {
+				var origColor = $( this ).css('color');
+				$( this ).hover(
+					function() {
+						$(this).css('color', to);
+					}, function() {
+						$(this).css('color', origColor);
+					}
+				)				
+			})
+		} );
+	} );	
+	
+	wp.customize( 'tesseract_tho_mobmenu_maxbtn_sep_color', function( value ) {
+		value.bind( function( to ) {
+			
+			var max_r = hexToRgb(to).r,
+			max_g = hexToRgb(to).g,
+			max_b = hexToRgb(to).b,
+			max_rgbArray = 'inset 0 -1px rgba( ' + max_r + ', ' + max_g + ', ' + max_b + ', 0.2)';			
+			
+			$( '.sidr ul li > a, .sidr ul li > span, #sidr-id-header-button-container-inner > *, #sidr-id-header-button-container-inner button' ).css({
+				'-webkit-box-shadow': max_rgbArray,
+				'-moz-box-shadow': max_rgbArray,
+				'box-shadow': max_rgbArray			
+			})		
+					
+		} );
+	} );	
+	
+	wp.customize( 'tesseract_tho_mobmenu_maxbtn_sep_color', function( value ) {
+		value.bind( function( to ) {
+			var mobmenu_maxbtnSepColor = ( to == 'dark' ) ? 'inset 0 -1px rgba(0, 0, 0, .1)': 'inset 0 -1px rgba(255, 255, 255, 0.1)';
+			$( '.sidr ul li > a, .sidr ul li > span, #sidr-id-header-button-container-inner > *, #sidr-id-header-button-container-inner button' ).css({
+				'-webkit-box-shadow': mobmenu_maxbtnSepColor,
+				'-moz-box-shadow': mobmenu_maxbtnSepColor,
+				'box-shadow': mobmenu_maxbtnSepColor					
+			});
+		} );
+	} );		
 				
 } )( jQuery );

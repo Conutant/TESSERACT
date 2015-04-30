@@ -2369,7 +2369,7 @@ article.comment-body{
 	
 	}
 	
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 768px) {
 	
 	#primary, 
 	#secondary {
@@ -2380,26 +2380,21 @@ article.comment-body{
 
 	.search-no-results #secondary aside.widget_search:first-child {
 		display: none;	
-		}
+		}			
 		
-	.fl-bg-video > video {
-
-	}			
-	
-	} 	
-
-
-@media screen and (max-width: 620px) {
-		
-	.mobile-resize{
-		font-size:30px !important;
-	}
-	
 	.aligncenter {
 		display: block;
 		margin: 0px auto 0px auto;
 	}		
 	
+} 	
+
+@media screen and (max-width: 600px) {	
+
+	#wpadminbar {
+		position: fixed;
+		}
+
 }
 
 @media screen and (max-width: 480px) {
@@ -2443,24 +2438,6 @@ article.comment-body{
 	
 }
 
-@media screen and (max-width: 480px) {
-		
-	#sidebar-footer aside {
-		width: 100%!important;
-		}	
-		
-	textarea,
-	input:not([type]),
-	input[type="text"],
-	input[type="password"],
-	input[type="email"],
-	input[type="url"],
-	input[type="search"],
-	input[type="tel"] {
-		max-width: 100%;
-		}		
-	
-	}
 
 
 /* =26. Print styles

@@ -163,8 +163,11 @@ function tesseract_scripts() {
 	//Mobile menu
 	wp_enqueue_script( 'tesseract-sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array( 'tesseract-fittext' ), '1.0.0', true );
 	
+	//Fix inconsistent placeholder availability
+	wp_enqueue_script( 'tesseract-placeholder', get_template_directory_uri() . '/js/jquery.watermarkinput.js', array( 'tesseract-sidr' ), '1.0.0', true );
+	
     // JS helpers (This is also the place where we call the jQuery in array)
-	wp_enqueue_script( 'tesseract-helpers-functions', get_template_directory_uri() . '/js/helpers-functions.js', array( 'tesseract-fittext' ), '1.0.0', true );
+	wp_enqueue_script( 'tesseract-helpers-functions', get_template_directory_uri() . '/js/helpers-functions.js', array( 'tesseract-placeholder' ), '1.0.0', true );
 	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'tesseract-helpers-functions' ), '1.0.0', true );	
 	
 	if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin_active('beaver-builder/fl-builder.php') ) {
@@ -183,12 +186,33 @@ function tesseract_scripts() {
 	wp_register_script( 'tesseract_helpers', get_template_directory_uri() . '/js/helpers.js' );
 
 	// Localize script (only few lines in helpers.js)
+		
+		// First things first: let's get a lighter version of the user-definedsearch iput color applied in the mobile menu - tricky
+		// See @ http://stackoverflow.com/questions/11091695/how-to-find-the-hex-code-for-a-lighter-or-darker-version-of-a-hex-code-in-php
+		$watermarkColor = get_theme_mod('tesseract_tho_mobmenu_search_color');
+		$col = Array(
+			hexdec(substr($watermarkColor,1,2)),
+			hexdec(substr($watermarkColor,3,2)),
+			hexdec(substr($watermarkColor,5,2))
+		);
+		$lighter = Array(
+			255-(255-$col[0])*0.8,
+			255-(255-$col[1])*0.8,
+			255-(255-$col[2])*0.8
+		);	
+		$lighter = "#".sprintf("%02X%02X%02X", $lighter[0], $lighter[1], $lighter[2]);	
+	
     wp_localize_script( 'tesseract_helpers', 'tesseract_vars', array(  
- 	    'author'   => __( 'Your Name', 'tesseract' ), 
- 	    'email'    => __( 'E-mail', 'tesseract' ),
-		'url'      => __( 'Website', 'tesseract' ),
-		'comment'  => __( 'Your Comment', 'tesseract' ),
-		'themeuri'  => get_template_directory_uri()
+ 	    'author'   										=> __( 'Your Name', 'tesseract' ), 
+ 	    'email'    										=> __( 'E-mail', 'tesseract' ),
+		'url'      										=> __( 'Website', 'tesseract' ),
+		'comment'  										=> __( 'Your Comment', 'tesseract' ),
+		'themeuri'  									=> get_template_directory_uri(),
+ 	    'mobmenu_link_hover_background_color_custom'   	=> get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color_custom'),
+		'mobmenu_shadow_color_custom'   				=> get_theme_mod('tesseract_tho_mobmenu_shadow_color_custom'),
+		'mobmenu_search_color'   						=> get_theme_mod('tesseract_tho_mobmenu_search_color'),
+		'mobmenu_buttons_background_color_custom'   	=> get_theme_mod('tesseract_tho_mobmenu_buttons_background_color_custom'),
+		'mobmenu_search_color_lighter'   				=> $lighter  		
  	) );	
 	
 	wp_enqueue_script( 'tesseract_helpers' );	
@@ -202,6 +226,7 @@ function tesseract_scripts() {
 		$header_bckOpacity = 100; 
 	}
 	
+	//HEADER and FOOTER
 	$header_textColor = get_theme_mod('tesseract_tho_header_colors_text_color') ? get_theme_mod('tesseract_tho_header_colors_text_color') : '#ffffff';
 	
 	$header_linkColor = get_theme_mod('tesseract_tho_header_colors_link_color') ? get_theme_mod('tesseract_tho_header_colors_link_color') : '#ffffff';
@@ -231,13 +256,19 @@ function tesseract_scripts() {
 	$add_content_borderColor_array = tesseract_hex2rgb( $footer_linkColor );
 	$add_content_borderColor = implode( ', ', $add_content_borderColor_array );	
 	
+	//MOBMENU
 	$mobmenu_bckColor = get_theme_mod('tesseract_tho_mobmenu_background_color') ? get_theme_mod('tesseract_tho_mobmenu_background_color') : '#336ca6';
 	$mobmenu_linkColor = get_theme_mod('tesseract_tho_mobmenu_link_color') ? get_theme_mod('tesseract_tho_mobmenu_link_color') : '#fff';
 	$mobmenu_linkHoverColor = get_theme_mod('tesseract_tho_mobmenu_link_hover_color') ? get_theme_mod('tesseract_tho_mobmenu_link_hover_color') : '#fff';
 	
+	list($lc_r, $lc_g, $lc_b) = sscanf($mobmenu_linkColor, "#%02x%02x%02x");
+	$mob_rgb_linkColor_submenu = "rgba($lc_r, $lc_g, $lc_b, 0.8)";
+
+	list($lhc_r, $lhc_g, $lhc_b) = sscanf($mobmenu_linkHoverColor, "#%02x%02x%02x");
+	$mob_rgb_linkHoverColor_submenu = "rgba($lhc_r, $lhc_g, $lhc_b, 0.8)";
+	
 	$mobmenu_linkHoverBckColor_option = get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color') ? get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color') : 'dark';	
 	$mobmenu_linkHoverBckColor_option_custom = get_theme_mod('tesseract_tho_mobmenu_link_hover_background_color_custom');		
-
 	switch ( $mobmenu_linkHoverBckColor_option ) {
 		
 		case 'custom':
@@ -247,9 +278,57 @@ function tesseract_scripts() {
 			$mobmenu_linkHoverBckColor = 'rgba(255, 255, 255, 0.1)';
 			break;
 		default:
-			$mobmenu_linkHoverBckColor = 'rgba(0, 0, 0, 0.2)';
-		
+			$mobmenu_linkHoverBckColor = 'rgba(0, 0, 0, 0.2)';	
 	}
+	
+	$mobmenu_shadowColor_option = get_theme_mod('tesseract_tho_mobmenu_shadow_color') ? get_theme_mod('tesseract_tho_mobmenu_shadow_color') : 'dark';
+	$mobmenu_shadowColor_option_custom = get_theme_mod('tesseract_tho_mobmenu_shadow_color_custom') ? get_theme_mod('tesseract_tho_mobmenu_shadow_color_custom') : 'dark';
+	switch ( $mobmenu_shadowColor_option ) {
+		
+		case 'custom':
+			list($shad_r, $shad_g, $shad_b) = sscanf($mobmenu_shadowColor_option_custom, "#%02x%02x%02x");					
+			break;
+		case 'light':
+			$shad_r = 255; 
+			$shad_g = 255; 
+			$shad_b = 255;
+			break;
+		default:
+			$shad_r = 0; 
+			$shad_g = 0; 
+			$shad_b = 0;		
+	}
+	
+	$mobmenu_searchColor = get_theme_mod('tesseract_tho_mobmenu_search_color');
+	list($sc_r, $sc_g, $sc_b) = sscanf($mobmenu_searchColor, "#%02x%02x%02x");
+	$mobmenu_searchColorRgb = "rgba($sc_r, $sc_g, $sc_b, 0.6)";	
+	
+	$mobmenu_searchBckColor = get_theme_mod('tesseract_tho_mobmenu_search_background_color');
+	$mobmenu_searchBckColor = ( $mobmenu_searchBckColor == 'dark' ) ? 'rgba(0, 0, 0, .15)': 'rgba(255, 255, 255, 0.15)';
+	
+	$mobmenu_socialBckColor = get_theme_mod('tesseract_tho_mobmenu_social_background_color');
+	$mobmenu_socialBckColor = ( $mobmenu_socialBckColor == 'dark' ) ? 'rgba(0, 0, 0, .15)': 'rgba(255, 255, 255, 0.15)';
+	
+	$mobmenu_buttonsBckColor_option = get_theme_mod('tesseract_tho_mobmenu_buttons_background_color') ? get_theme_mod('tesseract_tho_mobmenu_buttons_background_color') : 'dark';	
+	$mobmenu_buttonsBckColor_option_custom = get_theme_mod('tesseract_tho_mobmenu_buttons_background_color_custom');		
+	switch ( $mobmenu_buttonsBckColor_option ) {
+		
+		case 'custom':
+			$mobmenu_buttonsBckColor = $mobmenu_buttonsBckColor_option_custom;
+			break;
+		case 'light':
+			$mobmenu_buttonsBckColor = 'rgba(255, 255, 255, 0.1)';
+			break;
+		default:
+			$mobmenu_buttonsBckColor = 'rgba(0, 0, 0, 0.2)';	
+	}	
+	
+	$mobmenu_buttons_textColor = get_theme_mod('tesseract_tho_mobmenu_buttons_text_color');
+	$mobmenu_buttons_linkColor = get_theme_mod('tesseract_tho_mobmenu_buttons_link_color');
+	$mobmenu_buttons_linkHoverColor = get_theme_mod('tesseract_tho_mobmenu_buttons_link_hover_color');		
+	
+	$mobmenu_buttons_maxbtnSepColor = get_theme_mod('tesseract_tho_mobmenu_maxbtn_sep_color');	
+	$mobmenu_buttons_maxbtnSepColor = ( $mobmenu_buttons_maxbtnSepColor == 'dark' ) ? 'inset 0 -1px rgba(0, 0, 0, .1)': 'inset 0 -1px rgba(255, 255, 255, 0.1)';
 
 	$dynamic_styles_mobmenu = ".sidr {
 		background-color: " . $mobmenu_bckColor . ";
@@ -257,19 +336,98 @@ function tesseract_scripts() {
 		
 	.sidr .sidr-class-menu li a,
 	.sidr .sidr-class-menu li span { color: " . $mobmenu_linkColor . "; }
+
+
+	.sidr .sidr-class-menu ul li a,
+	.sidr .sidr-class-menu ul li span {
+		color: " . $mob_rgb_linkColor_submenu . ";		
+	}
 	
 	.sidr .sidr-class-menu li a:hover,
 	.sidr .sidr-class-menu li span:hover,
 	.sidr .sidr-class-menu li:first-child a:hover,
 	.sidr .sidr-class-menu li:first-child span:hover { color: " . $mobmenu_linkHoverColor . "; }
 	
+	.sidr .sidr-class-menu ul li a:hover,
+	.sidr .sidr-class-menu ul li span:hover,
+	.sidr .sidr-class-menu ul li:first-child a:hover,
+	.sidr .sidr-class-menu ul li:first-child span:hover { color: " . $mob_rgb_linkHoverColor_submenu . "; }	
+	
 	.sidr ul li > a:hover, 
 	.sidr ul li > span:hover, 
 	.sidr > div > ul > li:first-child > a:hover, 
 	.sidr > div > ul > li:first-child > span:hover, 
 	.sidr ul li ul li:hover > a, 
-	.sidr ul li ul li:hover > span { background: " . $mobmenu_linkHoverBckColor . "; }	
+	.sidr ul li ul li:hover > span { 
+		background: " . $mobmenu_linkHoverBckColor . "; 
+		
+		}	
 	
+	/* Shadows and Separators */
+	
+	.sidr ul li > a,
+	.sidr ul li > span,
+	#sidr-id-header-button-container-inner > * {
+		-webkit-box-shadow: inset 0 -1px rgba( " . $shad_r . " ," . $shad_g . " ," . $shad_b . " , 0.2);
+		-moz-box-shadow: inset 0 -1px rgba( " . $shad_r . " ," . $shad_g . " ," . $shad_b . " , 0.2);
+		box-shadow: inset 0 -1px rgba( " . $shad_r . " ," . $shad_g . " ," . $shad_b . " , 0.2);		
+	}
+	
+	.sidr > div > ul > li:last-of-type > a, 
+	.sidr > div > ul > li:last-of-type > span, 
+	#sidr-id-header-button-container-inner > *:last-of-type {
+		box-shadow: none;
+		}	
+	
+	.sidr ul.sidr-class-hr-social li a,
+	.sidr ul.sidr-class-hr-social li a:first-child {
+		-webkit-box-shadow: 0 1px 0 0px rgba( " . $shad_r . " ," . $shad_g . " ," . $shad_b . ", .25);  
+		-moz-box-shadow: 0 1px 0 0px rgba( " . $shad_r . " ," . $shad_g . " ," . $shad_b . ", .25);  
+		box-shadow: 0 1px 0 0px rgba( " . $shad_r . " ," . $shad_g . " ," . $shad_b . ", .25);			
+	}
+	
+	/* Header Right side content */
+
+	.sidr-class-search-field,
+	.sidr-class-search-form input[type='search'] {
+		background: " . $mobmenu_searchBckColor . "; 
+		color: " . $mobmenu_searchColor . ";	
+	}
+	
+	.sidr-class-hr-social {
+		background: " . $mobmenu_socialBckColor . ";		
+	}
+	
+	#sidr-id-header-button-container-inner,
+	#sidr-id-header-button-container-inner > h1,
+	#sidr-id-header-button-container-inner > h2,
+	#sidr-id-header-button-container-inner > h3,
+	#sidr-id-header-button-container-inner > h4,
+	#sidr-id-header-button-container-inner > h5,
+	#sidr-id-header-button-container-inner > h6 {
+		background: " . $mobmenu_buttonsBckColor . ";
+		color: " . $mobmenu_buttons_textColor . ";	
+	}		
+	
+	#sidr-id-header-button-container-inner a,
+	#sidr-id-header-button-container-inner button {
+		color: " . $mobmenu_buttons_linkColor . ";		
+	}
+	
+	#sidr-id-header-button-container-inner a:hover,
+	#sidr-id-header-button-container-inner button:hover {
+		color: " . $mobmenu_buttons_linkHoverColor . ";		
+	}	
+
+	.sidr ul li > a,
+	.sidr ul li > span,
+	#sidr-id-header-button-container-inner > *,
+	#sidr-id-header-button-container-inner button {
+		-webkit-box-shadow: " . $mobmenu_buttons_maxbtnSepColor . ";
+		-moz-box-shadow: " . $mobmenu_buttons_maxbtnSepColor . ";
+		box-shadow: " . $mobmenu_buttons_maxbtnSepColor . ";
+	}
+
 	";
 	
 	wp_add_inline_style( 'tesseract-sidr-style', $dynamic_styles_mobmenu );
@@ -333,6 +491,7 @@ function tesseract_scripts() {
 		
 		#masthead .site-branding {
 			padding: 8px 0 8px 20px;	
+			vertical-align: top;
 		}
 		
 		.site-logo img,
@@ -347,13 +506,24 @@ function tesseract_scripts() {
 		}
 		
 		#masthead.is-right .banner-right {
-			top: 0px;		
+			top: 0px;	
+			height: 54px;	
 		}		
 		
 		#header-button-container {
-			line-height: initial;	
+			line-height: 32px;	
 			height: 100%;
 		}
+
+		#header-button-container-inner p,
+		#header-button-container-inner h1,
+		#header-button-container-inner h2,
+		#header-button-container-inner h3,
+		#header-button-container-inner h4,
+		#header-button-container-inner h5,
+		#header-button-container-inner h6 {
+			line-height: 32px;
+			}				
 		
 		#header-button-container-inner > * {
 			margin-top: 0;
@@ -388,6 +558,10 @@ function tesseract_scripts() {
 			padding: 6px 10px;
 		}
 		
+		.banner-right .hr-social {
+			height: 54px;	
+		}
+		
 		.menu-open,
 		.dashicons.menu-open,
 		.menu-close,
@@ -411,10 +585,10 @@ function tesseract_scripts() {
 		.dashicons.no-right.is-woo, 
 		.dashicons-before.is-right:before,
 		.dashicons-before.no-right.is-woo:before {
-			top: 44px;	
+			top: 8px;	
 		}	
 		
-		@media screen and (max-width: 850px) {
+		@media screen and (max-width: 768px) {
 			
 			.banner-right .search-form,
 			.banner-right .search-form label {
@@ -435,17 +609,13 @@ function tesseract_scripts() {
 				vertical-align: baseline;	
 			}
 		
-		}	
-		
-		@media screen and (max-width: 620px) {
-			
 			.site-logo img, 
 			.site-logo a {
 				height: 40px;
 				padding: 0;	
-			}			
-		
-		}			
+			}	
+
+		}	
 		
 		";		
 	
@@ -481,10 +651,17 @@ function tesseract_scripts() {
 			margin-bottom: 25px!important;
 		}
 		
-		.top-navigation > div > ul > li > a { padding: 43px 10px; }
-		.top-navigation > div > ul > li > ul li a { padding: 9px 10px; }
-		.top-navigation > div > ul > li > ul li:first-child a { padding-top: 18px; }
-		.top-navigation > div > ul > li > ul li:last-child a { padding-bottom: 18px; }		
+		#masthead .site-branding { vertical-align: top; }
+		
+		#site-navigation {
+			padding-top: 25px;
+			vertical-align: inherit;	
+		}
+		
+		#site-navigation > div > ul > li > a { padding: 43px 10px; }
+		#site-navigation > div > ul > li > ul li a { padding: 9px 10px; }
+		#site-navigation > div > ul > li > ul li:first-child a { padding-top: 18px; }
+		#site-navigation > div > ul > li > ul li:last-child a { padding-bottom: 18px; }		
 		
 		#masthead .banner-right,
 		#site-banner-main > .banner-right {
@@ -513,7 +690,7 @@ function tesseract_scripts() {
 		.dashicons.no-right.is-woo, 
 		.dashicons-before.is-right:before,
 		.dashicons-before.no-right.is-woo:before {
-			top: 61px;	
+			top: 25px;	
 		}				
 		
 		";
@@ -650,39 +827,6 @@ function my_theme_show_page_header() {
     }
 
     return true;
-
-}
-
-/*
- * MaxButtons CSS overwrite on screen size < 850px
- */
- 
-add_action('wp_footer', 'tesseract_maxbuttons_mobile_css', 9999); 
-function tesseract_maxbuttons_mobile_css()
-{
-	global $maxbuttons_css; 
-	if (is_array($maxbuttons_css) && count($maxbuttons_css) > 0) 
-	{
-		$maxMobStyles = "@media screen and (max-width: 850px) {
-			a[class^=maxbutton], a[class^=maxbutton]:hover {		
-				padding: 0 10px!important;
-				line-height: 28px!important;
-				height: 28px!important;
-				display: inline-block!important;
-				zoom: 1!important; *display: inline!important;
-				font-size: 14px!important;	
-				border-radius: 3px!important;
-				box-shadow: none!important;
-				margin: 3px 0!important;		
-			}
-		
-			#header-button-container-inner div[align='center'] {
-				vertical-align: top!important;	
-			}
-		}";
-		
-		echo "<style type='text/css'>" . $maxMobStyles . "</style>"; 
-	}
 
 }
 
