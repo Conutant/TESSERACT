@@ -1,0 +1,62 @@
+#wpbody-content .wrap > h2 {
+  margin-bottom: 20px; }
+#wpbody-content .wrap .package {
+  box-sizing: border-box;
+  width: 200px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  position: relative; }
+  #wpbody-content .wrap .package .image {
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    background: #AAA;
+    line-height: 1em;
+    display: table; }
+    #wpbody-content .wrap .package .image .image-placeholder {
+      color: #777;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle; }
+    #wpbody-content .wrap .package .image img {
+      display: table-cell; }
+  #wpbody-content .wrap .package .content {
+    padding: 10px; }
+    #wpbody-content .wrap .package .content .name {
+      margin-top: 0;
+      margin-bottom: 10px; }
+    #wpbody-content .wrap .package .content .description {
+      margin-bottom: 10px; }
+  #wpbody-content .wrap .package .submit-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px; }
+  #wpbody-content .wrap .package .already-imported {
+    font-size: 10px;
+    color: #3c763d;
+    margin-bottom: 10px; }
+#wpbody-content .wrap .tm-messages li {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px; }
+#wpbody-content .wrap .tm-messages.success li {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6; }
+#wpbody-content .wrap .tm-messages.error li {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1; }
+#wpbody-content .wrap table.added-content td {
+  font-size: 14px;
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd; }

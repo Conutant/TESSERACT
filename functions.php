@@ -812,6 +812,13 @@ function tesseract_output_featimg_blog() {
 
 }
 
+
+function tesseract_new_excerpt_more($more) {
+       global $post;
+	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">' . __( 'Read More ...', 'tesseract' ) . '</a>';
+}
+add_filter('excerpt_more', 'tesseract_new_excerpt_more');
+
 /*
  * Beaver Builder - remove page title 
  */
@@ -891,13 +898,9 @@ if ( is_plugin_active('woocommerce/woocommerce.php') )
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
- * Load TGM Plugin Activation class.
+ * Content Importer
  */
-require get_template_directory() . '/inc/tesseract-plugin-activation.php';
 
-function tesseract_new_excerpt_more($more) {
-       global $post;
-	return ' ' . '<a class="moretag" href="'. get_permalink($post->ID) . '">' . __( 'Read More ...', 'tesseract' ) . '</a>';
-}
-add_filter('excerpt_more', 'tesseract_new_excerpt_more');
+require get_template_directory() . '/importer/load.php';
+
 

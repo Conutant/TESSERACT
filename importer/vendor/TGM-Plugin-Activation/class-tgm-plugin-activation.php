@@ -513,7 +513,11 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
                 $complete = array();
                 foreach ( $this->plugins as $plugin ) {
                     if ( ! is_plugin_active( $plugin['file_path'] ) ) {
-                        echo '<p><a href="' . add_query_arg( 'page', $this->menu, network_admin_url( 'themes.php' ) ) . '" title="' . esc_attr( $this->strings['return'] ) . '" target="_parent">' . $this->strings['return'] . '</a></p>';
+						if ( ! empty( $this->strings['tesseract_return'] ) ) {
+							echo '<p>' . $this->strings['tesseract_return'] . '</p>';
+						} else {
+							echo '<p><a href="' . add_query_arg( 'page', $this->menu, network_admin_url( 'themes.php' ) ) . '" title="' . esc_attr( $this->strings['return'] ) . '" target="_parent">' . $this->strings['return'] . '</a></p>';
+						}
                         $complete[] = $plugin;
                         break;
                     }
@@ -1582,6 +1586,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
                     $installer->bulk_install( $sources );
                 echo '</div>';
 
+				do_action( 'tesseract_tgmpa_after_bulk_install' );
                 return true;
             }
 
@@ -1642,6 +1647,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
                 update_option( 'recently_activated', $recent );
 
                 unset( $_POST ); // Reset the $_POST variable in case user wants to perform one action after another.
+
+				do_action( 'tesseract_tgmpa_after_bulk_activate' );
             }
         }
 
