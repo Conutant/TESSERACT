@@ -23,30 +23,26 @@ $bodyClass = ( version_compare($wp_version, '4.0.0', '>') && is_customize_previe
 if ( (is_page()) && (has_post_thumbnail()) ) $bodyClass .= ' tesseract-featured';
 if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin_active('beaver-builder/fl-builder.php') ) $bodyClass .= ' beaver-on';
 
-$bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
-if ( is_front_page() && isset($bckOpacity) && ( $bckOpacity < 100 ) ) $bodyClass .= ' transparent-header'; ?>
+$bckOpacity = get_theme_mod('tesseract_header_colors_bck_color_opacity');
+if ( is_front_page() && $bckOpacity && ( $bckOpacity < 100 ) ) $bodyClass .= ' transparent-header'; ?>
 
 <body <?php body_class( $bodyClass ); ?>>	
 
-<?php $headright_content = get_theme_mod('tesseract_tho_header_content_content');
+<?php $headright_content = get_theme_mod('tesseract_header_content_content');
 $wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
 if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
 	$rightclass = $wooheader ? $headright_content . ' is-right is-woo ' : $headright_content . ' is-right no-woo ';	
 } else if ( ( $headright_content == 'nothing' ) && $wooheader ) {
 	$rightclass = $wooheader ? $headright_content . ' no-right is-woo ' : $headright_content . ' no-right no-woo ';	
-}
-?>
+} ?>
 
 <div id="page" class="hfeed site">
     
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tesseract' ); ?></a>
-
-    <a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="" id="mobile-menu-trigger"></a>
     
-	<?php $logoImg = get_theme_mod('tesseract_logo_image'); 
-    $blogname = get_bloginfo('blogname'); 
-    $headersize = get_theme_mod('tesseract_tho_header_height');
-    $hmenusize = get_theme_mod('tesseract_tho_header_width');
+	<?php $logoImg = get_theme_mod('tesseract_header_logo_image'); 
+    $blogname = get_bloginfo('blogname');
+    $hmenusize = get_theme_mod('tesseract_header_width');
     
     $hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
     
@@ -56,16 +52,17 @@ if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
     
     ?>
     
-    <?php $mastclass = ( $headersize == 'none' ) ? 'menu-default' : 'menu-' . $headersize; 
-    $bckOpacity = get_theme_mod('tesseract_tho_header_colors_bck_color_opacity');
+    <?php $bckOpacity = get_theme_mod('tesseract_header_colors_bck_color_opacity');
     $headpos = ( $bckOpacity && ( $bckOpacity !== 100 ) ) ? 'pos-absolute' : 'pos-relative';
     ?>
 
-    <header id="masthead" class="site-header <?php echo $rightclass . $headpos . ' ' . $mastclass . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
+    <header id="masthead" class="site-header <?php echo $rightclass . $headpos . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
     
         <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; ?>">
             
             <div id="site-banner-main" class="<?php echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  'is-right' : 'no-right'; ?>">
+                
+                <div id="mobile-menu-trigger-wrap" class="cf"><a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="" id="mobile-menu-trigger"></a></div>
                 
                 <?php if ( $logoImg || $blogname ) { ?>
                     <div class="site-branding">

@@ -1,30 +1,30 @@
 .customize-control-title,
-#customize-control-tfo_footer_content_select_control select {
+#customize-control-footer_content_select_control select {
 	font-size: 13px;	
 	}
 	
-#customize-control-tfo_footer_content_select_control .customize-control-title,
-#customize-control-tfo_footer_content_position_control .customize-control-title { 
+#customize-control-footer_content_select_control .customize-control-title,
+#customize-control-footer_content_position_control .customize-control-title { 
 	margin-top: 25px; 
 	}	
 	
-#accordion-section-tfo_footer_colors .customize-control-title,
-#customize-control-tesseract_tho_header_width_control,
-#customize-control-tesseract_tfo_footer_content_select_control,
-#accordion-section-tesseract_tho_header_menu li {
+#accordion-section-footer_colors .customize-control-title,
+#customize-control-tesseract_header_width_control,
+#customize-control-tesseract_footer_content_select_control,
+#accordion-section-tesseract_header_menu li {
 	margin-top: 10px;
 	}
 	
-#accordion-section-tesseract_tho_header_menu li:first-child { margin-top: 0; }		
+#accordion-section-tesseract_header_menu li:first-child { margin-top: 0; }		
 	
 #accordion-section-tesseract_contacts .customize-control-title {
 	font-weight: normal;
 	}
 
-#customize-control-tho_header_content_select_control .customize-control-title, 
-#customize-control-tfo_footer_content_select_control .customize-control-title,
-#customize-control-tfo_footer_content_position_control .customize-control-title,	
-#customize-control-tfo_footer_hml_additional_content_control .customize-control-title {
+#customize-control-header_content_select_control .customize-control-title, 
+#customize-control-footer_content_select_control .customize-control-title,
+#customize-control-footer_content_position_control .customize-control-title,	
+#customize-control-footer_hml_additional_content_control .customize-control-title {
 	margin: 1.33em 0;
 	}	
 	
@@ -32,7 +32,7 @@
 	font-size: 14px;
 	}			
 	
-#customize-control-tfo_footer_content_select_control select {
+#customize-control-footer_content_select_control select {
 	font-weight: 400;
 	}		
 	
@@ -106,10 +106,10 @@
 	
 /* MOBILE MENU */
 
-#customize-control-tesseract_tho_mobmenu_opener_control label,
-#customize-control-tesseract_tho_mobmenu_additionals_social_header_control h4,
-#customize-control-tesseract_tho_mobmenu_additionals_search_header_control h4,
-#customize-control-tesseract_tho_mobmenu_additionals_buttons_header_control h4 {
+#customize-control-tesseract_mobmenu_opener_control label,
+#customize-control-tesseract_mobmenu_additionals_social_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_search_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_buttons_header_control h4 {
 	font-style: italic;
 	color: #444;
 	line-height: 1.5em;
@@ -120,61 +120,61 @@
 	margin: .5em 0 1em;
 }
 
-#customize-control-tesseract_tho_mobmenu_additionals_social_header_control h4,
-#customize-control-tesseract_tho_mobmenu_additionals_search_header_control h4,
-#customize-control-tesseract_tho_mobmenu_additionals_buttons_header_control h4 {
+#customize-control-tesseract_mobmenu_additionals_social_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_search_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_buttons_header_control h4 {
 	font-style: normal;
 	font-size: 1.1em;
 	text-align: center;
 	margin: 1em 0;
 	}
 
-#customize-control-tesseract_tho_mobmenu_link_hover_background_color_header_control h4,
-#customize-control-tesseract_tho_mobmenu_shadow_color_header_control h4,
-#customize-control-tesseract_tho_mobmenu_social_background_header_control h4,
-#customize-control-tesseract_tho_mobmenu_search_background_header_control h4,
-#customize-control-tesseract_tho_mobmenu_buttons_background_header_control h4,
-#customize-control-tesseract_tho_mobmenu_maxbtn_sep_color_header_control h4 {
+#customize-control-tesseract_mobmenu_link_hover_background_color_header_control h4,
+#customize-control-tesseract_mobmenu_shadow_color_header_control h4,
+#customize-control-tesseract_mobmenu_social_background_header_control h4,
+#customize-control-tesseract_mobmenu_search_background_header_control h4,
+#customize-control-tesseract_mobmenu_buttons_background_header_control h4,
+#customize-control-tesseract_mobmenu_maxbtn_sep_color_header_control h4 {
 	margin: 0;
 }
 
-#customize-control-tesseract_tho_mobmenu_link_hover_background_color_control,
-#customize-control-tesseract_tho_mobmenu_link_hover_background_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_shadow_color_control,
-#customize-control-tesseract_tho_mobmenu_shadow_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_social_background_color_control,
-#customize-control-tesseract_tho_mobmenu_search_background_color_control,
-#customize-control-tesseract_tho_mobmenu_buttons_background_color_control,
-#customize-control-tesseract_tho_mobmenu_social_background_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_search_background_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_buttons_background_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_maxbtn_sep_color_control {
+#customize-control-tesseract_mobmenu_link_hover_background_color_control,
+#customize-control-tesseract_mobmenu_link_hover_background_color_custom_control,
+#customize-control-tesseract_mobmenu_shadow_color_control,
+#customize-control-tesseract_mobmenu_shadow_color_custom_control,
+#customize-control-tesseract_mobmenu_social_background_color_control,
+#customize-control-tesseract_mobmenu_search_background_color_control,
+#customize-control-tesseract_mobmenu_buttons_background_color_control,
+#customize-control-tesseract_mobmenu_social_background_color_custom_control,
+#customize-control-tesseract_mobmenu_search_background_color_custom_control,
+#customize-control-tesseract_mobmenu_buttons_background_color_custom_control,
+#customize-control-tesseract_mobmenu_maxbtn_sep_color_control {
 	margin: 5px 0 0;
 	padding: 1em;
 	background: #eaeaea;
 	box-sizing: border-box;		
 }
 
-#customize-control-tesseract_tho_mobmenu_link_hover_background_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_shadow_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_social_background_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_search_background_color_custom_control,
-#customize-control-tesseract_tho_mobmenu_buttons_background_color_custom_control {
+#customize-control-tesseract_mobmenu_link_hover_background_color_custom_control,
+#customize-control-tesseract_mobmenu_shadow_color_custom_control,
+#customize-control-tesseract_mobmenu_social_background_color_custom_control,
+#customize-control-tesseract_mobmenu_search_background_color_custom_control,
+#customize-control-tesseract_mobmenu_buttons_background_color_custom_control {
 	margin: 0 0 5px;
 	padding-top: 0;
 }
 
-#customize-control-tesseract_tho_mobmenu_link_hover_background_color_control label,
-#customize-control-tesseract_tho_mobmenu_shadow_color_control label,
-#customize-control-tesseract_tho_mobmenu_social_background_color_control label,
-#customize-control-tesseract_tho_mobmenu_search_background_color_control label,
-#customize-control-tesseract_tho_mobmenu_buttons_background_color_control label,
-#customize-control-tesseract_tho_mobmenu_maxbtn_sep_color_control label {
+#customize-control-tesseract_mobmenu_link_hover_background_color_control label,
+#customize-control-tesseract_mobmenu_shadow_color_control label,
+#customize-control-tesseract_mobmenu_social_background_color_control label,
+#customize-control-tesseract_mobmenu_search_background_color_control label,
+#customize-control-tesseract_mobmenu_buttons_background_color_control label,
+#customize-control-tesseract_mobmenu_maxbtn_sep_color_control label {
 	line-height: 1.5em;
 }
 
-#customize-control-tesseract_tho_mobmenu_link_hover_background_color_custom_control label > span,
-#customize-control-tesseract_tho_mobmenu_shadow_color_custom_control label > span,
-#customize-control-tesseract_tho_mobmenu_social_background_color_custom_control label > span,
-#customize-control-tesseract_tho_mobmenu_search_background_color_custom_control label > span,
-#customize-control-tesseract_tho_mobmenu_buttons_background_color_custom_control label > span { display: none; }
+#customize-control-tesseract_mobmenu_link_hover_background_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_shadow_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_social_background_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_search_background_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_buttons_background_color_custom_control label > span { display: none; }

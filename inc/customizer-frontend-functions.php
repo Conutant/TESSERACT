@@ -11,7 +11,7 @@ function tesseract_header_right_content( $content ) {
 		// Step 2 -> logo
 		case 'buttons': 
 		
-			$code = do_shortcode( get_theme_mod('tesseract_tho_header_content_if_button') );
+			$code = do_shortcode( get_theme_mod('tesseract_header_content_if_button') );
 			echo '<div id="header-button-container"><div id="header-button-container-inner">' . $code . '</div></div>';
  						
 			break; 
@@ -73,7 +73,7 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 		// Step 2 -> logo
 		case 'logo': 
 			
-			$logoImg = get_theme_mod('tesseract_logo_image'); 
+			$logoImg = get_theme_mod('tesseract_header_logo_image'); 
 			if ( $logoImg ) : ?>
 			
 				<div class="site-branding">								

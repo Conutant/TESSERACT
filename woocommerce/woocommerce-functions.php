@@ -109,7 +109,7 @@ function tesseract_wc_version_number() {
 //Woo header cart styles based on the selected Tesseract header size
 function tesseract_woocommerce_headercart_scripts() {
 	
-	$header_size = get_theme_mod('tesseract_tho_header_height');
+	$header_size = get_theme_mod('tesseract_header_height');
 	
 	if ( $header_size == 'small' ) {
 	

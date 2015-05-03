@@ -14,7 +14,7 @@
 	}
 
 #site-banner-main { 
-	width: 100%; 
+	width: 100%;
 	z-index: 10;
 	}
 .banner-right { 
@@ -35,13 +35,13 @@
 #site-banner > * {
 	display: inline-block;
 	zoom: 1; *display: inline;
-	vertical-align: top;
+	vertical-align: middle;
 	}
 	
 #site-banner-main { 
 	float: left;
 	display: table;
-	vertical-align: top;
+	vertical-align: middle;
 	position: relative;
 	z-index: 0;
 	}		
@@ -62,7 +62,7 @@
 	white-space: nowrap;
 	position: relative;
 	z-index: 1;
-	vertical-align: top;
+	vertical-align: middle;
 	}
 	
 .top-navigation {
@@ -78,7 +78,7 @@
 .top-navigation ul li  {
 	display: inline-block;
 	zoom: 1; *display: inline;
-	vertical-align: top;
+	vertical-align: middle;
 	}	
 	
 #masthead .site-logo, /* Jetpack */
@@ -93,20 +93,14 @@
 
 .site-logo a,
 .site-title a {
-	display: block;
-	padding: 10px 0;	
+	display: block;	
 	}
 	
 #site-banner.blogname .site-title a {
 	display: table-cell;
 	width: 1px;
 	white-space: nowrap;	
-	}	
-	
-.site-logo a { 
-	height: 40px; 
-	box-sizing: content-box;
-	}	
+	}		
 	 
 .site-logo img {
 	height: 40px;
@@ -133,6 +127,7 @@
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+	line-height: 1;
 }
 
 .top-navigation li {
@@ -158,6 +153,8 @@
 	left: -999em;
 	z-index: 99999;
     top: auto;
+	opacity: 0;
+	transition: opacity 0.2s ease-in;
 }
 
 .top-navigation ul ul ul {
@@ -176,11 +173,27 @@
 
 .top-navigation ul ul li {
     text-align: left;
+	display: block;
 }
 
-.top-navigation ul ul li a { padding: 9px 10px; }
-.top-navigation ul ul li:first-child a { padding-top: 18px; }
-.top-navigation ul ul li:last-child a { padding-bottom: 18px; }
+.top-navigation ul ul li > a { 
+	padding: 0 10px; 
+	}
+
+.top-navigation ul ul li:first-child > a { 
+	padding-top: 9px;
+	box-shadow: inset 0 1px 0px 0 rgba(255, 255, 255, .2);	 
+	}
+
+.top-navigation ul ul li:last-child > a { 
+	padding-bottom: 9px; 
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;	
+	}
 
 .top-navigation li:hover > a {
 }
@@ -196,12 +209,17 @@
 } 
 
 .top-navigation ul li a {
-	padding: 18px 10px;
+	padding: 0 10px;
 }
 
 .top-navigation ul li:hover > ul {
 	left: auto;
+	opacity: 1;
 }
+
+.top-navigation > ul > li:hover > ul {
+	padding-top: 9px;
+	}
 
 .top-navigation ul ul li:hover > ul {
 	left: 100%;
@@ -215,7 +233,6 @@
 .banner-right {
 	line-height: 40px;
 	text-align: right;
-	height: 60px;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -224,6 +241,7 @@
 	
 .social-wrapper {
 	float: left;
+	height: 100%;
 	}
 	
 .hr-social {
@@ -233,16 +251,15 @@
 	padding: 0;
 	margin: 0;
 	float: left;
-	vertical-align: top;
-	height: 60px;	
+	vertical-align: middle;
+	height: 100%;	
 	}		
 	
 .hr-social li {
 	display: table-cell;
 	vertical-align: middle;
 	box-sizing: content-box;
-	padding: 8px 6px;
-	margin: 10px 0;
+	padding: 0 6px;
 	}
 
 .hr-social li:last-child {
@@ -263,14 +280,15 @@
 	
 .banner-right .search-wrapper {
 	float: left;
-	height: 60px;
-	display: block;	
+	height: 100%;
+	display: table;	
 	}
 
 
 .banner-right .search-form {
-	padding: 13px 0;
-	height: 60px;
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
 	}
 
 .banner-right .search-form label { 
@@ -291,6 +309,7 @@
 	float: left;
 	line-height: 60px;
 	display: table;
+	height: 100%;
 	}
 	
 #header-button-container-inner {
@@ -322,10 +341,7 @@
 	line-height: 60px;
 	}
 	
-.menu-open,
-.dashicons.menu-open,
-.menu-close,
-.dashicons.menu-close { display: none; }	
+#mobile-menu-trigger-wrap { display: none; }	
 	
 @media screen and (max-width: 980px) {
 
@@ -339,6 +355,7 @@
 	
 	#site-banner-main {
 		text-align: center;
+		width: 100%;
 		}
 		
 	.site-logo, /* Jetpack */
@@ -358,6 +375,13 @@
 	#site-navigation {
 		display: none;
 		}		
+	
+	#mobile-menu-trigger-wrap {
+		display: table;
+		table-layout: fixed;
+		float: left;
+		margin-left: -20px;		
+		}
 					
     .menu-open,
 	.dashicons.menu-open,
@@ -365,19 +389,17 @@
 	.dashicons.menu-close,
 	.dashicons, 
 	.dashicons-before::before {
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;		
+		display: table-cell;		
 		line-height: 36px;
 		width: 36px!important;
 		height: 36px!important;
-		padding: 12px;
+		padding: 0 12px;
 		box-sizing: content-box;
 		font-size: 36px!important;
 		cursor: pointer;
 		color: black;
-		z-index: 9999;		
+		z-index: 9999;
+		vertical-align: middle;		
     }
 			
 	.menu-open:before {

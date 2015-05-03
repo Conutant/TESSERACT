@@ -6,7 +6,7 @@
 	}
 
 .banner-right .woocart-header {
-	height: 60px;
+	height: 100%;
 	float: right;
 	display: table;
 	position: relative;
@@ -27,18 +27,18 @@
 	transition: color .2s ease-in;
 	-webkit-transition: color .2s ease-in;	
 	padding: 0 10px;	
-	line-height: 42px;
+	line-height: 24px;
 
 	}
 
 .banner-right .woocart-header a:before {
 	content: "\f174";
 	font-family: dashicons;
-	font-size: 18px;
+	font-size: 24px;
 	padding: 0 8px;
 	line-height: 18px;
 	float: left;
-	margin-top: 11px;
+	margin-top: 0;
 	}
 
 /* Shop page */

@@ -1,5 +1,5 @@
-<?php $headright_content = get_theme_mod('tesseract_tho_header_content_content');
-$headright_content_default_button = get_theme_mod('tesseract_tho_header_content_if_button');
+<?php $headright_content = get_theme_mod('tesseract_header_content_content');
+$headright_content_default_button = get_theme_mod('tesseract_header_content_if_button');
 $wc_headercart = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
 ?>
 

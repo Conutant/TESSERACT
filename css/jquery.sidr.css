@@ -130,7 +130,8 @@
 
 /*Maxbuttons*/
 #sidr-id-header-button-container-inner > div > div > a,
-#sidr-id-header-button-container-inner button {
+#sidr-id-header-button-container-inner button,
+#sidr-id-header-button-container-inner > a {
 	padding: 0.8125em 0;
 	display: block;
 	background-color: transparent;
@@ -147,8 +148,10 @@
 	padding: 0.8125em;	
 	}	
 
-#sidr-id-header-button-container-inner > div:first-child > div > a { padding-top: 0; }
-#sidr-id-header-button-container-inner > div:last-child > div > a { padding-bottom: 0; }
+#sidr-id-header-button-container-inner > div:first-child > div > a,
+#sidr-id-header-button-container-inner > a:first-child { padding-top: 0; }
+#sidr-id-header-button-container-inner > div:last-child > div > a,
+#sidr-id-header-button-container-inner > a:last-child { padding-bottom: 0; }
 
 .sidr ul li ul {
 	border-bottom:none;

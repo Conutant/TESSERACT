@@ -6,8 +6,8 @@
  */
 ?>
 
-<?php $hmenusize = get_theme_mod('tesseract_tho_header_width'); 
-$hmenusep = get_theme_mod('tesseract_tho_header_menu_sep'); 
+<?php $hmenusize = get_theme_mod('tesseract_header_width'); 
+$hmenusep = get_theme_mod('tesseract_header_menu_sep'); 
 
 $hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
 
@@ -22,14 +22,14 @@ if ( $hmenusize == 'fullwidth' ) :
 endif;
 ?>
 
-<?php 	$mmdisplay = get_theme_mod( 'tesseract_tho_mobmenu_opener' ); 
+<?php 	$mmdisplay = get_theme_mod( 'tesseract_mobmenu_opener' ); 
 		$mmdClass = ( $mmdisplay == 1 ) ? 'showit' : 'hideit';
 ?>
 
 <nav id="site-navigation" class="<?php echo $mmdClass; ?> main-navigation top-navigation <?php echo $hmenusize_class; if ( $hmenusize == 'fullwidth' ) echo ' ' . $hmenusep_class; ?>" role="navigation">
     
     <?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
-          $menuSelect = get_theme_mod('tesseract_tho_header_menu_select');
+          $menuSelect = get_theme_mod('tesseract_header_menu_select');
     
         if ( $anyMenu && ( ( $menuSelect ) && ( $menuSelect !== 'none' ) ) ) : 	
             wp_nav_menu( array( 'menu' => $menuSelect, 'container_class' => 'header-menu', 'container' => false ) );             		

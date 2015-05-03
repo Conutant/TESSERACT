@@ -3,7 +3,7 @@
  * section HEADER MENU
  */					 			
 		
-$wp_customize->add_section( 'tesseract_tho_header_menu' , array(
+$wp_customize->add_section( 'tesseract_header_menu' , array(
 	'title'      => __('Header Menu', 'tesseract'),
 	'priority'   => 4,
 	'panel'      => 'tesseract_header_options'
@@ -22,7 +22,7 @@ $wp_customize->add_section( 'tesseract_tho_header_menu' , array(
 		
 		$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );					
 		
-		$wp_customize->add_setting( 'tesseract_tho_header_menu_select', array(
+		$wp_customize->add_setting( 'tesseract_header_menu_select', array(
 			'sanitize_callback' => 'tesseract_sanitize_select',
 			'default' 			=> 'none'
 		) );
@@ -30,11 +30,11 @@ $wp_customize->add_section( 'tesseract_tho_header_menu' , array(
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
-					'tesseract_tho_header_menu_select_control',
+					'tesseract_header_menu_select_control',
 					array(
 						'label'          => __( 'Choose the menu to be displayed in the header', 'tesseract' ),
-						'section'        => 'tesseract_tho_header_menu',
-						'settings'       => 'tesseract_tho_header_menu_select',
+						'section'        => 'tesseract_header_menu',
+						'settings'       => 'tesseract_header_menu_select',
 						'type'           => 'select',
 						'choices'        => $tesseract_menu_selector_items,
 						'priority' 		 => 1								

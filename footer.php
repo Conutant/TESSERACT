@@ -12,20 +12,20 @@
     
 	<footer id="colophon" class="site-footer" role="contentinfo">      
 
-		<?php $additional = get_theme_mod('tesseract_tfo_footer_additional_content') ? true : false;							
+		<?php $additional = get_theme_mod('tesseract_footer_additional_content') ? true : false;							
 
         $menuClass = 'only-menu';
         if ( $additional ) $menuClass = 'is-additional'; 
         
-        $menuEnable = get_theme_mod('tesseract_tfo_footer_content_enable');
-        $menuSelect = get_theme_mod('tesseract_tfo_footer_content_select');
-        $addcontent_hml = get_theme_mod('tesseract_tfo_footer_additional_content');		
+        $menuEnable = get_theme_mod('tesseract_footer_content_enable');
+        $menuSelect = get_theme_mod('tesseract_footer_content_select');
+        $addcontent_hml = get_theme_mod('tesseract_footer_additional_content');		
 		$addcontent_hml = $addcontent_hml ? $addcontent_hml : 'notset';			
 		
-		$content = get_theme_mod('tesseract_tfo_footer_content_right_content');
-		$content_default_button = get_theme_mod('tesseract_tfo_footer_content_right_if_button');
+		$content = get_theme_mod('tesseract_footer_content_right_content');
+		$content_default_button = get_theme_mod('tesseract_footer_content_right_if_button');
 		
-		$footerWidthClass = ( get_theme_mod('tesseract_tfo_footer_width') == 'fullwidth' ) ? ' footer-fullwidth' : ' footer-autowidth';
+		$footerWidthClass = ( get_theme_mod('tesseract_footer_width') == 'fullwidth' ) ? ' footer-fullwidth' : ' footer-autowidth';
 		
 		if ( defined('TESSERACT_BRANDING_EXIST') ) {		
 			if ( $content ) :
@@ -65,11 +65,11 @@
 
                                     //Check if a menu is assigned to the location 'secondary'
                                     if ( has_nav_menu( 'secondary' ) ) :
-                                        wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_class' => 'nav-menu' ) );                        
+                                        wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_class' => 'nav-menu', 'depth' => 1 ) );                        
                                     //If there isn't, then display the first menu in the list of menus thrown by the function get_terms( 'nav_menu' )
                                     else :
                                         $menu_id = $menu[0]->term_id;
-                                        wp_nav_menu( array( 'menu_id' => $menu_id ) ); 
+                                        wp_nav_menu( array( 'menu_id' => $menu_id, 'depth' => 1 ) ); 
                                     endif;
                                                         
                                 endif; ?>  
