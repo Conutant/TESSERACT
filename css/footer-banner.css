@@ -1,48 +1,50 @@
 #colophon {
-	padding: 0;
+	padding: 40px 0;
 	margin-top: 0px;
 	border-top: none;
 	}
 
 #footer-banner {
 	text-align: left;
-	margin: 40px auto;
+	margin: 0 auto;
 	position: relative;
-	}
-	
-#footer-banner > * {
-	display: inline-block;
-	zoom: 1; *display: inline;
-	vertical-align: top;
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	overflow: hidden;
 	}
 
 #footer-banner .site-title {
 	margin: 0;
 	}	
 	
-#horizontal-menu-wrap { 
-	float: left; 
-	width: 100%;	
-	display: table;
-	vertical-align: top;
+#horizontal-menu-wrap {  
+	width: 70%;	
+	display: table-cell;
+	vertical-align: middle;
 	position: relative;
 	z-index: 1;
 	}		
 	
 #horizontal-menu-wrap > * {
 	display: table-cell;
-	vertical-align: top;
+	vertical-align: middle;
+	width: 1px;
+	white-space: nowrap;
 	}	
 	
 #footer-banner .search-form {
 	margin-top: 1px;
 	}		
+	
+#footer-banner .search-field {
+	box-sizing: border-box;
+	}	
 
 #horizontal-menu-before {
 	padding-right: 12px;
 	margin-right: 4px;
 	border: none;
-	display: inline-block;
 	zoom: 1; *display: inline;
 	}
 	
@@ -56,13 +58,28 @@
 	white-space: nowrap;	
 	}	
 	
+.footer-menu {
+	display: table;
+	table-layout: fixed;
+	height: 100%;
+	margin: 0;
+}
+
+.footer-menu ul {
+    float: left;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}	
+	
 #footer-horizontal-menu	{
 	width: auto;
-	padding: 8px 0 0 0;
 	display: table-cell;
 	width: 100%;
 	border-right: none;
 	line-height: 1;
+	vertical-align: middle;
+	white-space: normal;
 	}	
 	
 #footer-horizontal-menu.is-before {
@@ -120,7 +137,7 @@
 	
 .hm-social {
 	display: table;
-	vertical-align: top;
+	vertical-align: middle;
 	}	
 	
 .hm-social > li {
@@ -151,33 +168,62 @@
 	display: block;
 	}		
 
-#designer {
+#footer-banner-right {
 	line-height: 40px;
-	width: 20%;
-	text-align: right;
-	z-index: 0;
-	position: absolute;
-	top: 0;
-	right: 20px;
+	text-align: left;
+	z-index: 1;	
+	display: table-cell;
+	position: relative;
+	height: 100%;
+	vertical-align: middle;
 	}
+	
+#footer-banner-right.designer {
+	text-align: right
+	}	
+	
+#footer-banner-right > .table {
+	display: table;
+	table-layout: fixed;	
+	height: 100%;
+	width: 100%;
+	}	
+	
+#footer-banner-right > .table > .table-cell {
+	display: table-cell;
+	vertical-align: middle;
+	}	
 	
 #colophon > .menu ul {
 	text-align: center;
-	}		
-	
-@media screen and (max-width: 980px) {
+	}	
 
-	#footer-banner {
-		padding: 0 20px;
-		}	
+@media screen and (max-width: 960px) {	
+		
+	#horizontal-menu-wrap { padding-left: 20px; }
+	#footer-banner-right { padding-right: 20px; }		
 
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
 
-	#horizontal-menu-wrap {
+	#footer-banner {
+		padding: 0 20px 5px;		
+		}	
+
+	#horizontal-menu-wrap { padding-left: 0; }
+	#footer-banner-right { padding-right: 0; }	
+
+	#footer-banner,
+	#horizontal-menu-wrap,
+	#footer-banner-right {
 		float: none;
-		width: 100%;		
+		width: 100%!important;
+		display: block!important;		
+	}
+	
+	#footer-banner-right {
+		text-align: center;
 	}
 
 	#horizontal-menu-before,
@@ -194,6 +240,7 @@
 		margin-right: 0;
 		padding-right: 0;
 		border: none!important;
+		text-align: center;
 		}
 	
 	#footer-banner .site-branding {
@@ -217,7 +264,7 @@
 		}	
 		
 	#footer-banner .site-logo img {
-		max-height: 60px;
+		max-width: 100%;
 		margin: auto;
 		}	
 		
@@ -252,31 +299,31 @@
 		
 	#footer-horizontal-menu ul li { padding: 0 12px; }		
 	
-	 #horizontal-menu-before .search-form {
+	#horizontal-menu-before .search-form {
 		display: block;
 		width: 240px;
 		margin: auto;		 
-		}
+	}
 		
-	 #horizontal-menu-before .search-field {
+	#horizontal-menu-before .search-field {
 		width: 100%;		 
-		}		
+	}		
 	
-	#designer {
+	#footer-banner-right {
 		float: none;
 		display: block;
 		text-align: center;
 		width: 100%;
-		padding: 10px 20px 0;
-		margin-top: 12px;
+		padding: 15px 20px 0;
+		margin-top: 15px;
 		border-top: rgba(255, 255, 255, 0.1) solid 1px;	
 		line-height: 24px;	
 		position: relative;
 		right: 0;		
 	}
-	
-	#footer-banner {
-		padding: 0 20px 5px;		
-		}	
+		
+	#footer-banner-right > .table > .table-cell {
+		text-align: center;
+		}		
 	
 }

@@ -6,11 +6,13 @@
 	}
 
 .banner-right .woocart-header {
-	height: 100%;
-	float: right;
-	display: table;
 	position: relative;
 	z-index: 1;
+	display: inline-block;
+	zoom: 1; *display: inline;
+	text-align: left;
+	float: none;
+	vertical-align: middle;	
 	}
 
 .banner-right .woocart-header a,
@@ -36,7 +38,7 @@
 	font-family: dashicons;
 	font-size: 24px;
 	padding: 0 8px;
-	line-height: 18px;
+	line-height: 24px;
 	float: left;
 	margin-top: 0;
 	}
@@ -379,6 +381,9 @@ form.woocommerce-checkout {
 
 @media screen and (max-width: 768px) {
 
-	#site-banner-right > .woocart-header { display: table; }
+	#site-banner-right > .woocart-header,
+	#site-banner-right > .woocart-header > a {
+		display: block;	
+	}
 	
 }

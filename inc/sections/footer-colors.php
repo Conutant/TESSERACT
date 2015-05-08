@@ -90,7 +90,7 @@
 			$wp_customize->add_control( 
 				new WP_Customize_Color_Control( 
 				$wp_customize, 
-				'tesseract_footer_colors_tfo_link_hover_color_control', 
+				'tesseract_footer_colors_link_hover_color_control', 
 				array(
 					'label'      => __( 'Footer Hovered Link Color', 'tesseract' ),
 					'section'    => 'tesseract_footer_colors',

@@ -8,6 +8,26 @@
 	margin-top: 25px; 
 	}	
 	
+#customize-control-tesseract_footer_blocks_width_prop_control,
+#customize-control-tesseract_header_blocks_width_prop_control {
+	margin-top: 10px;	
+	}
+
+#customize-control-tesseract_footer_logo_enable_control {
+	margin-bottom: 10px;
+	}
+
+#customize-control-tesseract_footer_logo_enable_control label {	
+	font-style: italic;
+	line-height: 1.5em;
+	/*color: #444;	
+	padding: 1em;
+	display: block;
+	background: #94cde7;
+	text-shadow: rgba(255, 255, 255, .5) 1px 1px 1px;
+	margin: .5em 0 1em;*/	
+}
+	
 #accordion-section-footer_colors .customize-control-title,
 #customize-control-tesseract_header_width_control,
 #customize-control-tesseract_footer_content_select_control,

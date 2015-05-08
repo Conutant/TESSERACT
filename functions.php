@@ -163,11 +163,8 @@ function tesseract_scripts() {
 	//Mobile menu
 	wp_enqueue_script( 'tesseract-sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array( 'tesseract-fittext' ), '1.0.0', true );
 	
-	//Fix inconsistent placeholder availability
-	wp_enqueue_script( 'tesseract-placeholder', get_template_directory_uri() . '/js/jquery.watermarkinput.js', array( 'tesseract-sidr' ), '1.0.0', true );
-	
     // JS helpers (This is also the place where we call the jQuery in array)
-	wp_enqueue_script( 'tesseract-helpers-functions', get_template_directory_uri() . '/js/helpers-functions.js', array( 'tesseract-placeholder' ), '1.0.0', true );
+	wp_enqueue_script( 'tesseract-helpers-functions', get_template_directory_uri() . '/js/helpers-functions.js', array( 'tesseract-sidr' ), '1.0.0', true );
 	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'tesseract-helpers-functions' ), '1.0.0', true );	
 	
 	if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin_active('beaver-builder/fl-builder.php') ) {
@@ -332,14 +329,13 @@ function tesseract_scripts() {
 	$mobmenu_buttons_maxbtnSepColor = get_theme_mod('tesseract_mobmenu_maxbtn_sep_color');	
 	$mobmenu_buttons_maxbtnSepColor = ( $mobmenu_buttons_maxbtnSepColor == 'dark' ) ? 'inset 0 -1px rgba(0, 0, 0, .1)': 'inset 0 -1px rgba(255, 255, 255, 0.1)';
 	
-	// HEADER & HEADER LOGO HEIGHT
+	// HEADER & HEADER LOGO HEIGHT, HEADER WIDTH PROPS
 	
 	$header_logoHeight = get_theme_mod('tesseract_header_logo_height') ? get_theme_mod('tesseract_header_logo_height') : 40;
 	$headerHeight = get_theme_mod('tesseract_header_height') ? get_theme_mod('tesseract_header_height') : 40;
 	
-	$footer_logoHeight = get_theme_mod('tesseract_footer_logo_height') ? get_theme_mod('tesseract_footer_logo_height') : 40;
-	$footerHeight = get_theme_mod('tesseract_footer_height') ? get_theme_mod('tesseract_footer_height') : 40;		
-
+	$headerWidthProp = get_theme_mod('tesseract_header_blocks_width_prop');
+	
 	$dynamic_styles_mobmenu = ".sidr {
 		background-color: " . $mobmenu_bckColor . ";
 		}
@@ -456,6 +452,9 @@ function tesseract_scripts() {
 	.site-header h5,
 	.site-header h6 { color: " . $header_textColor . "!important; }
 	
+	#masthead .search-field { color: " . $header_textColor . "; }
+	#masthead .search-field.watermark { color: #ccc; }	
+	
 	.site-header a,
 	.main-navigation ul ul a,
 	.menu-open,
@@ -480,6 +479,16 @@ function tesseract_scripts() {
 		padding-top: " . $headerHeight . "px;
 		padding-bottom: " . $headerHeight . "px;
 		}	
+		
+	/* Header width props */
+	
+	#site-banner-left {
+		width: " . $headerWidthProp . "%;
+		}
+		
+	#site-banner-right {
+		width: " . ( 100 - intval($headerWidthProp) ) . "%;
+		}	
 	
 	";
 	
@@ -493,12 +502,13 @@ function tesseract_scripts() {
         
 	}
 		
-	//Horizontal - fullwidth footer
+	//Horizontal - fullwidth header
 	if ( get_theme_mod('tesseract_header_width') == 'fullwidth' ) {
 		
         $dynamic_styles_header .= "#site-banner {
 			max-width: 100%;
-			padding: 0 20px;
+			padding-left: 0; 
+			padding-right: 0;
 		}
 		
 		";
@@ -506,11 +516,22 @@ function tesseract_scripts() {
 	}
 	
 	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_header );		
+		
+	// FOOTER & FOOTER LOGO HEIGHT, FOOTER WIDTH PROPS
+	
+	$footerWidthProp = get_theme_mod('tesseract_footer_blocks_width_prop');
+	
+	$footer_logoHeight = get_theme_mod('tesseract_footer_logo_height') ? get_theme_mod('tesseract_footer_logo_height') : 40;
+	$footerHeight = get_theme_mod('tesseract_footer_height') ? get_theme_mod('tesseract_footer_height') : 40;		
 	
 	$dynamic_styles_footer = "#colophon { 
 		background-color: " . $footer_bckColor . ";
 		color: " . $footer_textColor . " 
 	}
+	
+	#colophon .search-field { color: " . $footer_textColor . "; }
+	#colophon .search-field.watermark { color: #ccc; }
+	
 	#colophon h1, 
 	#colophon h2,
 	#colophon h3,
@@ -525,9 +546,26 @@ function tesseract_scripts() {
 	#horizontal-menu-before,
 	#horizontal-menu-after { border-color: rgba(" . $add_content_borderColor . ", 0.25); }
 	
-	#footer-banner.footbar-active { border-color: rgba(" . $add_content_borderColor . ", 0.15); }";
+	#footer-banner.footbar-active { border-color: rgba(" . $add_content_borderColor . ", 0.15); }
 	
-	//Horizontal - fullwidth header
+	#footer-banner .site-logo img { height: " . $footer_logoHeight . "px; }
+	
+	#colophon { 
+		padding-top: " . $footerHeight . "px; 
+		padding-bottom: " . $footerHeight . "px; 		
+		}
+		
+	#horizontal-menu-wrap {
+		width: " . $footerWidthProp . "%;
+		}
+		
+	#footer-banner-right	{
+		width: " . ( 100 - intval($footerWidthProp) ) . "%;
+		}
+	
+	";
+	
+	//Horizontal - fullwidth footer
 	if ( get_theme_mod('tesseract_footer_width') == 'fullwidth' ) {
 		
         $dynamic_styles_footer .= "#footer-banner {
@@ -556,9 +594,9 @@ function tesseract_footer_branding() {
 	}
 
 function tesseract_footer_branding_output() {
-	echo '<div id="designer">';
+	echo '<div id="footer-banner-right" class="designer"><div class="table"><div class="table-cell">';
     printf( __( 'Theme by %s', 'tesseract' ), '<a href="http://tyler.com">Tyler Moore</a>' );
-	echo '</div>';
+	echo '</div></div></div>';
 }
 
 add_action('tesseract_footer_branding','tesseract_footer_branding_output', 10);

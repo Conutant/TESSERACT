@@ -49,13 +49,12 @@
 			   
 		$wp_customize->add_setting( 'tesseract_footer_logo_height', array(
 				'transport'         => 'postMessage',
-				'sanitize_callback' => '__return_false',
+				'sanitize_callback' => 'absint',
 				'default' 			=> 40
 		) );			
 			
 			$wp_customize->add_control( 'tesseract_footer_logo_height_control', array(
 				'type'        		=> 'range',
-				'priority'    		=> 2,
 				'section'     		=> 'tesseract_footer_logo',
 				'settings'     		=> 'tesseract_footer_logo_height',
 				'label'       		=> 'Footer Logo Height',

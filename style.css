@@ -880,6 +880,10 @@ textarea {
     width: 150px;
 }
 
+.search-field.watermark {
+	color: #ccc;
+}
+
 .search-form .search-submit {
 	display: none;
 }
@@ -2304,26 +2308,7 @@ article.comment-body{
 	text-align: left;
 	word-spacing: -0.29em;
 	}
-	
-/* === Footer Menu  === */
 
-.footer-menu {
-    display: inline-block;
-    float: left;
-    margin: 0 0 10px;
-}
-
-.footer-menu ul {
-    float: left;
-    list-style: outside none none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer-menu ul li {
-    display:inline-block;
-    padding-right: 10px;
-}	
 
 /* =24. Plugins
 -------------------------------------------------------------- */

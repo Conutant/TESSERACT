@@ -11,13 +11,16 @@
 	</div><!-- #content -->
     
 	<footer id="colophon" class="site-footer" role="contentinfo">      
-
+	
 		<?php $additional = get_theme_mod('tesseract_footer_additional_content') ? true : false;							
 
         $menuClass = 'only-menu';
         if ( $additional ) $menuClass = 'is-additional'; 
         
         $menuEnable = get_theme_mod('tesseract_footer_content_enable');
+		$menuEnable = ( $menuEnable == 0 ) ? false : true;
+		
+		
         $menuSelect = get_theme_mod('tesseract_footer_content_select');
         $addcontent_hml = get_theme_mod('tesseract_footer_additional_content');		
 		$addcontent_hml = $addcontent_hml ? $addcontent_hml : 'notset';			
@@ -45,14 +48,13 @@
                 <?php // SHOUDLD some additional content added before the menu?
                 if ( ( $addcontent_hml !== 'nothing' ) && ( $addcontent_hml !== 'notset' ) ) : ?>
                 
-                    <div id="horizontal-menu-before" class="switch thm-left-left<?php if ( ( $menuEnable && ( $menuEnable == 1 ) ) || !$menuEnable ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
+                    <div id="horizontal-menu-before" class="switch thm-left-left<?php if ( $menuEnable == true ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
                 
                 <?php endif; //EOF left menu - IS before content ?>
                 
-                <?php if ( ( $menuEnable && ( $menuEnable == 1 ) ) || !$menuEnable ) : ?>
-                
+                <?php if ( $menuEnable == true ) : ?>
                     <section id="footer-horizontal-menu"<?php if ( $addcontent_hml && ( $addcontent_hml !== 'nothing' ) && ( $addcontent_hml !== 'notset' ) ) echo ' class="is-before"'; ?>>
-                        <div>
+                        <div class="cf">
                             
                             <?php $anyMenu = get_terms( 'nav_menu' ) ? true : false;
                             

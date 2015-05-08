@@ -11,7 +11,7 @@ $wp_customize->add_section( 'tesseract_header_size' , array(
 
 	$wp_customize->add_setting( 'tesseract_header_height', array(
 			'transport'         => 'postMessage',
-			'sanitize_callback' => 'esc_html',
+			'sanitize_callback' => 'absint',
 			'default' 			=> 40
 	) );			
 		
@@ -24,7 +24,7 @@ $wp_customize->add_section( 'tesseract_header_size' , array(
 			'description' 		=> 'Use this range slider to set header height',
 			'input_attrs' 		=> array(
 				'min'   => 0,
-				'max'   => 100,
+				'max'   => 50,
 				'step'  => 5,
 				'class' => 'tesseract-header-height',
 				'style' => 'color: #0a0',
@@ -54,3 +54,25 @@ $wp_customize->add_section( 'tesseract_header_size' , array(
 				)
 			)
 		);	
+		
+		$wp_customize->add_setting( 'tesseract_header_blocks_width_prop', array(
+				'transport'         => 'postMessage',
+				'sanitize_callback' => 'absint',
+				'default' 			=> 60
+		) );			
+			
+			$wp_customize->add_control( 'tesseract_header_blocks_width_prop_control', array(
+				'type'        		=> 'range',
+				'section'     		=> 'tesseract_header_size',
+				'settings'     		=> 'tesseract_header_blocks_width_prop',
+				'label'       		=> 'Header Blocks Width Proportion',
+				'description' 		=> 'Use this range slider to set the left and right content blocks\' width proportion',
+				'input_attrs' 		=> array(
+					'min'   => 20,
+					'max'   => 80,
+					'step'  => 10,
+					'class' => 'tesseract-tfo-header-blocks-width-prop',
+					'style' => 'color: #0a0',
+				),
+				'priority' 			=> 3
+			) );		

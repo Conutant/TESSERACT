@@ -32,6 +32,11 @@
 	text-align: left;	
 	}	
 	
+.menusize-fullwidth #site-banner {
+	padding-left: 20px;
+	padding-right: 20px;
+	}	
+	
 #site-banner > * {
 	display: inline-block;
 	zoom: 1; *display: inline;
@@ -39,7 +44,6 @@
 	}
 	
 #site-banner-main { 
-	float: left;
 	display: table;
 	vertical-align: middle;
 	position: relative;
@@ -68,6 +72,7 @@
 .top-navigation {
 	display: table-cell;
 	width: 100%;
+	vertical-align: middle;
 	}
 	
 #mobile-navigation,
@@ -233,15 +238,27 @@
 .banner-right {
 	line-height: 40px;
 	text-align: right;
-	position: absolute;
-	top: 0;
-	right: 0;
 	z-index: 1;
 	}
 	
-.social-wrapper {
-	float: left;
-	height: 100%;
+#site-banner-left { width: 60%; }
+#site-banner-left-inner { 
+	display: table; 
+	width: 100%;
+	}
+
+#site-banner-right { 
+	width: 40%; 
+	text-align: right;
+	}	
+	
+.social-wrapper,
+.banner-right .search-wrapper {
+	float: none;
+	display: inline-block;
+	zoom: 1; *display: inline;
+	height: auto;
+	vertical-align: middle;
 	}
 	
 .hr-social {
@@ -278,13 +295,6 @@
 	max-width: inherit;
 	}			
 	
-.banner-right .search-wrapper {
-	float: left;
-	height: 100%;
-	display: table;	
-	}
-
-
 .banner-right .search-form {
 	height: 100%;
 	display: table-cell;
@@ -304,18 +314,24 @@
 	height: 34px;
 	box-sizing: border-box;
 	}	
+	
+#header-button-container {
+	display: inline-block;
+	zoom: 1; *display: inline;
+	text-align: left;
+	float: none;
+	vertical-align: middle;
+	}	
 
 #header-button-container {
-	float: left;
 	line-height: 60px;
-	display: table;
-	height: 100%;
 	}
 	
 #header-button-container-inner {
 	width: 100%;
 	display: table-cell;
 	vertical-align: middle;
+	text-align: right;
 	}	
 
 #header-button-container-inner > * {
@@ -345,9 +361,7 @@
 	
 @media screen and (max-width: 980px) {
 
-	.menusize-autowidth #site-banner {
-		padding: 0 20px;	
-	}
+	#site-banner { padding: 0 20px;	}
 
 }
 
@@ -363,6 +377,11 @@
 		margin-right: 0;
 	}		
 	
+	#masthead .site-logo,
+	#masthead .site-title {
+		margin-right: 0;	
+	}
+	
 	#site-banner-main .site-branding {
 		display: inline-block;
 		zoom: 1; *display: inline;
@@ -374,13 +393,29 @@
 	#site-banner-right > *,
 	#site-navigation {
 		display: none;
-		}		
+		}	
+		
+	#site-banner-left { width: 100%!important; }
+	
+	#site-banner-right {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		display: inline-block;
+		width: auto!important;
+		height: 24px;
+		margin-top: -12px;		
+		}	
 	
 	#mobile-menu-trigger-wrap {
-		display: table;
-		table-layout: fixed;
-		float: left;
-		margin-left: -20px;		
+		margin-left: -20px;	
+		position: absolute;
+		top: 50%;
+		left: 0;
+		display: table-cell;
+		float: none;
+		height: 36px;
+		margin-top: -18px;			
 		}
 					
     .menu-open,

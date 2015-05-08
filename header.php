@@ -63,18 +63,24 @@ if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
             <div id="site-banner-main" class="<?php echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  'is-right' : 'no-right'; ?>">
                 
                 <div id="mobile-menu-trigger-wrap" class="cf"><a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="" id="mobile-menu-trigger"></a></div>
-                
-                <?php if ( $logoImg || $blogname ) { ?>
-                    <div class="site-branding">
-                        <?php if ( $logoImg ) : ?>
-                            <h1 class="site-logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo $logoImg; ?>" alt="logo" /></a></h1>
-                        <?php else : ?>
-                            <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                        <?php endif; ?>
-                    </div><!-- .site-branding -->
-                <?php } ?>
-                
-                <?php get_template_part( 'content', 'header-navigation' ); ?>
+				
+                <div id="site-banner-left">                
+					<div id="site-banner-left-inner">	
+                    					
+						<?php if ( $logoImg || $blogname ) { ?>
+                            <div class="site-branding">
+                                <?php if ( $logoImg ) : ?>
+                                    <h1 class="site-logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo $logoImg; ?>" alt="logo" /></a></h1>
+                                <?php else : ?>
+                                    <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                                <?php endif; ?>
+                            </div><!-- .site-branding -->
+                        <?php } ?>
+                        
+                        <?php get_template_part( 'content', 'header-navigation' ); ?>
+            
+            		</div>
+            	</div>
             
                 <?php get_template_part( 'content', 'header-rightcontent' ); ?>
                 

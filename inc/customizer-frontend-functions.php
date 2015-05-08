@@ -64,6 +64,10 @@ function tesseract_header_right_content( $content ) {
 
 function tesseract_horizontal_footer_menu_additional_content( $content ) {
 	
+	$headerLogo = get_theme_mod('tesseract_header_logo_image');
+	$footerLogo = get_theme_mod('tesseract_footer_logo_image');
+	$footerLogoEnable = ( get_theme_mod('tesseract_footer_logo_enable') == 1 ) ? true : false;
+	
 	switch( $content ) {
 
 		// Step 1 -> nothing
@@ -73,8 +77,9 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 		// Step 2 -> logo
 		case 'logo': 
 			
-			$logoImg = get_theme_mod('tesseract_header_logo_image'); 
-			if ( $logoImg ) : ?>
+			$logoImg = ( $footerLogoEnable && $footerLogo ) ? $footerLogo : $headerLogo;
+			
+			if ( $headerLogo ) : ?>
 			
 				<div class="site-branding">								
 					<h1 class="site-logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo $logoImg; ?>" alt="logo" /></a></h1>

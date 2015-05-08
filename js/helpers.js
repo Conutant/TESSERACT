@@ -10,20 +10,38 @@
 		$( '#url' ).attr( 'placeholder','Website' );
 		$( '#comment' ).attr( 'placeholder','Your Comment' );
 		
-		$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });
-		
-		$('.placeholdit').Watermark('Search …', '#ccc');			
+		$('.headline-resize').fitText(0.6, { maxFontSize: '100px' });		
 				
-		$(window).load(function() {	
-		
-			mobMenu();					
+		$(window).load(function() {					
+			
+			var sourceVal = ( $('#site-banner-right > *:not(".woocart-header")').length > 0 ) ? '#site-navigation, #site-banner-right > *:not(".woocart-header")' : '#site-navigation';
 			
 			$('#mobile-menu-trigger').sidr({
-				source: '#site-navigation, #site-banner-right > *:not(".woocart-header")',
-				name: 'sidr-main'	
+				source: sourceVal,
+				name: 'sidr-main'
 			});					
 			
-			$('.sidr-class-placeholdit').Watermark('Search …', tesseract_vars.mobmenu_search_color_lighter );
+			//$('.sidr-class-placeholdit').Watermark('Search …', tesseract_vars.mobmenu_search_color_lighter );
+			// WATERMARK
+			var watermark = 'Search …';
+			
+			//init, set watermark text and class
+			$('.search-field, .sidr-class-search-field').val(watermark).addClass('watermark');
+			
+			//if blur and no value inside, set watermark text and class again.
+			$('.search-field, .sidr-class-search-field').blur(function(){
+				if ($(this).val().length == 0){
+					$(this).val(watermark).addClass('watermark');
+				}
+			});
+			
+			//if focus and text is watermrk, set it to empty and remove the watermark class
+			$('.search-field, .sidr-class-search-field').focus(function(){
+				if ($(this).val() == watermark){
+					$(this).val('').removeClass('watermark');
+				}
+			});	
+			// EOF WATERMARK				
 			
 			// ]if ( self == top )[ = if content is sitting in an iframe 
 			if ( $('#site-navigation').hasClass('showit') && ( self !== top ) ) {
@@ -69,8 +87,7 @@
 				
 		$(window).resize(function(){
 		
-		 	equalheight('#sidebar-footer aside');
-			mobMenu();	
+		 	equalheight('#sidebar-footer aside');	
 			
 			if ( $(window).width() <= 768 ) {
 				$('.tesseract-featured .entry-title').fitText(0.6, { maxFontSize: '75px' });

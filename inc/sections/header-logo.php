@@ -29,7 +29,7 @@
 			   
 		$wp_customize->add_setting( 'tesseract_header_logo_height', array(
 				'transport'         => 'postMessage',
-				'sanitize_callback' => 'esc_html',
+				'sanitize_callback' => 'absint',
 				'default' 			=> 40
 		) );			
 			

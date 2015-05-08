@@ -32,11 +32,6 @@
 				 rowDivs[currentDiv].height(currentTallest);
 			   }
 			 });
-		} //EOF function equalheight
-		
-		mobMenu = function() {
-			
-		} // EOF function mobMenu		
-			
+		} //EOF function equalheight	
 
 })(jQuery);

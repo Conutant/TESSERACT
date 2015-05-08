@@ -54,7 +54,7 @@
 	
 	wp.customize( 'tesseract_header_colors_bck_color', function( value ) {
 		value.bind( function( to ) {
-			$( '.site-header' ).css('background-color', to);
+			$( '.site-header, .main-navigation ul ul a' ).css('background-color', to);
 		} );
 	} );
 	
@@ -73,9 +73,9 @@
 					blue = colorsOnly[2],
 					opacity = colorsOnly[3];
 					
-				var result = $('.site-header').css('background-color', 'rgba(' + colorsOnly[0] + ', ' + colorsOnly[1] + ', ' + colorsOnly[2] + ', ' + to/100 + ')');				
+				var result = 'rgba(' + colorsOnly[0] + ', ' + colorsOnly[1] + ', ' + colorsOnly[2] + ', ' + to/100 + ')';				
 			}
-			$('.site-header').css( 'background-color', result);
+			$('.site-header, .main-navigation ul ul a').css( 'background-color', result);
 			
 			if ( ( $('body.home').length > 0 ) && ( to < 100 ) ) {
 				$('#masthead').css({
@@ -96,7 +96,18 @@
 	
 	wp.customize( 'tesseract_header_colors_text_color', function( value ) {
 		value.bind( function( to ) {				
+		
 			$( '.site-header, .site-header h1, .site-header h2, .site-header h3, .site-header h4, .site-header h5, .site-header h6' ).css('color', to);				
+		
+			$( '#masthead .search-field' ).focus(function() {
+				var color = $(this).hasClass('watermark') ? '#ccc' : to; 
+				$(this).css('color', color);
+			})
+			$( '#masthead .search-field' ).blur(function() {
+				var color = $(this).hasClass('watermark') ? '#ccc' : to; 
+				$(this).css('color', color);
+			})		
+		
 		} );
 	} );	
 	
@@ -134,12 +145,21 @@
 	wp.customize( 'tesseract_footer_colors_text_color', function( value ) {
 		value.bind( function( to ) {				
 			$( '#colophon' ).css('color', to);
+			$( '#colophon .search-field' ).focus(function() {
+				var color = $(this).hasClass('watermark') ? '#ccc' : to; 
+				$(this).css('color', color);
+			})
+			$( '#colophon .search-field' ).blur(function() {
+				var color = $(this).hasClass('watermark') ? '#ccc' : to; 
+				$(this).css('color', color);
+			})			
+						
 		} );
 	} );
 	
 	wp.customize( 'tesseract_footer_colors_heading_color', function( value ) {
 		value.bind( function( to ) {
-			$( '#colophon h1, #colophon h2, #colophon h3, #colophon h4, #colophon h5,#colophon h6' ).css('color', to);
+			$( '#colophon h1, #colophon h2, #colophon h3, #colophon h4, #colophon h5, #colophon h6' ).css('color', to);
 		} );
 	} );		
 	
@@ -298,9 +318,9 @@
 		} );					
 	} );		
 	
-	wp.customize( 'tesseract_mobmenu_buttons_link_color, #sidr-id-header-button-container-inner button', function( value ) {
+	wp.customize( 'tesseract_mobmenu_buttons_link_color', function( value ) {
 		value.bind( function( to ) {
-			$( '#sidr-id-header-button-container-inner a' ).css( 'color', to );
+			$( '#sidr-id-header-button-container-inner a, #sidr-id-header-button-container-inner button' ).css( 'color', to );
 		} );					
 	} );			
 	
@@ -363,6 +383,51 @@
 				'padding-bottom': to 
 			}, 50);
 		} );
-	} );				
+	} );
+	
+	wp.customize( 'tesseract_header_blocks_width_prop', function( value ) {
+		value.bind( function( to ) {
+			var parentWidth = $('#site-banner-main').width(),
+			toLeft = (to/100)*parentWidth,
+			toRight = parentWidth - ((to/100)*parentWidth);
+			$('#site-banner-left').animate({ 
+				'width': toLeft 
+			}, 150);
+			$('#site-banner-right').animate({ 
+				'width': toRight 
+			}, 150);						
+		} );
+	} );	
+	
+	wp.customize( 'tesseract_footer_logo_height', function( value ) {
+		value.bind( function( to ) {
+			$('#footer-banner .site-logo img').animate({ 
+				'height': to 
+			}, 50);
+		} );
+	} );	
+	
+	wp.customize( 'tesseract_footer_height', function( value ) {
+		value.bind( function( to ) {
+			$('#colophon').animate({ 
+				'padding-top': to,
+				'padding-bottom': to 
+			}, 50);
+		} );
+	} );
+	
+	wp.customize( 'tesseract_footer_blocks_width_prop', function( value ) {
+		value.bind( function( to ) {
+			var parentWidth = $('#footer-banner').width(),
+			toLeft = (to/100)*parentWidth,
+			toRight = parentWidth - ((to/100)*parentWidth);
+			$('#horizontal-menu-wrap').animate({ 
+				'width': toLeft 
+			}, 150);
+			$('#footer-banner-right').animate({ 
+				'width': toRight 
+			}, 150);						
+		} );
+	} );						
 				
 } )( jQuery );
