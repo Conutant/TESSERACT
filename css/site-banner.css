@@ -257,8 +257,8 @@
 	float: none;
 	display: inline-block;
 	zoom: 1; *display: inline;
-	height: auto;
 	vertical-align: middle;
+	height: 100%;
 	}
 	
 .hr-social {

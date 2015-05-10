@@ -563,7 +563,7 @@ function tesseract_scripts() {
 		width: " . ( 100 - intval($footerWidthProp) ) . "%;
 		}
 	
-	";
+	";	
 	
 	//Horizontal - fullwidth footer
 	if ( get_theme_mod('tesseract_footer_width') == 'fullwidth' ) {

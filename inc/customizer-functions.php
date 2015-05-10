@@ -508,12 +508,15 @@ function tesseract_header_logo_height_enable() {
 	
 }
 
-function tesseract_footer_logo_enable() {
-
-	$logo_enable = get_theme_mod( 'tesseract_footer_logo_enable' );
-	$bool = ( $logo_enable == 1 ) ? true : false;
+function tesseract_header_widthProp_enable() {
 	
-	return $bool;
+	$hcContent = get_theme_mod('tesseract_header_content_content');
+	$wooCart = get_theme_mod('tesseract_woocommerce_headercart');
+	$displayWooCart = ( is_plugin_active('woocommerce/woocommerce.php') && ( $wooCart == 1 ) );
+	$hcContent = ( !$displayWooCart && ( !$hcContent || !isset($hcContent) || ( $hcContent == 'nothing' ) ) );
+	$bool = ( false == $hcContent ) ? true : false;
+	
+	return $bool;	
 	
 }
 
@@ -553,11 +556,31 @@ function tesseract_footer_menu_options_enable() {
 
 }
 
+function tesseract_footer_logo_enable() {
+
+	$logo_enable = get_theme_mod( 'tesseract_footer_logo_enable' );
+	$bool = ( $logo_enable == 1 ) ? true : false;
+	
+	return $bool;
+	
+}
+
 function tesseract_footer_logo_height_enable() {
 
 	$hlogo_url = get_theme_mod( 'tesseract_header_logo_image' );
 	$flogo_url = get_theme_mod( 'tesseract_footer_logo_image' );
-	$bool = ( $hlogo_url || $flogo_url ) ? true : false;
+	$enable = ( get_theme_mod('tesseract_footer_logo_enable') == 1 ) ? true : false;
+	$bool = ( ( $hlogo_url || $flogo_url ) && $enable ) ? true : false;
+	
+	return $bool;
+	
+}
+
+function tesseract_footer_widthProp_enable() {
+
+	$fcContent = get_theme_mod('tesseract_footer_content_right_content');
+	$fcContent = ( !$fcContent || !isset($fcContent) || ( $fcContent == 'nothing' ) );
+	$bool = ( false == $fcContent ) ? true : false;
 	
 	return $bool;
 	

@@ -79,7 +79,7 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 			
 			$logoImg = ( $footerLogoEnable && $footerLogo ) ? $footerLogo : $headerLogo;
 			
-			if ( $headerLogo ) : ?>
+			if ( $logoImg ) : ?>
 			
 				<div class="site-branding">								
 					<h1 class="site-logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo $logoImg; ?>" alt="logo" /></a></h1>

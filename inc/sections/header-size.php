@@ -74,5 +74,6 @@ $wp_customize->add_section( 'tesseract_header_size' , array(
 					'class' => 'tesseract-tfo-header-blocks-width-prop',
 					'style' => 'color: #0a0',
 				),
-				'priority' 			=> 3
+				'priority' 			=> 3,
+				'active_callback'	=> 'tesseract_header_widthProp_enable'
 			) );		

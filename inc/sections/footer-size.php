@@ -74,5 +74,6 @@ $wp_customize->add_section( 'tesseract_footer_size' , array(
 					'class' => 'tesseract-tfo-footer-blocks-width-prop',
 					'style' => 'color: #0a0',
 				),
-				'priority' 			=> 3
+				'priority' 			=> 3,
+				'active_callback'	=> 'tesseract_footer_widthProp_enable'
 			) );		
