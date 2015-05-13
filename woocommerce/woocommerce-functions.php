@@ -64,22 +64,142 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart
 function woocommerce_header_add_to_cart_fragment( $fragments ) {
 	ob_start();
 	?>
-	<a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php echo sprintf (_n( '%d item', '%d items', WC()->cart->cart_contents_count ), WC()->cart->cart_contents_count ); ?> - <?php echo WC()->cart->get_cart_total(); ?></a> 
+    <div class="woocart-header"> 
+        <a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>">
+        	<span class="dashicons dashicons-arrow-down cart-arrow"></span>
+            <span class="cart-contents-counter"><?php echo WC()->cart->cart_contents_count; ?></span>
+            <span class="dashicons dashicons-cart"></span>
+        </a> 
+        <div class="cart-content-details-wrap">
+            <div class="cart-content-details">
+                <?php if ( WC()->cart->cart_contents_count == 0 ) : ?>
+                    <span>Your Shopping Cart is empty.</span>
+                <?php else: ?>
+                    <table class="cart-content-details-table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th class="right">Price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <td></td>
+                            <td><?php echo WC()->cart->cart_contents_count; ?></td>
+                            <td class="right"><?php echo WC()->cart->get_cart_total(); ?></td>
+                        </tfoot>
+                        <tbody>
+                            <?php foreach( WC()->cart->cart_contents as $product ): 
+                                echo '<tr>';
+                                echo '<td>' . $product['data']->post->post_name . '</td>';
+                                echo '<td>' . $product['quantity'] . '</td>';
+                                echo '<td class="right">' . intval($product['quantity']) * intval($product['data']->price) . get_woocommerce_currency() . '</td>';
+                                echo '</tr>'; 
+                            endforeach; ?>
+                        </tbody>
+                    </table>            
+                <?php endif; ?>
+                <a href="<?php echo WC()->cart->get_cart_url(); ?>">View Cart (<?php echo WC()->cart->cart_contents_count; ?> Items)</a>
+            </div>            
+        </div>
+  	</div>
+    
+	<script>
+    (function($) {
+		
+		var smallToggle = function() {
+			
+			if ( $(window).width() < 768 ) {
+				$('.woocart-header').each(function() {
+					$(this).unbind().children('.cart-contents').click(function(e) {
+						e.preventDefault();	
+					});	
+
+					$(this).toggle(function() {
+					  	$( this ).children( '.cart-content-details-wrap' ).fadeIn();
+					}, function() {
+					  	$( this ).children( '.cart-content-details-wrap' ).fadeOut();
+					});					
+				})
+			} else {
+				$('.woocart-header, .cart-contents').unbind();
+				$('.woocart-header').each(function() {
+					$(this).on({
+						mouseenter: function() {
+							$( this ).find( '.cart-content-details-wrap' ).fadeIn();
+						}, mouseleave: function() {
+							$( this ).find( '.cart-content-details-wrap' ).fadeOut();
+						}
+					});
+				})
+			}
+			
+		};		
+        
+        $(document).ready(function() {
+			
+			smallToggle();
+        
+        })
+		
+		$(window).resize(function() {
+		
+			smallToggle();
+		
+		})
+    
+    })(jQuery);
+    </script>    
+    
 	<?php
 	
-	$fragments['a.cart-contents'] = ob_get_clean();
+	$fragments['.woocart-header'] = ob_get_clean();
 	
 	return $fragments;
 }
 
 // Output shopping cart in header
 function tesseract_wc_output_cart() {
-	ob_start(); ?>
-                           
+	ob_start(); ?>                           
 	<div class="woocart-header">                        	
-		<a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php echo sprintf (_n( '%d item', '%d items', WC()->cart->cart_contents_count ), WC()->cart->cart_contents_count ); ?> - <?php echo WC()->cart->get_cart_total(); ?></a>
+        <a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>">
+        	<span class="dashicons dashicons-arrow-down cart-arrow"></span>
+            <span class="cart-contents-counter"><?php echo WC()->cart->cart_contents_count; ?></span>
+            <span class="dashicons dashicons-cart"></span>
+        </a> 
+        <div class="cart-content-details-wrap">
+            <div class="cart-content-details">
+                <?php if ( WC()->cart->cart_contents_count == 0 ) : ?>
+                    <span>Your Shopping Cart is empty.</span>
+                <?php else: ?>
+                    <table class="cart-content-details-table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th class="right">Price</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <td></td>
+                            <td><?php echo WC()->cart->cart_contents_count; ?></td>
+                            <td class="right"><?php echo WC()->cart->get_cart_total(); ?></td>
+                        </tfoot>
+                        <tbody>
+                            <?php foreach( WC()->cart->cart_contents as $product ): 
+                                echo '<tr>';
+                                echo '<td>' . $product['data']->post->post_name . '</td>';
+                                echo '<td>' . $product['quantity'] . '</td>';
+                                echo '<td class="right">' . intval($product['quantity']) * intval($product['data']->price) . get_woocommerce_currency() . '</td>';
+                                echo '</tr>'; 
+                            endforeach; ?>
+                        </tbody>
+                    </table>            
+                <?php endif; ?>
+                <a href="<?php echo WC()->cart->get_cart_url(); ?>">View Cart (<?php echo WC()->cart->cart_contents_count; ?> Items)</a>
+            </div>
+        </div>
 	</div>
-    
     <?php $output = ob_get_contents();
     ob_end_clean();
     
@@ -107,29 +227,53 @@ function tesseract_wc_version_number() {
 }
 
 //Woo header cart styles based on the selected Tesseract header size
-function tesseract_woocommerce_headercart_scripts() {
-	
-	$header_size = get_theme_mod('tesseract_header_height');
-	
-	if ( $header_size == 'small' ) {
-	
-	    $dynamic_styles_woo_header = ".banner-right .woocart-header {
-			height: 100%;	
-		}
+function tesseract_woocommerce_headercart_scripts() { 	
 		
-		.banner-right .woocart-header a:before {
-			margin-top: 4px;	
-		}
-		
-		.banner-right .woocart-header a {
-			line-height: 28px;
-		}
-		
-		";
+	// Detailed Cart Content Background
+	$header_bckRGB = get_theme_mod('tesseract_header_colors_bck_color') ? get_theme_mod('tesseract_header_colors_bck_color') : '#59bcd9';
 	
-		wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_woo_header );
-	
+	$opValue = get_theme_mod('tesseract_header_colors_bck_color_opacity');
+	if ( !$opValue || !isset($opValue) ) {
+		$bckOpacity = 100;
+	} else {
+		$bckOpacity = ( $opValue == 0 ) ? '0' : $opValue;
 	}
+	
+	$header_bckOpacity = ( '0' == $bckOpacity ) ? 0 : $bckOpacity;
+	
+	$hex = $header_bckRGB;
+	$header_bckOpacity = $header_bckOpacity / 100;
+	
+	preg_match("/\s*(rgba\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*,\d+\d*\.\d+\))/", $hex, $match);
+	$rgba = $match ? true : false; 
+	
+	list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+	$header_bckColor = "rgb($r, $g, $b)";
+	$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";				
+	
+	// Cart Borders
+	$cart_topBorderColor = get_theme_mod('tesseract_header_colors_text_color') ? get_theme_mod('tesseract_header_colors_text_color') : '#ffffff';
+	list($br, $bg, $bb) = sscanf($cart_topBorderColor, "#%02x%02x%02x");
+	$cart_topBorderColor_rgba = "rgba($br, $bg, $bb, 1)";
+		
+	$dynamic_styles_woo_header = ".cart-content-details-table tfoot td {
+		border-top: " . $cart_topBorderColor . " solid 1px;	
+	}
+	
+	.cart-content-details { 
+		background: " . $header_bckColor . "; 
+		}
+		
+	.home .cart-content-details { 
+		background: " . $header_bckColor_home . "; 
+		}	
+	
+	.cart-content-details:after { border-bottom-color: " . $header_bckColor . "; }
+	.home .cart-content-details:after { border-bottom-color: " . $header_bckColor_home . "; }		
+	";
+
+	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_woo_header );
+	wp_enqueue_script( 'tesseract-woocommerce_helpers', get_template_directory_uri() . '/woocommerce/assets/js/woocommerce-helpers.js', array( 'jquery' ), '1.0.0', true );
 	
 }
 add_action( 'wp_enqueue_scripts', 'tesseract_woocommerce_headercart_scripts' );

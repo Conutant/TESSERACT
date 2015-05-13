@@ -12,7 +12,7 @@ $wp_customize->add_section( 'tesseract_header_size' , array(
 	$wp_customize->add_setting( 'tesseract_header_height', array(
 			'transport'         => 'postMessage',
 			'sanitize_callback' => 'absint',
-			'default' 			=> 40
+			'default' 			=> 10
 	) );			
 		
 		$wp_customize->add_control( 'tesseract_header_height_control', array(

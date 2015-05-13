@@ -378,7 +378,7 @@
 	
 	wp.customize( 'tesseract_header_height', function( value ) {
 		value.bind( function( to ) {
-			$('#site-banner').animate({ 
+			$('#masthead').animate({ 
 				'padding-top': to,
 				'padding-bottom': to 
 			}, 50);

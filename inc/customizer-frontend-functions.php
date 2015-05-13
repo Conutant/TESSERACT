@@ -10,10 +10,14 @@ function tesseract_header_right_content( $content ) {
 		
 		// Step 2 -> logo
 		case 'buttons': 
-		
-			$code = do_shortcode( get_theme_mod('tesseract_header_content_if_button') );
-			echo '<div id="header-button-container"><div id="header-button-container-inner">' . $code . '</div></div>';
- 						
+			
+			$code = get_theme_mod('tesseract_header_content_if_button');
+			if ( ( get_theme_mod('tesseract_header_content_content') == 'buttons' ) && ( !$code || !isset($code) ) ) {
+				echo '<div id="header-button-container"><div id="header-button-container-inner"><a href="/" class="button primary-button">Primary Button</a><a href="/" class="button secondary-button">Secondary Button</a></div></div>';	
+			} else {
+				echo '<div id="header-button-container"><div id="header-button-container-inner">' . do_shortcode( $code ) . '</div></div>';
+			}
+			
 			break; 
 			
 		// Step 3 -> social

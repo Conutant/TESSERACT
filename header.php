@@ -16,6 +16,14 @@
 
 <?php wp_head(); ?>
 
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
 </head>
 
 <?php // Additional body classes

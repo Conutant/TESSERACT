@@ -200,16 +200,8 @@ function tesseract_scripts() {
 		$lighter = "#".sprintf("%02X%02X%02X", $lighter[0], $lighter[1], $lighter[2]);	
 	
     wp_localize_script( 'tesseract_helpers', 'tesseract_vars', array(  
- 	    'author'   										=> __( 'Your Name', 'tesseract' ), 
- 	    'email'    										=> __( 'E-mail', 'tesseract' ),
-		'url'      										=> __( 'Website', 'tesseract' ),
-		'comment'  										=> __( 'Your Comment', 'tesseract' ),
-		'themeuri'  									=> get_template_directory_uri(),
- 	    'mobmenu_link_hover_background_color_custom'   	=> get_theme_mod('tesseract_mobmenu_link_hover_background_color_custom'),
-		'mobmenu_shadow_color_custom'   				=> get_theme_mod('tesseract_mobmenu_shadow_color_custom'),
-		'mobmenu_search_color'   						=> get_theme_mod('tesseract_mobmenu_search_color'),
-		'mobmenu_buttons_background_color_custom'   	=> get_theme_mod('tesseract_mobmenu_buttons_background_color_custom'),
-		'mobmenu_search_color_lighter'   				=> $lighter  		
+		'hpad' 					  						=> get_theme_mod('tesseract_header_height'),
+		'fpad'   										=> get_theme_mod('tesseract_footer_height'),		  		
  	) );	
 	
 	wp_enqueue_script( 'tesseract_helpers' );	
@@ -224,6 +216,16 @@ function tesseract_scripts() {
 	}
 	
 	$header_bckOpacity = ( '0' == $bckOpacity ) ? 0 : $bckOpacity; 
+	
+	$hex = $header_bckRGB;
+	$header_bckOpacity = $header_bckOpacity / 100;
+	
+	preg_match("/\s*(rgba\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*,\d+\d*\.\d+\))/", $hex, $match);
+	$rgba = $match ? true : false; 
+	
+	list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+	$header_bckColor = "rgb($r, $g, $b)";
+	$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";	
 	
 	//HEADER and FOOTER
 	$header_textColor = get_theme_mod('tesseract_header_colors_text_color') ? get_theme_mod('tesseract_header_colors_text_color') : '#ffffff';
@@ -241,16 +243,6 @@ function tesseract_scripts() {
 	$footer_linkColor = get_theme_mod('tesseract_footer_colors_link_color') ? get_theme_mod('tesseract_footer_colors_link_color') : '#ffffff';
 	
 	$footer_linkHoverColor = get_theme_mod('tesseract_footer_colors_link_hover_color') ? get_theme_mod('tesseract_footer_colors_link_hover_color') : '#d1ecff'; 
-	
-	$hex = $header_bckRGB;
-	$header_bckOpacity = $header_bckOpacity / 100;
-	
-	preg_match("/\s*(rgba\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*,\d+\d*\.\d+\))/", $hex, $match);
-	$rgba = $match ? true : false; 
-	
-	list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-	$header_bckColor = "rgb($r, $g, $b)";
-	$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";
 	
 	$add_content_borderColor_array = tesseract_hex2rgb( $footer_linkColor );
 	$add_content_borderColor = implode( ', ', $add_content_borderColor_array );	
@@ -327,14 +319,7 @@ function tesseract_scripts() {
 	$mobmenu_buttons_linkHoverColor = get_theme_mod('tesseract_mobmenu_buttons_link_hover_color');		
 	
 	$mobmenu_buttons_maxbtnSepColor = get_theme_mod('tesseract_mobmenu_maxbtn_sep_color');	
-	$mobmenu_buttons_maxbtnSepColor = ( $mobmenu_buttons_maxbtnSepColor == 'dark' ) ? 'inset 0 -1px rgba(0, 0, 0, .1)': 'inset 0 -1px rgba(255, 255, 255, 0.1)';
-	
-	// HEADER & HEADER LOGO HEIGHT, HEADER WIDTH PROPS
-	
-	$header_logoHeight = get_theme_mod('tesseract_header_logo_height') ? get_theme_mod('tesseract_header_logo_height') : 40;
-	$headerHeight = get_theme_mod('tesseract_header_height') ? get_theme_mod('tesseract_header_height') : 40;
-	
-	$headerWidthProp = get_theme_mod('tesseract_header_blocks_width_prop');
+	$mobmenu_buttons_maxbtnSepColor = ( $mobmenu_buttons_maxbtnSepColor == 'dark' ) ? 'inset 0 -1px rgba(0, 0, 0, .1)': 'inset 0 -1px rgba(255, 255, 255, 0.1)';	
 	
 	$dynamic_styles_mobmenu = ".sidr {
 		background-color: " . $mobmenu_bckColor . ";
@@ -438,6 +423,13 @@ function tesseract_scripts() {
 	
 	wp_add_inline_style( 'tesseract-sidr-style', $dynamic_styles_mobmenu );
 
+	// HEADER & HEADER LOGO HEIGHT, HEADER WIDTH PROPS
+	
+	$header_logoHeight = get_theme_mod('tesseract_header_logo_height') ? get_theme_mod('tesseract_header_logo_height') : 40;
+	$headerHeight = get_theme_mod('tesseract_header_height') ? get_theme_mod('tesseract_header_height') : 10;
+	
+	$headerWidthProp = get_theme_mod('tesseract_header_blocks_width_prop');
+
 	$dynamic_styles_header = ".site-header,
 	.main-navigation ul ul a { background-color: " . $header_bckColor . "; }
 	
@@ -475,7 +467,7 @@ function tesseract_scripts() {
 		height: " . $header_logoHeight . "px;
 		}
 		
-	#site-banner {
+	#masthead {
 		padding-top: " . $headerHeight . "px;
 		padding-bottom: " . $headerHeight . "px;
 		}	
@@ -491,6 +483,24 @@ function tesseract_scripts() {
 		}	
 	
 	";
+
+	$hcContent = get_theme_mod('tesseract_header_content_content');
+	$wooCart = get_theme_mod('tesseract_woocommerce_headercart');
+	$displayWooCart = ( is_plugin_active('woocommerce/woocommerce.php') && ( $wooCart == 1 ) );
+	$hcContent = ( !$displayWooCart && ( $hcContent == 'nothing' ) );	
+		
+	if ( true == $hcContent ):		
+		$dynamic_styles_header .= "#site-banner-left {
+				width: 100%;	
+			}
+			
+			#site-banner-right { 
+				display: none; 
+				padding: 0;
+				margin: 0;
+			}
+		";
+	endif;	
 	
 	if ( $header_bckOpacity && ( $header_bckOpacity < 1 ) ) { 
 		
@@ -519,7 +529,7 @@ function tesseract_scripts() {
 		
 	// FOOTER & FOOTER LOGO HEIGHT, FOOTER WIDTH PROPS
 	
-	$footerWidthProp = get_theme_mod('tesseract_footer_blocks_width_prop');
+	$footerWidthProp = get_theme_mod('tesseract_footer_blocks_width_prop') ? get_theme_mod('tesseract_footer_blocks_width_prop') : 60;
 	
 	$footer_logoHeight = get_theme_mod('tesseract_footer_logo_height') ? get_theme_mod('tesseract_footer_logo_height') : 40;
 	$footerHeight = get_theme_mod('tesseract_footer_height') ? get_theme_mod('tesseract_footer_height') : 40;		

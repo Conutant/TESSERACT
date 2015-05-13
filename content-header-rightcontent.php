@@ -13,7 +13,7 @@ $wc_headercart = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? tr
                     
               	</div>
                 
-          	<?php elseif ( !$headright_content && $headright_content_default_button ) : ?>            
+          	<?php elseif ( ( !isset($headright_content) || !$headright_content ) && $headright_content_default_button ) : ?>            
 
                 <div id="site-banner-right" class="banner-right">
                  

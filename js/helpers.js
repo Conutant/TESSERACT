@@ -21,7 +21,6 @@
 				name: 'sidr-main'
 			});					
 			
-			//$('.sidr-class-placeholdit').Watermark('Search …', tesseract_vars.mobmenu_search_color_lighter );
 			// WATERMARK
 			var watermark = 'Search …';
 			
@@ -61,11 +60,14 @@
 				var wheight = $(window).height(),
 				hheight = parseInt( $('#masthead').not('.pos-absolute').height() ),
 				fheight = parseInt( $('#colophon').height() );
+
+				hpad = tesseract_vars.hpad ? tesseract_vars.hpad : 10;				
+				fpad = tesseract_vars.fpad ? tesseract_vars.fpad : 40;
 				
 				if ( $('body').hasClass('transparent-header') ) {
-					var offset = parseInt( wheight - fheight );
+					var offset = parseInt( wheight - ( fheight + 2*fpad ) );
 				} else {
-					var offset = parseInt( wheight - ( hheight + fheight ) );	
+					var offset = parseInt( wheight - ( (hheight + 2*hpad) + (fheight + 2*fpad) ) );	
 				}
 				
 				// ]if ( self !== top )[ = if content is sitting in an iframe 
