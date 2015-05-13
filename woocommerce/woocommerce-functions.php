@@ -230,46 +230,20 @@ function tesseract_wc_version_number() {
 function tesseract_woocommerce_headercart_scripts() { 	
 		
 	// Detailed Cart Content Background
-	$header_bckRGB = get_theme_mod('tesseract_header_colors_bck_color') ? get_theme_mod('tesseract_header_colors_bck_color') : '#59bcd9';
-	
-	$opValue = get_theme_mod('tesseract_header_colors_bck_color_opacity');
-	if ( !$opValue || !isset($opValue) ) {
-		$bckOpacity = 100;
-	} else {
-		$bckOpacity = ( $opValue == 0 ) ? '0' : $opValue;
-	}
-	
-	$header_bckOpacity = ( '0' == $bckOpacity ) ? 0 : $bckOpacity;
-	
-	$hex = $header_bckRGB;
-	$header_bckOpacity = $header_bckOpacity / 100;
-	
-	preg_match("/\s*(rgba\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*,\d+\d*\.\d+\))/", $hex, $match);
-	$rgba = $match ? true : false; 
-	
-	list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-	$header_bckColor = "rgb($r, $g, $b)";
-	$header_bckColor_home = "rgba($r, $g, $b, $header_bckOpacity)";				
+	$header_bckRGB = get_theme_mod('tesseract_header_colors_bck_color') ? get_theme_mod('tesseract_header_colors_bck_color') : '#59bcd9';		
 	
 	// Cart Borders
 	$cart_topBorderColor = get_theme_mod('tesseract_header_colors_text_color') ? get_theme_mod('tesseract_header_colors_text_color') : '#ffffff';
-	list($br, $bg, $bb) = sscanf($cart_topBorderColor, "#%02x%02x%02x");
-	$cart_topBorderColor_rgba = "rgba($br, $bg, $bb, 1)";
 		
 	$dynamic_styles_woo_header = ".cart-content-details-table tfoot td {
 		border-top: " . $cart_topBorderColor . " solid 1px;	
 	}
 	
 	.cart-content-details { 
-		background: " . $header_bckColor . "; 
+		background: " . $header_bckRGB . "; 
 		}
-		
-	.home .cart-content-details { 
-		background: " . $header_bckColor_home . "; 
-		}	
 	
-	.cart-content-details:after { border-bottom-color: " . $header_bckColor . "; }
-	.home .cart-content-details:after { border-bottom-color: " . $header_bckColor_home . "; }		
+	.cart-content-details:after { border-bottom-color: " . $header_bckRGB . "; }	
 	";
 
 	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_woo_header );

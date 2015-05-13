@@ -86,12 +86,12 @@
 	border-radius: 2px;
 	padding: 20px;
 	font-size: .8em;	
-	opacity: .95;	
+	opacity: .9;	
 	}	
 	
 .cart-content-details:after {
 	top: -8px;
-	right: 0;
+	right: 35px;
 	border: solid transparent;
 	content: " ";
 	height: 0;
@@ -100,7 +100,6 @@
 	pointer-events: none;
 	border-bottom-color: #59bcd9;
 	border-width: 10px;
-	margin-right: 53px;
 }	
 	
 .banner-right .woocart-header .cart-content-details > a {
