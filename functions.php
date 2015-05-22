@@ -141,9 +141,6 @@ function tesseract_scripts() {
 	// Enqueue default style
 	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri(), array(), '1.0.0' );
 	
-	// Enqueue WooCommerce style
-	wp_enqueue_style( 'woocommerce-style', get_template_directory_uri() . '/woocommerce/assets/css/woocommerce-style.css', array('tesseract-style'), '1.0.0' );
-	
 	// Google fonts
 	wp_enqueue_style( 'tesseract-fonts', tesseract_fonts_url(), array(), '1.0.0' );
 	
@@ -426,7 +423,16 @@ function tesseract_scripts() {
 	// HEADER & HEADER LOGO HEIGHT, HEADER WIDTH PROPS
 	
 	$header_logoHeight = get_theme_mod('tesseract_header_logo_height') ? get_theme_mod('tesseract_header_logo_height') : 40;
-	$headerHeight = get_theme_mod('tesseract_header_height') ? get_theme_mod('tesseract_header_height') : 10;
+
+	$headerHeightInit = get_theme_mod('tesseract_header_height');
+	
+	if ( $headerHeightInit == 0 ) {
+		$headerHeight = 0;	
+	} else if ( ( $headerHeightInit !== 0 ) && ( !$headerHeightInit || !isset( $headerHeightInit ) ) ) {
+		$headerHeight = 10;
+	} else {
+		$headerHeight = get_theme_mod('tesseract_header_height');
+	}	
 	
 	$headerWidthProp = get_theme_mod('tesseract_header_blocks_width_prop');
 
@@ -532,7 +538,16 @@ function tesseract_scripts() {
 	$footerWidthProp = get_theme_mod('tesseract_footer_blocks_width_prop') ? get_theme_mod('tesseract_footer_blocks_width_prop') : 60;
 	
 	$footer_logoHeight = get_theme_mod('tesseract_footer_logo_height') ? get_theme_mod('tesseract_footer_logo_height') : 40;
-	$footerHeight = get_theme_mod('tesseract_footer_height') ? get_theme_mod('tesseract_footer_height') : 40;		
+	
+	$footerHeightInit = get_theme_mod('tesseract_footer_height');
+	
+	if ( $footerHeightInit == 0 ) {
+		$footerHeight = 0;	
+	} else if ( ( $footerHeightInit !== 0 ) && ( !$footerHeightInit || !isset( $footerHeightInit ) ) ) {
+		$footerHeight = 10;
+	} else {
+		$footerHeight = get_theme_mod('tesseract_header_height');
+	}	
 	
 	$dynamic_styles_footer = "#colophon { 
 		background-color: " . $footer_bckColor . ";

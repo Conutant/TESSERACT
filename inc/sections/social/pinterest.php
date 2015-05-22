@@ -5,7 +5,7 @@
 
    	$wp_customize->add_section( 'tesseract_social_pin' , array(
     	'title'      => __('Pinterest', 'tesseract'),
-    	'priority'   => 9,
+    	'priority'   => 10,
 		'panel' 	 => 'tesseract_social'
 	) );							
 	

@@ -36,8 +36,14 @@ function tesseract_customize_register( $wp_customize ) {
 		//'description'  => ''
 	) );		
 
-	$wp_customize->add_panel( 'tesseract_social', array(
+	$wp_customize->add_panel( 'tesseract_layout', array(
 		'priority'       => 7,
+		'capability'     => 'edit_theme_options',
+		'title'          => 'Layout Options'
+	) );
+
+	$wp_customize->add_panel( 'tesseract_social', array(
+		'priority'       => 8,
 		'capability'     => 'edit_theme_options',
 		'title'          => 'Social'
 	) );	
@@ -45,8 +51,10 @@ function tesseract_customize_register( $wp_customize ) {
 	$wp_customize->get_section('title_tagline')->panel = 'tesseract_header_options';
 	$wp_customize->get_section('title_tagline')->priority = 3;	
 	
-	$wp_customize->get_section('static_front_page')->panel = 'tesseract_general_options';
-	$wp_customize->get_section('static_front_page')->priority = 4;
+	if ( $wp_customize->get_section('static_front_page') ) {
+		$wp_customize->get_section('static_front_page')->panel = 'tesseract_general_options';
+		$wp_customize->get_section('static_front_page')->priority = 4;
+	}
 	
 	$wp_customize->get_section('background_image')->panel = 'tesseract_general_options';
 	$wp_customize->get_section('background_image')->priority = 2;
@@ -75,11 +83,13 @@ function tesseract_customize_register( $wp_customize ) {
 	require get_template_directory() . '/inc/sections/social/youtube.php';
 	require get_template_directory() . '/inc/sections/social/vimeo.php';
 	require get_template_directory() . '/inc/sections/social/tumblr.php';
+	require get_template_directory() . '/inc/sections/social/instagram.php';
 	require get_template_directory() . '/inc/sections/social/flickr.php';
 	require get_template_directory() . '/inc/sections/social/pinterest.php';
 	require get_template_directory() . '/inc/sections/social/dribbble.php';	
 	
 	require get_template_directory() . '/inc/sections/blog.php';
+	require get_template_directory() . '/inc/sections/search-results.php';	
 	
 	require get_template_directory() . '/inc/sections/footer-colors.php';
 	require get_template_directory() . '/inc/sections/footer-size.php';	

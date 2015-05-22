@@ -7,24 +7,9 @@
 
 get_header(); 
 
-if ( is_plugin_active('woocommerce/woocommerce.php') ) :
-	
-	$layout_default = get_theme_mod('tesseract_woocommerce_default_layout');
-	
-	if ( ( $layout_default == 'sidebar-left' ) || ( $layout_default == 'sidebar-right' ) ) {
-		$primclass = 'with-sidebar';
-		if ( $layout_default == 'sidebar-left' ) $primclass .= ' sidebar-left';
-		if ( $layout_default == 'sidebar-right' ) $primclass .= ' sidebar-right';
-	} else if ( ( $layout_default == 'fullwidth' ) || ( !$layout_default ) ) {
-		$primclass = 'no-sidebar';
-	} else {
-		$primclass = 'sidebar-default';	
-}
-
-endif;
 ?>
 
-	<div id="primary" class="full-width-page <?php echo $primclass; ?>">
+	<div id="primary" class="full-width-page no-sidebar">
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>

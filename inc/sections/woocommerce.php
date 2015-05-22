@@ -113,7 +113,7 @@
 				$wp_customize,
 				'tesseract_woocommerce_default_layout_header_control', 
 				array(
-					'label' =>  __('Checkout & Account Pages', 'tesseract' ),
+					'label' =>  __('Checkout, Account and Cart pages ', 'tesseract' ),
 					'section' => 'tesseract_woocommerce',
 					'settings' => 'tesseract_woocommerce_default_layout_header',
 					'priority' => 5
@@ -122,28 +122,24 @@
 			);	
 												
 		$wp_customize->add_setting( 'tesseract_woocommerce_default_layout', array(
-				'sanitize_callback' => 'tesseract_sanitize_select_woocommerce_layout_types',
-				'default' 			=> 'fullwidth'
-		) );
+			'type'           	=> 'option',
+			'transport'         => 'refresh',
+			'sanitize_callback' => '__return_false'
+			)
+		);
 		
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'tesseract_woocommerce_default_layout_control',
-					array(
-						'label'         => __( 'Choose a layout type for checkout and account pages', 'tesseract' ),
-						'section'       => 'tesseract_woocommerce',
-						'settings'      => 'tesseract_woocommerce_default_layout',
-						'type'          => 'select',
-						'choices'		=> array(
-							'sidebar-left'  	=> 	'Left Sidebar',
-							'sidebar-right'  	=> 	'Right Sidebar',
-							'fullwidth'			=>  'Full Width'
-						),
-						'priority' 		=> 6
+			$wp_customize->add_control( 
+				new Tesseract_Customize_Header_Control(
+				$wp_customize,
+				'tesseract_woocommerce_default_layout_control', 
+				array(
+					'label' =>  __('You can set the layout type for the Checkout, Account and Cart pages by using the default page template dropdown on the appropriate page\'s edit screen.', 'tesseract' ),
+					'section' => 'tesseract_woocommerce',
+					'settings' => 'tesseract_woocommerce_default_layout',
+					'priority' => 5
 					)
 				)
-			);						
+			);				
 			
 		$wp_customize->add_setting( 'tesseract_woocommerce_headercart_header', array(
 			'type'           	=> 'option',

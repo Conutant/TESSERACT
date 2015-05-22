@@ -5,7 +5,7 @@
  
    	$wp_customize->add_section( 'tesseract_social_dr' , array(
     	'title'      => __('Dribbble', 'tesseract'),
-    	'priority'   => 10,
+    	'priority'   => 11,
 		'panel' 	 => 'tesseract_social'
 	) );							
 	

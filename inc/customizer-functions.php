@@ -374,7 +374,7 @@ function tesseract_sanitize_select_footer_width( $value ) {
 	
 }
 
-function tesseract_sanitize_select_woocommerce_layout_types( $value ) {
+function tesseract_sanitize_select_search_results_layout_types( $value ) {
 
 	if ( ! in_array( $value, array( 'sidebar-left', 'sidebar-right', 'fullwidth' ) ) ) :
         $value = 'sidebar-left';

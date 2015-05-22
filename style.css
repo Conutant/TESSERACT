@@ -2120,7 +2120,21 @@ span.posted-on{
 	margin-bottom: 0;
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 40px;
+	}	
+	
+.search-results.fullwidth #primary {
+	float: none;
+	width: 100%;
+	}	
+	
+.search-results.sidebar-right #primary {
+	float: left;
 	}			
+	
+.search-results.sidebar-right #secondary {
+	float: right;
+	padding: 0 0 0 60px;
+	}					
 
 /* =20. Asides
 -------------------------------------------------------------- */

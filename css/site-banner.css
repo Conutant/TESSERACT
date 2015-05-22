@@ -116,7 +116,7 @@
 .site-title a {
 	display: block;
 	line-height: 28px;
-	padding: 16px 0;	
+	padding: 0;	
 }
 
 .site-title a:hover {
@@ -321,10 +321,6 @@
 	float: none;
 	vertical-align: middle;
 	}	
-
-#header-button-container {
-	line-height: 60px;
-	}
 	
 #header-button-container-inner {
 	width: 100%;

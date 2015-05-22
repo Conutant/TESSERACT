@@ -41,5 +41,7 @@ get_header(); ?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
-<?php get_sidebar(); ?>
+<?php $slayout = get_theme_mod('tesseract_search_results_layout');
+if ( !$slayout || ( $slayout == 'sidebar-left' ) || ( $slayout == 'sidebar-right' ) ) get_sidebar(); ?>
+
 <?php get_footer(); ?>

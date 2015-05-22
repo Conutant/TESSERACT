@@ -12,7 +12,7 @@ $wp_customize->add_section( 'tesseract_footer_size' , array(
 	$wp_customize->add_setting( 'tesseract_footer_height', array(
 			'transport'         => 'postMessage',
 			'sanitize_callback' => 'absint',
-			'default' 			=> 40
+			'default' 			=> 10
 	) );			
 		
 		$wp_customize->add_control( 'tesseract_footer_height_control', array(

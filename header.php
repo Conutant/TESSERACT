@@ -28,14 +28,20 @@
 
 <?php // Additional body classes
 $bodyClass = ( version_compare($wp_version, '4.0.0', '>') && is_customize_preview() ) ? 'backend' : 'frontend';
+$slayout = get_theme_mod('tesseract_search_results_layout');
+
 if ( (is_page()) && (has_post_thumbnail()) ) $bodyClass .= ' tesseract-featured';
 if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin_active('beaver-builder/fl-builder.php') ) $bodyClass .= ' beaver-on';
 
 $bckOpacity = get_theme_mod('tesseract_header_colors_bck_color_opacity');
-if ( is_front_page() && $bckOpacity && ( $bckOpacity < 100 ) ) $bodyClass .= ' transparent-header'; ?>
+if ( is_front_page() && $bckOpacity && ( $bckOpacity < 100 ) ) $bodyClass .= ' transparent-header'; 
+if ( is_search() ) {
+	if ( $slayout == 'fullwidth' ) $bodyClass .= ' fullwidth';
+	if ( $slayout == 'sidebar-right' ) $bodyClass .= ' sidebar-right'; 	
+	}
+?>
 
 <body <?php body_class( $bodyClass ); ?>>	
-
 <?php $headright_content = get_theme_mod('tesseract_header_content_content');
 $wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
 if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
