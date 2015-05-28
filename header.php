@@ -33,8 +33,10 @@ $slayout = get_theme_mod('tesseract_search_results_layout');
 if ( (is_page()) && (has_post_thumbnail()) ) $bodyClass .= ' tesseract-featured';
 if ( is_plugin_active('beaver-builder-lite-version/fl-builder.php') || is_plugin_active('beaver-builder/fl-builder.php') ) $bodyClass .= ' beaver-on';
 
-$bckOpacity = get_theme_mod('tesseract_header_colors_bck_color_opacity');
-if ( is_front_page() && $bckOpacity && ( $bckOpacity < 100 ) ) $bodyClass .= ' transparent-header'; 
+$opValue = get_theme_mod('tesseract_header_colors_bck_color_opacity');	
+$header_bckOpacity = is_numeric($opValue) ? TRUE : FALSE;	
+if ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100 ) ) ) $bodyClass .= ' transparent-header';	
+
 if ( is_search() ) {
 	if ( $slayout == 'fullwidth' ) $bodyClass .= ' fullwidth';
 	if ( $slayout == 'sidebar-right' ) $bodyClass .= ' sidebar-right'; 	
@@ -42,13 +44,16 @@ if ( is_search() ) {
 ?>
 
 <body <?php body_class( $bodyClass ); ?>>	
-<?php $headright_content = get_theme_mod('tesseract_header_content_content');
+<?php $headright_content = get_theme_mod('tesseract_header_right_content');
 $wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
 if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
 	$rightclass = $wooheader ? $headright_content . ' is-right is-woo ' : $headright_content . ' is-right no-woo ';	
 } else if ( ( $headright_content == 'nothing' ) && $wooheader ) {
 	$rightclass = $wooheader ? $headright_content . ' no-right is-woo ' : $headright_content . ' no-right no-woo ';	
-} ?>
+} 
+
+$headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100 ) ) ) ? 'pos-absolute' : 'pos-relative';	
+?>
 
 <div id="page" class="hfeed site">
     
@@ -57,6 +62,9 @@ if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
 	<?php $logoImg = get_theme_mod('tesseract_header_logo_image'); 
     $blogname = get_bloginfo('blogname');
     $hmenusize = get_theme_mod('tesseract_header_width');
+	
+	$mmdisplay = get_theme_mod( 'tesseract_mobmenu_opener' ); 
+	$mmdClass = ( $mmdisplay == 1 ) ? 'showit' : 'hideit';	
     
     $hmenusize_class = ( $hmenusize == 'fullwidth' ) ? 'fullwidth' : 'autowidth'; 
     
@@ -64,10 +72,6 @@ if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
     if ( $logoImg ) $brand_content = 'logo';
     if ( !$logoImg && !$blogname ) $brand_content = 'no-brand'; 
     
-    ?>
-    
-    <?php $bckOpacity = get_theme_mod('tesseract_header_colors_bck_color_opacity');
-    $headpos = ( $bckOpacity && ( $bckOpacity !== 100 ) ) ? 'pos-absolute' : 'pos-relative';
     ?>
 
     <header id="masthead" class="site-header <?php echo $rightclass . $headpos . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
@@ -91,7 +95,16 @@ if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
                             </div><!-- .site-branding -->
                         <?php } ?>
                         
-                        <?php get_template_part( 'content', 'header-navigation' ); ?>
+                        <?php $hideMenu = get_theme_mod('tesseract_header_menu_hide_menu');
+							$menuSelected = get_theme_mod('tesseract_header_menu_select');
+							$menuEnable = ( $hideMenu == 0 ) ? TRUE : FALSE;
+							if ( $menuEnable && $menuSelected !== 'none' ) : ?>
+
+                                <nav id="site-navigation" class="<?php echo $mmdClass; ?> main-navigation top-navigation <?php echo $hmenusize_class; ?>" role="navigation">
+                                    <?php tesseract_output_menu( FALSE, FALSE, 'primary', 0 ); ?>
+                                </nav><!-- #site-navigation -->
+            				
+                      	<?php endif; ?>
             
             		</div>
             	</div>

@@ -12,7 +12,7 @@ function tesseract_header_right_content( $content ) {
 		case 'buttons': 
 			
 			$code = get_theme_mod('tesseract_header_content_if_button');
-			if ( ( get_theme_mod('tesseract_header_content_content') == 'buttons' ) && ( !$code || !isset($code) ) ) {
+			if ( ( get_theme_mod('tesseract_header_right_content') == 'buttons' ) && ( !$code || !isset($code) ) ) {
 				echo '<div id="header-button-container"><div id="header-button-container-inner"><a href="/" class="button primary-button">Primary Button</a><a href="/" class="button secondary-button">Secondary Button</a></div></div>';	
 			} else {
 				echo '<div id="header-button-container"><div id="header-button-container-inner">' . do_shortcode( $code ) . '</div></div>';
@@ -59,9 +59,16 @@ function tesseract_header_right_content( $content ) {
 		
 			get_search_form();
 		
-			break;						
+			break;	
+			
+		// Step 6 -> menu	
+		case 'menu'; ?>
 		
-	}
+          	<nav id="header-right-menu" role="navigation">
+				<?php tesseract_output_menu( FALSE, FALSE, 'primary_right', 0 ); ?>
+			</nav>						
+		
+	<?php }
 	
 }
 

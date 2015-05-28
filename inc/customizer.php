@@ -76,17 +76,16 @@ function tesseract_customize_register( $wp_customize ) {
 	require get_template_directory() . '/inc/sections/header-content.php';
 	require get_template_directory() . '/inc/sections/mobile-menu.php';
 	
-	require get_template_directory() . '/inc/sections/social/facebook.php';
-	require get_template_directory() . '/inc/sections/social/twitter.php';
-	require get_template_directory() . '/inc/sections/social/googleplus.php';
-	require get_template_directory() . '/inc/sections/social/linkedin.php';
-	require get_template_directory() . '/inc/sections/social/youtube.php';
-	require get_template_directory() . '/inc/sections/social/vimeo.php';
-	require get_template_directory() . '/inc/sections/social/tumblr.php';
-	require get_template_directory() . '/inc/sections/social/instagram.php';
-	require get_template_directory() . '/inc/sections/social/flickr.php';
-	require get_template_directory() . '/inc/sections/social/pinterest.php';
-	require get_template_directory() . '/inc/sections/social/dribbble.php';	
+	require get_template_directory() . '/inc/sections/social/account01.php';
+	require get_template_directory() . '/inc/sections/social/account02.php';
+	require get_template_directory() . '/inc/sections/social/account03.php';
+	require get_template_directory() . '/inc/sections/social/account04.php';
+	require get_template_directory() . '/inc/sections/social/account05.php';
+	require get_template_directory() . '/inc/sections/social/account06.php';
+	require get_template_directory() . '/inc/sections/social/account07.php';
+	require get_template_directory() . '/inc/sections/social/account08.php';
+	require get_template_directory() . '/inc/sections/social/account09.php';
+	require get_template_directory() . '/inc/sections/social/account10.php';
 	
 	require get_template_directory() . '/inc/sections/blog.php';
 	require get_template_directory() . '/inc/sections/search-results.php';	

@@ -62,7 +62,7 @@
 				fheight = parseInt( $('#colophon').height() );
 
 				hpad = tesseract_vars.hpad ? tesseract_vars.hpad : 10;				
-				fpad = tesseract_vars.fpad ? tesseract_vars.fpad : 40;
+				fpad = tesseract_vars.fpad ? tesseract_vars.fpad : 10;
 				
 				if ( $('body').hasClass('transparent-header') ) {
 					var offset = parseInt( wheight - ( fheight + 2*fpad ) );

@@ -6,7 +6,8 @@
 $wp_customize->add_section( 'tesseract_header_menu' , array(
 	'title'      => __('Header Menu', 'tesseract'),
 	'priority'   => 4,
-	'panel'      => 'tesseract_header_options'
+	'panel'      => 'tesseract_header_options',
+	'active' 	 => 'tesseract_header_menu_options_enable'
 ) );			
 
 	$tesseract_menu_selector_menus = get_terms( 'nav_menu' );		
@@ -20,8 +21,8 @@ $wp_customize->add_section( 'tesseract_header_menu' , array(
 			array_push( $item_values, $items->name);
 		}
 		
-		$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );					
-		
+		$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );
+		 
 		$wp_customize->add_setting( 'tesseract_header_menu_select', array(
 			'sanitize_callback' => 'tesseract_sanitize_select',
 			'default' 			=> 'none'
@@ -37,10 +38,29 @@ $wp_customize->add_section( 'tesseract_header_menu' , array(
 						'settings'       => 'tesseract_header_menu_select',
 						'type'           => 'select',
 						'choices'        => $tesseract_menu_selector_items,
-						'priority' 		 => 1								
+						'priority' 		 => 1,
+						'active_callback'=> 'tesseract_header_menu_select_enable'								
 					)
 				)
 			);			
 					
 	endif;
-		
+	
+	$wp_customize->add_setting( 'tesseract_header_menu_hide_menu', array(
+			'sanitize_callback' => 'tesseract_sanitize_checkbox',
+			'default' 			=> 0
+	) );
+	
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'tesseract_header_menu_hide_menu_control',
+				array(
+					'label'          => __( 'Hide header menu', 'tesseract' ),
+					'section'        => 'tesseract_header_menu',
+					'settings'       => 'tesseract_header_menu_hide_menu',
+					'type'           => 'checkbox',
+					'priority' 		 => 2
+				)
+			)
+		);			

@@ -58,34 +58,6 @@
 	white-space: nowrap;	
 	}	
 	
-.footer-menu {
-	display: table;
-	table-layout: fixed;
-	height: 100%;
-	margin: 0;
-}
-
-.footer-menu ul {
-    float: left;
-    list-style: outside none none;
-    margin: 0;
-    padding: 0;
-}	
-	
-#footer-horizontal-menu	{
-	width: auto;
-	display: table-cell;
-	width: 100%;
-	border-right: none;
-	line-height: 1;
-	vertical-align: middle;
-	white-space: normal;
-	}	
-	
-#footer-horizontal-menu.is-before {
-	padding-left: 12px;
-	}	
-
 #footer-banner .site-logo,
 #footer-banner .site-name {
 	margin: 0;
@@ -107,6 +79,20 @@
 	padding: 0;
 	}
 	
+#footer-horizontal-menu	{
+	width: auto;
+	display: table-cell;
+	width: 100%;
+	border-right: none;
+	line-height: 1;
+	vertical-align: middle;
+	white-space: normal;
+	}	
+	
+#footer-horizontal-menu.is-before {
+	padding-left: 12px;
+	}	
+	
 #colophon > .menu ul,
 #footer-horizontal-menu ul,
 .hm-social {
@@ -127,7 +113,17 @@
 #footer-horizontal-menu ul li,
 .hm-social li {
 	padding: 7px 12px;	
-	}	
+	}
+	
+#footer-horizontal-menu ul li { padding: 0 12px 0 0; }	
+	
+#footer-horizontal-menu ul li:first-child { padding-left: 0 }
+#footer-horizontal-menu ul li:last-child { padding-right: 0 }
+	
+#footer-horizontal-menu ul li a {
+	line-height: 24px;
+	display: block;
+	}				
 
 .hm-social li,	
 .hm-social li a {
@@ -157,16 +153,6 @@
 #horizontal-menu-before	.search-form {
 	padding-right: 4px;
 	}
-	
-#footer-horizontal-menu ul li { padding: 0 12px 0 0; }	
-	
-#footer-horizontal-menu ul li:first-child { padding-left: 0 }
-#footer-horizontal-menu ul li:last-child { padding-right: 0 }
-	
-#footer-horizontal-menu ul li a {
-	line-height: 24px;
-	display: block;
-	}		
 
 #footer-banner-right {
 	line-height: 40px;
@@ -194,10 +180,6 @@
 	vertical-align: middle;
 	}	
 	
-#colophon > .menu ul {
-	text-align: center;
-	}	
-
 @media screen and (max-width: 960px) {	
 		
 	#horizontal-menu-wrap { padding-left: 20px; }
@@ -276,13 +258,6 @@
 		}	
 		
 	#horizontal-menu-wrap.nothing #footer-horizontal-menu > div { margin-top: 0; }	
-		
-	#footer-horizontal-menu > div > .footer-menu {
-		float: none;
-		margin: 0;
-		display: table-cell;
-		width: 100%;
-		}		
 		
 	#horizontal-menu-before ul,
 	#footer-horizontal-menu ul {

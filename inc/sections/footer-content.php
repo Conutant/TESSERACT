@@ -54,26 +54,6 @@
 					)
 				)
 			);	
-												
-		$wp_customize->add_setting( 'tesseract_footer_content_enable', array(
-				'sanitize_callback' => 'tesseract_sanitize_checkbox',
-				'default' 			=> 1
-		) );
-		
-			$wp_customize->add_control(
-				new WP_Customize_Control(
-					$wp_customize,
-					'tesseract_footer_content_enable_control',
-					array(
-						'label'          => __( 'Display a horizontal footer menu', 'tesseract' ),
-						'section'        => 'tesseract_footer_content',
-						'settings'       => 'tesseract_footer_content_enable',
-						'type'           => 'checkbox',
-						'priority' 		 => 3,
-						'active_callback'=> 'tesseract_footer_content_enable_enable'	
-					)
-				)
-			);	
 		
 		$tesseract_menu_selector_menus = get_terms( 'nav_menu' );		
 		if ( $tesseract_menu_selector_menus ) :
@@ -87,7 +67,7 @@
 			
 			$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );		
 		
-			$wp_customize->add_setting( 'tesseract_footer_content_select', array(
+			$wp_customize->add_setting( 'tesseract_footer_menu_select', array(
 				'sanitize_callback' => 'tesseract_sanitize_select',
 				'default' 			=> 'none'
 			) );
@@ -95,17 +75,36 @@
 				$wp_customize->add_control(
 					new WP_Customize_Control(
 						$wp_customize,
-						'tesseract_footer_content_select_control',
+						'tesseract_footer_menu_select_control',
 						array(
-							'label'          => __( 'Choose the menu to be displayed in the footer with a horizontal layout', 'tesseract' ),
+							'label'          => __( 'Select Menu', 'tesseract' ),
 							'section'        => 'tesseract_footer_content',
-							'settings'       => 'tesseract_footer_content_select',
+							'settings'       => 'tesseract_footer_menu_select',
 							'type'           => 'select',
 							'choices'        => $tesseract_menu_selector_items,
-							'priority' 		 => 4,
-							'active_callback' 	=> 'tesseract_footer_menu_options_enable'										
+							'priority' 		 => 3,
+							'active_callback' 	=> 'tesseract_footer_menu_select_enable'										
 						)
 					)
 				);	
-		endif;		
-					
+		endif;			
+												
+		$wp_customize->add_setting( 'tesseract_footer_content_hide_menu', array(
+				'sanitize_callback' => 'tesseract_sanitize_checkbox',
+				'default' 			=> 0
+		) );
+		
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'tesseract_footer_content_hide_menu_control',
+					array(
+						'label'          => __( 'Hide footer menu', 'tesseract' ),
+						'section'        => 'tesseract_footer_content',
+						'settings'       => 'tesseract_footer_content_hide_menu',
+						'type'           => 'checkbox',
+						'priority' 		 => 4,
+						'active_callback'=> 'tesseract_footer_content_hide_menu_enable'	
+					)
+				)
+			);	

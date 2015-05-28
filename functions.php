@@ -5,6 +5,8 @@
  * @package Tesseract
  */
 
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
@@ -71,6 +73,7 @@ function tesseract_setup() {
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'primary' => __( 'Header', 'tesseract' ),
+		'primary_right' => __( 'Header Right', 'tesseract' ),		
 		'secondary' => __( 'Footer', 'tesseract' )
 	) );
 
@@ -181,7 +184,7 @@ function tesseract_scripts() {
 
 	// Localize script (only few lines in helpers.js)
 		
-		// First things first: let's get a lighter version of the user-definedsearch iput color applied in the mobile menu - tricky
+		// First things first: let's get a lighter version of the user-defined search input color applied in the mobile menu - tricky
 		// See @ http://stackoverflow.com/questions/11091695/how-to-find-the-hex-code-for-a-lighter-or-darker-version-of-a-hex-code-in-php
 		$watermarkColor = get_theme_mod('tesseract_mobmenu_search_color');
 		$col = Array(
@@ -205,14 +208,8 @@ function tesseract_scripts() {
 
 	$header_bckRGB = get_theme_mod('tesseract_header_colors_bck_color') ? get_theme_mod('tesseract_header_colors_bck_color') : '#59bcd9';
 	
-	$opValue = get_theme_mod('tesseract_header_colors_bck_color_opacity');
-	if ( !$opValue || !isset($opValue) ) {
-		$bckOpacity = 100;
-	} else {
-		$bckOpacity = ( $opValue == 0 ) ? '0' : $opValue;
-	}
-	
-	$header_bckOpacity = ( '0' == $bckOpacity ) ? 0 : $bckOpacity; 
+	$opValue = get_theme_mod('tesseract_header_colors_bck_color_opacity');	
+	$header_bckOpacity = is_numeric($opValue) ? $opValue : 100;	
 	
 	$hex = $header_bckRGB;
 	$header_bckOpacity = $header_bckOpacity / 100;
@@ -425,22 +422,17 @@ function tesseract_scripts() {
 	$header_logoHeight = get_theme_mod('tesseract_header_logo_height') ? get_theme_mod('tesseract_header_logo_height') : 40;
 
 	$headerHeightInit = get_theme_mod('tesseract_header_height');
+	$headerHeight = is_numeric($headerHeightInit) ? $headerHeightInit : 10;	
 	
-	if ( $headerHeightInit == 0 ) {
-		$headerHeight = 0;	
-	} else if ( ( $headerHeightInit !== 0 ) && ( !$headerHeightInit || !isset( $headerHeightInit ) ) ) {
-		$headerHeight = 10;
-	} else {
-		$headerHeight = get_theme_mod('tesseract_header_height');
-	}	
-	
-	$headerWidthProp = get_theme_mod('tesseract_header_blocks_width_prop');
+	$headerWidthProp = is_integer( get_theme_mod('tesseract_header_blocks_width_prop') ) ? get_theme_mod('tesseract_header_blocks_width_prop') : 60;
 
 	$dynamic_styles_header = ".site-header,
-	.main-navigation ul ul a { background-color: " . $header_bckColor . "; }
+	.main-navigation ul ul a,
+	#header-right-menu ul ul a { background-color: " . $header_bckColor . "; }
 	
 	.home .site-header,
-	.home .main-navigation ul ul a { background-color: " . $header_bckColor_home . "; }
+	.home .main-navigation ul ul a,
+	.home #header-right ul ul a { background-color: " . $header_bckColor_home . "; }
 	
 	.site-header,
 	.site-header h1, 
@@ -455,6 +447,7 @@ function tesseract_scripts() {
 	
 	.site-header a,
 	.main-navigation ul ul a,
+	#header-right-menu ul ul a,
 	.menu-open,
 	.dashicons.menu-open,
 	.menu-close,
@@ -462,6 +455,7 @@ function tesseract_scripts() {
 	
 	.site-header a:hover,
 	.main-navigation ul ul a:hover,
+	#header-right-menu ul ul a:hover,
 	.menu-open:hover,
 	.dashicons.menu-open:hover,
 	.menu-close:hover,
@@ -485,12 +479,11 @@ function tesseract_scripts() {
 		}
 		
 	#site-banner-right {
-		width: " . ( 100 - intval($headerWidthProp) ) . "%;
+		width: " . ( 100 - $headerWidthProp ) . "%;
 		}	
 	
 	";
-
-	$hcContent = get_theme_mod('tesseract_header_content_content');
+	$hcContent = get_theme_mod('tesseract_header_right_content');
 	$wooCart = get_theme_mod('tesseract_woocommerce_headercart');
 	$displayWooCart = ( is_plugin_active('woocommerce/woocommerce.php') && ( $wooCart == 1 ) );
 	$hcContent = ( !$displayWooCart && ( $hcContent == 'nothing' ) );	
@@ -507,16 +500,6 @@ function tesseract_scripts() {
 			}
 		";
 	endif;	
-	
-	if ( $header_bckOpacity && ( $header_bckOpacity < 1 ) ) { 
-		
-        $dynamic_styles_header .= ".home #masthead {
-			position: absolute;
-			top: 0;
-			left: 0;
-			}";
-        
-	}
 		
 	//Horizontal - fullwidth header
 	if ( get_theme_mod('tesseract_header_width') == 'fullwidth' ) {
@@ -540,15 +523,8 @@ function tesseract_scripts() {
 	$footer_logoHeight = get_theme_mod('tesseract_footer_logo_height') ? get_theme_mod('tesseract_footer_logo_height') : 40;
 	
 	$footerHeightInit = get_theme_mod('tesseract_footer_height');
-	
-	if ( $footerHeightInit == 0 ) {
-		$footerHeight = 0;	
-	} else if ( ( $footerHeightInit !== 0 ) && ( !$footerHeightInit || !isset( $footerHeightInit ) ) ) {
-		$footerHeight = 10;
-	} else {
-		$footerHeight = get_theme_mod('tesseract_header_height');
-	}	
-	
+	$footerHeight = is_numeric($footerHeightInit) ? $footerHeightInit : 10;	
+
 	$dynamic_styles_footer = "#colophon { 
 		background-color: " . $footer_bckColor . ";
 		color: " . $footer_textColor . " 
@@ -671,6 +647,229 @@ function tesseract_output_featimg_blog() {
 
 }
 
+function tesseract_output_menu( $cont, $contClass, $location, $depth ) {
+  	
+	switch( $location ) :
+		
+		case 'primary': $hblox = 'header'; break;
+		case 'primary_right': $hblox = 'header_right'; break;
+		case 'secondary': $hblox = 'footer'; break;
+		case 'secondary_right': $hblox = 'footer_right'; break;
+		
+	endswitch;
+	
+    $locs = get_theme_mod('nav_menu_locations');
+    
+	$hider = ( ( $hblox == 'header_right' ) || ( $hblox == 'footer_right' ) ) ? get_theme_mod('tesseract_' . $hblox . '_content') : get_theme_mod('tesseract_' . $hblox . '_menu_hide_menu'); 
+    
+	$menu = get_theme_mod('tesseract_' . $hblox . '_menu_select'); 
+    
+    $isMenu = get_terms( 'nav_menu' ) ? TRUE : FALSE;
+    $locReserved = ( $locs[$location] ) ? TRUE : FALSE;
+	$menuSelected = ( is_string($menu) ) ? TRUE : FALSE;
+    
+    // IF the location set as parameter has an associated menu, it's returned as a key-value pair in the $locs array - where the key is the location and the value is the menu ID. We need this latter to get the menu slug required later -in some cases- in the wp_nav_menu params array.
+    if ( $locReserved ) {
+        $menu_id = $locs[$location]; // $value = $array[$key]
+        $menuObject = wp_get_nav_menu_object( $menu_id );
+        $menu_slug = $menuObject->slug;
+    };
+	$custSet = ( $menuSelected && ( $menu !== 'none' ) );
+	
+    if ( empty( $isMenu ) ) : //Case 1 - IF THERE'S NO MENU CREATED -> easy scenario: no location setting, no customizer setting ( this latter only appears if there IS at least one menu created by the theme user ) => display basic menu
+     
+        wp_nav_menu( array( 
+            'theme_location' => 'primary', 
+            'menu_class' => 'nav-menu',
+			'container_class' => '', 
+            'container' => FALSE, 
+            'depth' => $depth 
+            ) 
+        );
+    
+    elseif ( !empty( $isMenu ) ) : //Case 2 - THERE'S AT LEAST ONE MENU CREATED 
+            
+        if ( !$custSet && $locReserved ) { //no setting in customizer OR dropdown is set to blank value, location SET in Menus section => display menu associated with this location in Appearance ->     
+            wp_nav_menu( array( 
+                'menu' => $menuSlug, 
+                'theme_location' => $location, 
+                'menu_class' => 'nav-menu',
+				'container_class' => $contClass,
+                'container' => $cont, 
+                'depth' => $depth 
+                ) 
+            ); 
+        
+        } else if ( !$custSet && !$locReserved ) { //no setting in customizer OR dropdown is set to blank value, location NOT SET in Menus section => display basic menu
+            
+			wp_nav_menu( array( 
+				'theme_location' => 'primary', 
+				'menu_class' => 'nav-menu',
+				'container_class' => '', 
+				'container' => FALSE, 
+				'depth' => $depth 
+				) 
+			);
+    
+        } else if ( $custSet ) { //menu set in customizer AND dropdown is NOT set to blank value, location SET OR NOT SET in Menus section => display menu set in customizer ( setting a menu to the given location in customizer will update any existing location-menu association in Appearance -> Menus, see function tesseract_set_menu_location() in functions.php )
+          
+            wp_nav_menu( array( 
+                'menu' => $menu, 
+                'theme_location' => $location, 
+                'menu_class' => 'nav-menu',
+				'container_class' => $contClass, 
+                'container' => $cont, 
+                'depth' => $depth
+                ) 
+            );
+    
+        }	
+        
+    endif;
+
+}
+
+function tesseract_set_menu_location() {
+
+	$selectorLocs = array( 
+		'tesseract_header_menu_select' => 'primary', 
+		'tesseract_footer_menu_select' => 'secondary', 
+		'tesseract_header_right_menu_select' => 'primary_right'
+		);
+	
+	//Location 'secondary_right' is available ONLY if the branding removal plugin is installed	
+	if ( is_plugin_active('tesseract-remove-branding/tesseract-remove-branding.php') ) {
+		$selectorLocs = array_merge($selectorLocs, array('tesseract_footer_right_menu_select' => 'secondary_right'));
+	}
+	
+	//Returns the array of locations reserved
+	$locs = get_theme_mod('nav_menu_locations');
+		
+	foreach( $selectorLocs as $selector => $loc ) :
+	
+		$selection = get_theme_mod( $selector ); // = menu slug
+		//Let's see if there's a menu set to the current location in customizer	
+		$custSet = is_string($selection) && ( $selection !== 'none' );
+		//Let's see if there's a menu associated with current location (if any)	
+		$locReserved = $locs[$loc] ? TRUE : FALSE;		
+		
+		//If a menu is associated with the current location in Appearance -> Menus AND there's no similar customizer setting THEN update the latter one
+		if ( $locReserved && !$custSet  ) :
+	
+			$menu_id = $locs[$loc]; // $value = $array[$key]
+			$menuObject = wp_get_nav_menu_object( $menu_id );
+			$menu_slug = $menuObject->slug;		
+			//Update customizer setting	
+			set_theme_mod( $selector, $menu_slug );
+
+		//If a menu is NOT associated with the current location in Appearance -> Menus BUT THERE IS a menu association as a customizer setting THEN update the former one
+		elseif ( !$locReserved && $custSet  ) :
+	
+			$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
+			$selectedMenuID = $selectedMenu->term_id;	
+	
+			//let's update the association in Appearance -> Menus appropriately.
+			$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.
+			$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location 
+			set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
+		
+		endif; 
+							
+	endforeach;
+	
+}
+
+function tesseract_set_menu_location_menuupdate() {
+	
+	$selectorLocs = array( 
+		'tesseract_header_menu_select' => 'primary', 
+		'tesseract_footer_menu_select' => 'secondary', 
+		'tesseract_header_right_menu_select' => 'primary_right'
+		);
+	
+	//Location 'secondary_right' is available ONLY if the branding removal plugin is installed	
+	if ( is_plugin_active('tesseract-remove-branding/tesseract-remove-branding.php') ) {
+		$selectorLocs = array_merge($selectorLocs, array('tesseract_footer_right_menu_select' => 'secondary_right'));
+	}
+	
+	//Returns the array of locations reserved
+	$locs = get_theme_mod('nav_menu_locations');
+		
+	foreach( $selectorLocs as $selector => $loc ) :
+	
+		$selection = get_theme_mod( $selector ); // = menu slug
+		//Let's see if there's a menu set to the current location in customizer	
+		$custSet = is_string($selection) && ( $selection !== 'none' );
+		//Let's see if there's a menu associated with current location (if any)	
+		$locReserved = $locs[$loc] ? TRUE : FALSE;		
+
+		if ( $locReserved && $custSet  ) :
+			
+			$menu_id = $locs[$loc]; // $value = $array[$key]
+			$menuObject = wp_get_nav_menu_object( $menu_id );
+			$menu_slug = $menuObject->slug;		
+			//Update customizer setting	
+			set_theme_mod( $selector, $menu_slug );
+			
+		endif;
+	
+	endforeach;
+	
+}
+
+function tesseract_set_menu_location_customizerupdate() {
+
+	$selectorLocs = array( 
+		'tesseract_header_menu_select' => 'primary', 
+		'tesseract_footer_menu_select' => 'secondary', 
+		'tesseract_header_right_menu_select' => 'primary_right'
+		);
+	
+	//Location 'secondary_right' is available ONLY if the branding removal plugin is installed	
+	if ( is_plugin_active('tesseract-remove-branding/tesseract-remove-branding.php') ) {
+		$selectorLocs = array_merge($selectorLocs, array('tesseract_footer_right_menu_select' => 'secondary_right'));
+	}
+	
+	//Returns the array of locations reserved
+	$locs = get_theme_mod('nav_menu_locations');
+		
+	foreach( $selectorLocs as $selector => $loc ) :
+	
+		$selection = get_theme_mod( $selector ); // = menu slug
+		//Let's see if there's a menu set to the current location in customizer	
+		$custSet = is_string($selection) && ( $selection !== 'none' );
+		
+		//Let's see if there's a menu associated with current location (if any)	
+		$locReserved = $locs[$loc] ? TRUE : FALSE;		
+		
+		if ( $selection == 'none' ) {
+			
+			$locs[$loc] = 0; //Update the ID of the menu associated with the location 
+			set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods			
+				
+		}
+		
+		if ( $locReserved && $custSet  ) :
+			
+			$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
+			$selectedMenuID = $selectedMenu->term_id;	
+	
+			//let's update the association in Appearance -> Menus appropriately.
+			$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.
+			$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location 
+			set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
+					
+		endif;
+	
+	endforeach;
+	
+}
+
+//Let's call this on both side's init action
+add_action('init', 'tesseract_set_menu_location', 77);
+add_action('admin_init', 'tesseract_set_menu_location', 77);
+add_action('customize_save_after', 'tesseract_set_menu_location_customizerupdate', 77);
+add_action('admin_init', 'tesseract_set_menu_location_menuupdate', 77);
 
 function tesseract_new_excerpt_more($more) {
        global $post;
@@ -745,8 +944,7 @@ require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load WooCommerce compatibility file.
- */
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); 
+ */ 
 if ( is_plugin_active('woocommerce/woocommerce.php') ) 
 	require get_template_directory() . '/woocommerce/woocommerce-functions.php';
 

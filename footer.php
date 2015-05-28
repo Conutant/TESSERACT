@@ -21,10 +21,10 @@
 		$menuEnable = ( $menuEnable == 0 ) ? false : true;
 		
         $addcontent_hml = get_theme_mod('tesseract_footer_additional_content');		
-		$addcontent_hml = $addcontent_hml ? $addcontent_hml : 'notset';			
+		$footerNav_class = ( is_string($addcontent_hml) && ( $addcontent_hml !== 'nothing' ) ) ? 'is-before' : 'none-before';		
 		
-		$content = get_theme_mod('tesseract_footer_content_right_content');
-		$content_default_button = get_theme_mod('tesseract_footer_content_right_if_button');
+		$content = get_theme_mod('tesseract_footer_right');
+		$content_default_button = get_theme_mod('tesseract_footer_right_content_if_button');
 		
 		$footerWidthClass = ( get_theme_mod('tesseract_footer_width') == 'fullwidth' ) ? ' footer-fullwidth' : ' footer-autowidth';
 		
@@ -41,16 +41,22 @@
 		} ?>
     
     	<div id="footer-banner" class="cf<?php echo ' menu-' . $menuClass; echo $rightContentClass . $footerWidthClass; ?>">		               
-            <div id="horizontal-menu-wrap" class="<?php echo $menuClass . ' ' . $addcontent_hml; ?>">
+            <div id="horizontal-menu-wrap" class="<?php echo $menuClass . ' ' . $footerNav_class; ?>">
             
                 <?php // SHOUDLD some additional content added before the menu?
-                if ( ( $addcontent_hml !== 'nothing' ) && ( $addcontent_hml !== 'notset' ) ) : ?>
+                if ( is_string($addcontent_hml) && ( $addcontent_hml !== 'nothing' ) ) : ?>
                 
                     <div id="horizontal-menu-before" class="switch thm-left-left<?php if ( $menuEnable == true ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
                 
                 <?php endif; //EOF left menu - IS before content ?>
                 
-                <?php get_template_part( 'content', 'footer-navigation' ); ?>
+                <?php  $hideMenu = get_theme_mod('tesseract_footer_content_hide_menu');
+				$menuSelected = get_theme_mod('tesseract_footer_menu_select');
+				$menuEnable = ( $hideMenu == 0 ) ? TRUE : FALSE;
+				if ( $menuEnable && $menuSelected !== 'none' ) : ?>
+                
+					<section id="footer-horizontal-menu" class="cf <?php echo $footerNav_class; ?>"><?php tesseract_output_menu( FALSE, FALSE, 'secondary', 1 ); ?></section>
+              	<?php endif; ?>            
                                                         
             </div><!-- EOF horizontal-menu-wrap -->                       
                   

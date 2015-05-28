@@ -1,11 +1,18 @@
 <?php
 /*  
- * section SOCIAL/DRIBBBLE
+ * section SOCIAL/ACCOUNT01
  */	
- 
+ 	
+	$is_used = is_string( get_theme_mod('tesseract_social_account01_name') );
+	
+	$sectionName = ( $is_used ) ? get_theme_mod('tesseract_social_account01_name') . ' Account ' . __('Settings', 'tesseract') : __('Social Account 01 Settings', 'tesseract');
+	$sectionPriority = ( $is_used ) ? 1 : 11;
+	$networkName = ( $is_used ) ? get_theme_mod('tesseract_social_account01_name') : __( 'Social Network Name', 'tesseract' );
+	$accountUrl = ( $is_used ) ? get_theme_mod('tesseract_social_account01_name') . ' Account ' . __( 'URL', 'tesseract' ) : __( 'Social Network URL', 'tesseract' );
+		
    	$wp_customize->add_section( 'tesseract_social_account01' , array(
-    	'title'      => __('Social Account 01 Settings', 'tesseract'),
-    	'priority'   => 1,
+    	'title'      => $sectionName,
+    	'priority'   => $sectionPriority,
 		'panel' 	 => 'tesseract_social'
 	) );							
 
@@ -13,17 +20,15 @@
 				'transport'         => 'postMessage',
 				'sanitize_callback' => 'esc_html'
 		) );
-			
-			$name = is_string( get_theme_mod('tesseract_social_account01_name') ) ? get_theme_mod('tesseract_social_account01_name') : __( 'Social Network Name', 'tesseract' );
 				
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
 					'tesseract_social_account01_name_control',
 					array(
-						'label'          => $name,
-						'section'        => 'tesseract_social_account01_name',
-						'settings'       => 'tesseract_social_account01',
+						'label'          => $networkName,
+						'section'        => 'tesseract_social_account01',
+						'settings'       => 'tesseract_social_account01_name',
 						'type'           => 'text',
 						'priority' 		 => 2					
 					)
@@ -34,17 +39,15 @@
 				'transport'         => 'postMessage',
 				'sanitize_callback' => 'esc_url'
 		) );
-			
-			$label = is_string( get_theme_mod('tesseract_social_account01_name') ) ? get_theme_mod('tesseract_social_account01_name') . __( 'URL', 'tesseract' ) : __( 'Social Network URL', 'tesseract' );
-				
+						
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
 					'tesseract_social_account01_url_control',
 					array(
-						'label'          => $label,
-						'section'        => 'tesseract_social_account01_url',
-						'settings'       => 'tesseract_social_account01',
+						'label'          => $accountUrl,
+						'section'        => 'tesseract_social_account01',
+						'settings'       => 'tesseract_social_account01_url',
 						'type'           => 'text',
 						'priority' 		 => 2					
 					)
