@@ -648,7 +648,7 @@ function tesseract_output_featimg_blog() {
 }
 
 function tesseract_output_menu( $cont, $contClass, $location, $depth ) {
-  	
+    
 	switch( $location ) :
 		
 		case 'primary': $hblox = 'header'; break;
@@ -658,10 +658,8 @@ function tesseract_output_menu( $cont, $contClass, $location, $depth ) {
 		
 	endswitch;
 	
-    $locs = get_theme_mod('nav_menu_locations');
-    
-	$hider = ( ( $hblox == 'header_right' ) || ( $hblox == 'footer_right' ) ) ? get_theme_mod('tesseract_' . $hblox . '_content') : get_theme_mod('tesseract_' . $hblox . '_menu_hide_menu'); 
-    
+    $locs = get_theme_mod('nav_menu_locations');	
+	
 	$menu = get_theme_mod('tesseract_' . $hblox . '_menu_select'); 
     
     $isMenu = get_terms( 'nav_menu' ) ? TRUE : FALSE;
@@ -729,56 +727,6 @@ function tesseract_output_menu( $cont, $contClass, $location, $depth ) {
 
 }
 
-function tesseract_set_menu_location() {
-
-	$selectorLocs = array( 
-		'tesseract_header_menu_select' => 'primary', 
-		'tesseract_footer_menu_select' => 'secondary', 
-		'tesseract_header_right_menu_select' => 'primary_right'
-		);
-	
-	//Location 'secondary_right' is available ONLY if the branding removal plugin is installed	
-	if ( is_plugin_active('tesseract-remove-branding/tesseract-remove-branding.php') ) {
-		$selectorLocs = array_merge($selectorLocs, array('tesseract_footer_right_menu_select' => 'secondary_right'));
-	}
-	
-	//Returns the array of locations reserved
-	$locs = get_theme_mod('nav_menu_locations');
-		
-	foreach( $selectorLocs as $selector => $loc ) :
-	
-		$selection = get_theme_mod( $selector ); // = menu slug
-		//Let's see if there's a menu set to the current location in customizer	
-		$custSet = is_string($selection) && ( $selection !== 'none' );
-		//Let's see if there's a menu associated with current location (if any)	
-		$locReserved = $locs[$loc] ? TRUE : FALSE;		
-		
-		//If a menu is associated with the current location in Appearance -> Menus AND there's no similar customizer setting THEN update the latter one
-		if ( $locReserved && !$custSet  ) :
-	
-			$menu_id = $locs[$loc]; // $value = $array[$key]
-			$menuObject = wp_get_nav_menu_object( $menu_id );
-			$menu_slug = $menuObject->slug;		
-			//Update customizer setting	
-			set_theme_mod( $selector, $menu_slug );
-
-		//If a menu is NOT associated with the current location in Appearance -> Menus BUT THERE IS a menu association as a customizer setting THEN update the former one
-		elseif ( !$locReserved && $custSet  ) :
-	
-			$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
-			$selectedMenuID = $selectedMenu->term_id;	
-	
-			//let's update the association in Appearance -> Menus appropriately.
-			$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.
-			$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location 
-			set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
-		
-		endif; 
-							
-	endforeach;
-	
-}
-
 function tesseract_set_menu_location_menuupdate() {
 	
 	$selectorLocs = array( 
@@ -798,21 +746,41 @@ function tesseract_set_menu_location_menuupdate() {
 	foreach( $selectorLocs as $selector => $loc ) :
 	
 		$selection = get_theme_mod( $selector ); // = menu slug
-		//Let's see if there's a menu set to the current location in customizer	
-		$custSet = is_string($selection) && ( $selection !== 'none' );
 		//Let's see if there's a menu associated with current location (if any)	
 		$locReserved = $locs[$loc] ? TRUE : FALSE;		
 
-		if ( $locReserved && $custSet  ) :
-			
+		switch ( $loc ) :
+			case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;
+			case 'secondary_right': $hiderSect = 'tesseract_footer_right_content'; break;
+		endswitch;
+		
+		if ( $locReserved ) : 
+		
 			$menu_id = $locs[$loc]; // $value = $array[$key]
 			$menuObject = wp_get_nav_menu_object( $menu_id );
 			$menu_slug = $menuObject->slug;		
 			//Update customizer setting	
-			set_theme_mod( $selector, $menu_slug );
+			set_theme_mod( $selector, $menu_slug );			
 			
+			//Update visibility
+			switch ( $loc ) :
+				case 'primary_right': 	if ( get_theme_mod( $hiderSect ) !== 'menu' ) set_theme_mod( $hiderSect, 'menu' ); break;
+				case 'secondary_right': if ( get_theme_mod( $hiderSect ) !== 'menu' ) set_theme_mod( $hiderSect, 'menu' ); break;
+			
+			endswitch;
+			
+		elseif ( !$locReserved && is_string( $selection ) ) : // if no location set at Appearance -> Menus AND WE'RE NOT IN INSTALL PHASE ( when there's no $selection value )
+			
+			if ( $selection !== 'none' ) set_theme_mod( $selector, 'none' );	
+			
+			//Update visibility
+			switch ( $loc ) :
+				case 'primary_right': 	if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+				case 'secondary_right': if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;			
+			endswitch;											
+		
 		endif;
-	
+			
 	endforeach;
 	
 }
@@ -840,25 +808,43 @@ function tesseract_set_menu_location_customizerupdate() {
 		$custSet = is_string($selection) && ( $selection !== 'none' );
 		
 		//Let's see if there's a menu associated with current location (if any)	
-		$locReserved = $locs[$loc] ? TRUE : FALSE;		
+		$locReserved = ( $locs[$loc] ) ? TRUE : FALSE;		
 		
-		if ( $selection == 'none' ) {
+		if ( $locReserved ) :
 			
-			$locs[$loc] = 0; //Update the ID of the menu associated with the location 
-			set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods			
+			switch ( $selection ) :
 				
-		}
-		
-		if ( $locReserved && $custSet  ) :
+				// IF the saved value is 'none', update the menu id on the Menus side to zero				
+				case 'none' :
+					$locs[$loc] = FALSE; //Update the ID of the menu associated with the location 
+					set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
+				break;
+				
+				// IN ANY OTHER CASES, update the menu id on the Menus side appropriately
+				default:
+					$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
+					$selectedMenuID = $selectedMenu->term_id;	
 			
-			$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
-			$selectedMenuID = $selectedMenu->term_id;	
-	
-			//let's update the association in Appearance -> Menus appropriately.
-			$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.
-			$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location 
-			set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
-					
+					//let's update the association in Appearance -> Menus appropriately IF the two menu ids differ.
+					$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.
+					if ( $selectedMenu !== $associatedMenuID )
+						$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location 
+						set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods				
+							
+			endswitch;
+			
+		else :
+			
+			// If there's no menu associated on the Menus side, AND the customizer setting is NOT NONE
+			if ( $selection !== 'none' )
+				$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
+				$selectedMenuID = $selectedMenu->term_id;	
+		
+				//let's update the association in Appearance -> Menus appropriately.
+				$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.					
+				$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location 
+				set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods				
+		
 		endif;
 	
 	endforeach;
@@ -866,10 +852,8 @@ function tesseract_set_menu_location_customizerupdate() {
 }
 
 //Let's call this on both side's init action
-add_action('init', 'tesseract_set_menu_location', 77);
-add_action('admin_init', 'tesseract_set_menu_location', 77);
 add_action('customize_save_after', 'tesseract_set_menu_location_customizerupdate', 77);
-add_action('admin_init', 'tesseract_set_menu_location_menuupdate', 77);
+add_action('init', 'tesseract_set_menu_location_menuupdate', 77);
 
 function tesseract_new_excerpt_more($more) {
        global $post;

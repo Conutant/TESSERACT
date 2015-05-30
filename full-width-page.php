@@ -32,8 +32,6 @@ get_header();
 
 			<?php endwhile; ?>
 
-			<?php tesseract_paging_nav(); ?>
-
 		<?php else : ?>
 
 			<?php get_template_part( 'content', 'none' ); ?>

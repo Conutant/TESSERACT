@@ -547,15 +547,6 @@ function tesseract_header_menu_options_enable() {
 
 }
 
-function tesseract_header_menu_select_enable() {
-	
-	$menu_enable = get_theme_mod( 'tesseract_header_menu_hide_menu' );
-	$bool = ( $menu_enable == 0 ) ? true : false;
-	
-	return $bool;
-
-}
-
 function tesseract_blog_featimg_sizes_enable() {
 
 	$sizes_enable = get_theme_mod( 'tesseract_blog_display_featimg' );
@@ -572,24 +563,6 @@ function tesseract_blog_featimg_px_size_enable() {
 	
 	return $bool;
 	
-}
-
-function tesseract_footer_content_hide_menu_enable() {
-
-	$tesseract_menu_selector_menus = get_terms( 'nav_menu' );
-	$bool = $tesseract_menu_selector_menus ? true : false;
-	
-	return $bool;
-	
-}
-
-function tesseract_footer_menu_select_enable() {
-	
-	$menu_enable = get_theme_mod( 'tesseract_footer_content_hide_menu' );
-	$bool = ( $menu_enable == 0 ) ? true : false;
-	
-	return $bool;
-
 }
 
 function tesseract_footer_logo_enable() {

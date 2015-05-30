@@ -16,9 +16,6 @@
 
         $menuClass = 'only-menu';
         if ( $additional ) $menuClass = 'is-additional'; 
-        
-        $menuEnable = get_theme_mod('tesseract_footer_content_enable');
-		$menuEnable = ( $menuEnable == 0 ) ? false : true;
 		
         $addcontent_hml = get_theme_mod('tesseract_footer_additional_content');		
 		$footerNav_class = ( is_string($addcontent_hml) && ( $addcontent_hml !== 'nothing' ) ) ? 'is-before' : 'none-before';		
@@ -46,14 +43,12 @@
                 <?php // SHOUDLD some additional content added before the menu?
                 if ( is_string($addcontent_hml) && ( $addcontent_hml !== 'nothing' ) ) : ?>
                 
-                    <div id="horizontal-menu-before" class="switch thm-left-left<?php if ( $menuEnable == true ) echo ' is-menu'; ?>"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
+                    <div id="horizontal-menu-before" class="switch thm-left-left"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
                 
                 <?php endif; //EOF left menu - IS before content ?>
                 
-                <?php  $hideMenu = get_theme_mod('tesseract_footer_content_hide_menu');
-				$menuSelected = get_theme_mod('tesseract_footer_menu_select');
-				$menuEnable = ( $hideMenu == 0 ) ? TRUE : FALSE;
-				if ( $menuEnable && $menuSelected !== 'none' ) : ?>
+                <?php $menuSelected = get_theme_mod('tesseract_footer_menu_select');
+				if ( $menuSelected !== 'none' ) : ?>
                 
 					<section id="footer-horizontal-menu" class="cf <?php echo $footerNav_class; ?>"><?php tesseract_output_menu( FALSE, FALSE, 'secondary', 1 ); ?></section>
               	<?php endif; ?>            

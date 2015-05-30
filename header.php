@@ -95,10 +95,9 @@ $headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100
                             </div><!-- .site-branding -->
                         <?php } ?>
                         
-                        <?php $hideMenu = get_theme_mod('tesseract_header_menu_hide_menu');
-							$menuSelected = get_theme_mod('tesseract_header_menu_select');
-							$menuEnable = ( $hideMenu == 0 ) ? TRUE : FALSE;
-							if ( $menuEnable && $menuSelected !== 'none' ) : ?>
+                        <?php $menuSelected = get_theme_mod('tesseract_header_menu_select');
+							
+							if ( $menuSelected !== 'none' ) : ?>
 
                                 <nav id="site-navigation" class="<?php echo $mmdClass; ?> main-navigation top-navigation <?php echo $hmenusize_class; ?>" role="navigation">
                                     <?php tesseract_output_menu( FALSE, FALSE, 'primary', 0 ); ?>

@@ -38,7 +38,7 @@ get_header();
 
 			<?php endwhile; ?>
 
-			<?php tesseract_paging_nav(); ?>
+			<?php if ( is_home() )tesseract_paging_nav(); ?>
 
 		<?php else : ?>
 

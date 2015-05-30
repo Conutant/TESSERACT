@@ -15,7 +15,7 @@ $wp_customize->add_section( 'tesseract_header_menu' , array(
 	if ( $tesseract_menu_selector_menus ) :
 			
 		$tesseract_menu_selector_items = array();
-		$item_keys = array( 'none' ); $item_values = array( '' );
+		$item_keys = array( 'none' ); $item_values = array( 'None' );
 		foreach ( $tesseract_menu_selector_menus as $items ) {
 			array_push( $item_keys, $items->slug);
 			array_push( $item_values, $items->name);
@@ -24,8 +24,7 @@ $wp_customize->add_section( 'tesseract_header_menu' , array(
 		$tesseract_menu_selector_items = array_combine( $item_keys, $item_values );
 		 
 		$wp_customize->add_setting( 'tesseract_header_menu_select', array(
-			'sanitize_callback' => 'tesseract_sanitize_select',
-			'default' 			=> 'none'
+			'sanitize_callback' => 'tesseract_sanitize_select'
 		) );
 		
 			$wp_customize->add_control(
@@ -33,34 +32,15 @@ $wp_customize->add_section( 'tesseract_header_menu' , array(
 					$wp_customize,
 					'tesseract_header_menu_select_control',
 					array(
-						'label'          => __( 'Choose the menu to be displayed in the header', 'tesseract' ),
+						'label'          => __( 'Select Menu', 'tesseract' ),
 						'section'        => 'tesseract_header_menu',
 						'settings'       => 'tesseract_header_menu_select',
 						'type'           => 'select',
 						'choices'        => $tesseract_menu_selector_items,
-						'priority' 		 => 1,
-						'active_callback'=> 'tesseract_header_menu_select_enable'								
+						'priority' 		 => 1							
 					)
 				)
 			);			
 					
 	endif;
-	
-	$wp_customize->add_setting( 'tesseract_header_menu_hide_menu', array(
-			'sanitize_callback' => 'tesseract_sanitize_checkbox',
-			'default' 			=> 0
-	) );
-	
-		$wp_customize->add_control(
-			new WP_Customize_Control(
-				$wp_customize,
-				'tesseract_header_menu_hide_menu_control',
-				array(
-					'label'          => __( 'Hide header menu', 'tesseract' ),
-					'section'        => 'tesseract_header_menu',
-					'settings'       => 'tesseract_header_menu_hide_menu',
-					'type'           => 'checkbox',
-					'priority' 		 => 2
-				)
-			)
-		);			
+		
