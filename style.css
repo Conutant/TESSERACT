@@ -4,7 +4,7 @@ Theme URI: http://tyler.com/tesseract-theme/
 Author: Tyler Moore
 Author URI: http://tyler.com/
 Description: Tesseract is a beautiful theme from the fourth dimension. Tesseract makes it easy to create a website that you are proud to show off to the world. It is responsive, has simple and useful navigation, an amazing featured image with buttons and is simple to use.
-Version: 1.0
+Version: 2.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: tesseract
@@ -20,7 +20,7 @@ Tesseract is based on Underscores http://underscores.me/, (C) 2012-2014 Automatt
 /* =Table of Contents
 -------------------------------------------------------------- */
 
-/* 
+/*
     01. CSS Reset (Normalize)
     02. Theme Base
     03. Clearfix
@@ -150,7 +150,7 @@ a:hover {
     outline: 0;
 }
 
-   
+
 /* =Text-level semantics
 -------------------------------------------------------------- */
 
@@ -430,12 +430,12 @@ input[type="search"] {
 .entry-content textarea {
 	width: 100%;
 	}
-	
+
 .entry-content select {
 	width: calc( 60% - 20px );
-	}	
-	
-#content form span { width: 100%; }	
+	}
+
+#content form span { width: 100%; }
 
 /**
  * Define consistent border, margin, and padding.
@@ -522,9 +522,9 @@ th {
 
 /* Apply a natural box layout model to all elements */
 
-*, 
-*:before, 
-*:after { 
+*,
+*:before,
+*:after {
     box-sizing: border-box;
 }
 
@@ -647,7 +647,7 @@ cite {
 blockquote cite {
 	text-align: right;
 	font-size: 17.6px;
-	border-top: rgba(0, 0, 0, .1) solid 1px;		
+	border-top: rgba(0, 0, 0, .1) solid 1px;
 }
 
 blockquote {
@@ -778,7 +778,7 @@ ol .children {
 
 /* =07. Forms
 -------------------------------------------------------------- */
- 
+
 select,
 textarea,
 input:not([type]),
@@ -845,7 +845,7 @@ input[type="url"]:disabled,
 input[type="search"]:disabled,
 input[type="tel"]:disabled,
 input[type="color"]:disabled {
-    cursor: none;  
+    cursor: none;
 }
 
 /*
@@ -983,9 +983,9 @@ input[type="reset"]:active,
 input[type="submit"]:active,
 input[type="button"]:active {
     background: none;
-	background-color: #199cd8; 
+	background-color: #199cd8;
 	box-shadow: none;
-	text-shadow: none;	  
+	text-shadow: none;
 }
 
 /* === Differnt Colors and Sizes Of Primary and Secondary Buttons  === */
@@ -1008,12 +1008,12 @@ input[type="button"]:active {
 	color: #fff!important;
 	vertical-align: baseline;
 	}
-	
+
 .primary-button:hover,
 .woocommerce a.button.primary-button:hover,
 .woocommerce-page a.button.primary-button:hover {
     background-color: #1581b2;
-}	
+}
 
 .secondary-button,
 .woocommerce a.button.secondary-button,
@@ -1026,21 +1026,21 @@ input[type="button"]:active {
 .woocommerce a.button.secondary-button:hover,
 .woocommerce-page a.button.secondary-button:hover {
     background-color: #199cd8;
-}	
+}
 
 .site-header .secondary-button,
 .woocommerce .site-header a.button.secondary-button,
 .woocommerce-page .site-header a.button.secondary-button { color: #fff; }
-	
+
 /*#header-button-container .secondary-button {
 	color: #000;
 	border-color: #000;
-	}	
-	
+	}
+
 .secondary-button:hover,
 #header-button-container .secondary-button:hover {
     background-color: #fff;
-    color: #199cd8;	
+    color: #199cd8;
 	}
 
 #header-button-container .secondary-button:hover {
@@ -1055,12 +1055,12 @@ input[type="button"]:active {
 .woocommerce-page a.button {
 	margin: 5px;
 	}
-	
+
 .button:hover,
 .woocommerce a.button:hover,
 .woocommerce-page a.button:hover {
 	color: #fff!important;
-	}	
+	}
 
 /* === Default Color === */
 
@@ -1338,7 +1338,7 @@ button:disabled,
 input[type="reset"]:disabled,
 input[type="submit"]:disabled,
 input[type="button"]:disabled {
-    cursor: none;  
+    cursor: none;
 }
 
 /*
@@ -1441,7 +1441,7 @@ a:hover {
 .fl-builder .site-content {
 	max-width: 100%;
 	padding: 0;
-	margin: 0;	
+	margin: 0;
 	}
 
 .site-info,
@@ -1452,7 +1452,7 @@ a:hover {
 	margin-right: auto;
 }
 
-@viewport{ 
+@viewport{
     width: device-width;
 }
 
@@ -1585,7 +1585,7 @@ a:hover {
 .post-navigation .nav-next {
     float: right;
     text-align: right;
-}	
+}
 
 /* =14. Icons
 -------------------------------------------------------------- */
@@ -1631,7 +1631,7 @@ a:hover {
 /*
  * Responsive media.
  */
- 
+
 img,
 embed,
 object,
@@ -1663,7 +1663,7 @@ figure {
     width: 100%;
 	margin-top: -60px;
     position: absolute;
-    top: 51px;	
+    top: 51px;
 }
 
 .entry-background:before {
@@ -1686,14 +1686,14 @@ figure {
 	background-repeat: no-repeat;
 	margin-top: 10px;
 	}
-	
+
 .entry-post-thumbnail {
 	width: 100%;
-	margin-top: 28px;	
-	}			
-	
+	margin-top: 28px;
+	}
+
 .entry-post-thumbnail.below-title { margin: 20px auto; }
-.entry-post-thumbnail.above-title { margin-bottom: 28px; }	
+.entry-post-thumbnail.above-title { margin-bottom: 28px; }
 
 .archive .entry-thumbnail {
     display: inline-block;
@@ -1708,7 +1708,7 @@ figure {
 .alignleft {
     display: inline;
     float: left;
-    margin: 18px 18px 18px 0; 
+    margin: 18px 18px 18px 0;
 }
 
 .alignright {
@@ -1738,7 +1738,7 @@ figure {
 }
 
 .wp-caption .wp-caption-text {
-    margin-bottom: 0.8075em; 
+    margin-bottom: 0.8075em;
     margin-top: 0.8075em;
 }
 
@@ -1992,7 +1992,7 @@ figure {
 .page-template-page-rightsidebar #primary {
 	float: left;
 	}
-	
+
 .page-template-page-rightsidebar #secondary {
 	float: right;
 	padding: 0 0 0 60px;
@@ -2010,12 +2010,12 @@ figure {
 .blog #content {
 	max-width: 720px;
 	}
-	
+
 .fl-builder.page-template-blog #content,
 .fl-builder.blog #content {
 	max-width: none;
-	}	
-	
+	}
+
 .navigation.post-navigation{
     padding: 10px
 }
@@ -2032,10 +2032,10 @@ figure {
 .page-template-blog-php #primary article:last-of-type {
 	border-bottom: none;
 	}
-	
+
 .page-template-blog-php #colophon {
 	border-top: 1px solid #ddd;
-	}	
+	}
 
 h1.entry-title,
 .blog .page-title {
@@ -2050,7 +2050,7 @@ h1.entry-title,
 
 .blog.home #primary article:first-of-type {
 	padding-top: 40px;
-	}	
+	}
 
 span.posted-on{
     font-size: 16px;
@@ -2068,8 +2068,8 @@ span.posted-on{
 .wpcf7-submit{
     float: right;
     clear: both;
-    margin-bottom: 20px; 
-}	
+    margin-bottom: 20px;
+}
 
 /* Archives + Search */
 
@@ -2082,15 +2082,15 @@ span.posted-on{
 .search .entry-summary {
 	padding-bottom: 20px;
 	}
-	
+
 .archive #primary article:last-child .entry-content {
 	border-bottom: none;
-	}			
-	
+	}
+
 .search .page-title,
 .error404 .page-title {
 	margin: 47px 0 0;
-	}	
+	}
 
 .archive .page-title { margin: 46px 0 10px; }
 
@@ -2100,41 +2100,41 @@ span.posted-on{
 	line-height: 1.53;
 	margin: 25px 0 0;
 	padding-bottom: 40px;
-	border-bottom: 1px solid #ddd;	
+	border-bottom: 1px solid #ddd;
 	}
-	
-.archive-description p { padding-bottom: 17px; }	
+
+.archive-description p { padding-bottom: 17px; }
 .archive-description > p:last-child { padding-bottom: 0; }
 
 .search h1.entry-title {
 	margin: 17px 0 20px 0;
 	font-size: 21px;
 	}
-	
+
 .search .entry-summary {
 	margin: 0;
 	padding: 0;
 	}
-	
+
 .search .entry-footer {
 	margin-bottom: 0;
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 40px;
-	}	
-	
+	}
+
 .search-results.fullwidth #primary {
 	float: none;
 	width: 100%;
-	}	
-	
+	}
+
 .search-results.sidebar-right #primary {
 	float: left;
-	}			
-	
+	}
+
 .search-results.sidebar-right #secondary {
 	float: right;
 	padding: 0 0 0 60px;
-	}					
+	}
 
 /* =20. Asides
 -------------------------------------------------------------- */
@@ -2175,7 +2175,7 @@ span.posted-on{
 
 .comment-content p {
     margin-top: 3px;
-    
+
 }
 
 
@@ -2313,11 +2313,11 @@ article.comment-body{
 }
 
 #colophon ul {
-	list-style-type: none;	
+	list-style-type: none;
 	padding-left: 0;
 	list-style-position: inside;
 	}
-	
+
 #sidebar-footer {
 	text-align: left;
 	word-spacing: -0.29em;
@@ -2337,12 +2337,12 @@ article.comment-body{
 /* BEAVER BUILDER */
 .fl-row-full-width .fl-col-group {
 	max-width: 100%;
-	padding: 
+	padding:
 	}
-	
+
 .zero-opacity-header .fl-row {
 	margin-top: -1px;
-	}	
+	}
 
 /* CONTACT FORM 7 */
 .wpcf7-form-control-wrap { width: 100%; }
@@ -2351,45 +2351,45 @@ article.comment-body{
 -------------------------------------------------------------- */
 
 @media screen and (max-width: 980px) {
-	
+
 	#sidebar-footer,
 	#content {
 		padding: 0 20px;
 		}
-		
+
 	.fl-builder #content { padding:0; }
-		
+
 	#sidebar-footer aside {
 		width: 50%!important;
 		padding: 0;
 		border-width: 1px 0 1px 0;
-		}	
-		
-	#sidebar-footer aside.odd:last-child { width: 100%!important; }	
-	
+		}
+
+	#sidebar-footer aside.odd:last-child { width: 100%!important; }
+
 	}
-	
+
 @media screen and (max-width: 768px) {
-	
-	#primary, 
+
+	#primary,
 	#secondary {
 		width: 100%;
 		padding: 0!important;
 		}
-		
+
 
 	.search-no-results #secondary aside.widget_search:first-child {
-		display: none;	
-		}			
-		
+		display: none;
+		}
+
 	.aligncenter {
 		display: block;
 		margin: 0px auto 0px auto;
-	}		
-	
-} 	
+	}
 
-@media screen and (max-width: 600px) {	
+}
+
+@media screen and (max-width: 600px) {
 
 	#wpadminbar {
 		position: fixed;
@@ -2398,11 +2398,11 @@ article.comment-body{
 }
 
 @media screen and (max-width: 480px) {
-		
+
 	#sidebar-footer aside {
 		width: 100%!important;
-		}	
-		
+		}
+
 	textarea,
 	input:not([type]),
 	input[type="text"],
@@ -2412,8 +2412,8 @@ article.comment-body{
 	input[type="search"],
 	input[type="tel"] {
 		max-width: 100%;
-		}		
-		
+		}
+
 	.entry-content input[type=text],
 	.entry-content input[type=email],
 	.entry-content input[type=tel],
@@ -2430,12 +2430,12 @@ article.comment-body{
 	.entry-content textarea {
 		width: 100%;
 		}
-		
+
 	.entry-content select {
 		width: calc( 100% - 20px );
 		}
-	
-	
+
+
 }
 
 
@@ -2446,7 +2446,7 @@ article.comment-body{
 /* Print styles inlined to avoid extra HTTP connection */
 
 @media print {
-    
+
 	* {
 		background: transparent !important;
 		color: black !important; /* Black prints faster: sanbeiji.com/archives/953 */
@@ -2469,7 +2469,7 @@ article.comment-body{
 
 	/* Do not show javascript and internal links */
 	a[href^="javascript:"]:after, a[href^="#"]:after {
-		content: ""; 
+		content: "";
 	}
 
 	/* Printing Tables: css-discuss.incutio.com/wiki/Printing_Tables */
@@ -2493,7 +2493,7 @@ article.comment-body{
 	h2, h3 {
 		page-break-after: avoid;
 	}
-    
+
 }
 
 
