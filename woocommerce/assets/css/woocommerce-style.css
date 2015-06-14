@@ -15,6 +15,66 @@
 	vertical-align: middle;	
 	}
 
+/* Special case - right side menu is displayed with woo cart */
+	
+	.is-woo.is-right #site-banner-right { padding-right: 86px; }
+	.is-woo.mobmenu-todefault #site-banner-right { padding-right: 155px; }
+	.is-woo.mobmenu-todefault.is-right #site-banner-right { padding-right: 142px; }
+	.is-woo.mobmenu-todefault.is-right #site-banner-right { padding-right: 142px; }
+	
+	.is-woo .woocart-header {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		margin-top: -24px;
+		}
+		
+	.is-woo.mobmenu-todefault .woocart-header {
+		right: 56px;
+		}			
+		
+	.is-woo.mobmenu-todefault.sidr-conflict .woocart-header {
+		right: 0;
+		border: 0;
+		}				
+
+/* EOF Special case */
+
+/* Special cases - mobmenu-to-default */
+
+.no-right .woocart-header {
+	border-width: 0	;
+}
+
+.mobmenu-todefault .woocart-header {
+	border-width: 0 1px;			
+	padding: 0 12px 0 8px;
+}
+
+.no-right.mobmenu-todefault  .woocart-header {
+	border-width: 0 1px 0 0;
+}		
+
+.is-right.menu..mobmenu-todefault.rightmenu-set .woocart-header {
+	border-width: 0 1px;	
+} 
+
+.is-right.mobmenu-breakpoint .woocart-header {
+	border-width: 0 0 0 1px;			
+	padding: 0 0 0 8px;
+}
+
+.is-right.mobmenu-breakpoint.rightmenu-none .woocart-header {
+	border-width: 0;	
+}
+	
+.is-woo.mobmenu-todefault.leftmenu-to-sidr .woocart-header,
+.is-woo.mobmenu-todefault.rightmenu-set .woocart-header {
+	right: 43px;
+}	
+
+/* Special cases - mobmenu-to-default */
+
 .banner-right .woocart-header a,
 .banner-right .woocart-header a:before {
 	font-weight: 300;
@@ -151,6 +211,10 @@
 	font-size: 20;
 	line-height: 48px;	
 }		
+
+.mobmenu-todefault .cart-contents .cart-arrow {
+	right: 12px;
+	}
 
 /* Shop page */
 
@@ -488,5 +552,45 @@ form.woocommerce-checkout {
 	#site-banner-right > .woocart-header {
 		display: inline-block;	
 		}
+		
+	#site-banner-right.menu { position: absolute; }	
+		
+	#site-banner-right.menu .woocart-header {
+		position: relative;
+		top: auto;
+		right: auto;
+		margin-top: auto;
+		}	
+		
+	.is-woo.is-right.mobmenu-breakpoint #site-banner-right {
+		padding-right: 0;
+		}	
+
+	.is-right.mobmenu-breakpoint.rightmenu-set .woocart-header {
+		border-width: 0;	
+	}		
 	
+	.is-woo.mobmenu-todefault.is-right #site-banner-right {
+		padding-right: 44px;	
+	}	
+	
+	.is-woo.mobmenu-todefault.is-right .woocart-header,
+	.is-woo.mobmenu-todefault.no-right .woocart-header {
+		border-width: 0;	
+	}		
+	
+	.is-woo.mobmenu-todefault.rightmenu-none #site-banner-right.menu,
+	.is-woo.mobmenu-todefault.rightmenu-set #site-banner-right.menu {
+		padding-right: 0;	
+	}
+	
+	.is-woo.mobmenu-todefault.rightmenu-none #site-banner-right.menu .woocart-header,
+	.is-woo.mobmenu-todefault.rightmenu-set #site-banner-right.menu .woocart-header	 {
+		right: -12px;	
+	}
+	
+	.is-woo.mobmenu-todefault.leftmenu-to-sidr .woocart-header {
+		right: -12px;	
+	}
+
 }

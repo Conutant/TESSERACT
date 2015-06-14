@@ -257,6 +257,10 @@ function tesseract_woocommerce_headercart_scripts() {
 	// Cart Borders
 	$cart_topBorderColor = get_theme_mod('tesseract_header_colors_text_color') ? get_theme_mod('tesseract_header_colors_text_color') : '#ffffff';
 		
+	$header_linkColor = get_theme_mod('tesseract_header_colors_link_color') ? get_theme_mod('tesseract_header_colors_link_color') : '#ffffff';
+	list($hl_r, $hl_g, $hl_b) = sscanf($header_linkColor, "#%02x%02x%02x");
+	$header_linkColor_rgba = "rgba($hl_r, $hl_g, $hl_b, 0.15	)";		
+		
 	$dynamic_styles_woo_header = ".cart-content-details-table tfoot td {
 		border-top: " . $cart_topBorderColor . " solid 1px;	
 	}
@@ -265,10 +269,28 @@ function tesseract_woocommerce_headercart_scripts() {
 		background: " . $header_bckRGB . "; 
 		}
 	
-	.cart-content-details:after { border-bottom-color: " . $header_bckRGB . "; }	
-	";
+	.cart-content-details:after { border-bottom-color: " . $header_bckRGB . "; }
 
-	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_woo_header );
+	.woocart-header {
+		border: " . $header_linkColor_rgba . " solid 1px;			
+	}
+	";	
+	
+	if ( get_theme_mod('tesseract_mobmenu_to_default') == 1 ) : 
+		$dynamic_styles_woo_header .= "#site-navigation, #header-right-menu { display: none }";
+	endif;
+	
+	$rightContent_menu = ( get_theme_mod('tesseract_header_right_content') == 'menu' ) ? TRUE : FALSE;	
+	$menuSelected = get_theme_mod('tesseract_header_right_menu_select');
+	$rightMenu_none = ( $rightContent_menu && ( $menuSelected == 'none' ) ) ? TRUE : FALSE;		
+	
+	//Woocart doesn't need a left border when
+	//	-mobmenu-default is checked ( hamburger always shown ) AND right content is set to 'menu'	
+	//	-right content is set to 'menu' AND right menu selector is set to 'none', OR
+	if ( ( ( get_theme_mod('tesseract_mobmenu_to_default') == 1 ) && $rightContent_menu ) || $rightMenu_none )
+		$dynamic_styles_woo_header .= ".is-woo.mobmenu-todefault .woocart-header { border-width: 0 1px 0 0; }";
+	
+	wp_add_inline_style( 'woocommerce-style', $dynamic_styles_woo_header );
 	
 }
 add_action( 'wp_enqueue_scripts', 'tesseract_woocommerce_headercart_scripts' );

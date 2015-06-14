@@ -3,7 +3,7 @@
  * section SOCIAL/ACCOUNT05
  */	
  	
-	$is_used = is_string( get_theme_mod('tesseract_social_account05_name') );
+	$is_used = ( is_string( get_theme_mod('tesseract_social_account05_name') ) && ( get_theme_mod('tesseract_social_account05_name') !== '' ) );
 	
 	$sectionName = ( $is_used ) ? get_theme_mod('tesseract_social_account05_name') . ' Account ' . __('Settings', 'tesseract') : __('Social Account 05 Settings', 'tesseract');
 	$sectionPriority = ( $is_used ) ? 5 : 15;

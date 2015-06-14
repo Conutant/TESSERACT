@@ -11,6 +11,9 @@
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
 function tesseract_customize_register( $wp_customize ) {
+	
+	global $sidrMenu;
+	
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';	
@@ -51,6 +54,11 @@ function tesseract_customize_register( $wp_customize ) {
 	$wp_customize->get_section('title_tagline')->panel = 'tesseract_header_options';
 	$wp_customize->get_section('title_tagline')->priority = 3;	
 	
+	$wp_customize->get_control('blogname')->section = 'tesseract_header_left_content';
+	$wp_customize->get_control('blogname')->priority = 1;
+	$wp_customize->remove_control('blogdescription');
+	$wp_customize->remove_control('display_header_text');
+	
 	if ( $wp_customize->get_section('static_front_page') ) {
 		$wp_customize->get_section('static_front_page')->panel = 'tesseract_general_options';
 		$wp_customize->get_section('static_front_page')->priority = 4;
@@ -70,10 +78,9 @@ function tesseract_customize_register( $wp_customize ) {
 	$wp_customize->remove_control('header_textcolor');	
 
 	require get_template_directory() . '/inc/sections/header-colors.php';	
-	require get_template_directory() . '/inc/sections/header-logo.php';
 	require get_template_directory() . '/inc/sections/header-size.php';
-	require get_template_directory() . '/inc/sections/header-menu.php';
-	require get_template_directory() . '/inc/sections/header-content.php';
+	require get_template_directory() . '/inc/sections/header-left-content.php';
+	require get_template_directory() . '/inc/sections/header-right-content.php';
 	require get_template_directory() . '/inc/sections/mobile-menu.php';
 	
 	require get_template_directory() . '/inc/sections/social/account01.php';
@@ -91,9 +98,8 @@ function tesseract_customize_register( $wp_customize ) {
 	require get_template_directory() . '/inc/sections/search-results.php';	
 	
 	require get_template_directory() . '/inc/sections/footer-colors.php';
-	require get_template_directory() . '/inc/sections/footer-size.php';	
-	require get_template_directory() . '/inc/sections/footer-logo.php';		
-	require get_template_directory() . '/inc/sections/footer-content.php';
+	require get_template_directory() . '/inc/sections/footer-size.php';		
+	require get_template_directory() . '/inc/sections/footer-left-content.php';
 	
 	require get_template_directory() . '/inc/sections/woocommerce.php';																										
 			
@@ -110,20 +116,26 @@ function tesseract_customize_preview_js() {
 	
 	wp_register_script( 'tesseract_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '1.0.0', true );
 
-		// Let's get a lighter version of the user-definedsearch iput color applied in the mobile menu - tricky
-		// See @ http://stackoverflow.com/questions/11091695/how-to-find-the-hex-code-for-a-lighter-or-darker-version-of-a-hex-code-in-php
-		$watermarkColor = get_theme_mod('tesseract_mobmenu_search_color');
-		$col = Array(
-			hexdec(substr($watermarkColor,1,2)),
-			hexdec(substr($watermarkColor,3,2)),
-			hexdec(substr($watermarkColor,5,2))
-		);
-		$lighter = Array(
-			255-(255-$col[0])*0.8,
-			255-(255-$col[1])*0.8,
-			255-(255-$col[2])*0.8
-		);	
-		$lighter = "#".sprintf("%02X%02X%02X", $lighter[0], $lighter[1], $lighter[2]);
+	//We need to know which menu is used as main menu by the mobile menu script
+	$leftMenu = get_theme_mod('tesseract_header_left_content_menu_select');
+	$is_leftMenu = ( !is_string($leftMenu) || ( is_string($leftMenu) && ( $leftMenu !== 'none' ) ) );
+	
+	$rightMenu = get_theme_mod('tesseract_header_right_menu_select');
+	$is_rightMenu = ( ( is_string($rightMenu) && ( $rightMenu !== 'none' ) ) && ( get_theme_mod('tesseract_header_right_content') == 'menu' ) );		
+	
+	$is_both = ( $is_leftMenu && $is_rightMenu ) ? TRUE : FALSE;
+	
+	$locSelected = get_theme_mod('tesseract_mobmenu_location_select');
+	$is_loc = is_string( $locSelected ) ? TRUE : FALSE;
+	
+	if ( $is_both ) :
+		$sidrMenu = ( is_string( $locSelected ) && ( $locSelected !== 'none' ) ) ? $locSelected : 'leftmenu-to-sidr'; 
+	elseif ( $is_leftMenu && !$is_rightMenu ) : $sidrMenu = 'leftmenu-to-sidr';
+	elseif ( !$is_leftMenu && $is_rightMenu ) : $sidrMenu = 'rightmenu-to-sidr';
+	elseif ( ($leftMenu == 'none') && ( $locSelected == 'leftmenu-to-sidr' ) || ($rightMenu == 'none') && ( $locSelected == 'rightmenu-to-sidr' ) ) : $sidrMenu = 'sidr-conflict';
+	else : $sidrMenu = FALSE; 
+	endif; 
+	//EOF $sidrMenu definiton
 
 	// Localize script
     wp_localize_script( 'tesseract_customizer', 'tesseract_vars', array(  
@@ -131,9 +143,12 @@ function tesseract_customize_preview_js() {
 		'mobmenu_shadow_color_custom'   				=> get_theme_mod('tesseract_mobmenu_shadow_color_custom'),
 		'mobmenu_search_color'   						=> get_theme_mod('tesseract_mobmenu_search_color'),
 		'mobmenu_buttons_background_color_custom' 		=> get_theme_mod('tesseract_mobmenu_buttons_background_color_custom'),
-		'mobmenu_search_color_lighter'   				=> $lighter,
+		'mobmenu_toDefault' 							=> get_theme_mod('tesseract_mobmenu_to_default'),
+		'mobmenu_locToUse' 								=> $sidrMenu,
+		'hpad' 					  						=> get_theme_mod('tesseract_header_height'),
+		'fpad'   										=> get_theme_mod('tesseract_footer_height')			
  	) );	
-	
+
 	wp_enqueue_script( 'tesseract_customizer' );
 
 }

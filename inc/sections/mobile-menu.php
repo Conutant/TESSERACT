@@ -4,10 +4,184 @@
  */		
 	
    	$wp_customize->add_section( 'tesseract_mobmenu' , array(
-    	'title'      => __('Mobile Menu', 'tesseract'),
-    	'priority'   => 7,
-		'panel'      => 'tesseract_header_options'
-	) );		
+    	'title'      		=> __('Mobile Menu', 'tesseract'),
+    	'priority'   		=> 7,
+		'panel'      		=> 'tesseract_header_options',
+		'active_callback'	=> 'tesseract_mobmenu_section_enable'
+	) );	
+
+		$wp_customize->add_setting( 'tesseract_mobmenu_options_header', array(
+			'default'           => '',
+			'type'           	=> 'option',
+			'sanitize_callback' => '__return_false'
+			)
+		);
+		
+			$wp_customize->add_control( 
+				new Tesseract_Customize_Header_Control(
+				$wp_customize,
+				'tesseract_mobmenu_options_header_control', 
+				array(
+					'label' =>  __('Menu Options', 'tesseract' ),
+					'section' => 'tesseract_mobmenu',
+					'settings' => 'tesseract_mobmenu_options_header',
+					'priority' => 	1
+					)
+				)
+			);	
+	
+		$wp_customize->add_setting( 'tesseract_mobmenu_location_select', array(
+			'sanitize_callback' => 'tesseract_sanitize_mobmenu_select',
+			'default'			=> FALSE
+		) ); 
+		
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'tesseract_mobmenu_location_select_control',
+					array(
+						'label'          => __( 'Currently you have two menus displayed in the header. Select the one you intend to display as main mobile navigation.', 'tesseract' ),
+						'section'        => 'tesseract_mobmenu',
+						'settings'       => 'tesseract_mobmenu_location_select',
+						'type'           => 'select',
+						'choices'        => array(
+							'none'	 	 => '',
+							'leftmenu-to-sidr' => 'Header left block menu',
+							'rightmenu-to-sidr'=> 'Header right block menu'
+							),
+						'priority' 		 => 2,
+						'active_callback'=> 'tesseract_mobmenu_location_select_enable'							
+					)
+				)
+			);					
+
+		// Notices
+		
+		$wp_customize->add_setting( 'tesseract_mobmenu_location_notice_is_menu_menus_none', array(
+			'default'           => '',
+			'type'           	=> 'option',
+			'sanitize_callback' => '__return_false'
+			)
+		);
+		
+			$wp_customize->add_control( 
+				new Tesseract_Customize_Header_Control(
+				$wp_customize,
+				'tesseract_mobmenu_location_notice_is_menu_menus_none_control', 
+				array(
+					'label' 			=>  __('<span class="control-title-span">CONFLICT:</span> Currently the header left and header right menu displays are both set to \'None\'. To get the mobile navigation working you need to select a menu at <span>Header Options -> Header Menu</span> or <span>Header Options -> Header Right Block Content</span>.', 'tesseract' ),
+					'section' 			=> 'tesseract_mobmenu',
+					'settings' 			=> 'tesseract_mobmenu_location_notice_is_menu_menus_none',
+					'priority' 			=> 2,
+					'active_callback'	=> 'tesseract_mobmenu_location_notice_is_menu_menus_none_enable'
+					)
+				)
+			);			
+		
+		$wp_customize->add_setting( 'tesseract_mobmenu_location_notice_is_menu_menus_notset', array(
+			'default'           => '',
+			'type'           	=> 'option',
+			'sanitize_callback' => '__return_false'
+			)
+		);
+		
+			$wp_customize->add_control( 
+				new Tesseract_Customize_Header_Control(
+				$wp_customize,
+				'tesseract_mobmenu_location_notice_is_menu_menus_notset_control', 
+				array(
+					'label' 			=>  __('<span class="control-title-span">CONFLICT:</span> Currently you don\'t have any menu set to be displayed in the header. To get the mobile navigation working you need to select a menu at <span>Header Options -> Header Menu</span> or <span>Header Options -> Header Right Block Content</span>.', 'tesseract' ),
+					'section' 			=> 'tesseract_mobmenu',
+					'settings' 			=> 'tesseract_mobmenu_location_notice_is_menu_menus_none',
+					'priority' 			=> 2,
+					'active_callback'	=> 'tesseract_mobmenu_location_notice_is_menu_menus_notset_enable'
+					)
+				)
+			);			
+
+		$wp_customize->add_setting( 'tesseract_mobmenu_location_notice_sidr_conflict_left', array(
+			'default'           => '',
+			'type'           	=> 'option',
+			'sanitize_callback' => '__return_false'
+			)
+		);
+		
+			$wp_customize->add_control( 
+				new Tesseract_Customize_Header_Control(
+				$wp_customize,
+				'tesseract_mobmenu_location_notice_sidr_conflict_left_control', 
+				array(
+					'label' 			=>  __('<span class="control-title-span">CONFLICT:</span> The mobile menu is set to display the header left block menu - please select a menu from the header left block menu dropdown at <span>Header Options -> Header Menu</span>.', 'tesseract' ),
+					'section' 			=> 'tesseract_mobmenu',
+					'settings' 			=> 'tesseract_mobmenu_location_notice_sidr_conflict_left',
+					'priority' 			=> 2,
+					'active_callback'	=> 'tesseract_mobmenu_location_notice_sidr_conflict_left_enable'
+					)
+				)
+			);
+			
+		$wp_customize->add_setting( 'tesseract_mobmenu_location_notice_sidr_conflict_right', array(
+			'default'           => '',
+			'type'           	=> 'option',
+			'sanitize_callback' => '__return_false'
+			)
+		);
+		
+			$wp_customize->add_control( 
+				new Tesseract_Customize_Header_Control(
+				$wp_customize,
+				'tesseract_mobmenu_location_notice_sidr_conflict_right_control', 
+				array(
+					'label' 			=>  __('<span class="control-title-span">CONFLICT:</span> The mobile menu is set to display the header right block menu - please select a menu from the header right block menu dropdown at <span>Header Options -> Header Right Block Content</span>.', 'tesseract' ),
+					'section' 			=> 'tesseract_mobmenu',
+					'settings' 			=> 'tesseract_mobmenu_location_notice_sidr_conflict_right',
+					'priority' 			=> 2,
+					'active_callback'	=> 'tesseract_mobmenu_location_notice_sidr_conflict_right_enable'
+					)
+				)
+			);						
+
+		// EOF Notices
+					
+		$wp_customize->add_setting( 'tesseract_mobmenu_to_default', array(
+				'sanitize_callback' => 'tesseract_sanitize_checkbox',
+				'default' 			=> 0
+		) );
+		
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'tesseract_mobmenu_to_default_control',
+					array(
+						'label'          => __( 'Check this to display the mobile menu opener (the hamburger icon) independently of the screen width. If the menu selected above is displayed in the header ( either on the left or right side ), this option being checked will hide ', 'tesseract' ),
+						'section'        => 'tesseract_mobmenu',
+						'settings'       => 'tesseract_mobmenu_to_default',
+						'type'           => 'checkbox',
+						'priority' 		 => 3,
+						'active_callback'=> 'tesseract_mobmenu_to_default_enable'	
+					)
+				)
+			);				
+				
+		$wp_customize->add_setting( 'tesseract_mobmenu_style_options_header', array(
+			'default'           => '',
+			'type'           	=> 'option',
+			'sanitize_callback' => '__return_false'
+			)
+		);
+		
+			$wp_customize->add_control( 
+				new Tesseract_Customize_Header_Control(
+				$wp_customize,
+				'tesseract_mobmenu_style_options_header_control', 
+				array(
+					'label' =>  __('Menu Style Options', 'tesseract' ),
+					'section' => 'tesseract_mobmenu',
+					'settings' => 'tesseract_mobmenu_style_options_header',
+					'priority' => 4
+					)
+				)
+			);					
 	
 		$wp_customize->add_setting( 'tesseract_mobmenu_opener', array(
 				'sanitize_callback' => 'tesseract_sanitize_checkbox',
@@ -23,7 +197,7 @@
 						'section'        => 'tesseract_mobmenu',
 						'settings'       => 'tesseract_mobmenu_opener',
 						'type'           => 'checkbox',
-						'priority' 		 => 1	
+						'priority' 		 => 5	
 					)
 				)
 			);	
@@ -46,7 +220,7 @@
 					'label'      => __( 'Menu Background Color', 'tesseract' ),
 					'section'    => 'tesseract_mobmenu',
 					'settings'   => 'tesseract_mobmenu_background_color',
-					'priority'   => 2
+					'priority'   => 6
 				) ) 						
 			);		
 			
@@ -64,7 +238,7 @@
 					'label'      => __( 'Menu Link Color', 'tesseract' ),
 					'section'    => 'tesseract_mobmenu',
 					'settings'   => 'tesseract_mobmenu_link_color',
-					'priority' 	 => 3
+					'priority' 	 => 7
 				) ) 						
 			);	
 			
@@ -82,7 +256,7 @@
 					'label'      => __( 'Menu Link Hover Color', 'tesseract' ),
 					'section'    => 'tesseract_mobmenu',
 					'settings'   => 'tesseract_mobmenu_link_hover_color',
-					'priority' 	 => 4
+					'priority' 	 => 8
 				) ) 						
 			);	
 
@@ -101,7 +275,7 @@
 					'label' =>  __('Menu Link Hover Background Color', 'tesseract' ),
 					'section' => 'tesseract_mobmenu',
 					'settings' => 'tesseract_mobmenu_link_hover_background_color_header',
-					'priority' => 	5
+					'priority' => 	9
 					)
 				)
 			);	
@@ -124,7 +298,7 @@
 							'light' 	=> __( 'Light Opaque', 'tesseract'),
 							'custom'	=> __( 'Custom Color', 'tesseract')						
 						),
-						'priority' 		 => 6
+						'priority' 		 => 10
 					)
 				)
 			);	
@@ -143,7 +317,7 @@
 					'label'      => __( 'Choose custom color', 'tesseract' ),
 					'section'    => 'tesseract_mobmenu',
 					'settings'   => 'tesseract_mobmenu_link_hover_background_color_custom',
-					'priority' 	 => 7,
+					'priority' 	 => 11,
 					'active_callback' 	=> 'tesseract_mobmenu_link_hover_background_color_custom_enable'
 				) ) 						
 			);
@@ -163,7 +337,7 @@
 					'label' =>  __('Menu Item Shadows and Separators Color', 'tesseract' ),
 					'section' => 'tesseract_mobmenu',
 					'settings' => 'tesseract_mobmenu_shadow_color_header',
-					'priority' => 	8
+					'priority' => 12
 					)
 				)
 			);					
@@ -186,7 +360,7 @@
 							'light' 	=> __( 'Light', 'tesseract'),
 							'custom'	=> __( 'Custom Color', 'tesseract')						
 						),
-						'priority' 		 => 9
+						'priority' 		 => 13
 					)
 				)
 			);	
@@ -205,7 +379,7 @@
 					'label'      => __( 'Choose custom color', 'tesseract' ),
 					'section'    => 'tesseract_mobmenu',
 					'settings'   => 'tesseract_mobmenu_shadow_color_custom',
-					'priority' 	 => 10,
+					'priority' 	 => 14,
 					'active_callback' 	=> 'tesseract_mobmenu_shadow_color_custom_enable'
 				) ) 						
 			);	
@@ -225,7 +399,7 @@
 					'label' =>  sprintf( __( 'Header \'Search\' Block Color Settings', 'tesseract' ), $rightContent ),
 					'section' => 'tesseract_mobmenu',
 					'settings' => 'tesseract_mobmenu_additionals_search_header',
-					'priority' => 	11,
+					'priority' => 	15,
 					'active_callback' => 'tesseract_mobmenu_additionals_search_header_enable'
 					)
 				)
@@ -246,7 +420,7 @@
 					'label' =>  __( 'Search Field Background Color', 'tesseract' ),
 					'section' => 'tesseract_mobmenu',
 					'settings' => 'tesseract_mobmenu_search_background_header',
-					'priority' => 	12,
+					'priority' => 	16,
 					'active_callback'=> 'tesseract_mobmenu_search_enable'
 					)
 				)
@@ -269,7 +443,7 @@
 							'dark' 	 	=> __( 'Dark', 'tesseract'),
 							'light' 	=> __( 'Light', 'tesseract')					
 						),
-						'priority' 		 => 13,
+						'priority' 		 => 17,
 						'active_callback'=> 'tesseract_mobmenu_search_enable'
 					)
 				)
@@ -289,7 +463,7 @@
 					'label'      => __( 'Search Input Text Color', 'tesseract' ),
 					'section'    => 'tesseract_mobmenu',
 					'settings'   => 'tesseract_mobmenu_search_color',
-					'priority' 	 => 14,
+					'priority' 	 => 18,
 					'active_callback'=> 'tesseract_mobmenu_search_enable'
 				) ) 						
 			);		
@@ -309,7 +483,7 @@
 					'label' =>  sprintf( __( 'Header \'Social\' Block Color Settings', 'tesseract' ), $rightContent ),
 					'section' => 'tesseract_mobmenu',
 					'settings' => 'tesseract_mobmenu_additionals_social_header',
-					'priority' => 	11,
+					'priority' => 	19,
 					'active_callback' => 'tesseract_mobmenu_additionals_social_header_enable'
 					)
 				)
@@ -330,7 +504,7 @@
 					'label' =>  __( 'Social Icons Background Color', 'tesseract' ),
 					'section' => 'tesseract_mobmenu',
 					'settings' => 'tesseract_mobmenu_social_background_header',
-					'priority' => 	15,
+					'priority' => 	20,
 					'active_callback'=> 'tesseract_mobmenu_social_enable'
 					)
 				)
@@ -353,7 +527,7 @@
 							'dark' 	 	=> __( 'Dark', 'tesseract'),
 							'light' 	=> __( 'Light', 'tesseract')					
 						),
-						'priority' 		 => 16,
+						'priority' 		 => 21,
 						'active_callback'=> 'tesseract_mobmenu_social_enable'
 					)
 				)
@@ -374,7 +548,7 @@
 					'label' =>  sprintf( __( 'Header \'Buttons\' Block Color Settings', 'tesseract' ), $rightContent ),
 					'section' => 'tesseract_mobmenu',
 					'settings' => 'tesseract_mobmenu_additionals_buttons_header',
-					'priority' => 	11,
+					'priority' => 	22,
 					'active_callback' => 'tesseract_mobmenu_additionals_buttons_header_enable'
 					)
 				)
@@ -395,7 +569,7 @@
 						'label' =>  __( 'Buttons Block Background Color', 'tesseract' ),
 						'section' => 'tesseract_mobmenu',
 						'settings' => 'tesseract_mobmenu_buttons_background_header',
-						'priority' => 	17,
+						'priority' => 	23,
 						'active_callback'=> 'tesseract_mobmenu_buttons_enable'
 						)
 					)
@@ -419,7 +593,7 @@
 								'light' 	=> __( 'Light Opaque', 'tesseract'),
 								'custom'	=> __( 'Custom Color', 'tesseract')						
 							),
-							'priority' 		 => 18,
+							'priority' 		 => 24,
 							'active_callback'=> 'tesseract_mobmenu_buttons_enable'
 						)
 					)
@@ -439,7 +613,7 @@
 						'label'      => __( 'Choose custom color', 'tesseract' ),
 						'section'    => 'tesseract_mobmenu',
 						'settings'   => 'tesseract_mobmenu_buttons_background_color_custom',
-						'priority' 	 => 18,
+						'priority' 	 => 25,
 						'active_callback'=> 'tesseract_mobmenu_buttons_background_color_custom_enable'
 					) ) 						
 				);							
@@ -458,7 +632,7 @@
 						'label'      => __( 'Buttons Block Text Color', 'tesseract' ),
 						'section'    => 'tesseract_mobmenu',
 						'settings'   => 'tesseract_mobmenu_buttons_text_color',
-						'priority' 	 => 19,
+						'priority' 	 => 26,
 						'active_callback'=> 'tesseract_mobmenu_buttons_enable'
 					) ) 						
 				);	
@@ -477,7 +651,7 @@
 						'label'      => __( 'Buttons Block Link Color', 'tesseract' ),
 						'section'    => 'tesseract_mobmenu',
 						'settings'   => 'tesseract_mobmenu_buttons_link_color',
-						'priority' 	 => 20,
+						'priority' 	 => 27,
 						'active_callback'=> 'tesseract_mobmenu_buttons_enable'
 					) ) 						
 				);		
@@ -496,7 +670,7 @@
 						'label'      => __( 'Buttons Block Link Hover Color', 'tesseract' ),
 						'section'    => 'tesseract_mobmenu',
 						'settings'   => 'tesseract_mobmenu_buttons_link_hover_color',
-						'priority' 	 => 21,
+						'priority' 	 => 28,
 						'active_callback'=> 'tesseract_mobmenu_buttons_enable'
 					) ) 						
 				);	
@@ -516,7 +690,7 @@
 						'label' 			=>  __('Maxbutton Separator Color', 'tesseract' ),
 						'section' 			=> 'tesseract_mobmenu',
 						'settings' 			=> 'tesseract_mobmenu_maxbtn_sep_color_header',
-						'priority' 			=> 	22,
+						'priority' 			=> 	29,
 						'active_callback' 	=> 'tesseract_mobmenu_maxbtn_sep_enable'
 						)
 					)
@@ -539,7 +713,7 @@
 								'dark' 	 	=> __( 'Dark', 'tesseract'),
 								'light' 	=> __( 'Light', 'tesseract')			
 							),
-							'priority' 		 => 23,
+							'priority' 		 => 30,
 						'active_callback' 	=> 'tesseract_mobmenu_maxbtn_sep_enable'							
 						)
 					)

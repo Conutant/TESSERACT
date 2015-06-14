@@ -5,7 +5,7 @@
 	
 $wp_customize->add_section( 'tesseract_header_size' , array(
     	'title'      => __('Header Size', 'tesseract'),
-    	'priority'   => 3,
+    	'priority'   => 2,
 		'panel'      => 'tesseract_header_options'
 	) );	
 

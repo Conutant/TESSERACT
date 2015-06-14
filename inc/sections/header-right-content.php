@@ -76,39 +76,73 @@
 					)
 				)
 			);	
+			
+		$wp_customize->add_setting( 'tesseract_header_right_search_color', array(
+				'transport'         => 'postMessage',
+				'sanitize_callback' => 'tesseract_sanitize_rgba',
+				'default' 			=> '#cccccc'
+		) );
+
+			$wp_customize->add_control( 
+				new WP_Customize_Color_Control( 
+				$wp_customize, 
+				'tesseract_header_right_search_color_control', 
+				array(
+					'label'      		=> __( 'Search Field Text Color', 'tesseract' ),
+					'section'    		=> 'tesseract_header_content',
+					'settings'   		=> 'tesseract_header_right_search_color',
+					'priority'   		=> 4,
+					'active_callback' 	=> 'tesseract_header_right_menu_search_color_options_enable'
+				) ) 						
+			);			
+			
+		$wp_customize->add_setting( 'tesseract_header_right_search_background_color', array(
+				'transport'         => 'postMessage',
+				'sanitize_callback' => 'tesseract_sanitize_rgba',
+				'default' 			=> '#ffffff'
+		) );
+
+			$wp_customize->add_control( 
+				new WP_Customize_Color_Control( 
+				$wp_customize, 
+				'tesseract_header_right_search_background_color_control', 
+				array(
+					'label'      		=> __( 'Search Field Background Color', 'tesseract' ),
+					'section'    		=> 'tesseract_header_content',
+					'settings'   		=> 'tesseract_header_right_search_background_color',
+					'priority'   		=> 4,
+					'active_callback'	=> 'tesseract_header_right_menu_search_color_options_enable'
+				) ) 						
+			);						
 	
 		$header_content_menu_selector_menus = get_terms( 'nav_menu' );		
-	
-		if ( $header_content_menu_selector_menus ) :
 				
-			$header_content_menu_selector_items = array();
-			$item_keys = array( 'none' ); $item_values = array( '' );
-			foreach ( $header_content_menu_selector_menus as $items ) {
-				array_push( $item_keys, $items->slug);
-				array_push( $item_values, $items->name);
-			}
-			
-			$header_content_menu_selector_items = array_combine( $item_keys, $item_values );					
-			
-			$wp_customize->add_setting( 'tesseract_header_right_menu_select', array(
-				'sanitize_callback' => 'tesseract_sanitize_select',
-				'default' 			=> 'none'
-			) );
-			
-				$wp_customize->add_control(
-					new WP_Customize_Control(
-						$wp_customize,
-						'tesseract_header_right_menu_select_control',
-						array(
-							'label'          => __( 'Select menu', 'tesseract' ),
-							'section'        => 'tesseract_header_content',
-							'settings'       => 'tesseract_header_right_menu_select',
-							'type'           => 'select',
-							'choices'        => $header_content_menu_selector_items,
-							'priority' 		 => 4,
-							'active_callback' 	=> 'tesseract_header_right_menu_select_enable'								
-						)
+		$header_content_menu_selector_items = array();
+		$item_keys = array( 'none' ); $item_values = array( 'None' );
+		foreach ( $header_content_menu_selector_menus as $items ) {
+			array_push( $item_keys, $items->slug);
+			array_push( $item_values, $items->name);
+		}
+		
+		$header_content_menu_selector_items = array_combine( $item_keys, $item_values );					
+		
+		$wp_customize->add_setting( 'tesseract_header_right_menu_select', array(
+			'sanitize_callback' => 'tesseract_sanitize_select',
+			'default' 			=> FALSE
+		) );
+		
+			$wp_customize->add_control(
+				new WP_Customize_Control(
+					$wp_customize,
+					'tesseract_header_right_menu_select_control',
+					array(
+						'label'          => __( 'Select Header Right Menu', 'tesseract' ),
+						'section'        => 'tesseract_header_content',
+						'settings'       => 'tesseract_header_right_menu_select',
+						'type'           => 'select',
+						'choices'        => $header_content_menu_selector_items,
+						'priority' 		 => 6,
+						'active_callback' 	=> 'tesseract_header_right_menu_select_enable'								
 					)
-				);			
-						
-		endif;														
+				)
+			);			

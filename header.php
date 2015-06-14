@@ -26,7 +26,50 @@
 
 </head>
 
-<?php // Additional body classes
+<?php 
+
+/* ----------------------------------------------------------- */
+
+//Header classes - left block related meta/class
+$leftMenu = get_theme_mod('tesseract_header_left_content_menu_select');
+
+if ( $leftMenu == 'none' ) $leftclass = 'leftmenu-none ';
+if ( !is_string($leftMenu) ) $leftclass = 'leftmenu-unset ';
+if ( is_string( $leftMenu ) && ( $leftMenu !== 'none' ) ) $leftclass = 'leftmenu-set '; 
+
+//Header classes - right block related meta/class
+$headright_content = get_theme_mod('tesseract_header_right_content');
+$rightMenu = get_theme_mod('tesseract_header_right_menu_select');
+$wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
+$mobmenu_toDefault = ( get_theme_mod('tesseract_mobmenu_to_default') == 1 ) ? TRUE : FALSE;
+
+if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) $rightclass = 'is-right ';	
+if ( $headright_content == 'nothing' ) $rightclass = 'no-right ';
+
+$rightclass .= $wooheader ? 'is-woo ' : 'no-woo ';
+$rightclass .= ( $rightMenu == 'none' ) ? 'rightmenu-none ' : 'rightmenu-set ';
+$rightclass .= ( $mobmenu_toDefault ) ? 'mobmenu-todefault ' : 'mobmenu-breakpoint ';
+
+//Let's see which menu is used as main menu by the mobile menu script
+$is_leftMenu = ( !is_string($leftMenu) || ( is_string($leftMenu) && ( $leftMenu !== 'none' ) ) );
+$is_rightMenu = ( ( is_string($rightMenu) && ( $rightMenu !== 'none' ) ) && ( get_theme_mod('tesseract_header_right_content') == 'menu' ) );		
+$is_both = ( $is_leftMenu && $is_rightMenu ) ? TRUE : FALSE;
+$locSelected = get_theme_mod('tesseract_mobmenu_location_select');
+
+$is_loc = is_string( $locSelected ) ? TRUE : FALSE;
+
+if ( $is_both ) :
+	$sidrMenu = ( is_string( $locSelected ) && ( $locSelected !== 'none' ) ) ? $locSelected : 'leftmenu-to-sidr'; 
+elseif ( $is_leftMenu && !$is_rightMenu ) : $sidrMenu = 'leftmenu-to-sidr';
+elseif ( !$is_leftMenu && $is_rightMenu ) : $sidrMenu = 'rightmenu-to-sidr';
+elseif ( ($leftMenu == 'none') && ( $locSelected == 'leftmenu-to-sidr' ) || ($rightMenu == 'none') && ( $locSelected == 'rightmenu-to-sidr' ) ) : $sidrMenu = 'sidr-conflict';
+else : $sidrMenu = FALSE; 
+endif; 
+$headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100 ) ) ) ? 'pos-absolute' : 'pos-relative';
+
+/* ----------------------------------------------------------- */
+
+// Additional body classes
 $bodyClass = ( version_compare($wp_version, '4.0.0', '>') && is_customize_preview() ) ? 'backend' : 'frontend';
 $slayout = get_theme_mod('tesseract_search_results_layout');
 
@@ -43,23 +86,13 @@ if ( is_search() ) {
 	}
 ?>
 
-<body <?php body_class( $bodyClass ); ?>>	
-<?php $headright_content = get_theme_mod('tesseract_header_right_content');
-$wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
-if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
-	$rightclass = $wooheader ? $headright_content . ' is-right is-woo ' : $headright_content . ' is-right no-woo ';	
-} else if ( ( $headright_content == 'nothing' ) && $wooheader ) {
-	$rightclass = $wooheader ? $headright_content . ' no-right is-woo ' : $headright_content . ' no-right no-woo ';	
-} 
-
-$headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100 ) ) ) ? 'pos-absolute' : 'pos-relative';	
-?>
+<body <?php body_class( $leftclass . $rightclass . $sidrMenu . ' ' . $headpos ); ?>>	
 
 <div id="page" class="hfeed site">
     
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'tesseract' ); ?></a>
     
-	<?php $logoImg = get_theme_mod('tesseract_header_logo_image'); 
+	<?php $logoImg = get_theme_mod('tesseract_header_left_content_logo_image'); 
     $blogname = get_bloginfo('blogname');
     $hmenusize = get_theme_mod('tesseract_header_width');
 	
@@ -74,7 +107,7 @@ $headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100
     
     ?>
 
-    <header id="masthead" class="site-header <?php echo $rightclass . $headpos . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
+    <header id="masthead" class="site-header <?php echo $leftclass . $rightclass . $sidrMenu . ' ' . $headpos . ' ' . 'menusize-' . $hmenusize_class . ' '; echo get_header_image() ? 'is-header-image' : 'no-header-image'; ?>" role="banner">
     
         <div id="site-banner" class="cf<?php echo ' ' . $headright_content . ' ' . $brand_content; ?>">
             
@@ -95,7 +128,7 @@ $headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100
                             </div><!-- .site-branding -->
                         <?php } ?>
                         
-                        <?php $menuSelected = get_theme_mod('tesseract_header_menu_select');
+                        <?php $menuSelected = get_theme_mod('tesseract_header_left_content_menu_select');
 							
 							if ( $menuSelected !== 'none' ) : ?>
 
@@ -109,6 +142,10 @@ $headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100
             	</div>
             
                 <?php get_template_part( 'content', 'header-rightcontent' ); ?>
+                
+                <?php if ( $mobmenu_toDefault ) : ?>
+					<div id="mobile-menu-trigger-right-wrap" class="cf"><a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="" id="mobile-menu-trigger-right"></a></div>
+             	<?php endif; ?>
                 
             </div>
     

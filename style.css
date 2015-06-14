@@ -876,17 +876,14 @@ textarea {
     width: 100%;
 }
 
-.search-form .search-field {
+.search-field {
     width: 150px;
-}
-
-.search-field.watermark {
-	color: #ccc;
+	background: #fff;
 }
 
 .search-form .search-submit {
 	display: none;
-}
+} 
 
 /*
  * Placeholder

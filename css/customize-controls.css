@@ -13,11 +13,11 @@
 	margin-top: 10px;	
 	}
 
-#customize-control-tesseract_footer_logo_enable_control {
-	margin-bottom: 10px;
+#customize-control-tesseract_footer_left_content_logo_enable_control {
+	margin: 20px 0 10px;
 	}
 
-#customize-control-tesseract_footer_logo_enable_control label {	
+#customize-control-tesseract_footer_left_content_logo_enable_control label {	
 	font-style: italic;
 	line-height: 1.5em;
 	/*color: #444;	
@@ -127,10 +127,39 @@
 	
 /* MOBILE MENU */
 
+#customize-control-tesseract_mobmenu_options_header_control h4,
+#customize-control-tesseract_mobmenu_style_options_header_control h4 {
+	font-size: 1.25em;
+	margin: 10px 0;
+	}
+
+#customize-control-tesseract_mobmenu_style_options_header_control h4 {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: #ddd solid 1px;
+	}	
+
+
+#customize-control-tesseract_mobmenu_to_default_control {
+	margin-top: 20px;
+	}
+
+#customize-control-tesseract_mobmenu_to_default_control label {
+	font-style: italic;
+	line-height: 1.5em;
+	}	
+	
+#customize-control-tesseract_mobmenu_shadow_color_header_control,
+#customize-control-tesseract_mobmenu_search_color_control { margin-top: 10px; }	
+
 #customize-control-tesseract_mobmenu_opener_control label,
 #customize-control-tesseract_mobmenu_additionals_social_header_control h4,
 #customize-control-tesseract_mobmenu_additionals_search_header_control h4,
-#customize-control-tesseract_mobmenu_additionals_buttons_header_control h4 {
+#customize-control-tesseract_mobmenu_additionals_buttons_header_control h4,
+#customize-control-tesseract_mobmenu_location_notice_is_menu_menus_none_control h4,
+#customize-control-tesseract_mobmenu_location_notice_is_menu_menus_notset_control h4,
+#customize-control-tesseract_mobmenu_location_notice_sidr_conflict_left_control h4,
+#customize-control-tesseract_mobmenu_location_notice_sidr_conflict_right_control h4 {
 	font-style: italic;
 	color: #444;
 	line-height: 1.5em;
@@ -150,6 +179,22 @@
 	margin: 1em 0;
 	}
 
+#customize-control-tesseract_mobmenu_location_notice_is_menu_menus_none_control h4,
+#customize-control-tesseract_mobmenu_location_notice_is_menu_menus_notset_control h4,
+#customize-control-tesseract_mobmenu_location_notice_sidr_conflict_left_control h4,
+#customize-control-tesseract_mobmenu_location_notice_sidr_conflict_right_control h4 {
+	background: #EBAEB6;
+	font-weight: 400;
+	margin-bottom: 0;
+	}
+	
+#customize-control-tesseract_mobmenu_location_notice_is_menu_menus_none_control h4 span,
+#customize-control-tesseract_mobmenu_location_notice_is_menu_menus_notset_control h4 span,
+#customize-control-tesseract_mobmenu_location_notice_sidr_conflict_left_control h4 span,
+#customize-control-tesseract_mobmenu_location_notice_sidr_conflict_right_control h4 span {
+	font-weight: 700;
+	}	
+	
 #customize-control-tesseract_mobmenu_link_hover_background_color_header_control h4,
 #customize-control-tesseract_mobmenu_shadow_color_header_control h4,
 #customize-control-tesseract_mobmenu_social_background_header_control h4,
@@ -199,3 +244,19 @@
 #customize-control-tesseract_mobmenu_social_background_color_custom_control label > span,
 #customize-control-tesseract_mobmenu_search_background_color_custom_control label > span,
 #customize-control-tesseract_mobmenu_buttons_background_color_custom_control label > span { display: none; }
+
+#customize-control-tesseract_header_left_content_logo_image_control { margin-top: 10px; }
+
+#customize-control-tesseract_footer_menu_select_control label span,
+#customize-control-tesseract_footer_left_content_header_control h4 {
+	font-size: 16px;
+	line-height: 20px;	
+	}
+
+#customize-control-tesseract_footer_menu_select_control label span {
+	margin: 0 0 20px;	
+}
+
+#customize-control-tesseract_footer_left_content_header_control h4 {
+	margin: 10px 0;
+}
