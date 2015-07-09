@@ -75,7 +75,7 @@ class Tesseract_Notification_Center {
 			// Create Tesseract_Notification objects
 			if ( count( $json_notifications ) > 0 ) {
 				foreach ( $json_notifications as $json_notification ) {
-					$notifications[] = new Tesseract_Notification( $json_notification['message'], $json_notification['options'] );
+					$notifications[$json_notification['options']['notification_id']] = new Tesseract_Notification( $json_notification['message'], $json_notification['options'] );
 				}
 			}
 		}
