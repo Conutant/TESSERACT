@@ -789,3 +789,130 @@ function tesseract_fonts_url() {
 
 	return $font_url;
 }
+
+/**
+ * Register Ajax action for the admin
+ *
+ */
+
+if ( is_admin() ) {
+
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+	
+		require_once( get_template_directory()  . '/admin/ajax.php' );
+		
+	}
+}
+
+/**
+ * Register style and script for the api notification
+ *
+ */
+
+function tesseract_customadminassets(){
+
+	$ajax_nonce = wp_create_nonce( "tesseract-apinotification-ajax" );
+	
+	   echo '<style type="text/css">         
+	#tesseract-apinotification {
+		border-color: #2CC3F2 !important;
+	}
+	#tesseract-apinotification span{
+		font-family: "Open Sans",sans-serif; font-size:16px; color:#777777;
+	}
+	#tesseract-apinotification a.button-primary{
+		font-size:16px;background-color: #2CC3F2;border-color: #21afdc;padding:0px 35px;height: 35px;line-height: 33px;box-shadow:0px 1px 0px #c9f1fe inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+	}
+	#tesseract-apinotification button.btn-default{
+		font-size:16px;background-color: #F0EEEF;border-color: #c6c6c6;padding:0px 35px;height: 35px;line-height: 33px; color:#a8a8a8;
+	}
+	#tesseract-apinotification .notoppadding{
+		padding-top:0px !important;
+	}
+	#tesseract-apinotification .nobottompadding{
+		padding-top:0px !important;
+	}
+	#tesseract-apinotification .noleftpadding{
+		padding-left:0px !important;
+	}
+	</style>
+	<script type="text/javascript" >
+	jQuery(document).ready(function() { 
+		jQuery(".button-apinotification-dismiss").click(function(e){ 
+		var ajaxurl = "'.admin_url('admin-ajax.php').'";
+		var nonceval = "'.$ajax_nonce.'";
+		jQuery.post(ajaxurl, {action:"tesseract_apinotification",nonceval:nonceval}, function(response) {
+			jQuery("#tesseract-apinotification").hide(1000);
+		});
+			 
+					
+		});
+		
+	
+				
+	});
+	</script>
+	 ';
+	 
+}
+
+add_action('admin_head', 'tesseract_customadminassets');
+
+
+/**
+ * Wraps for notifications center class.
+ */
+ 
+function load_tesseract_notifications() {
+	
+	require_once get_template_directory() . '/admin/class-tesseract-update-api.php';
+	require_once get_template_directory() . '/admin/class-tesseract-notification-center.php';
+	
+	// Init Tesseract_Notification_Center class
+	Tesseract_Notification_Center::get();
+	
+	$key_status = get_transient(Tesseract_Notification_Center::TRANSIENT_KEY_STATUS);
+
+	if($key_status && $key_status=='dismiss'){
+	
+		return false;
+		
+	}
+	
+	//elseif($key_status && $key_status=='shown'){
+	
+		//return false;
+		
+	//}
+
+	
+	$transient_notifications = get_transient( Tesseract_Notification_Center::TRANSIENT_KEY );
+	
+	if ( false === $transient_notifications ) {
+	
+		$response = Tesseract_Update_Api::doaction(array('action'=>'notification','subaction'=>'retrieve'));
+		
+		if($response == false)	return false;
+		
+		if(empty($response['notification_id'])) return false;
+		
+		//$info_message = sprintf('<h1><a href="%s" target="_blank">%s</a></h1><p>%s</p><a class="button button-primary load-customize " href="%s">check it out</a>  <button type="button"  class="button btn-default ">May be later</button>',$response['actionurl'],$response['msg_heading'],$response['msg_body'],$response['actionurl']);
+		
+		$info_message = $response['msg_body'];
+		
+		$notification_options = array(
+			'type' => 'notice-info',
+			'id' => 'tesseract-apinotification',
+			'nonce' => wp_create_nonce( 'tesseract-apinotification' ),
+			'notification_id' => $response['notification_id']
+		);
+	
+		Tesseract_Notification_Center::get()->add_notification( new Tesseract_Notification( $info_message, $notification_options ) );
+		
+		//set_transient( Tesseract_Notification_Center::TRANSIENT_KEY_STATUS, 'shown', ( HOUR_IN_SECONDS * 24 ) );
+		
+	}
+	
+}
+
+add_action( 'admin_init', 'load_tesseract_notifications' );
