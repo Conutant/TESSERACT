@@ -4,6 +4,18 @@
  *
  * @package Tesseract
  */
+ 
+ // Defines
+define( 'TESSERACT_THEME_VERSION', '2.0' );
+define( 'TESSERACT_THEME_NAME', 'TESSERACT' );
+
+define( 'TESSERACT_THEME_DIR', get_template_directory() );
+define( 'TESSERACT_THEME_URL', get_template_directory_uri() );
+
+require_once 'admin/class-tesseract-theme-update.php';
+
+// Theme Updates
+add_action( 'init','Tesseract_Theme_Update::init' );
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
@@ -916,3 +928,20 @@ function load_tesseract_notifications() {
 }
 
 add_action( 'admin_init', 'load_tesseract_notifications' );
+
+/**
+ * Wraps for upgrade theme class.
+ */
+ 
+function load_tesseract_theme_upgrade($transient) {
+
+	if( empty( $transient->checked[TESSERACT_THEME_NAME] ) ) return $transient;
+	
+	require_once get_template_directory() . '/admin/class-tesseract-update-api.php';
+	require_once get_template_directory() . '/admin/class-tesseract-theme-update.php';
+	
+	return Tesseract_Theme_Update::upgrade_info($transient);
+	
+}
+
+add_filter('pre_set_site_transient_update_themes', 'load_tesseract_theme_upgrade');
