@@ -17,7 +17,7 @@ class Tesseract_Update_Api {
  
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, self::API_URL);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, 'Content-Type: application/json');
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
