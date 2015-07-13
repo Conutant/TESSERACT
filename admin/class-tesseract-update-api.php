@@ -36,8 +36,10 @@ class Tesseract_Update_Api {
 	
 			$resArray = json_decode($response,true);
 	
-			 $ack = strtoupper($resArray["ack"]);
-			 
+			$ack = strtoupper($resArray["ack"]);
+			
+			$arr_error_msg = array();
+			
 			if( $ack != "SUCCESS" ){
 			
 				if(isset($resArray['errors'])){
