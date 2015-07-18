@@ -41,6 +41,18 @@ final class Tesseract_Theme_Update{
 	
 	static public function upgrade_info($transient){
 		
+		$transient_version = get_transient( self::TRANSIENT_KEY_VERSION_CHECK);
+		
+		if(false !== $transient_version){
+		
+			if ( version_compare( $transient_version, TESSERACT_THEME_VERSION, '=' ) ) {
+			
+				return $transient;
+			
+			}	
+			
+		}	
+						
 		$response = Tesseract_Update_Api::doaction(array('action'=>'theme','subaction'=>'version'));
 		
 		if($response == false)	return $transient;
@@ -56,7 +68,6 @@ final class Tesseract_Theme_Update{
 		
 	   return $transient;
 		
-	}
-	
+	}	
 
 }
