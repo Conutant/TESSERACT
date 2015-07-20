@@ -6,7 +6,7 @@
  */
  
  // Defines
-define( 'TESSERACT_THEME_VERSION', '2.2' );
+define( 'TESSERACT_THEME_VERSION', '2.3' );
 define( 'TESSERACT_THEME_NAME', 'TESSERACT-dev_gabor' );
 
 define( 'TESSERACT_THEME_DIR', get_template_directory() );
