@@ -2274,6 +2274,10 @@ article.comment-body{
     width: 50px
 }
 
+#disqus_thread{
+	margin:50px;
+}
+
 /* =22. Infinite scroll (Jetpack plugin)
 -------------------------------------------------------------- */
 
@@ -2383,6 +2387,11 @@ article.comment-body{
 		display: block;
 		margin: 0px auto 0px auto;
 	}		
+    
+    #disqus_thread{
+        margin:20px;
+    }
+    
 	
 } 	
 
@@ -2492,8 +2501,3 @@ article.comment-body{
 	}
     
 }
-
-
-
-
-
