@@ -538,7 +538,10 @@ function tesseract_scripts() {
 	
 	.home .site-header,
 	.home .main-navigation ul ul a,
-	.home #header-right ul ul a { background-color: " . $header_bckColor_home . "; }
+	.home #header-right ul ul a { background-color: " . $header_bckColor . "; 
+	                              background-color: " . $header_bckColor_home . "; 
+	                              position:absolute;
+		}
 	
 	.site-header,
 	.site-header h1, 
