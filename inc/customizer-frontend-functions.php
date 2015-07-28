@@ -114,7 +114,7 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 		
 				<ul class="hm-social">
                 	<?php $sn = array(
-						'fb' => __( 'Facebook', 'tesseract' ),
+					/*	'fb' => __( 'Facebook', 'tesseract' ),
 						'tw' => __( 'Twitter', 'tesseract' ),
 						'gplus' => __( 'Google Plus', 'tesseract' ),
 						'li' => __( 'LinkedIn', 'tesseract' ),
@@ -123,7 +123,18 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 						'tumb' => __( 'Tumblr', 'tesseract' ),
 						'fr' => __( 'FlickR', 'tesseract' ),
 						'pin' => __( 'Pinterest', 'tesseract' ),
-						'dr' => __( 'Dribbble', 'tesseract' )
+						'dr' => __( 'Dribbble', 'tesseract' )*/
+						
+						'social_account01' => __('Account 01', 'tesseract' ),
+						'social_account02' => __('Account 02', 'tesseract' ),
+						'social_account03' => __('Account 03', 'tesseract' ),
+						'social_account04' => __('Account 04', 'tesseract' ),
+						'social_account05' => __('Account 05', 'tesseract' ),
+						'social_account06' => __('Account 06', 'tesseract' ),
+						'social_account07' => __('Account 07', 'tesseract' ),
+						'social_account08' => __('Account 08', 'tesseract' ),
+						'social_account09' => __('Account 09', 'tesseract' ),
+						'social_account10' => __('Account 10', 'tesseract' )
 					);
 					
 					foreach ( $sn as $sn_short => $sn_full ) {
