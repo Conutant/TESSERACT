@@ -10,3 +10,5 @@ require 'admin-page.php';
 require 'url-helpers.php';
 require 'scripts.php';
 require 'utilities.php';
+
+require 'beaver-builder-extensions/beaver-builder-extensions.php';

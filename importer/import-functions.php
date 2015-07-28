@@ -15,6 +15,10 @@ function tesseract_import_package( $package_array ) {
 
 	if ( ! empty( $package_array['posts'] ) ) {
 		foreach ( $package_array['posts'] as $post ) {
+			if ( tesseract_is_builder_template( $post ) && tesseract_does_builder_template_exist( $post ) ) {
+				continue; // If this builder template has already been imported
+			}
+
 			$post_id = wp_insert_post( $post, true );
 			if ( is_wp_error( $post_id ) ) {
 				return $post_id;
@@ -77,4 +81,15 @@ function tesseract_import_package( $package_array ) {
 	update_option( 'tesseract_imported_package_' . intval( $package_array['id'] ), 1 );
 
 	return $results;
+}
+
+function tesseract_is_builder_template( $post ) {
+	return $post['post_type'] == 'fl-builder-template';
+}
+
+function tesseract_does_builder_template_exist( $post ) {
+	$search_results = get_posts( array(
+		'post_type' => 'fl-builder-template',
+		'name' => $post['name']
+	) );
 }
