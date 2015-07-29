@@ -92,4 +92,6 @@ function tesseract_does_builder_template_exist( $post ) {
 		'post_type' => 'fl-builder-template',
 		'name' => $post['name']
 	) );
+
+	return ! empty( $search_results );
 }
