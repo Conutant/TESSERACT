@@ -20,8 +20,11 @@ function tesseract_add_button_to_page_builder() {
 	?>
 		<div id="tesseract-content-blocks-wrapper">
 			<?php while ( $templates_query->have_posts() ) : $templates_query->the_post(); ?>
+				<?php $template_id = get_the_ID(); ?>
 				<div class="content-block">
-					<?php the_title(); ?>
+					<a href="#" class="append-content-button" data-template-id="<?php echo esc_attr( $template_id ); ?>">
+						<?php the_title(); ?>
+					</a>
 				</div>
 			<?php endwhile; ?>
 		</div>

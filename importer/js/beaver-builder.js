@@ -9,5 +9,12 @@ jQuery( function ( $ ) {
 
 	$( '.fl-builder-tesseract-blocks-button' ).on( 'click', function() {
 		contentBlocksLightbox.open( $( '#tesseract-content-blocks-wrapper' ).html() );
+
+		$( '.fl-builder-tesseract-blocks-lightbox .append-content-button' ).on( 'click', function ( e ) {
+			e.preventDefault();
+
+			contentBlocksLightbox.close();
+			FLBuilder._applyTemplate( $( this ).data( 'template-id' ), true, 'user' );
+		} );
 	} );
 } );

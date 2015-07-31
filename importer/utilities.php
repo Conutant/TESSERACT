@@ -4,7 +4,7 @@
  */
 
 function tesseract_get_packages() {
-	if ( false === ( $packages = get_transient( 'tesseract_package_list' ) ) ) {
+	if ( true || false === ( $packages = get_transient( 'tesseract_package_list' ) ) ) {
 		$response = wp_remote_get( TESSERACT_PACKAGE_LIST_URL );
 		$loaded_local_file = false;
 

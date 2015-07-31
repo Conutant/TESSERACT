@@ -93,9 +93,20 @@ function tesseract_is_builder_template( $post ) {
 }
 
 function tesseract_does_builder_template_exist( $post ) {
+	global $wpdb;
+
+	$ids_matching_content = $wpdb->get_col( $wpdb->prepare(
+		"SELECT `ID` FROM $wpdb->posts WHERE `post_content` = %s", $post['post_content']
+	) );
+
+	if ( empty( $ids_matching_content ) ) {
+		return false;
+	}
+
 	$search_results = get_posts( array(
 		'post_type' => 'fl-builder-template',
-		'name' => $post['name']
+		'name' => $post['post_name'],
+		'post__in' => $ids_matching_content
 	) );
 
 	return ! empty( $search_results );
