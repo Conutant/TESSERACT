@@ -1,0 +1,6 @@
+#tesseract-content-blocks-wrapper {
+  display: none; }
+
+.fl-builder-tesseract-blocks-lightbox .fl-lightbox {
+  width: 600px;
+  min-height: 300px; }

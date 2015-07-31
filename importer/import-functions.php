@@ -29,6 +29,11 @@ function tesseract_import_package( $package_array ) {
 					}
 				}
 
+				// Mark all content blocks as being imported by the theme
+				if ( tesseract_is_builder_template( $post ) ) {
+					update_post_meta( $post_id, '_imported_content_block', 1 );
+				}
+
 				// Only show results for public post types
 				if ( in_array( $post['post_type'], $public_post_types ) ) {
 					$results['post_ids'][] = $post_id;
