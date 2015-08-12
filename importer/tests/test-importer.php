@@ -1,18 +1,18 @@
 <?php
 
 class ImporterTest extends WP_UnitTestCase {
-	// function testCleanPackageInstall() {
-	// 	$prev_packages = tesseract_get_previously_imported_packages();
-	//
-	// 	$this->assertEmpty( $prev_packages );
-	//
-	// 	$packages = tesseract_get_packages();
-	// 	tesseract_import_packages( $packages );
-	//
-	// 	$prev_packages = tesseract_get_previously_imported_packages();
-	//
-	// 	$this->assertNotEmpty( $prev_packages );
-	// }
+	function testCleanPackageInstall() {
+		$prev_packages = tesseract_get_previously_imported_packages();
+
+		$this->assertEmpty( $prev_packages );
+
+		$packages = tesseract_get_packages();
+		tesseract_import_packages( $packages );
+
+		$prev_packages = tesseract_get_previously_imported_packages();
+
+		$this->assertNotEmpty( $prev_packages );
+	}
 
 	function testPackageDeletion() {
 		// Run importer with 2 packages
