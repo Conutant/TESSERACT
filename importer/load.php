@@ -1,5 +1,7 @@
 <?php
 
+define( 'TESSERACT_PACKAGE_LIST_URL', 'throw_error' );
+
 if ( ! defined( 'TESSERACT_PACKAGE_LIST_URL' ) ) {
 	define( 'TESSERACT_PACKAGE_LIST_URL', 'http://wpmakr.com/api/package/list' );
 }

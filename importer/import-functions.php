@@ -13,8 +13,28 @@ function tesseract_import_package( $package_array ) {
 
 	$public_post_types = get_post_types( array( 'public' => true ) );
 
-	if ( ! empty( $package_array['posts'] ) ) {
-		foreach ( $package_array['posts'] as $post ) {
+	$results['post_ids'] = tesseract_import_package_posts( $package_array['posts'] );
+	$results['options'] = tesseract_import_package_options( $package_array['options'] );
+	// No return value from plugin data importing
+	tesseract_import_package_plugin_data( $package_array['plugin_data'] );
+
+	// Clear out the option for 'required plugins', because the package has completed importing.
+	// All plugins should have been installed/activated by now.
+	delete_option( 'tesseract_required_plugins' );
+	delete_option( 'tesseract_plugin_install_return_url' );
+
+	delete_transient( 'tt_font_theme_options' );
+
+	update_option( 'tesseract_imported_package_' . intval( $package_array['id'] ), 1 );
+
+	return $results;
+}
+
+function tesseract_import_package_posts( $posts ) {
+	$post_ids = array();
+
+	if ( ! empty( $posts ) ) {
+		foreach ( $posts as $post ) {
 			if ( tesseract_is_builder_template( $post ) && tesseract_does_builder_template_exist( $post ) ) {
 				continue; // If this builder template has already been imported
 			}
@@ -36,22 +56,32 @@ function tesseract_import_package( $package_array ) {
 
 				// Only show results for public post types
 				if ( in_array( $post['post_type'], $public_post_types ) ) {
-					$results['post_ids'][] = $post_id;
+					$post_ids[] = $post_id;
 				}
 			}
 		}
 	}
 
-	if ( ! empty( $package_array['options'] ) ) {
-		foreach ( $package_array['options'] as $option_array ) {
+	return $post_ids;
+}
+
+function tesseract_import_package_options( $option_arrays ) {
+	$option_results = array();
+
+	if ( ! empty( $option_arrays ) ) {
+		foreach ( $option_arrays as $option_array ) {
 			if ( NULL != $option_array['option_name'] && NULL != $option_array['option_value'] ) {
 				update_option( $option_array['option_name'], maybe_unserialize( $option_array['option_value'] ) );
-				$results['options'][] = $option_array;
+				$option_results[] = $option_array;
 			}
 		}
 	}
 
-	if ( ! empty( $package_array['plugin_data'] ) ) {
+	return $option_results;
+}
+
+function tesseract_import_package_plugin_data( $plugin_data ) {
+	if ( ! empty( $plugin_data ) ) {
 		// We don't need to import into any of these (WP default) tables
 		$blacklisted_tables = array(
 			'users', 'usermeta', 'terms', 'term_relationships', 'comments',
@@ -61,7 +91,7 @@ function tesseract_import_package( $package_array ) {
 		global $wpdb;
 
 		// Iterate through all of the custom data and insert/overwrite existing data
-		foreach ( $package_array['plugin_data'] as $unprefixed_table_name => $rows ) {
+		foreach ( $plugin_data as $unprefixed_table_name => $rows ) {
 			if ( in_array( $unprefixed_table_name, $blacklisted_tables ) ) {
 				continue;
 			}
@@ -75,17 +105,6 @@ function tesseract_import_package( $package_array ) {
 			}
 		}
 	}
-
-	// Clear out the option for 'required plugins', because the package has completed importing.
-	// All plugins should have been installed/activated by now.
-	delete_option( 'tesseract_required_plugins' );
-	delete_option( 'tesseract_plugin_install_return_url' );
-
-	delete_transient( 'tt_font_theme_options' );
-
-	update_option( 'tesseract_imported_package_' . intval( $package_array['id'] ), 1 );
-
-	return $results;
 }
 
 function tesseract_is_builder_template( $post ) {
