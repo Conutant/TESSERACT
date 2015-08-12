@@ -5,6 +5,13 @@
  * On failure, returns a WP_Error
  */
 function tesseract_import_package( $package_array ) {
+	$package_slug = $package_array['details']['slug'];
+	$package_version = $package_array['details']['version'];
+
+	if ( empty( $package_slug) || empty( $package_version ) ) {
+		return;
+	}
+
 	$results = array(
 		'post_ids' => array(),
 		'options' => array(),
@@ -23,9 +30,18 @@ function tesseract_import_package( $package_array ) {
 	delete_option( 'tesseract_required_plugins' );
 	delete_option( 'tesseract_plugin_install_return_url' );
 
+	// This foces the fonts plugin to display imported values. Kinda hacky. Works.
 	delete_transient( 'tt_font_theme_options' );
 
-	update_option( 'tesseract_imported_package_' . intval( $package_array['id'] ), 1 );
+	$imported_packages = get_option( Tesseract_Importer_Options::IMPORTED_PACKAGES, array() );
+
+	// The list of imported packages is stored as an array with the slug as key
+	$imported_packages[$package_slug] = array(
+		'slug' => $package_slug,
+		'version' => $package_version
+	);
+
+	update_option( Tesseract_Importer_Options::IMPORTED_PACKAGES, $imported_packages );
 
 	return $results;
 }
