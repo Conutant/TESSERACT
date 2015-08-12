@@ -8,7 +8,6 @@ if ( ! defined( 'TESSERACT_PACKAGES_FILE' ) ) {
 	define( 'TESSERACT_PACKAGES_FILE', dirname( __FILE__ ) . '/data/packages.json' );
 }
 
-require 'hooks.php';
 require 'required-plugins.php';
 require 'import-functions.php';
 require 'utilities.php';

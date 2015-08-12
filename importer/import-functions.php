@@ -1,5 +1,52 @@
 <?php
 
+add_action( 'after_switch_theme', 'tesseract_import_packages' );
+
+function tesseract_import_packages() {
+	$packages = tesseract_get_packages();
+
+	if ( empty( $packages ) ) {
+		return;
+	}
+
+	$current_package_slugs_to_versions = array();
+
+	foreach ( $packages as $package ) {
+		$slug = $package['details']['slug'];
+		$version = $package['details']['version'];
+
+		$current_package_slugs_to_versions[$slug] = $version;
+	}
+
+	$existing_packages = tesseract_get_previously_imported_packages();
+
+	// Get packages that need to be totally deleted
+	$packages_for_deletion = array();
+	foreach ( $existing_packages as $slug => $existing_package ) {
+		if ( empty( $current_package_slugs_to_versions[$slug] ) ) {
+			$packages_for_deletion[] = $slug;
+		}
+	}
+
+	// Get packages that need to be added/updated
+	$packages_for_importing = array();
+	foreach ( $current_package_slugs_to_versions as $slug => $version ) {
+		// Check to see if this package slug & version have been imported.
+		if ( empty( $existing_packages[$slug] ) || $existing_packages[$slug] != $version ) {
+			// If not, do the import
+			$packages_for_importing[] = $slug;
+		}
+	}
+
+	foreach ( $packages as $package ) {
+		$slug = $package['details']['slug'];
+
+		if ( in_array( $slug, $packages_for_importing ) ) {
+			tesseract_import_package( $package );
+		}
+	}
+}
+
 /**
  * On success, returns an array with details about the import results.
  * On failure, returns a WP_Error
@@ -18,7 +65,6 @@ function tesseract_import_package( $package_array ) {
 		'name' => $package_array['name']
 	);
 
-	$public_post_types = get_post_types( array( 'public' => true ) );
 
 	$results['post_ids'] = tesseract_import_package_posts( $package_array['posts'] );
 	$results['options'] = tesseract_import_package_options( $package_array['options'] );
@@ -70,10 +116,7 @@ function tesseract_import_package_posts( $posts ) {
 					update_post_meta( $post_id, '_imported_content_block', 1 );
 				}
 
-				// Only show results for public post types
-				if ( in_array( $post['post_type'], $public_post_types ) ) {
-					$post_ids[] = $post_id;
-				}
+				$post_ids[] = $post_id;
 			}
 		}
 	}

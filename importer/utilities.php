@@ -20,3 +20,8 @@ function tesseract_get_packages() {
 
 	return $packages;
 }
+
+
+function tesseract_get_previously_imported_packages() {
+	return get_option( Tesseract_Importer_Options::IMPORTED_PACKAGES, array() );
+}
