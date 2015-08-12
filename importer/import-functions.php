@@ -1,10 +1,13 @@
 <?php
 
-add_action( 'after_switch_theme', 'tesseract_import_packages' );
+add_action( 'after_switch_theme', 'tesseract_do_import_packages' );
 
-function tesseract_import_packages() {
+function tesseract_do_import_packages() {
 	$packages = tesseract_get_packages();
+	tesseract_import_packages( $packages );
+}
 
+function tesseract_import_packages( $packages ) {
 	if ( empty( $packages ) ) {
 		return;
 	}
@@ -45,6 +48,26 @@ function tesseract_import_packages() {
 			tesseract_import_package( $package );
 		}
 	}
+
+	foreach ( $existing_packages as $slug => $existing_package ) {
+		if ( in_array( $slug, $packages_for_deletion ) ) {
+			tesseract_delete_package_with_slug( $slug );
+		}
+	}
+}
+
+function tesseract_delete_package_with_slug( $slug ) {
+	$imported_posts = tesseract_get_tracked_posts_from_package_slug( $slug );
+
+	foreach ( $imported_posts as $post ) {
+		wp_delete_post( $post->ID );
+	}
+
+	$imported_packages = get_option( Tesseract_Importer_Constants::$IMPORTED_PACKAGES_OPTION_NAME, array() );
+
+	unset( $imported_packages[$slug] );
+
+	update_option( Tesseract_Importer_Constants::$IMPORTED_PACKAGES_OPTION_NAME, $imported_packages );
 }
 
 /**
@@ -66,10 +89,18 @@ function tesseract_import_package( $package_array ) {
 	);
 
 
-	$results['post_ids'] = tesseract_import_package_posts( $package_array['posts'] );
-	$results['options'] = tesseract_import_package_options( $package_array['options'] );
-	// No return value from plugin data importing
-	tesseract_import_package_plugin_data( $package_array['plugin_data'] );
+	if ( ! empty( $package_array['posts'] ) ) {
+		$results['post_ids'] = tesseract_import_package_posts( $package_array['posts'], $package_slug );
+	}
+
+	if ( ! empty( $package_array['options'] ) ) {
+		$results['options'] = tesseract_import_package_options( $package_array['options'] );
+	}
+
+	if ( ! empty( $package_array['plugin_data'] ) ) {
+		// No return value from plugin data importing
+		tesseract_import_package_plugin_data( $package_array['plugin_data'] );
+	}
 
 	// Clear out the option for 'required plugins', because the package has completed importing.
 	// All plugins should have been installed/activated by now.
@@ -79,7 +110,7 @@ function tesseract_import_package( $package_array ) {
 	// This foces the fonts plugin to display imported values. Kinda hacky. Works.
 	delete_transient( 'tt_font_theme_options' );
 
-	$imported_packages = get_option( Tesseract_Importer_Options::IMPORTED_PACKAGES, array() );
+	$imported_packages = get_option( Tesseract_Importer_Constants::$IMPORTED_PACKAGES_OPTION_NAME, array() );
 
 	// The list of imported packages is stored as an array with the slug as key
 	$imported_packages[$package_slug] = array(
@@ -87,12 +118,12 @@ function tesseract_import_package( $package_array ) {
 		'version' => $package_version
 	);
 
-	update_option( Tesseract_Importer_Options::IMPORTED_PACKAGES, $imported_packages );
+	update_option( Tesseract_Importer_Constants::$IMPORTED_PACKAGES_OPTION_NAME, $imported_packages );
 
 	return $results;
 }
 
-function tesseract_import_package_posts( $posts ) {
+function tesseract_import_package_posts( $posts, $package_slug ) {
 	$post_ids = array();
 
 	if ( ! empty( $posts ) ) {
@@ -114,6 +145,10 @@ function tesseract_import_package_posts( $posts ) {
 				// Mark all content blocks as being imported by the theme
 				if ( tesseract_is_builder_template( $post ) ) {
 					update_post_meta( $post_id, '_imported_content_block', 1 );
+				}
+
+				if ( in_array( $post['post_type'], Tesseract_Importer_Constants::$TRACKED_POST_TYPES ) ) {
+					update_post_meta( $post_id, Tesseract_Importer_Constants::$IMPORTED_BY_PACKAGE_META_KEY, $package_slug );
 				}
 
 				$post_ids[] = $post_id;
@@ -188,4 +223,15 @@ function tesseract_does_builder_template_exist( $post ) {
 	) );
 
 	return ! empty( $search_results );
+}
+
+function tesseract_get_tracked_posts_from_package_slug( $slug ) {
+	$posts = get_posts( array(
+			'meta_key' => Tesseract_Importer_Constants::$IMPORTED_BY_PACKAGE_META_KEY,
+			'meta_value' => $slug,
+			'post_type' => Tesseract_Importer_Constants::$TRACKED_POST_TYPES
+		)
+	);
+
+	return $posts;
 }
