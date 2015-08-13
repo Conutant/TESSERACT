@@ -4,6 +4,8 @@
 .fl-builder-tesseract-blocks-lightbox .fl-lightbox {
   width: 600px;
   min-height: 300px;
+  max-height: 600px;
+  overflow-y: scroll;
   padding: 20px; }
   .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block {
     box-sizing: border-box;
@@ -14,7 +16,7 @@
     height: 150px;
     text-align: center;
     border: 2px solid #CDCDCD; }
-    .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block:nth-child(3n) {
+    .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block:nth-of-type(3n + 1) {
       margin-right: 0; }
     .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block .append-content-button {
       width: 100%;
@@ -24,4 +26,6 @@
       line-height: 20px;
       padding-top: 60px; }
   .fl-builder-tesseract-blocks-lightbox .fl-lightbox .cancel-wrapper {
-    clear: both; }
+    clear: both;
+    text-align: right;
+    margin-bottom: 5%; }

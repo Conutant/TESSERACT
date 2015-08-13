@@ -23,6 +23,9 @@ function tesseract_add_button_to_page_builder() {
 	) );
 	?>
 		<div id="tesseract-content-blocks-wrapper">
+			<div class="cancel-wrapper">
+				<span class="fl-builder-cancel-button fl-builder-button fl-builder-button-primary fl-builder-button-large">Cancel</span>
+			</div>
 			<?php while ( $templates_query->have_posts() ) : $templates_query->the_post(); ?>
 				<?php $template_id = get_the_ID(); ?>
 				<?php
