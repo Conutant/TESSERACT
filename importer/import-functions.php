@@ -33,11 +33,14 @@ function tesseract_import_packages( $packages ) {
 
 	// Get packages that need to be added/updated
 	$packages_for_importing = array();
+	$packages_for_updating = array();
 	foreach ( $current_package_slugs_to_versions as $slug => $version ) {
 		// Check to see if this package slug & version have been imported.
-		if ( empty( $existing_packages[$slug] ) || $existing_packages[$slug] != $version ) {
+		if ( empty( $existing_packages[$slug] ) ) {
 			// If not, do the import
 			$packages_for_importing[] = $slug;
+		} elseif ( $existing_packages[$slug] != $version ) {
+			$packages_for_updating[] = $slug;
 		}
 	}
 
@@ -45,6 +48,9 @@ function tesseract_import_packages( $packages ) {
 		$slug = $package['details']['slug'];
 
 		if ( in_array( $slug, $packages_for_importing ) ) {
+			tesseract_import_package( $package );
+		} elseif ( in_array( $slug, $packages_for_updating ) ) {
+			tesseract_delete_package_with_slug( $slug );
 			tesseract_import_package( $package );
 		}
 	}
@@ -144,7 +150,7 @@ function tesseract_import_package_posts( $posts, $package_slug ) {
 
 				// Mark all content blocks as being imported by the theme
 				if ( tesseract_is_builder_template( $post ) ) {
-					update_post_meta( $post_id, '_imported_content_block', 1 );
+					update_post_meta( $post_id, Tesseract_Importer_Constants::$CONTENT_BLOCK_META_KEY, 1 );
 				}
 
 				if ( in_array( $post['post_type'], Tesseract_Importer_Constants::$TRACKED_POST_TYPES ) ) {

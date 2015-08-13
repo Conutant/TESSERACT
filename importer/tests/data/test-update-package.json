@@ -9,7 +9,7 @@
                 "posts": [
                   {
                       "post_content": "\n\t<h1>GIANT RED TEXT<\/h1>",
-                      "post_title": "Post 1",
+                      "post_title": "Post 1.0",
                       "post_status": "publish",
                       "post_name": "post-1",
                       "post_type": "fl-builder-template"

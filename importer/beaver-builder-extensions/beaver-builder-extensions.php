@@ -13,7 +13,7 @@ function tesseract_add_button_to_page_builder() {
 
 	$templates_query = new WP_Query( array(
 		'post_type' => 'fl-builder-template',
-		'meta_key' => '_imported_content_block',
+		'meta_key' => Tesseract_Importer_Constants::$CONTENT_BLOCK_META_KEY,
 		'meta_value' => 1,
 		'posts_per_page' => 999
 	) );
