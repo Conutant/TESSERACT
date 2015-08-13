@@ -6,6 +6,10 @@ if ( ! class_exists( 'FLBuilderModel' ) ) {
 
 add_action( 'wp_footer', 'tesseract_add_button_to_page_builder' );
 
+/**
+ * Adds HTML to the bottom of the Beaver Builder Page Builder interface, which is used in a
+ * modal to allow content blocks to be added to the page.
+ */
 function tesseract_add_button_to_page_builder() {
 	if ( ! FLBuilderModel::is_builder_active() ) {
 		return;
@@ -21,12 +25,19 @@ function tesseract_add_button_to_page_builder() {
 		<div id="tesseract-content-blocks-wrapper">
 			<?php while ( $templates_query->have_posts() ) : $templates_query->the_post(); ?>
 				<?php $template_id = get_the_ID(); ?>
-				<div class="content-block">
+				<?php
+					global $post;
+					$slug = $post->post_name;
+				?>
+				<div class="content-block slug-<?php echo esc_attr( $slug ); ?>">
 					<a href="#" class="append-content-button" data-template-id="<?php echo esc_attr( $template_id ); ?>">
 						<?php the_title(); ?>
 					</a>
 				</div>
 			<?php endwhile; ?>
+			<div class="cancel-wrapper">
+				<span class="fl-builder-cancel-button fl-builder-button fl-builder-button-primary fl-builder-button-large">Cancel</span>
+			</div>
 		</div>
 	<?php
 }
