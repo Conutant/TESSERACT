@@ -1,0 +1,201 @@
+.customize-control-title,
+#customize-control-footer_content_select_control select {
+	font-size: 13px;	
+	}
+	
+#customize-control-footer_content_select_control .customize-control-title,
+#customize-control-footer_content_position_control .customize-control-title { 
+	margin-top: 25px; 
+	}	
+	
+#customize-control-tesseract_footer_blocks_width_prop_control,
+#customize-control-tesseract_header_blocks_width_prop_control {
+	margin-top: 10px;	
+	}
+
+#customize-control-tesseract_footer_logo_enable_control {
+	margin-bottom: 10px;
+	}
+
+#customize-control-tesseract_footer_logo_enable_control label {	
+	font-style: italic;
+	line-height: 1.5em;
+	/*color: #444;	
+	padding: 1em;
+	display: block;
+	background: #94cde7;
+	text-shadow: rgba(255, 255, 255, .5) 1px 1px 1px;
+	margin: .5em 0 1em;*/	
+}
+	
+#accordion-section-footer_colors .customize-control-title,
+#customize-control-tesseract_header_width_control,
+#customize-control-tesseract_footer_menu_select_control,
+#accordion-section-tesseract_header_menu li {
+	margin-top: 10px;
+	}
+	
+#accordion-section-tesseract_header_menu li:first-child { margin-top: 0; }		
+	
+#accordion-section-tesseract_contacts .customize-control-title {
+	font-weight: normal;
+	}
+
+#customize-control-header_content_select_control .customize-control-title, 
+#customize-control-footer_content_select_control .customize-control-title,
+#customize-control-footer_content_position_control .customize-control-title,	
+#customize-control-footer_hml_additional_content_control .customize-control-title {
+	margin: 1.33em 0;
+	}	
+	
+#accordion-section-tesseract_contacts h4 {
+	font-size: 14px;
+	}			
+	
+#customize-control-footer_content_select_control select {
+	font-weight: 400;
+	}		
+	
+#customize-control-tesseract_footer_options_horizontal_menu_selector {
+	padding-top: 8px;
+	margin-top: 8px;
+	display: none;
+	}
+	
+.sis-before-label,
+.sis-after-label {
+	font-style: italic; 
+	color: #ccc	
+	}	
+
+#accordion-panel-tesseract_social .container {
+	display: inline-block;
+	zoom: 1; *display: inline;	
+	vertical-align: top;
+	padding: 3px;	
+	min-height: 24px;
+	min-width: 24px;
+	margin-bottom: 10px;
+	}
+	
+#accordion-panel-tesseract_social .inner {
+	min-height: 24px;
+	position: relative;
+	top: auto;
+	line-height: 24px;
+	padding: 0 20px;
+	box-sizing: border-box;
+	}
+	
+#accordion-panel-tesseract_social li > label {
+	display: block;
+	margin-top: 10px;
+	}
+	
+#accordion-panel-tesseract_social .actions {
+	margin-bottom: 10px;
+	}	
+	
+#customize-control-tesseract_contacts_address_display_control label,
+#customize-control-tesseract_contacts_phone_display_control label,
+#customize-control-tesseract_contacts_email_display_control label {
+	line-height: 18px;
+	font-style: italic;
+	margin-bottom: 10px;
+	display: block;	
+	}
+	
+#customize-control-tesseract_contacts_phone_display_control label,
+#customize-control-tesseract_contacts_email_display_control label {
+	margin-bottom: 20px;
+	}	
+
+#customize-control-background_color .customize-control-description {
+	margin-bottom: 1em;
+	color: #aaa;
+	}
+	
+#customize-control-tesseract_blog_featimg_pos_control { margin-top: 10px; }
+
+#accordion-section-tesseract_blog > ul > #customize-control-tesseract_blog_display_featimg_control {
+	display: list-item;
+	margin: 5px 0 10px;
+	padding-top: 16px;
+	border-top: #e6e6e6 solid 1px!important;	
+	}
+
+	
+/* MOBILE MENU */
+
+#customize-control-tesseract_mobmenu_opener_control label,
+#customize-control-tesseract_mobmenu_additionals_social_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_search_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_buttons_header_control h4 {
+	font-style: italic;
+	color: #444;
+	line-height: 1.5em;
+	padding: 1em;
+	display: block;
+	background: #94cde7;
+	text-shadow: rgba(255, 255, 255, .5) 1px 1px 1px;
+	margin: .5em 0 1em;
+}
+
+#customize-control-tesseract_mobmenu_additionals_social_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_search_header_control h4,
+#customize-control-tesseract_mobmenu_additionals_buttons_header_control h4 {
+	font-style: normal;
+	font-size: 1.1em;
+	text-align: center;
+	margin: 1em 0;
+	}
+
+#customize-control-tesseract_mobmenu_link_hover_background_color_header_control h4,
+#customize-control-tesseract_mobmenu_shadow_color_header_control h4,
+#customize-control-tesseract_mobmenu_social_background_header_control h4,
+#customize-control-tesseract_mobmenu_search_background_header_control h4,
+#customize-control-tesseract_mobmenu_buttons_background_header_control h4,
+#customize-control-tesseract_mobmenu_maxbtn_sep_color_header_control h4 {
+	margin: 0;
+}
+
+#customize-control-tesseract_mobmenu_link_hover_background_color_control,
+#customize-control-tesseract_mobmenu_link_hover_background_color_custom_control,
+#customize-control-tesseract_mobmenu_shadow_color_control,
+#customize-control-tesseract_mobmenu_shadow_color_custom_control,
+#customize-control-tesseract_mobmenu_social_background_color_control,
+#customize-control-tesseract_mobmenu_search_background_color_control,
+#customize-control-tesseract_mobmenu_buttons_background_color_control,
+#customize-control-tesseract_mobmenu_social_background_color_custom_control,
+#customize-control-tesseract_mobmenu_search_background_color_custom_control,
+#customize-control-tesseract_mobmenu_buttons_background_color_custom_control,
+#customize-control-tesseract_mobmenu_maxbtn_sep_color_control {
+	margin: 5px 0 0;
+	padding: 1em;
+	background: #eaeaea;
+	box-sizing: border-box;		
+}
+
+#customize-control-tesseract_mobmenu_link_hover_background_color_custom_control,
+#customize-control-tesseract_mobmenu_shadow_color_custom_control,
+#customize-control-tesseract_mobmenu_social_background_color_custom_control,
+#customize-control-tesseract_mobmenu_search_background_color_custom_control,
+#customize-control-tesseract_mobmenu_buttons_background_color_custom_control {
+	margin: 0 0 5px;
+	padding-top: 0;
+}
+
+#customize-control-tesseract_mobmenu_link_hover_background_color_control label,
+#customize-control-tesseract_mobmenu_shadow_color_control label,
+#customize-control-tesseract_mobmenu_social_background_color_control label,
+#customize-control-tesseract_mobmenu_search_background_color_control label,
+#customize-control-tesseract_mobmenu_buttons_background_color_control label,
+#customize-control-tesseract_mobmenu_maxbtn_sep_color_control label {
+	line-height: 1.5em;
+}
+
+#customize-control-tesseract_mobmenu_link_hover_background_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_shadow_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_social_background_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_search_background_color_custom_control label > span,
+#customize-control-tesseract_mobmenu_buttons_background_color_custom_control label > span { display: none; }

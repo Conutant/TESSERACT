@@ -1,0 +1,623 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Tesseract 1.0\n"
+"POT-Creation-Date: 2015-04-02 14:08+0100\n"
+"PO-Revision-Date: 2015-04-02 14:08+0100\n"
+"Last-Translator: Gabor Lippert <gabor.lippert@gmail.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: comments.php:36 comments.php:54
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:37 comments.php:55
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: content-blog.php:30 content-page.php:28 content-single.php:30
+#: content.php:44
+msgid "Pages:"
+msgstr ""
+
+#: content-none.php:19
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: content.php:35
+#, php-format
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: functions.php:73
+msgid "Header"
+msgstr ""
+
+#: functions.php:74
+msgid "Footer"
+msgstr ""
+
+#: functions.php:124
+msgid "Primary Sidebar"
+msgstr ""
+
+#: functions.php:126
+msgid "Appears on the left."
+msgstr ""
+
+#: functions.php:178
+msgid "Your Name"
+msgstr ""
+
+#: functions.php:179
+msgid "E-mail"
+msgstr ""
+
+#: functions.php:180
+msgid "Website"
+msgstr ""
+
+#: functions.php:181
+msgid "Your Comment"
+msgstr ""
+
+#: functions.php:357
+#, php-format
+msgid "Theme by %s"
+msgstr ""
+
+#: functions.php:429
+msgid "Read More ..."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:161
+#: inc/tesseract-plugin-activation.php:52
+msgid "Install Required Plugins"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:162
+#: inc/tesseract-plugin-activation.php:53
+msgid "Install Plugins"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:163
+#: inc/tesseract-plugin-activation.php:54
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:164
+msgid "Something went wrong."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:175
+#: inc/tesseract-plugin-activation.php:66
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:176
+msgid "Return to the dashboard"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:177
+#: inc/class-tgm-plugin-activation.php:1939
+#: inc/tesseract-plugin-activation.php:67
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:178
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:179
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:180
+msgid "Dismiss this notice"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:531
+#: inc/class-tgm-plugin-activation.php:2156
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1166
+msgid "Private Repository"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1169
+msgid "Pre-Packaged"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1174
+msgid "WordPress Repository"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1177
+msgid "Required"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1177
+msgid "Recommended"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1180
+msgid "Not Installed"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1182
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1287
+#: inc/class-tgm-plugin-activation.php:1395
+msgid "Install"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1309
+#: inc/class-tgm-plugin-activation.php:1396
+msgid "Activate"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1358
+#, php-format
+msgid ""
+"No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
+"Dashboard\">Return to the Dashboard</a>"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1374
+msgid "Plugin"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1375
+msgid "Source"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1376
+msgid "Type"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1377
+msgid "Status"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1922
+msgid "Install package not available."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1923
+#, php-format
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1924
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1925
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1926
+msgid "Plugin install failed."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1927
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:1938
+msgid "Plugin activation failed."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2052
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2053
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2053
+#: inc/class-tgm-plugin-activation.php:2062
+msgid "Show Details"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2053
+#: inc/class-tgm-plugin-activation.php:2062
+msgid "Hide Details"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2054
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2055
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2059
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2060
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2061
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2062
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2063
+msgid "All installations have been completed."
+msgstr ""
+
+#: inc/class-tgm-plugin-activation.php:2064
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:24
+#: inc/customizer-frontend-functions.php:95 inc/sections/social/facebook.php:3
+msgid "Facebook"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:25
+#: inc/customizer-frontend-functions.php:96 inc/sections/social/twitter.php:3
+msgid "Twitter"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:26
+#: inc/customizer-frontend-functions.php:97
+#: inc/sections/social/googleplus.php:3
+msgid "Google Plus"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:27
+#: inc/customizer-frontend-functions.php:98 inc/sections/social/linkedin.php:3
+msgid "LinkedIn"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:28
+#: inc/customizer-frontend-functions.php:99 inc/sections/social/youtube.php:3
+msgid "YouTube"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:29
+#: inc/customizer-frontend-functions.php:100 inc/sections/social/vimeo.php:3
+msgid "Vimeo"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:30
+#: inc/customizer-frontend-functions.php:101 inc/sections/social/tumblr.php:3
+msgid "Tumblr"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:31
+#: inc/customizer-frontend-functions.php:102
+msgid "FlickR"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:32
+#: inc/customizer-frontend-functions.php:103
+#: inc/sections/social/pinterest.php:3
+msgid "Pinterest"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:33
+#: inc/customizer-frontend-functions.php:104
+#: inc/sections/social/dribbble.php:3
+msgid "Dribbble"
+msgstr ""
+
+#: inc/customizer-frontend-functions.php:42
+msgid "Follow Us on "
+msgstr ""
+
+#: inc/customizer.php:55
+msgid "Background Color"
+msgstr ""
+
+#: inc/customizer.php:57
+msgid "Choose a background color"
+msgstr ""
+
+#: inc/customizer.php:58
+msgid ""
+"(This is only for the site's generic background color. You can define header "
+"and footer background colors in the Header Options and Footer Options "
+"respectively.)"
+msgstr ""
+
+#: inc/extras.php:74
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: inc/sections/footer-colors.php:7
+msgid "Footer Colors"
+msgstr ""
+
+#: inc/sections/footer-colors.php:23
+msgid "Footer Background Color"
+msgstr ""
+
+#: inc/sections/footer-colors.php:41
+msgid "Footer Text Color"
+msgstr ""
+
+#: inc/sections/footer-colors.php:59
+msgid "Footer Heading Color"
+msgstr ""
+
+#: inc/sections/footer-colors.php:77
+msgid "Footer Link Color"
+msgstr ""
+
+#: inc/sections/footer-colors.php:95
+msgid "Footer Hovered Link Color"
+msgstr ""
+
+#: inc/sections/footer-content.php:7
+msgid "Footer Content"
+msgstr ""
+
+#: inc/sections/footer-content.php:25
+msgid "Choose the content to be displayed in the footer"
+msgstr ""
+
+#: inc/sections/footer-content.php:68
+msgid "Display a horizontal footer menu"
+msgstr ""
+
+#: inc/sections/footer-content.php:103
+msgid "Choose the menu to be displayed in the footer with a horizontal layout"
+msgstr ""
+
+#: inc/sections/header-colors.php:7
+msgid "Header Colors"
+msgstr ""
+
+#: inc/sections/header-colors.php:27
+msgid "Header Background Color"
+msgstr ""
+
+#: inc/sections/header-colors.php:67
+msgid "Header Text Color"
+msgstr ""
+
+#: inc/sections/header-colors.php:85
+msgid "Header Link Color"
+msgstr ""
+
+#: inc/sections/header-colors.php:103
+msgid "Header Hovered Link Color"
+msgstr ""
+
+#: inc/sections/header-content.php:7
+msgid "Header Right Block Content"
+msgstr ""
+
+#: inc/sections/header-content.php:25
+msgid ""
+"Choose the content to be displayed in the right block of the header area"
+msgstr ""
+
+#: inc/sections/header-content.php:47
+msgid "Nothing"
+msgstr ""
+
+#: inc/sections/header-content.php:48
+msgid "Buttons"
+msgstr ""
+
+#: inc/sections/header-content.php:49
+msgid "Social Icons"
+msgstr ""
+
+#: inc/sections/header-content.php:50
+msgid "Search Bar"
+msgstr ""
+
+#: inc/sections/header-content.php:69
+msgid "Button code"
+msgstr ""
+
+#: inc/sections/header-menu.php:10
+msgid "Header Menu"
+msgstr ""
+
+#: inc/sections/header-menu.php:25
+msgid "Choose the menu height"
+msgstr ""
+
+#: inc/sections/header-menu.php:62
+msgid "Choose the menu to be displayed in the header"
+msgstr ""
+
+#: inc/sections/logo.php:3
+msgid "Logo"
+msgstr ""
+
+#: inc/sections/logo.php:18
+msgid "Upload a logo"
+msgstr ""
+
+#: inc/sections/social/dribbble.php:18
+msgid "Dribbble URL"
+msgstr ""
+
+#: inc/sections/social/dribbble.php:37 inc/sections/social/facebook.php:37
+#: inc/sections/social/flickr.php:37 inc/sections/social/googleplus.php:37
+#: inc/sections/social/linkedin.php:37 inc/sections/social/pinterest.php:37
+#: inc/sections/social/tumblr.php:37 inc/sections/social/twitter.php:37
+#: inc/sections/social/vimeo.php:37 inc/sections/social/youtube.php:37
+msgid "Upload an icon"
+msgstr ""
+
+#: inc/sections/social/facebook.php:18
+msgid "Facebook URL"
+msgstr ""
+
+#: inc/sections/social/flickr.php:3
+msgid "Flickr"
+msgstr ""
+
+#: inc/sections/social/flickr.php:18
+msgid "Flickr URL"
+msgstr ""
+
+#: inc/sections/social/googleplus.php:18
+msgid "Google Plus URL"
+msgstr ""
+
+#: inc/sections/social/linkedin.php:18
+msgid "LinkedIn URL"
+msgstr ""
+
+#: inc/sections/social/pinterest.php:18
+msgid "Pinterest URL"
+msgstr ""
+
+#: inc/sections/social/tumblr.php:18
+msgid "Tumblr URL"
+msgstr ""
+
+#: inc/sections/social/twitter.php:18
+msgid "Twitter URL"
+msgstr ""
+
+#: inc/sections/social/vimeo.php:18
+msgid "Vimeo URL"
+msgstr ""
+
+#: inc/sections/social/youtube.php:18
+msgid "YouTube URL"
+msgstr ""
+
+#: inc/sections/woocommerce.php:8
+msgid "WooCommerce Color Options"
+msgstr ""
+
+#: inc/sections/woocommerce.php:12
+msgid "WooCommerce Layout Options"
+msgstr ""
+
+#: inc/sections/woocommerce.php:28
+msgid "Product listings"
+msgstr ""
+
+#: inc/sections/woocommerce.php:46
+msgid ""
+"Choose a layout type for product listings ( main shop and product category/"
+"tag archive pages )"
+msgstr ""
+
+#: inc/sections/woocommerce.php:72
+msgid "Single Product Pages"
+msgstr ""
+
+#: inc/sections/woocommerce.php:90
+msgid "Choose a layout type for single product pages"
+msgstr ""
+
+#: inc/sections/woocommerce.php:116
+msgid "Header Cart"
+msgstr ""
+
+#: inc/sections/woocommerce.php:134
+msgid "Display Cart in header"
+msgstr ""
+
+#: inc/template-tags.php:25
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr ""
+
+#: inc/template-tags.php:29
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: inc/template-tags.php:109
+#, php-format
+msgid "Category: %s"
+msgstr ""
+
+#: inc/template-tags.php:111
+#, php-format
+msgid "Tag: %s"
+msgstr ""
+
+#: inc/template-tags.php:113
+#, php-format
+msgid "Author: %s"
+msgstr ""
+
+#: inc/template-tags.php:115
+#, php-format
+msgid "Year: %s"
+msgstr ""
+
+#: inc/template-tags.php:117
+#, php-format
+msgid "Month: %s"
+msgstr ""
+
+#: inc/template-tags.php:119
+#, php-format
+msgid "Day: %s"
+msgstr ""
+
+#: inc/template-tags.php:139
+#, php-format
+msgid "Archives: %s"
+msgstr ""
+
+#. translators: 1: Taxonomy singular name, 2: Current taxonomy term
+#: inc/template-tags.php:143
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: inc/template-tags.php:145
+msgid "Archives"
+msgstr ""
+
+#: inc/tesseract-plugin-activation.php:55
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: inc/tesseract-plugin-activation.php:68
+#, php-format
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: search.php:16
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""

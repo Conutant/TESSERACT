@@ -1,0 +1,11 @@
+#customize-control-tesseract_woocommerce_loop_layout_control .customize-control-title,
+#customize-control-tesseract_woocommerce_product_layout_control .customize-control-title,
+#customize-control-tesseract_woocommerce_default_layout_control h4 {
+	font-weight: 400;
+	font-style: italic;	
+	line-height: 1.4em;
+	}
+	
+#customize-control-tesseract_woocommerce_default_layout_control h4 {
+	margin: 0;
+	}

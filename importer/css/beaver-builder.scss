@@ -1,0 +1,40 @@
+#tesseract-content-blocks-wrapper {
+	display: none;
+}
+
+.fl-builder-tesseract-blocks-lightbox {
+	.fl-lightbox {
+		width: 600px;
+		min-height: 300px;
+		max-height: 600px;
+		overflow-y: scroll;
+		padding: 20px;
+		.content-block {
+			box-sizing: border-box;
+			float: left;
+			width: 30%;
+			margin-right: 5%;
+			margin-bottom: 5%;
+			height: 150px;
+			text-align: center;
+			border: 2px solid #CDCDCD;
+			&:nth-of-type( 3n + 1 ) {
+				margin-right: 0;
+			}
+
+			.append-content-button {
+				width: 100%;
+				height: 100%;
+				display: block;
+				font-size: 20px;
+				line-height: 20px;
+				padding-top: 60px;
+			}
+		}
+		.cancel-wrapper {
+			clear: both;
+			text-align: right;
+			margin-bottom: 5%;
+		}
+	}
+}

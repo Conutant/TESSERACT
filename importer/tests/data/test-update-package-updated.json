@@ -1,0 +1,23 @@
+{
+    "data": {
+        "packages": {
+            "1": {
+                "details": {
+                    "slug": "test-package-a",
+                    "version": "1.1"
+                },
+                "posts": [
+                  {
+                      "post_content": "\n\t<h1>GIANT RED TEXT<\/h1>",
+                      "post_title": "Post 1.1",
+                      "post_status": "publish",
+                      "post_name": "post-1",
+                      "post_type": "fl-builder-template"
+                  }
+                ],
+                "name": "Package A",
+                "id": 1
+            }
+        }
+    }
+}

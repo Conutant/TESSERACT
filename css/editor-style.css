@@ -1,0 +1,303 @@
+/*
+    Theme Name: Pressly
+    Description: Used to style the TinyMCE editor.
+*/
+
+/* =Theme base
+-------------------------------------------------------------- */
+
+html .mceContentBody {
+	max-width: 720px;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #959595;
+}
+
+/* =05. Text-level semantics
+-------------------------------------------------------------- */
+
+cite {
+    display: block;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+blockquote {
+    border-bottom: 1px solid rgba(0, 0, 0 ,0.1);
+    border-top: 1px solid rgba(0, 0, 0 ,0.1);
+    font-family: 'Alegreya', Georgia, Time New Roman, serif;
+    font-size: 36px;
+    text-align: center;
+}
+
+blockquote:before{
+    content: '\201C';
+    font-size: 72px;
+    float: left;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+/* =Headings
+-------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #121212;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a {
+    color: #121212;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 21px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+/* =Links
+-------------------------------------------------------------- */
+
+a {
+	color: #199cd8;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: #adacac;
+}
+
+/* =Tables
+-------------------------------------------------------------- */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+	width: 100%;
+}
+
+td,
+th {
+    padding: 4px 0;
+	text-align: left;
+}
+
+th {
+	font-weight: 700;
+}
+
+/* =Embedded content
+-------------------------------------------------------------- */
+
+/*
+ * Responsive media.
+ */
+ 
+img,
+embed,
+object,
+video {
+    height: auto;
+    max-width: 100%;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+/* =WordPress Core Styles
+-------------------------------------------------------------- */
+
+.alignleft {
+    display: inline;
+    float: left;
+    margin: 0 18px 18px 0; 
+}
+
+.alignright {
+    display: inline;
+    float: right;
+    margin: 0 0 18px 18px;
+}
+
+.aligncenter {
+    clear: both;
+    display: block;
+    margin: 0 auto 18px auto;
+}
+
+.wp-caption {
+    max-width: 100%;
+}
+
+.wp-caption img[class*="wp-image-"] {
+    display: block;
+    margin: 0 auto;
+}
+
+.wp-caption-text {
+    color: #444;
+    font-size: 12px;
+    text-align: center;
+}
+
+.wp-caption .wp-caption-text {
+    margin-bottom: 0.8075em; 
+    margin-top: 0.8075em;
+}
+
+.gallery-item {
+    float: left;
+    margin: 0 4px 4px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-columns-1 .gallery-item {
+    max-width: 100%;
+}
+
+.gallery-columns-2 .gallery-item {
+    max-width: 48%;
+    max-width: calc(50% - 4px);
+}
+
+.gallery-columns-3 .gallery-item {
+    max-width: 32%;
+    max-width: calc(33.3% - 4px);
+}
+
+.gallery-columns-4 .gallery-item {
+    max-width: 23%;
+    max-width: calc(25% - 4px);
+}
+
+.gallery-columns-5 .gallery-item {
+    max-width: 19%;
+    max-width: calc(20% - 4px);
+}
+
+.gallery-columns-6 .gallery-item {
+    max-width: 15%;
+    max-width: calc(16.7% - 4px);
+}
+
+.gallery-columns-7 .gallery-item {
+    max-width: 13%;
+    max-width: calc(14.28% - 4px);
+}
+
+.gallery-columns-8 .gallery-item {
+    max-width: 11%;
+    max-width: calc(12.5% - 4px);
+}
+
+.gallery-columns-9 .gallery-item {
+    max-width: 9%;
+    max-width: calc(11.1% - 4px);
+}
+
+.gallery-columns-1 .gallery-item:nth-of-type(1n),
+.gallery-columns-2 .gallery-item:nth-of-type(2n),
+.gallery-columns-3 .gallery-item:nth-of-type(3n),
+.gallery-columns-4 .gallery-item:nth-of-type(4n),
+.gallery-columns-5 .gallery-item:nth-of-type(5n),
+.gallery-columns-6 .gallery-item:nth-of-type(6n),
+.gallery-columns-7 .gallery-item:nth-of-type(7n),
+.gallery-columns-8 .gallery-item:nth-of-type(8n),
+.gallery-columns-9 .gallery-item:nth-of-type(9n) {
+    margin-right: 0;
+}
+
+.gallery-columns-1.gallery-size-medium figure.gallery-item:nth-of-type(1n+1),
+.gallery-columns-1.gallery-size-thumbnail figure.gallery-item:nth-of-type(1n+1),
+.gallery-columns-2.gallery-size-thumbnail figure.gallery-item:nth-of-type(2n+1),
+.gallery-columns-3.gallery-size-thumbnail figure.gallery-item:nth-of-type(3n+1) {
+    clear: left;
+}
+
+.gallery-caption {
+    background-color: rgba(255, 255, 255, 0.7);
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+    max-height: 50%;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    padding: 6px 8px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.gallery-caption:before {
+    content: "";
+    height: 100%;
+    min-height: 49px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.gallery-columns-7 .gallery-caption,
+.gallery-columns-8 .gallery-caption,
+.gallery-columns-9 .gallery-caption {
+    display: none;
+}
+
+.page-content img.wp-smiley,
+.entry-content img.wp-smiley,
+.comment-content img.wp-smiley {
+    border: none;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+}
