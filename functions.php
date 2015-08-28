@@ -945,3 +945,13 @@ require get_template_directory() . '/inc/jetpack.php';
 require get_template_directory() . '/importer/load.php';
 
 
+/*
+ * Auto-check theme udpates
+ */
+//Initialize the update checker.
+require 'theme-update-checker.php';
+$update_checker = new ThemeUpdateChecker(
+  'TESSERACT',
+  'http://updates.tyler.dev/TESSERACT/version.json'
+);
+$update_checker->checkForUpdates();
