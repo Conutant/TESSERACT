@@ -961,10 +961,9 @@ require get_template_directory() . '/importer/load.php';
  * Auto-check theme udpates
  */
 //Initialize the update checker.
-$theme_name = basename(get_stylesheet_directory());
 require 'theme-update-checker.php';
 $update_checker = new ThemeUpdateChecker(
-  $theme_name,
+  'TESSERACT', // This theme folder name (must match)
   'http://updates.tyler.com/TESSERACT/version.json'
 );
 $update_checker->checkForUpdates();
