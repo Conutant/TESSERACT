@@ -966,4 +966,7 @@ $update_checker = new ThemeUpdateChecker(
   'TESSERACT', // This theme folder name (must match)
   'http://updates.tyler.com/TESSERACT/version.json'
 );
-$update_checker->checkForUpdates();
+if(false)
+{
+  $update_checker->checkForUpdates(); 
+}
