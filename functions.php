@@ -1,5 +1,17 @@
 <?php
 /**
+ * Debug function
+ */
+function dd($obj)
+{
+  echo("<pre>");
+  var_dump($obj);
+  debug_print_backtrace();
+  echo("</pre>");
+  die;
+}
+
+/**
  * Tesseract functions and definitions
  *
  * @package Tesseract
@@ -951,7 +963,7 @@ require get_template_directory() . '/importer/load.php';
 //Initialize the update checker.
 require 'theme-update-checker.php';
 $update_checker = new ThemeUpdateChecker(
-  'TESSERACT',
+  'TESSERACT-dev',
   'http://updates.tyler.dev/TESSERACT/version.json'
 );
 $update_checker->checkForUpdates();
