@@ -32,9 +32,10 @@ function tesseract_add_button_to_page_builder() {
 					global $post;
 					$slug = $post->post_name;
 				?>
-				<div class="content-block slug-<?php echo esc_attr( $slug ); ?>">
+				<div class="content-block slug-<?php echo esc_attr( $slug ); ?>"
+          style="background-image: url('<?php echo(esc_attr(get_stylesheet_directory_uri()))?>/images/content-blocks/<?php echo(esc_attr($slug))?>.jpg')"
+          >
 					<a href="#" class="append-content-button" data-template-id="<?php echo esc_attr( $template_id ); ?>">
-						<?php the_title(); ?>
 					</a>
 				</div>
 			<?php endwhile; ?>

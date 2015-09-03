@@ -203,6 +203,28 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/images\/content-blocks\/full-width-image-right-text.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 14257,
+		"inputAbbreviatedPath": "\/images\/content-blocks\/full-width-image-right-text.jpg",
+		"outputAbbreviatedPath": "\/images\/content-blocks\/full-width-image-right-text.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/content-blocks\/full-width-image-right-text.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2032,
+		"inputAbbreviatedPath": "\/images\/content-blocks\/full-width-image-right-text.png",
+		"outputAbbreviatedPath": "\/images\/content-blocks\/full-width-image-right-text.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/images\/transparency-grid.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -1062,15 +1084,6 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/single.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/style.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/style.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
