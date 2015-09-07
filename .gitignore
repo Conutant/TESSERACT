@@ -1,1 +1,3 @@
 .sass-cache
+bin
+.DS_Store
