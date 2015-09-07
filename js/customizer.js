@@ -76,6 +76,21 @@
 				var result = 'rgba(' + colorsOnly[0] + ', ' + colorsOnly[1] + ', ' + colorsOnly[2] + ', ' + to/100 + ')';
 			}
 			$('.site-header, .main-navigation ul ul a, #header-right-menu ul ul a').css( 'background-color', result);
+
+			if ( ( $('body.home.fl-builder').length > 0 ) && ( to < 100 ) ) {
+				$('#masthead').css({
+					position: 'absolute',
+					top: 0,
+					left: 0
+				});
+			} else {
+				$('#masthead').css({
+					position: 'relative',
+					top: 'auto',
+					left: 'auto'
+				});
+			}
+
 		});
 	});
 

@@ -42,7 +42,7 @@
 				'priority'    => 2,
 				'section'     => 'tesseract_header_colors',
 				'settings'     => 'tesseract_header_colors_bck_color_opacity',
-				'label'       => 'Header Background Color Opacity',
+				'label'       => 'Homepage Header Opacity',
 				'description' => 'Use this range slider to set background opacity',
 				'input_attrs' => array(
 					'min'   => 0,
@@ -50,7 +50,8 @@
 					'step'  => 5,
 					'class' => 'tesseract-tho-header-colors-bck-opacity',
 					'style' => 'color: #0a0',
-				)
+				),
+				'active_callback' => 'tesseract_show_header_opacity_control'
 			) );
 
 		$wp_customize->add_setting( 'tesseract_header_colors_text_color', array(
