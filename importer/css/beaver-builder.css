@@ -11,11 +11,13 @@
     box-sizing: border-box;
     float: left;
     width: 30%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    height: 150px;
+    height: 135px;
     text-align: center;
-    border: 2px solid #CDCDCD; }
+    border: 2px solid #CDCDCD; 
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 5%;
+    margin-bottom: 5%; }
     .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block:nth-of-type(3n + 1) {
       margin-right: 0; }
     .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block .append-content-button {
