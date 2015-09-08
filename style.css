@@ -530,7 +530,7 @@ th {
 
 body {
     background-color: #f9f9f9;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 1.8;
@@ -574,12 +574,6 @@ body {
 
 ul,
 ol,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 pre,
 table,
 .gallery,
@@ -613,6 +607,10 @@ ol ol {
 .page-content,
 .entry-summary {
     margin-top: 45px;
+}
+
+.site-branding h1{
+    font-size: 28px;
 }
 
 .site-main .comment-navigation,
@@ -679,10 +677,15 @@ h3,
 h4,
 h5,
 h6 {
-    color: #121212;
+    color: #333333;
     clear: both;
     font-weight: 400;
     line-height: 1.2;
+    padding: 0px;
+    margin-bottom: 6px;
+    margin-top:0px;
+    margin-left:0px;
+    margin-right: 0px;
 }
 
 h1 a,
@@ -693,7 +696,7 @@ h4 a {
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 48px;
 }
 
 h2 {
@@ -1985,6 +1988,7 @@ figure {
 
 .blog #primary,
 .page-template-full-width-page #primary,
+.page-template-full-width-page-php #primary,
 .page-template-blog-php #primary,
 .error404 #primary,
 .single #primary { width: 100%; }

@@ -15,8 +15,7 @@
     margin-bottom: 5%;
     height: 150px;
     text-align: center;
-    border: 2px solid #CDCDCD;
-    background-size: cover; }
+    border: 2px solid #CDCDCD; }
     .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block:nth-of-type(3n + 1) {
       margin-right: 0; }
     .fl-builder-tesseract-blocks-lightbox .fl-lightbox .content-block .append-content-button {
@@ -24,7 +23,8 @@
       height: 100%;
       display: block;
       font-size: 20px;
-      line-height: 20px; }
+      line-height: 20px;
+      padding-top: 60px; }
   .fl-builder-tesseract-blocks-lightbox .fl-lightbox .cancel-wrapper {
     clear: both;
     text-align: right;

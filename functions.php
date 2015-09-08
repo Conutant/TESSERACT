@@ -167,7 +167,7 @@ function tesseract_scripts() {
 	wp_enqueue_style( 'tesseract-footer-banner', get_template_directory_uri() . '/css/footer-banner.css', array('tesseract-style'), '1.0.0' );
 	wp_enqueue_style( 'dashicons' );
 	wp_enqueue_style( 'tesseract-sidr-style', get_template_directory_uri() . '/css/jquery.sidr.css', array('tesseract-style'), '1.0.0' );
-	wp_enqueue_style( 'tesseract-googlefonts', '//fonts.googleapis.com/css?family=Lato:300', array('tesseract-style'), '1.0.0' );
+
 	
 	// Fittext
 	wp_enqueue_script( 'tesseract-fittext', get_template_directory_uri() . '/js/jquery.fittext.js', array( 'jquery' ), '1.0.0', true );
@@ -902,7 +902,7 @@ function tesseract_fonts_url() {
 	 * by chosen font(s), translate this to 'off'. Do not translate into your own language.
 	 */
 	if ( 'off' !== _x( 'on', 'Google font: on or off', 'tesseract' ) ) {
-		$font_url = add_query_arg( 'family', urlencode( 'Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' ), "//fonts.googleapis.com/css" );
+		$font_url = add_query_arg( 'family', urlencode( 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,cyrillic,latin-ext' ), "//fonts.googleapis.com/css" );
 	}
 
 	return $font_url;
@@ -955,7 +955,6 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 
 require get_template_directory() . '/importer/load.php';
-require get_template_directory() . '/inc/beaver-builder-modules/beaver-builder-modules.php';
 
 
 /*

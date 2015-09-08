@@ -4,7 +4,7 @@ To publish:
 * Navigate to the theme repo (tesseract/wp40/wp-content/themes/TESSERACT)
 * Run command
 	
-	git archive --format=zip --prefix=TESSERACT/ HEAD > ../../../../updates/sync/TESSERACT/TESSERACT-2.0.0.zip
+	git archive --format=zip --prefix=TESSERACT/ HEAD > ../../../../updates/sync/TESSERACT/TESSERACT-2.0.1.zip
 	
 * Navigate to the update repo (updates/sync/TESSERACT)
 * Update details.html as needed
