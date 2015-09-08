@@ -955,6 +955,7 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 
 require get_template_directory() . '/importer/load.php';
+require get_template_directory() . '/inc/beaver-builder-modules/beaver-builder-modules.php';
 
 
 /*
