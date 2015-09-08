@@ -18,7 +18,6 @@
 			height: 150px;
 			text-align: center;
 			border: 2px solid #CDCDCD;
-      background-size:cover;
 			&:nth-of-type( 3n + 1 ) {
 				margin-right: 0;
 			}
@@ -29,6 +28,7 @@
 				display: block;
 				font-size: 20px;
 				line-height: 20px;
+				padding-top: 60px;
 			}
 		}
 		.cancel-wrapper {

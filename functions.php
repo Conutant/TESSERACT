@@ -167,7 +167,6 @@ function tesseract_scripts() {
 	wp_enqueue_style( 'tesseract-footer-banner', get_template_directory_uri() . '/css/footer-banner.css', array('tesseract-style'), '1.0.0' );
 	wp_enqueue_style( 'dashicons' );
 	wp_enqueue_style( 'tesseract-sidr-style', get_template_directory_uri() . '/css/jquery.sidr.css', array('tesseract-style'), '1.0.0' );
-	
 	// Fittext
 	wp_enqueue_script( 'tesseract-fittext', get_template_directory_uri() . '/js/jquery.fittext.js', array( 'jquery' ), '1.0.0', true );
 	
