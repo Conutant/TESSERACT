@@ -1985,6 +1985,7 @@ figure {
 
 .blog #primary,
 .page-template-full-width-page #primary,
+.page-template-full-width-page-php #primary,
 .page-template-blog-php #primary,
 .error404 #primary,
 .single #primary { width: 100%; }
