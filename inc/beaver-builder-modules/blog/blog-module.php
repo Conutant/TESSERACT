@@ -19,7 +19,7 @@ class TesseractBlogModule extends FLBuilderModule {
 			'category'		=> __('Advanced Modules', 'fl-builder'),
 			'dir'			=> TESSERACT_BB_MODULE_DIR . 'blog/',
 			'url'			=> TESSERACT_BB_MODULE_URL . 'blog/'
-				) );
+		) );
 
 		$this->add_css('blog-module-css', $this->url . 'css/blog-module.css');
 	}
