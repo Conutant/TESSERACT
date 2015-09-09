@@ -173,6 +173,10 @@ function tesseract_scripts() {
 	//Mobile menu
 	wp_enqueue_script( 'tesseract-sidr', get_template_directory_uri() . '/js/jquery.sidr.min.js', array( 'tesseract-fittext' ), '1.0.0', true );
 	
+
+	// Modernizr for old browsers
+	wp_enqueue_script( 'tesseract-modernizr', get_template_directory_uri() . '/js/modernizr.custom.min.js', array(), '1.0.0', false );
+
     // JS helpers (This is also the place where we call the jQuery in array)
 	wp_enqueue_script( 'tesseract-helpers-functions', get_template_directory_uri() . '/js/helpers-functions.js', array( 'tesseract-sidr' ), '1.0.0', true );
 	wp_enqueue_script( 'tesseract-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'tesseract-helpers-functions' ), '1.0.0', true );	
