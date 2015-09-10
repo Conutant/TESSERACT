@@ -5,7 +5,7 @@
  * @package Tesseract
  */
 
-get_header(); 
+get_header();
 
 ?>
 
@@ -23,7 +23,7 @@ get_header();
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
 					get_template_part( 'content', 'page' );
-					
+
 					// If comments are open or we have at least one comment, load up the comment template
 					if ( comments_open() || get_comments_number() ) :
 						comments_template();
@@ -40,7 +40,7 @@ get_header();
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-    
-<?php if ( ( is_plugin_active('woocommerce/woocommerce.php') && ( ( $layout_default == 'sidebar-left' ) || ( $layout_default == 'sidebar-right' ) ) ) ) get_sidebar(); ?>    
+    <?php $layout_default = get_theme_mod( 'tesseract_woocommerce_default_layout' ); ?>
+<?php if ( ( is_plugin_active('woocommerce/woocommerce.php') && ( ( $layout_default == 'sidebar-left' ) || ( $layout_default == 'sidebar-right' ) ) ) ) get_sidebar(); ?>
 
 <?php get_footer(); ?>
