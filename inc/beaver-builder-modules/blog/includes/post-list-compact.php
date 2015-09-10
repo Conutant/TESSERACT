@@ -1,4 +1,4 @@
-<div class="tesseract-post">
+<div class="tesseract-post tesseract-post-compact">
 	<div class="post-header">
 		<a href="<?php the_permalink(); ?>">
 			<?php if ( has_post_thumbnail() ) : ?>
@@ -9,10 +9,10 @@
 			<div class="date">
 				<?php the_time( get_option( 'date_format' ) ); ?>
 			</div>
-			<div class="author">
-				<?php the_author(); ?>
-			</div>
 		</a>
+		<div class="author">
+			<?php the_author(); ?>
+		</div>
 	</div>
 	<div class="entry">
 		<h2 class="title">
@@ -23,5 +23,8 @@
 		<div class="content">
 			<?php the_excerpt(); ?>
 		</div>
+		<a class="read-more" href="<?php the_permalink(); ?>">
+			<?php _e( 'Read More &rarr;', 'tesseract' ); ?>
+		</a>
 	</div>
 </div>

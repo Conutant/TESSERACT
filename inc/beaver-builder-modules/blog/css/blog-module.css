@@ -1,33 +1,54 @@
-.tesseract-post-list .tesseract-post {
+.tesseract-post-list .tesseract-post-compact {
   padding: 30px 0 40px;
-  border-bottom: 1px solid #f3f3f3; }
-  .tesseract-post-list .tesseract-post:after {
+  border-bottom: 1px solid #DDD; }
+  .tesseract-post-list .tesseract-post-compact:after {
     content: "";
     display: table;
     clear: both; }
-  .tesseract-post-list .tesseract-post .post-header {
+  .tesseract-post-list .tesseract-post-compact .post-header {
     float: left;
     width: 30%;
     margin-right: 5%; }
-    .tesseract-post-list .tesseract-post .post-header .featured-image img {
+    .tesseract-post-list .tesseract-post-compact .post-header .featured-image img {
       max-width: 100%;
       height: auto; }
-    .tesseract-post-list .tesseract-post .post-header .date, .tesseract-post-list .tesseract-post .post-header .author {
+    .tesseract-post-list .tesseract-post-compact .post-header .date, .tesseract-post-list .tesseract-post-compact .post-header .author {
       color: #888; }
-    .tesseract-post-list .tesseract-post .post-header .date {
+    .tesseract-post-list .tesseract-post-compact .post-header .date {
       font-weight: 700; }
-  .tesseract-post-list .tesseract-post .entry {
+  .tesseract-post-list .tesseract-post-compact .entry {
     float: left;
     width: 65%; }
-    .tesseract-post-list .tesseract-post .entry .title {
+    .tesseract-post-list .tesseract-post-compact .entry .title {
       font-size: 28px;
       word-spacing: -1px;
       line-height: 1.3;
       margin-top: 0;
       margin-bottom: 10px;
       font-weight: 700; }
-    .tesseract-post-list .tesseract-post .entry .content {
+    .tesseract-post-list .tesseract-post-compact .entry .content {
       font-size: 14px; }
+.tesseract-post-list .tesseract-post-vertical {
+  padding: 30px 0 40px;
+  border-bottom: 1px solid #DDD; }
+  .tesseract-post-list .tesseract-post-vertical .post-header {
+    margin-bottom: 20px; }
+    .tesseract-post-list .tesseract-post-vertical .post-header .author-and-date {
+      color: #888;
+      font-weight: 700; }
+    .tesseract-post-list .tesseract-post-vertical .post-header .title {
+      font-size: 28px;
+      word-spacing: -1px;
+      line-height: 1.3;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-weight: 700; }
+    .tesseract-post-list .tesseract-post-vertical .post-header .featured-image {
+      max-height: 480px;
+      overflow: hidden; }
+      .tesseract-post-list .tesseract-post-vertical .post-header .featured-image img {
+        max-width: 100%;
+        height: auto; }
 
 .tesseract-pagination .page-numbers {
   list-style: none;
