@@ -1,13 +1,13 @@
 <?php
 
-// Get the query data. NULL because we have no settings yet.
+// Get the query data. NULL because we have query-related settings yet.
 $query = FLBuilderLoop::query( NULL );
 
 ?>
 <?php if( $query->have_posts() ) : ?>
 	<div class="tesseract-post-list">
 		<?php while( $query->have_posts() ) : $query->the_post(); ?>
-			<?php include $module->dir . 'includes/post-list.php'; ?>
+			<?php include $module->dir . 'includes/post-list-' . $settings->post_display . '.php'; ?>
 		<?php endwhile; ?>
 	</div>
 	<div class="tesseract-pagination">

@@ -7,7 +7,7 @@ function is_plugin_installed($slug)
   $plugins = get_plugins();
   foreach($plugins as $plugin_key=>$plugin_info)
   {
-    if(preg_match("/^{$slug}", $plugin_key)!==false) return true;
+    if(preg_match("/^{$slug}/", $plugin_key)!==false) return true;
   }
   return false;
 }

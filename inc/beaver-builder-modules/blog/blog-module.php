@@ -51,8 +51,24 @@ class TesseractBlogModule extends FLBuilderModule {
 /**
  * Register the module and its form settings.
  */
-FLBuilder::register_module('TesseractBlogModule', array(
-	'general'		=> array( // Tab
-		'title'			=> __('General', 'fl-builder'), // Tab title
+FLBuilder::register_module( 'TesseractBlogModule', array(
+	'general' => array( // Tab
+		'title' => __('General', 'fl-builder'), // Tab title
+		'sections' => array( // Tab Sections
+			'display' => array( // Section
+				'title' => __('Display', 'tesseract'), // Section Title
+				'fields' => array( // Section Fields
+					'post_display' => array(
+						'type' => 'select',
+						'label' => __('Post Display', 'tesseract'),
+						'default' => 'compact',
+						'options' => array(
+							'compact' => __('Compact', 'tesseract'),
+							'vertical' => __('Vertical', 'tesseract'),
+						)
+					)
+				)
+			)
+		)
 	)
-));
+) );
