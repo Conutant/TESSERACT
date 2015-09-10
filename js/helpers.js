@@ -10,7 +10,7 @@
 		$( '#url' ).attr( 'placeholder','Website' );
 		$( '#comment' ).attr( 'placeholder','Your Comment' );
 
-		var sourceVal = ( $('#site-banner-right > *:not(.woocart-header, script)').length > 0 ) ? '#site-navigation, #site-banner-right > *:not(.woocart-header, script)' : '#site-navigation';
+		var sourceVal = ( $('#site-banner-right > *:not(script):not(.woocart-header)').length > 0 ) ? '#site-navigation, #site-banner-right > *:not(script):not(.woocart-header)' : '#site-navigation';
 
 		$('#mobile-menu-trigger').sidr({
 			source: sourceVal,

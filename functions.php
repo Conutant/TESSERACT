@@ -333,24 +333,24 @@ function tesseract_scripts() {
 		background-color: " . $mobmenu_bckColor . ";
 		}
 		
-	.sidr .sidr-class-menu li a,
-	.sidr .sidr-class-menu li span { color: " . $mobmenu_linkColor . "; }
+	.sidr .sidr-class-menu-item a,
+	.sidr .sidr-class-menu-item span { color: " . $mobmenu_linkColor . "; }
 
 
-	.sidr .sidr-class-menu ul li a,
-	.sidr .sidr-class-menu ul li span {
+	.sidr .sidr-class-menu-item ul li a,
+	.sidr .sidr-class-menu-item ul li span {
 		color: " . $mob_rgb_linkColor_submenu . ";		
 	}
 	
-	.sidr .sidr-class-menu li a:hover,
-	.sidr .sidr-class-menu li span:hover,
-	.sidr .sidr-class-menu li:first-child a:hover,
-	.sidr .sidr-class-menu li:first-child span:hover { color: " . $mobmenu_linkHoverColor . "; }
+	.sidr .sidr-class-menu-item a:hover,
+	.sidr .sidr-class-menu-item span:hover,
+	.sidr .sidr-class-menu-item:first-child a:hover,
+	.sidr .sidr-class-menu-item:first-child span:hover { color: " . $mobmenu_linkHoverColor . "; }
 	
-	.sidr .sidr-class-menu ul li a:hover,
-	.sidr .sidr-class-menu ul li span:hover,
-	.sidr .sidr-class-menu ul li:first-child a:hover,
-	.sidr .sidr-class-menu ul li:first-child span:hover { color: " . $mob_rgb_linkHoverColor_submenu . "; }	
+	.sidr .sidr-class-menu-item ul li a:hover,
+	.sidr .sidr-class-menu-item ul li span:hover,
+	.sidr .sidr-class-menu-item ul li:first-child a:hover,
+	.sidr .sidr-class-menu-item ul li:first-child span:hover { color: " . $mob_rgb_linkHoverColor_submenu . "; }	
 	
 	.sidr ul li > a:hover, 
 	.sidr ul li > span:hover, 

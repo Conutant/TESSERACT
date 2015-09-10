@@ -195,13 +195,13 @@
 
 	wp.customize( 'tesseract_mobmenu_link_color', function( value ) {
 		value.bind( function( to ) {
-			$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css('color', to);
+			$( '.sidr .sidr-class-menu-item a, .sidr .sidr-class-menu-item span' ).css('color', to);
 		} );
 	} );
 
 	wp.customize( 'tesseract_mobmenu_link_hover_color', function( value ) {
 		value.bind( function( to ) {
-			$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).each(function() {
+			$( '.sidr .sidr-class-menu-item a, .sidr .sidr-class-menu-item span' ).each(function() {
 				var origColor = $( this ).css('color');
 				$( this ).hover(
 					function() {
@@ -218,18 +218,18 @@
 		value.bind( function( to ) {
 			switch(to) {
 				case 'dark':
-					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(0, 0, 0, .2)' ); break;
+					$( '.sidr .sidr-class-menu-item a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(0, 0, 0, .2)' ); break;
 				case 'light':
-					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(255, 255, 255, .1)' ); break;
+					$( '.sidr .sidr-class-menu-item a, .sidr .sidr-class-menu li span' ).css( 'background', 'rgba(255, 255, 255, .1)' ); break;
 				case 'custom':
-					$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).css( 'background', tesseract_vars.mobmenu_link_hover_background_color_custom ); break;
+					$( '.sidr .sidr-class-menu-item a, .sidr .sidr-class-menu li span' ).css( 'background', tesseract_vars.mobmenu_link_hover_background_color_custom ); break;
 			}
 		} );
 	} );
 
 	wp.customize( 'tesseract_mobmenu_link_hover_background_color_custom', function( value ) {
 		value.bind( function( to ) {
-			$( '.sidr .sidr-class-menu li a, .sidr .sidr-class-menu li span' ).each(function() {
+			$( '.sidr .sidr-class-menu-item a, .sidr .sidr-class-menu-item span' ).each(function() {
 				var origBck = $( this ).css('background');
 				$( this ).hover(
 					function() {
