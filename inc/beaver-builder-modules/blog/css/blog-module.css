@@ -28,6 +28,10 @@
       font-weight: 700; }
     .tesseract-post-list .tesseract-post-compact .entry .content {
       font-size: 14px; }
+  @media screen and (max-width: 480px) {
+    .tesseract-post-list .tesseract-post-compact .post-header, .tesseract-post-list .tesseract-post-compact .entry {
+      float: none;
+      width: 100%; } }
 .tesseract-post-list .tesseract-post-vertical {
   padding: 30px 0 40px;
   border-bottom: 1px solid #DDD; }

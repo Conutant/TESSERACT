@@ -6,6 +6,14 @@
   }
 }
 
+@mixin bp( $point ) {
+	@if $point == 'mobile' {
+		@media screen and ( max-width: 480px ) {
+			@content;
+		}
+	}
+}
+
 .tesseract-post-list {
 	.tesseract-post-compact {
 		@include pie-clearfix;
@@ -41,6 +49,12 @@
 			}
 			.content {
 				font-size: 14px;
+			}
+		}
+		@include bp( mobile ) {
+			.post-header, .entry {
+				float: none;
+				width: 100%;
 			}
 		}
 	}
