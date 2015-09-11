@@ -443,7 +443,7 @@ function tesseract_scripts() {
 	$dynamic_styles_header = ".site-header,
 	.main-navigation ul ul a,
 	#header-right-menu ul ul a,
-	.site-header .cart-content-details, { background-color: " . $header_bckColor . "; }
+	.site-header .cart-content-details { background-color: " . $header_bckColor . "; }
 	.site-header .cart-content-details:after { border-bottom-color: " . $header_bckColor . "; }
 	
 	.home .site-header,
