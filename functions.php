@@ -442,11 +442,15 @@ function tesseract_scripts() {
 
 	$dynamic_styles_header = ".site-header,
 	.main-navigation ul ul a,
-	#header-right-menu ul ul a { background-color: " . $header_bckColor . "; }
+	#header-right-menu ul ul a,
+	.site-header .cart-content-details, { background-color: " . $header_bckColor . "; }
+	.site-header .cart-content-details:after { border-bottom-color: " . $header_bckColor . "; }
 	
 	.home .site-header,
 	.home .main-navigation ul ul a,
-	.home #header-right ul ul a { background-color: " . $header_bckColor_home . "; }
+	.home #header-right ul ul a,
+	.home .site-header .cart-content-details { background-color: " . $header_bckColor_home . "; }
+	.home .site-header .cart-content-details:after { border-bottom-color: " . $header_bckColor_home . "; }
 	
 	.site-header,
 	.site-header h1, 
