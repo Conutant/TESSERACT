@@ -30,15 +30,10 @@ function tesseract_body_classes( $classes ) {
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
 	}
-	
+
 	// Adds a .full-width-page class to posts without sidebar.
 	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	    $classes[] = 'full-width-page';
-	}
-	
-	// Adds a .tesseract-featured class to posts with featured image.
-	if ( is_single() && has_post_thumbnail() && 'post' == get_post_type() ) {
-		$classes[] = 'tesseract-featured';
 	}
 
 	return $classes;

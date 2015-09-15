@@ -589,11 +589,14 @@ blockquote,
 .comment-respond,
 .wp-caption-text,
 .comment-reply-title,
-.single .entry-content,
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
     margin-bottom: 35px;
+}
+
+.single .entry-content {
+	margin-bottom: 0;
 }
 
 ul ul,
@@ -1923,7 +1926,7 @@ figure {
 -------------------------------------------------------------- */
 
 .entry-content {
-
+	
 }
 
 .headline-resize{
@@ -2499,8 +2502,3 @@ article.comment-body{
     }
 
 }
-
-
-
-
-
