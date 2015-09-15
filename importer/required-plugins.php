@@ -129,7 +129,7 @@ function display_notice() {
 			}
 		</style>
 		<div id="unbranding-plugin-notice" class="updated notice">
-			<img src="http://localhost/wp-content/uploads/2015/09/tyler-pic.png" />
+			<img src="https://s3-us-west-2.amazonaws.com/updates.tyler.com/tyler-pic.png" />
 			<p>Hey, to remove the "Tyler Moore" at the bottom of your website you can get the unbranding plugin.</p>
 			<p>
 				<a id="get-unbranding" href="javascript:void(0);">check it out</a>
