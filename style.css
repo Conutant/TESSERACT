@@ -2078,6 +2078,11 @@ span.posted-on{
     margin-bottom: 20px;
 }
 
+/* Background For Beaver Builder */
+.Tess-White-Background{
+    background-color:#FFFFFF;
+}
+
 /* Archives + Search */
 
 .archive #primary article,
