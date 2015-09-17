@@ -62,81 +62,25 @@ require(dirname(__FILE__).'/../dismissible_notice/src/init.php');
 
 function display_notice() {
 	if ( ! is_plugin_installed( 'TESSERACT-Unbranded' ) ) {
+		if ( false === ( $dismissed = get_transient( 'dismiss_unbranding' ) ) ) {
 ?>
-		<style>
-			#unbranding-plugin-notice {
-				overflow: hidden;
-				padding: 10px;
-				border-left: 4px solid #31cbfd;
-			}
-			#unbranding-plugin-notice img {
-				float: left;
-				width: 100px;
-				height: auto;
-				margin: 10px;
-			}
-			#unbranding-plugin-notice p {
-				font-size: 20px;
-				color: #a1a1a1;
-			}
-			#unbranding-plugin-notice p a {
-				font-size: 16px;
-				padding: 10px 40px 10px 40px;
-				margin-right: 10px;
-				-webkit-border-radius: 4;
-				-moz-border-radius: 4;
-				border-radius: 4px;
-				-webkit-box-shadow: 0px 1px 3px #666666;
-				-moz-box-shadow: 0px 1px 3px #666666;
-				box-shadow: 0px 1px 3px #666666;
-				text-decoration: none;
-			}
-			#get-unbranding {
-				background: #34c5f2;
-				background-image: -webkit-linear-gradient(top, #34c5f2, #2bc1f3);
-				background-image: -moz-linear-gradient(top, #34c5f2, #2bc1f3);
-				background-image: -ms-linear-gradient(top, #34c5f2, #2bc1f3);
-				background-image: -o-linear-gradient(top, #34c5f2, #2bc1f3);
-				background-image: linear-gradient(to bottom, #34c5f2, #2bc1f3);
-				color: #ffffff;
-			}
-			#get-unbranding:hover {
-				background: #3cb0fd;
-				background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-				background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-				background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-				background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-				background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-				text-decoration: none;
-			}
-			#dismiss-unbranding {
-				background: #f5f5f5;
-				background-image: -webkit-linear-gradient(top, #f5f5f5, #fafafa);
-				background-image: -moz-linear-gradient(top, #f5f5f5, #fafafa);
-				background-image: -ms-linear-gradient(top, #f5f5f5, #fafafa);
-				background-image: -o-linear-gradient(top, #f5f5f5, #fafafa);
-				background-image: linear-gradient(to bottom, #f5f5f5, #fafafa);
-				color: #d1cfd0;
-			}
-			#dismiss-unbranding:hover {
-				background: #f1eff0;
-				background-image: -webkit-linear-gradient(top, #f1eff0, #f0eeef);
-				background-image: -moz-linear-gradient(top, #f1eff0, #f0eeef);
-				background-image: -ms-linear-gradient(top, #f1eff0, #f0eeef);
-				background-image: -o-linear-gradient(top, #f1eff0, #f0eeef);
-				background-image: linear-gradient(to bottom, #f1eff0, #f0eeef);
-				text-decoration: none;
-			}
-		</style>
 		<div id="unbranding-plugin-notice" class="updated notice">
 			<img src="https://s3-us-west-2.amazonaws.com/updates.tyler.com/tyler-pic.png" />
 			<p>Hey, to remove the "Tyler Moore" at the bottom of your website you can get the unbranding plugin.</p>
 			<p>
-				<a id="get-unbranding" href="javascript:void(0);">check it out</a>
+				<a id="get-unbranding" href="http://tyler.com/unbranding-plugin/" target="_blank">check it out</a>
 				<a id="dismiss-unbranding" href="javascript:void(0);">maybe later</a>
 			</p>
 		</div>
 <?php
+		}
 	}
 }
 add_action( 'admin_notices', 'display_notice' );
+
+function dismiss_unbranding() {
+	set_transient( 'dismiss_unbranding', true, 3 * DAY_IN_SECONDS ); // dismissed for 3 days
+
+	die();
+}
+add_action( 'wp_ajax_dismiss_unbranding', 'dismiss_unbranding' );

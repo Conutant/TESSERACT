@@ -54,3 +54,11 @@ function tesseract_enqueue_beaver_builder_scripts() {
 		wp_enqueue_style( 'tesseract-bb-extensions', get_template_directory_uri() . '/importer/css/beaver-builder.css' );
 	}
 }
+
+
+add_action( 'admin_enqueue_scripts', 'tesseract_enqueue_custom_scripts' );
+
+function tesseract_enqueue_custom_scripts() {
+	wp_enqueue_script( 'tesseract-custom', get_template_directory_uri() . '/importer/js/custom.js', array( 'jquery' ) );
+	wp_enqueue_style( 'tesseract-custom', get_template_directory_uri() . '/importer/css/custom.css' );
+}
