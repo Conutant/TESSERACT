@@ -46,19 +46,23 @@ function tesseract_add_button_to_page_builder() {
 	<?php
 }
 
-add_action( 'wp_enqueue_scripts', 'tesseract_enqueue_beaver_builder_scripts' );
-
 function tesseract_enqueue_beaver_builder_scripts() {
 	if ( FLBuilderModel::is_builder_active() ) {
 		wp_enqueue_script( 'tesseract-bb-extensions', get_template_directory_uri() . '/importer/js/beaver-builder.js', array( 'jquery' ) );
 		wp_enqueue_style( 'tesseract-bb-extensions', get_template_directory_uri() . '/importer/css/beaver-builder.css' );
 	}
 }
+add_action( 'wp_enqueue_scripts', 'tesseract_enqueue_beaver_builder_scripts' );
 
-
-add_action( 'admin_enqueue_scripts', 'tesseract_enqueue_custom_scripts' );
-
+/* load custom admin scripts and styles */
 function tesseract_enqueue_custom_scripts() {
 	wp_enqueue_script( 'tesseract-custom', get_template_directory_uri() . '/importer/js/custom.js', array( 'jquery' ) );
 	wp_enqueue_style( 'tesseract-custom', get_template_directory_uri() . '/importer/css/custom.css' );
 }
+add_action( 'admin_enqueue_scripts', 'tesseract_enqueue_custom_scripts' );
+
+/* clear the dismiss unbranding transient when logging out */
+function tesseract_clear_dismiss_transient() {
+    delete_transient( 'dismiss_unbranding' );
+}
+add_action( 'wp_logout', 'tesseract_clear_dismiss_transient' );
