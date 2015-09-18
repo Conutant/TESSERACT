@@ -21,8 +21,5 @@
 		<div class="content">
 			<?php the_excerpt(); ?>
 		</div>
-		<a class="read-more" href="<?php the_permalink(); ?>">
-			<?php _e( 'Read More &rarr;', 'tesseract' ); ?>
-		</a>
 	</div>
 </div>
