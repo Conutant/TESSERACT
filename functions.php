@@ -979,6 +979,19 @@ if(false)
   $update_checker->checkForUpdates();
 }
 
+/* check if a plugin exists in the plugins directory and if it's already active */
+function is_plugin_installed( $slug ) {
+	$plugins = get_plugins();
+
+	foreach ( $plugins as $plugin_key => $plugin_info ) {
+		if ( preg_match( "/^{$slug}\//", $plugin_key ) ) {
+			return is_plugin_active( $plugin_key );
+		}
+	}
+
+	return false;
+}
+
 function display_notice() {
 	if ( ! is_plugin_installed( 'TESSERACT-Unbranded' ) ) {
 		if ( false === ( $dismissed = get_transient( 'dismiss_unbranding' ) ) ) {
@@ -1003,11 +1016,6 @@ function dismiss_unbranding() {
 	die();
 }
 add_action( 'wp_ajax_dismiss_unbranding', 'dismiss_unbranding' );
-
-function your_function($user_login, $user) {
-    // your code
-}
-add_action( 'wp_login', 'your_function', 10, 2);
 
 /* load custom admin scripts and styles */
 function tesseract_enqueue_custom_scripts() {
