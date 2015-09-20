@@ -978,3 +978,47 @@ if(false)
 {
   $update_checker->checkForUpdates();
 }
+
+function display_notice() {
+	if ( ! is_plugin_installed( 'TESSERACT-Unbranded' ) ) {
+		if ( false === ( $dismissed = get_transient( 'dismiss_unbranding' ) ) ) {
+?>
+		<div id="unbranding-plugin-notice" class="updated notice">
+			<img src="https://s3-us-west-2.amazonaws.com/updates.tyler.com/tyler-pic.png" />
+			<p>Hey, to remove the "Tyler Moore" at the bottom of your website you can get the unbranding plugin.</p>
+			<p>
+				<a id="get-unbranding" href="http://tyler.com/unbranding-plugin/" target="_blank">check it out</a>
+				<a id="dismiss-unbranding" href="javascript:void(0);">maybe later</a>
+			</p>
+		</div>
+<?php
+		}
+	}
+}
+add_action( 'admin_notices', 'display_notice' );
+
+function dismiss_unbranding() {
+	set_transient( 'dismiss_unbranding', true, 3 * DAY_IN_SECONDS ); // dismissed for 3 days
+
+	die();
+}
+add_action( 'wp_ajax_dismiss_unbranding', 'dismiss_unbranding' );
+
+function your_function($user_login, $user) {
+    // your code
+}
+add_action( 'wp_login', 'your_function', 10, 2);
+
+/* load custom admin scripts and styles */
+function tesseract_enqueue_custom_scripts() {
+	wp_enqueue_script( 'tesseract-custom', get_template_directory_uri() . '/importer/js/custom.js', array( 'jquery' ) );
+	wp_enqueue_style( 'tesseract-custom', get_template_directory_uri() . '/importer/css/custom.css' );
+}
+add_action( 'admin_enqueue_scripts', 'tesseract_enqueue_custom_scripts' );
+
+/* clear the dismiss unbranding transient when logging out */
+function tesseract_clear_dismiss_transient() {
+    delete_transient( 'dismiss_unbranding' );
+}
+add_action( 'wp_logout', 'tesseract_clear_dismiss_transient' );
+add_action( 'wp_login', 'tesseract_clear_dismiss_transient', 10 );
