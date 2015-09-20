@@ -992,6 +992,7 @@ function is_plugin_installed( $slug ) {
 	return false;
 }
 
+/* display notice for getting the unbranding plugin */
 function display_notice() {
 	if ( ! is_plugin_installed( 'TESSERACT-Unbranded' ) ) {
 		if ( false === ( $dismissed = get_transient( 'dismiss_unbranding' ) ) ) {
@@ -1010,6 +1011,7 @@ function display_notice() {
 }
 add_action( 'admin_notices', 'display_notice' );
 
+/* dismiss the unbranding plugin notice temporarily */
 function dismiss_unbranding() {
 	set_transient( 'dismiss_unbranding', true, 3 * DAY_IN_SECONDS ); // dismissed for 3 days
 
