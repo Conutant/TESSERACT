@@ -972,7 +972,7 @@ require get_template_directory() . '/inc/beaver-builder-modules/beaver-builder-m
 require 'theme-update-checker.php';
 $update_checker = new ThemeUpdateChecker(
   'TESSERACT', // This theme folder name (must match)
-  'http://updates.tyler.com/TESSERACT/version.json'
+  'https://s3-us-west-2.amazonaws.com/updates.tyler.com/TESSERACT/version.json'
 );
 if(false)
 {
