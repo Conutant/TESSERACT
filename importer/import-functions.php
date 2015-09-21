@@ -3,8 +3,19 @@
 add_action( 'after_switch_theme', 'tesseract_do_import_packages' );
 
 function tesseract_do_import_packages() {
-	$packages = tesseract_get_packages();
-	tesseract_import_packages( $packages );
+	$doing_import = get_option( 'tesseract_doing_import', false );
+
+	if ( ! $doing_import ) {
+		try {
+			update_option( 'tesseract_doing_import', true );
+			$packages = tesseract_get_packages();
+			tesseract_import_packages( $packages );
+			delete_option( 'tesseract_doing_import' );
+		} catch ( Exception $e ) {
+			delete_option( 'tesseract_doing_import' );
+			throw $e;
+		}
+	}
 }
 
 function tesseract_import_packages( $packages ) {
@@ -46,7 +57,6 @@ function tesseract_import_packages( $packages ) {
 
 	foreach ( $packages as $package ) {
 		$slug = $package['details']['slug'];
-
 		if ( in_array( $slug, $packages_for_importing ) ) {
 			tesseract_import_package( $package );
 		} elseif ( in_array( $slug, $packages_for_updating ) ) {
