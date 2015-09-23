@@ -86,7 +86,7 @@ $headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100
 					<div id="site-banner-left-inner">
 
 						<?php if ( $logoImg || $blogname ) { ?>
-                            <div class="site-branding">
+                            <div class="site-branding <?php if ( ! display_header_text() ) { echo 'hide-header-text'; } ?>">
                                 <?php if ( $logoImg ) : ?>
                                     <h1 class="site-logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo $logoImg; ?>" alt="logo" /></a></h1>
                                 <?php else : ?>

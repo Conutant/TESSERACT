@@ -1427,6 +1427,10 @@ a:hover {
     width: 100%;
     }
 
+.site-branding.hide-header-text .site-title {
+  display: none !important;
+}
+
 /* =12. Layout
 -------------------------------------------------------------- */
 
@@ -1926,7 +1930,7 @@ figure {
 -------------------------------------------------------------- */
 
 .entry-content {
-	
+
 }
 
 .headline-resize{
