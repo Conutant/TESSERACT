@@ -2,7 +2,7 @@
 
 .site-header { background-color: rgba(0, 0, 0, 0.2); z-index: 2; }
 
-.home.fl-builder.transparent-header .site-header {
+.home.transparent-header .site-header {
 	position: absolute;
 	top: 0;
 	left: 0;

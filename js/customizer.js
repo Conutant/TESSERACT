@@ -70,7 +70,7 @@
 			}
 			$('.site-header, .site-header .cart-content-details, .main-navigation ul ul a, #header-right-menu ul ul a').css( 'background-color', result);
 
-			if ( ( $('body.home.fl-builder').length > 0 ) && ( to < 100 ) ) {
+			if ( ( $('body.home').length > 0 ) && ( to < 100 ) ) {
 				$( 'body' ).addClass( 'transparent-header' );
 			} else {
 				$( 'body' ).removeClass( 'transparent-header' );
