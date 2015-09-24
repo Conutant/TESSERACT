@@ -7,9 +7,9 @@ function tesseract_register_required_plugins() {
 		array(
 			'name'      => 'Beaver Builder',
 			'slug'      => 'beaver-builder-lite-version',
-			'required'  => true,
-			'force_activation'   => true,
-			'force_deactivation' => true,
+			'required'  => false,
+			'force_activation'   => false,
+			'force_deactivation' => false,
 		),
 	);
 
