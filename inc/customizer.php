@@ -150,10 +150,9 @@ add_action( 'customize_preview_init', 'tesseract_customize_preview_js' );
 add_action( 'customize_controls_print_footer_scripts', 'tesseract_customize_controls_script' );
 add_action( 'customize_controls_print_styles', 'tesseract_customize_controls_style' );
 
-function tesseract_is_beaver_builder_page() {
-	return class_exists( 'FLBuilderModel' ) && FLBuilderModel::is_builder_enabled();
-}
-
+/**
+ * The opacity control should only appear on the homepage
+ */
 function tesseract_show_header_opacity_control() {
-	return is_front_page() && tesseract_is_beaver_builder_page();
+	return is_front_page();
 }
