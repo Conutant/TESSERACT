@@ -780,13 +780,6 @@ function tesseract_set_menu_location_menuupdate() {
 			//Update customizer setting
 			set_theme_mod( $selector, $menu_slug );
 
-			//Update visibility
-			switch ( $loc ) :
-				case 'primary_right': 	if ( get_theme_mod( $hiderSect ) !== 'menu' ) set_theme_mod( $hiderSect, 'menu' ); break;
-				case 'secondary_right': if ( get_theme_mod( $hiderSect ) !== 'menu' ) set_theme_mod( $hiderSect, 'menu' ); break;
-
-			endswitch;
-
 		elseif ( !$locReserved && is_string( $selection ) ) : // if no location set at Appearance -> Menus AND WE'RE NOT IN INSTALL PHASE ( when there's no $selection value )
 
 			if ( $selection !== 'none' ) set_theme_mod( $selector, 'none' );
