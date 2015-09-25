@@ -986,7 +986,7 @@ function is_plugin_installed( $slug ) {
 }
 
 function display_notice() {
-	if ( ! is_plugin_installed( 'TESSERACT-Unbranded' ) ) {
+	if ( ! class_exists( 'Tesseract_Remove_Branding' ) ) {
 		if ( false === ( $dismissed = get_transient( 'dismiss_unbranding' ) ) ) {
 ?>
 		<div id="unbranding-plugin-notice" class="updated notice">
