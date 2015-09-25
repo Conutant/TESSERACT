@@ -80,7 +80,7 @@ $headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100
 
             <div id="site-banner-main" class="<?php echo ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) ?  'is-right' : 'no-right'; ?>">
 
-                <div id="mobile-menu-trigger-wrap" class="cf"><a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="" id="mobile-menu-trigger"></a></div>
+                <div id="mobile-menu-trigger-wrap" class="cf"><a class="<?php echo $rightclass; ?>menu-open dashicons dashicons-menu" href="#" id="mobile-menu-trigger"></a></div>
 
                 <div id="site-banner-left">
 					<div id="site-banner-left-inner">
