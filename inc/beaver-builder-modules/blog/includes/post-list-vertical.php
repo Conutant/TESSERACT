@@ -15,16 +15,26 @@
 				<?php the_title(); ?>
 			</a>
 		</h2>
-		<?php if ( has_post_thumbnail() ) : ?>
+		<?php if ( $settings->show_featured == 'yes' ): ?>
+			<?php if ( has_post_thumbnail() ) : ?>
 			<a href="<?php the_permalink(); ?>">
 				<div class="featured-image">
 					<?php the_post_thumbnail( 'large' ); ?>
 				</div>
 			</a>
+			<?php endif; ?>
 		<?php endif; ?>
 	</div>
 	<div class="entry">
 		<div class="content">
+			<?php
+				$permalink = get_the_permalink();
+				$more_text = $settings->excerpt_more;
+
+				add_filter( 'excerpt_more', function () use ( $permalink, $more_text ) {
+					return '<a class="moretag" href="' . $permalink . '"> ' . $more_text . '</a>';
+				}, 99 );
+			?>
 			<?php the_excerpt(); ?>
 		</div>
 	</div>

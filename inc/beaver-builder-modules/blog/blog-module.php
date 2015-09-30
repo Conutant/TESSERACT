@@ -152,7 +152,7 @@ FLBuilder::register_module( 'TesseractBlogModule', array(
 							'vertical' => __( 'Vertical', 'tesseract' ),
 						)
 					),
-/*					'show_featured' => array(
+					'show_featured' => array(
 						'type' => 'select',
 						'label' => __( 'Show featured image', 'tesseract' ),
 						'default' => 'yes',
@@ -161,7 +161,7 @@ FLBuilder::register_module( 'TesseractBlogModule', array(
 							'no' => __( 'No', 'tesseract' ),
 						)
 					),
-*/					'show_date' => array(
+					'show_date' => array(
 						'type' => 'select',
 						'label' => __( 'Show post date', 'tesseract' ),
 						'default' => 'yes',
@@ -179,12 +179,12 @@ FLBuilder::register_module( 'TesseractBlogModule', array(
 							'no' => __( 'No', 'tesseract' ),
 						)
 					),
-/*					'excerpt_more' => array(
+					'excerpt_more' => array(
 						'type' => 'text',
 						'label' => __( 'Excerpt more text', 'tesseract' ),
 						'default' => '...',
 					),
-*/				)
+				)
 			),
 		)
 	)
