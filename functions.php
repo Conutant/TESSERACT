@@ -764,8 +764,9 @@ function tesseract_set_menu_location_menuupdate() {
 	foreach( $selectorLocs as $selector => $loc ) :
 
 		$selection = get_theme_mod( $selector ); // = menu slug
+
 		//Let's see if there's a menu associated with current location (if any)
-		$locReserved = $locs[$loc] ? TRUE : FALSE;
+		$locReserved = isset( $locs[ $loc ] ) ? TRUE : FALSE;
 
 		switch ( $loc ) :
 			case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;

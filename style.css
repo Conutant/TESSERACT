@@ -2338,6 +2338,10 @@ article.comment-body{
     word-spacing: -0.29em;
     }
 
+#footer-button-container {
+		line-height: 120%;
+	}
+
 
 /* =24. Plugins
 -------------------------------------------------------------- */
