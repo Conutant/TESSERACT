@@ -17,6 +17,9 @@ function dd($obj)
  * @package Tesseract
  */
 
+/* define this unique constant to check if either Tesseract or a child theme is active */
+define( TESSERACT_ACTIVE, true );
+
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 /**
@@ -1036,59 +1039,3 @@ function disable_wp_emojicons() {
 	add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
 }
 add_action( 'init', 'disable_wp_emojicons' );
-
-function andrux( $content ) {
-	ob_start();
-	$selectorLocs = array(
-		'tesseract_header_menu_select' => 'primary',
-		'tesseract_footer_menu_select' => 'secondary',
-		'tesseract_header_right_menu_select' => 'primary_right'
-		);
-
-	//Location 'secondary_right' is available ONLY if the branding removal plugin is installed
-	if ( is_plugin_active('tesseract-remove-branding/tesseract-remove-branding.php') ) {
-		$selectorLocs = array_merge($selectorLocs, array('tesseract_footer_right_menu_select' => 'secondary_right'));
-	}
-
-	//Returns the array of locations reserved
-	$locs = get_theme_mod('nav_menu_locations');
-
-	foreach( $selectorLocs as $selector => $loc ) :
-
-		$selection = get_theme_mod( $selector ); // = menu slug
-
-		if ( $selection !== 'none' ) {
-			//Let's see if there's a menu associated with current location (if any)
-			$locReserved = ! empty( $locs[ $loc ] );
-
-			switch ( $loc ) :
-				case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;
-				case 'secondary_right': $hiderSect = 'tesseract_footer_right_content'; break;
-			endswitch;
-
-			if ( $locReserved ) :
-
-				$menu_id = $locs[ $loc ]; // $value = $array[$key]
-				$menuObject = wp_get_nav_menu_object( $menu_id );
-				$menu_slug = $menuObject->slug;
-				//Update customizer setting
-				set_theme_mod( $selector, $menu_slug );
-
-			elseif ( !$locReserved && is_string( $selection ) ) : // if no location set at Appearance -> Menus AND WE'RE NOT IN INSTALL PHASE ( when there's no $selection value )
-
-				set_theme_mod( $selector, 'none' );
-
-				//Update visibility
-				switch ( $loc ) :
-					case 'primary_right': 	if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
-					case 'secondary_right': if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
-				endswitch;
-
-			endif;
-		}
-
-	endforeach;
-
-	return ob_get_clean();
-}
-add_filter( 'the_content', 'andrux' );
