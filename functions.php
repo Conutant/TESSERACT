@@ -890,7 +890,7 @@ function tesseract_fonts_url() {
 	 * by chosen font(s), translate this to 'off'. Do not translate into your own language.
 	 */
 	if ( 'off' !== _x( 'on', 'Google font: on or off', 'tesseract' ) ) {
-		//$font_url = add_query_arg( 'family', urlencode( 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,cyrillic,latin-ext' ), "//fonts.googleapis.com/css" );
+		$font_url = add_query_arg( 'family', urlencode( 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,cyrillic,latin-ext' ), "//fonts.googleapis.com/css" );
 	}
 
 	return $font_url;
