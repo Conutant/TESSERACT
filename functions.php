@@ -766,7 +766,7 @@ function tesseract_set_menu_location_menuupdate() {
 		$selection = get_theme_mod( $selector ); // = menu slug
 
 		//Let's see if there's a menu associated with current location (if any)
-		$locReserved = isset( $locs[ $loc ] ) ? TRUE : FALSE;
+		$locReserved = ! empty( $locs[ $loc ] );
 
 		switch ( $loc ) :
 			case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;
@@ -775,7 +775,7 @@ function tesseract_set_menu_location_menuupdate() {
 
 		if ( $locReserved ) :
 
-			$menu_id = $locs[$loc]; // $value = $array[$key]
+			$menu_id = $locs[ $loc ]; // $value = $array[$key]
 			$menuObject = wp_get_nav_menu_object( $menu_id );
 			$menu_slug = $menuObject->slug;
 			//Update customizer setting
@@ -814,50 +814,37 @@ function tesseract_set_menu_location_customizerupdate() {
 	$locs = get_theme_mod('nav_menu_locations');
 
 	foreach( $selectorLocs as $selector => $loc ) :
-
 		$selection = get_theme_mod( $selector ); // = menu slug
-		//Let's see if there's a menu set to the current location in customizer
-		$custSet = is_string($selection) && ( $selection !== 'none' );
 
-		//Let's see if there's a menu associated with current location (if any)
-		$locReserved = ( $locs[$loc] ) ? TRUE : FALSE;
+		if ( $selection !== 'none' ) {
+			//Let's see if there's a menu associated with current location (if any)
+			$locReserved = ! empty( $locs[ $loc ] );
 
-		if ( $locReserved ) :
-
-			switch ( $selection ) :
-
-				// IF the saved value is 'none', update the menu id on the Menus side to zero
-				case 'none' :
-					$locs[$loc] = FALSE; //Update the ID of the menu associated with the location
-					set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
-				break;
-
-				// IN ANY OTHER CASES, update the menu id on the Menus side appropriately
-				default:
-					$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
-					$selectedMenuID = $selectedMenu->term_id;
-
-					//let's update the association in Appearance -> Menus appropriately IF the two menu ids differ.
-					$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.
-					if ( $selectedMenu !== $associatedMenuID )
-						$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location
-						set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
-
+			switch ( $loc ) :
+				case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;
+				case 'secondary_right': $hiderSect = 'tesseract_footer_right_content'; break;
 			endswitch;
 
-		else :
+			if ( $locReserved ) :
 
-			// If there's no menu associated on the Menus side, AND the customizer setting is NOT NONE
-			if ( $selection !== 'none' )
-				$selectedMenu = wp_get_nav_menu_object( $selection ); // = selected menu's ID
-				$selectedMenuID = $selectedMenu->term_id;
+				$menu_id = $locs[ $loc ]; // $value = $array[$key]
+				$menuObject = wp_get_nav_menu_object( $menu_id );
+				$menu_slug = $menuObject->slug;
+				//Update customizer setting
+				set_theme_mod( $selector, $menu_slug );
 
-				//let's update the association in Appearance -> Menus appropriately.
-				$associatedMenuID = $locs[$loc]; // $locs[$loc] returns the menu ID.
-				$locs[$loc] = $selectedMenuID; //Update the ID of the menu associated with the location
-				set_theme_mod( 'nav_menu_locations', $locs ); //Update menu location mods
+			elseif ( !$locReserved && is_string( $selection ) ) : // if no location set at Appearance -> Menus AND WE'RE NOT IN INSTALL PHASE ( when there's no $selection value )
 
-		endif;
+				set_theme_mod( $selector, 'none' );
+
+				//Update visibility
+				switch ( $loc ) :
+					case 'primary_right': 	if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+					case 'secondary_right': if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+				endswitch;
+
+			endif;
+		}
 
 	endforeach;
 
@@ -903,7 +890,7 @@ function tesseract_fonts_url() {
 	 * by chosen font(s), translate this to 'off'. Do not translate into your own language.
 	 */
 	if ( 'off' !== _x( 'on', 'Google font: on or off', 'tesseract' ) ) {
-		$font_url = add_query_arg( 'family', urlencode( 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,cyrillic,latin-ext' ), "//fonts.googleapis.com/css" );
+		//$font_url = add_query_arg( 'family', urlencode( 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,cyrillic,latin-ext' ), "//fonts.googleapis.com/css" );
 	}
 
 	return $font_url;
@@ -1024,3 +1011,84 @@ function tesseract_clear_dismiss_transient() {
 }
 add_action( 'wp_logout', 'tesseract_clear_dismiss_transient' );
 add_action( 'wp_login', 'tesseract_clear_dismiss_transient', 10 );
+
+/* remove emoji scripts */
+function disable_emojicons_tinymce( $plugins ) {
+	if ( is_array( $plugins ) ) {
+		return array_diff( $plugins, array( 'wpemoji' ) );
+	}
+	else {
+		return array();
+	}
+}
+
+function disable_wp_emojicons() {
+	// all actions related to emojis
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+
+	// filter to remove TinyMCE emojis
+	add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+}
+add_action( 'init', 'disable_wp_emojicons' );
+
+function andrux( $content ) {
+	ob_start();
+	$selectorLocs = array(
+		'tesseract_header_menu_select' => 'primary',
+		'tesseract_footer_menu_select' => 'secondary',
+		'tesseract_header_right_menu_select' => 'primary_right'
+		);
+
+	//Location 'secondary_right' is available ONLY if the branding removal plugin is installed
+	if ( is_plugin_active('tesseract-remove-branding/tesseract-remove-branding.php') ) {
+		$selectorLocs = array_merge($selectorLocs, array('tesseract_footer_right_menu_select' => 'secondary_right'));
+	}
+
+	//Returns the array of locations reserved
+	$locs = get_theme_mod('nav_menu_locations');
+
+	foreach( $selectorLocs as $selector => $loc ) :
+
+		$selection = get_theme_mod( $selector ); // = menu slug
+
+		if ( $selection !== 'none' ) {
+			//Let's see if there's a menu associated with current location (if any)
+			$locReserved = ! empty( $locs[ $loc ] );
+
+			switch ( $loc ) :
+				case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;
+				case 'secondary_right': $hiderSect = 'tesseract_footer_right_content'; break;
+			endswitch;
+
+			if ( $locReserved ) :
+
+				$menu_id = $locs[ $loc ]; // $value = $array[$key]
+				$menuObject = wp_get_nav_menu_object( $menu_id );
+				$menu_slug = $menuObject->slug;
+				//Update customizer setting
+				set_theme_mod( $selector, $menu_slug );
+
+			elseif ( !$locReserved && is_string( $selection ) ) : // if no location set at Appearance -> Menus AND WE'RE NOT IN INSTALL PHASE ( when there's no $selection value )
+
+				set_theme_mod( $selector, 'none' );
+
+				//Update visibility
+				switch ( $loc ) :
+					case 'primary_right': 	if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+					case 'secondary_right': if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+				endswitch;
+
+			endif;
+		}
+
+	endforeach;
+
+	return ob_get_clean();
+}
+add_filter( 'the_content', 'andrux' );
