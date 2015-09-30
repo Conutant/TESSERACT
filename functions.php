@@ -17,9 +17,6 @@ function dd($obj)
  * @package Tesseract
  */
 
-/* define this unique constant to check if either Tesseract or a child theme is active */
-define( TESSERACT_ACTIVE, true );
-
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 /**
