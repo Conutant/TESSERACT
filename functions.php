@@ -765,33 +765,35 @@ function tesseract_set_menu_location_menuupdate() {
 
 		$selection = get_theme_mod( $selector ); // = menu slug
 
-		//Let's see if there's a menu associated with current location (if any)
-		$locReserved = ! empty( $locs[ $loc ] );
+		if ( $selection !== 'none' ) {
+			//Let's see if there's a menu associated with current location (if any)
+			$locReserved = ! empty( $locs[ $loc ] );
 
-		switch ( $loc ) :
-			case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;
-			case 'secondary_right': $hiderSect = 'tesseract_footer_right_content'; break;
-		endswitch;
-
-		if ( $locReserved ) :
-
-			$menu_id = $locs[ $loc ]; // $value = $array[$key]
-			$menuObject = wp_get_nav_menu_object( $menu_id );
-			$menu_slug = $menuObject->slug;
-			//Update customizer setting
-			set_theme_mod( $selector, $menu_slug );
-
-		elseif ( !$locReserved && is_string( $selection ) ) : // if no location set at Appearance -> Menus AND WE'RE NOT IN INSTALL PHASE ( when there's no $selection value )
-
-			if ( $selection !== 'none' ) set_theme_mod( $selector, 'none' );
-
-			//Update visibility
 			switch ( $loc ) :
-				case 'primary_right': 	if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
-				case 'secondary_right': if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+				case 'primary_right': 	$hiderSect = 'tesseract_header_right_content'; break;
+				case 'secondary_right': $hiderSect = 'tesseract_footer_right_content'; break;
 			endswitch;
 
-		endif;
+			if ( $locReserved ) :
+
+				$menu_id = $locs[ $loc ]; // $value = $array[$key]
+				$menuObject = wp_get_nav_menu_object( $menu_id );
+				$menu_slug = $menuObject->slug;
+				//Update customizer setting
+				set_theme_mod( $selector, $menu_slug );
+
+			elseif ( !$locReserved && is_string( $selection ) ) : // if no location set at Appearance -> Menus AND WE'RE NOT IN INSTALL PHASE ( when there's no $selection value )
+
+				set_theme_mod( $selector, 'none' );
+
+				//Update visibility
+				switch ( $loc ) :
+					case 'primary_right': 	if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+					case 'secondary_right': if ( get_theme_mod( $hiderSect ) == 'menu' ) set_theme_mod( $hiderSect, 'nothing' ); break;
+				endswitch;
+
+			endif;
+		}
 
 	endforeach;
 

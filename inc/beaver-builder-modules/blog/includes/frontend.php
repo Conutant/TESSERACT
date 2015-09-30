@@ -1,7 +1,10 @@
 <?php
 
-// Get the query data. NULL because we have query-related settings yet.
-$query = FLBuilderLoop::query( NULL );
+/* copy the ids field to match the name the builder is expecting for the post__in query arg */
+$settings->{'posts_' . $settings->post_type} = $settings->ids;
+
+// Get the query data.
+$query = FLBuilderLoop::query( $settings );
 
 ?>
 <?php if( $query->have_posts() ) : ?>

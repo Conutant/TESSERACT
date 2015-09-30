@@ -6,13 +6,17 @@
 					<?php the_post_thumbnail( 'medium' ); ?>
 				</div>
 			<?php endif; ?>
+			<?php if ( $settings->show_date == 'yes' ): ?>
 			<div class="date">
 				<?php the_time( get_option( 'date_format' ) ); ?>
 			</div>
+			<?php endif; ?>
 		</a>
+		<?php if ( $settings->show_author == 'yes' ): ?>
 		<div class="author">
 			<?php the_author(); ?>
 		</div>
+		<?php endif; ?>
 	</div>
 	<div class="entry">
 		<h2 class="title">
