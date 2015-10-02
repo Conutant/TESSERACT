@@ -20,7 +20,11 @@
 		<img src="<?php echo $map_src; ?>" />
 	</div>
 <?php else: ?>
-	<?php $map_src = 'https://www.google.com/maps/embed/v1/place?key=' . GOOGLE_MAPS_API_KEY . '&q=' . urlencode( $settings->query ); ?>
+	<?php
+		$map_src = 'https://www.google.com/maps/embed/v1/place?q=' . urlencode( $settings->query );
+		$map_src .= '&zoom=' . $settings->zoom;
+		$map_src .= '&key=' . GOOGLE_MAPS_API_KEY;
+	?>
 	<div class="<?php echo $wrapper_class; ?>">
 		<iframe
 			<?php if ( $settings->fullwidth == 'no' ): ?>

@@ -40,6 +40,7 @@ FLBuilder::register_module( 'TesseractGoogleMapModule', array(
 									'width',
 									'height',
 									'float',
+									'zoom',
 									'query',
 								),
 							),
