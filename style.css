@@ -999,6 +999,21 @@ input[type="button"]:active {
 
 /* Featured */
 
+.cart-contents, .cart-contents span {
+    background: none;
+}
+
+.cart-contents-counter {
+	margin-left: 10px;
+	font-size: 10px !important;
+}
+
+.icon-shopping-cart {
+	position: absolute;
+	top: 20px;
+	font-size: 30px;
+}
+
 .primary-button,
 .woocommerce a.button.primary-button,
 .woocommerce-page a.button.primary-button {

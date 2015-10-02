@@ -499,11 +499,11 @@ function tesseract_scripts() {
 	#site-banner-right {
 		width: " . ( 100 - $headerWidthProp ) . "%;
 		}
-
 	";
 	$hcContent = get_theme_mod('tesseract_header_right_content');
 	$wooCart = get_theme_mod('tesseract_woocommerce_headercart');
 	$displayWooCart = ( is_plugin_active('woocommerce/woocommerce.php') && ( $wooCart == 1 ) );
+	$cartColor = get_theme_mod( 'tesseract_woocommerce_cartcolor') ? get_theme_mod('tesseract_woocommerce_cartcolor') : '#fff';
 	$hcContent = ( !$displayWooCart && ( $hcContent == 'nothing' ) );
 
 	if ( true == $hcContent ):
@@ -527,10 +527,15 @@ function tesseract_scripts() {
 			padding-left: 0;
 			padding-right: 0;
 		}
-
 		";
-
 	}
+
+	$dynamic_styles_header .= "
+		.icon-shopping-cart, .woocart-header .cart-arrow, .woocart-header .cart-contents {
+			color: {$cartColor};
+		}
+	";
+
 
 	wp_add_inline_style( 'tesseract-site-banner', $dynamic_styles_header );
 

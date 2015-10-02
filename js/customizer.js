@@ -415,4 +415,10 @@
 		} );
 	} );
 
+	wp.customize( 'tesseract_woocommerce_cartcolor', function( value ) {
+		value.bind( function( to ) {
+			$( '.icon-shopping-cart' ).css( 'color', to );
+		});
+	});
+
 } )( jQuery );

@@ -66,7 +66,7 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
         <a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>">
         	<span class="dashicons dashicons-arrow-down cart-arrow"></span>
             <span class="cart-contents-counter"><?php echo WC()->cart->cart_contents_count; ?></span>
-            <span class="dashicons dashicons-cart"></span>
+            <span class="icon-shopping-cart"></span>
         </a>
         <div class="cart-content-details-wrap">
             <div class="cart-content-details">
@@ -163,7 +163,7 @@ function tesseract_wc_output_cart() {
         <a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>">
         	<span class="dashicons dashicons-arrow-down cart-arrow"></span>
             <span class="cart-contents-counter"><?php echo WC()->cart->cart_contents_count; ?></span>
-            <span class="dashicons dashicons-cart"></span>
+            <span class="icon-shopping-cart"></span>
         </a>
         <div class="cart-content-details-wrap">
             <div class="cart-content-details">

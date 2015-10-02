@@ -58,8 +58,6 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 	switch( $content ) {
 
 		// Step 1 -> nothing
-		default:
-			break;
 
 		// Step 2 -> logo
 		case 'logo':
@@ -96,6 +94,7 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
 			get_search_form();
 
 			break;
+		default:
 
 	}
 
