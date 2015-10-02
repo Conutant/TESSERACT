@@ -8,8 +8,34 @@ define( 'TESSERACT_BB_MODULE_URL', get_template_directory_uri() . '/inc/beaver-b
  */
 function tesseract_load_bb_modules() {
 	if ( class_exists( 'FLBuilder' ) ) {
-	    require_once 'blog/blog-module.php';
+		$ignore_dirs = array( '.', '..', 'woocommerce' );
+
+		if ( $fh = opendir( TESSERACT_BB_MODULE_DIR ) ) {
+			while ( false !== ( $module = readdir( $fh ) ) ) {
+				if ( ! in_array( $module, $ignore_dirs ) ) {
+					if ( is_dir( TESSERACT_BB_MODULE_DIR . $module ) ) {
+						require_once "{$module}/{$module}-module.php";
+					}
+				}
+			}
+			closedir( $fh );
+		}
 	}
 }
-
 add_action( 'init', 'tesseract_load_bb_modules' );
+
+/* register new field types */
+function fl_number_field( $name, $value, $field ) {
+	echo '<input type="number" class="text text-full" name="' . $name . '" value="' . $value . '" />';
+}
+add_action( 'fl_builder_control_number', 'fl_number_field', 1, 3 );
+
+function fl_email_field( $name, $value, $field ) {
+	echo '<input type="email" class="text text-full" name="' . $name . '" value="' . $value . '" />';
+}
+add_action( 'fl_builder_control_email', 'fl_email_field', 1, 3 );
+
+function fl_checkbox_field( $name, $value, $field ) {
+	echo '<input type="checkbox" name="' . $name . '" value="' . $value . '" />';
+}
+add_action( 'fl_builder_control_checkbox', 'fl_checkbox_field', 1, 3 );

@@ -1,19 +1,19 @@
 <?php
-/*  
+/*
  * section SEARCH RESULTS
- */					 			
-			
+ */
+
    	$wp_customize->add_section( 'tesseract_search_results' , array(
     	'title'      		=> __('Search Results Page Options', 'tesseract'),
     	'priority'   		=> 2,
 		'panel' 			=> 'tesseract_layout'
-	) );						
+	) );
 
 		$wp_customize->add_setting( 'tesseract_search_results_layout', array(
 				'sanitize_callback' => 'tesseract_sanitize_select_search_results_layout_types',
 				'default' 			=> 'sidebar-left'
 		) );
-		
+
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
@@ -23,6 +23,7 @@
 						'section'       => 'tesseract_search_results',
 						'settings'      => 'tesseract_search_results_layout',
 						'type'          => 'select',
+						'default'       => 'sidebar-left',
 						'choices'		=> array(
 							'sidebar-left'  	=> 	'Left Sidebar',
 							'sidebar-right'  	=> 	'Right Sidebar',
@@ -31,13 +32,13 @@
 						'priority' 		=> 1
 					)
 				)
-			);	
-			
+			);
+
 		/*$wp_customize->add_setting( 'tesseract_blog_content', array(
 				'sanitize_callback' => 'tesseract_blog_sanitize_content',
-				'default'			=> 'excerpt'				
+				'default'			=> 'excerpt'
 		) );
-		
+
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
@@ -51,16 +52,16 @@
 							'excerpt'  	=> 'Excerpt',
 							'content' 	=> 'Full Content'
 						),
-						'priority' 		 => 1										
+						'priority' 		 => 1
 					)
 				)
 			);
 
 		$wp_customize->add_setting( 'tesseract_blog_display_featimg', array(
 				'sanitize_callback' => 'tesseract_sanitize_checkbox',
-				'default'			=> 0				
+				'default'			=> 0
 		) );
-		
+
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
@@ -70,16 +71,16 @@
 						'section'        => 'tesseract_blog',
 						'settings'       => 'tesseract_blog_display_featimg',
 						'type'           => 'checkbox',
-						'priority' 		 => 2	
+						'priority' 		 => 2
 					)
 				)
-			);	
-			
+			);
+
 		$wp_customize->add_setting( 'tesseract_blog_featimg_pos', array(
 			'sanitize_callback' => 'tesseract_blog_sanitize_featimg_pos',
 			'default' 			=> 'above'
 		) );
-		
+
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
@@ -94,16 +95,16 @@
 							'below' 	=> 'Below the post title'
 						),
 						'priority' 		 => 3,
-						'active_callback' 	=> 'tesseract_blog_featimg_sizes_enable'										
+						'active_callback' 	=> 'tesseract_blog_featimg_sizes_enable'
 					)
 				)
-			);				
-	
+			);
+
 		$wp_customize->add_setting( 'tesseract_blog_featimg_size', array(
 			'sanitize_callback' => 'tesseract_blog_sanitize_featimg_size',
 			'default' 			=> 'default'
 		) );
-		
+
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
@@ -122,15 +123,15 @@
 							'pixel' 	=> 'I use my own pixel value'
 						),
 						'priority' 		 => 4,
-						'active_callback' 	=> 'tesseract_blog_featimg_sizes_enable'										
+						'active_callback' 	=> 'tesseract_blog_featimg_sizes_enable'
 					)
 				)
-			);	
-			
+			);
+
 		$wp_customize->add_setting( 'tesseract_blog_featimg_px_size', array(
 			'sanitize_callback' => 'absint'
 		) );
-		
+
 			$wp_customize->add_control(
 				new WP_Customize_Control(
 					$wp_customize,
@@ -141,8 +142,8 @@
 						'settings'       => 'tesseract_blog_featimg_px_size',
 						'type'           => 'text',
 						'priority' 		 => 5,
-						'active_callback' 	=> 'tesseract_blog_featimg_px_size_enable'										
+						'active_callback' 	=> 'tesseract_blog_featimg_px_size_enable'
 					)
 				)
-			);*/						
-				
+			);*/
+

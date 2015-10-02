@@ -7,7 +7,25 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
+	<?php
+		$slayout = get_theme_mod('tesseract_search_results_layout');
+
+		switch ( $slayout ) {
+			case 'fullwidth':
+				$primary_class = 'full-width-page no-sidebar';
+
+				break;
+			case 'sidebar-right':
+				$primary_class = 'content-area sidebar-right';
+
+				break;
+			default:
+				// sidebar-left
+				$primary_class = 'content-area';
+		}
+	?>
+
+	<section id="primary" class="<?php echo $primary_class; ?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
@@ -41,7 +59,8 @@ get_header(); ?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
-<?php $slayout = get_theme_mod('tesseract_search_results_layout');
-if ( !$slayout || ( $slayout == 'sidebar-left' ) || ( $slayout == 'sidebar-right' ) ) get_sidebar(); ?>
+	<?php
+		if ( !$slayout || ( $slayout == 'sidebar-left' ) || ( $slayout == 'sidebar-right' ) ) get_sidebar();
+	?>
 
 <?php get_footer(); ?>

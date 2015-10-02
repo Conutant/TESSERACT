@@ -2013,7 +2013,8 @@ figure {
 .page-template-full-width-page-php #primary,
 .page-template-blog-php #primary,
 .error404 #primary,
-.single #primary { width: 100%; }
+.single #primary,
+#primary.full-width-page { width: 100%; }
 
 .page-template-page-rightsidebar #primary {
     float: left;
