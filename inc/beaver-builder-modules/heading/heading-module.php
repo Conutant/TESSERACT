@@ -41,6 +41,16 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 						'default'       => '333',
 						'show_reset'    => true,
 					),
+                    'alignment'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Alignment', 'fl-builder' ),
+						'default'       => 'left',
+						'options'    => array(
+							'left' => __( 'Left', 'fl-builder' ),
+							'right' => __( 'Right', 'fl-builder' ),
+							'center' => __( 'Center', 'fl-builder' ),
+						),
+					),
 				)
 			)
 		)
