@@ -76,7 +76,7 @@ $orderby_options = array(
 );
 
 /* get all posts */
-$posts = array( '' => 'Disabled' );
+$posts = array();
 $post_names = array_keys( $post_types );
 $all_posts = get_posts( array( 'post_type' => $post_names, 'numberposts' => -1, 'post_status' => 'publish' ) );
 
@@ -85,7 +85,7 @@ foreach ( $all_posts as $p => $obj ) {
 }
 
 /* get all authors */
-$authors = array( '' => 'Disabled' );
+$authors = array( '' => 'All' );
 $all_authors = get_users( array( 'role' => 'author' ) );
 
 foreach ( $all_authors as $k => $obj ) {
