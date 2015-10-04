@@ -25,35 +25,6 @@ FLBuilder::register_module( 'TesseractGoogleMapModule', array(
 			'display' => array(
 				'title' => __( 'Display', 'fl-builder' ),
 				'fields' => array(
-					'map_type' => array(
-						'type'      => 'select',
-						'label'     => __( 'Map Type', 'fl-builder' ),
-						'default'   => __( 'interactive', 'fl-builder' ),
-						'options'   => array(
-							'interactive' => __( 'Interactive', 'fl-builder' ),
-							'static'      => __( 'Static', 'fl-builder' ),
-						),
-						'toggle'        => array(
-							'interactive'  => array(
-								'fields'   => array(
-									'fullwidth',
-									'width',
-									'height',
-									'float',
-									'zoom',
-									'query',
-								),
-							),
-							'static'      => array(
-								'fields'   => array(
-									'width',
-									'float',
-									'zoom',
-									'query',
-								)
-							)
-						)
-					),
                     'fullwidth'     => array(
 						'type'      => 'select',
 						'label'     => __( 'Full width map?', 'fl-builder' ),
@@ -65,15 +36,14 @@ FLBuilder::register_module( 'TesseractGoogleMapModule', array(
 						'toggle'        => array(
 							'no'      => array(
 								'fields'   => array(
-									'map_type',
 									'width',
+									'height',
 									'float',
 									'query',
 								),
 							),
 							'yes'      => array(
 								'fields'   => array(
-									'map_type',
 									'height',
 									'query',
 								),
@@ -84,11 +54,13 @@ FLBuilder::register_module( 'TesseractGoogleMapModule', array(
                         'type'          => 'text',
                         'label'         => __( 'Width', 'fl-builder' ),
 						'description'   => __( 'Width in pixels', 'fl-builder' ),
+						'default'       => '600',
                     ),
                     'height'     => array(
                         'type'          => 'text',
                         'label'         => __( 'Height', 'fl-builder' ),
 						'description'   => __( 'Height in pixels', 'fl-builder' ),
+						'default'       => '400',
                     ),
 					'float' => array(
 						'type'      => 'select',
@@ -103,13 +75,14 @@ FLBuilder::register_module( 'TesseractGoogleMapModule', array(
 					'zoom' => array(
 						'type'      => 'select',
 						'label'     => __( 'Zoom Level', 'fl-builder' ),
-						'default'   => __( '14', 'fl-builder' ),
+						'default'   => '4',
 						'options'   => range( 0, 20 ),
 					),
                     'query'     => array(
                         'type'          => 'text',
                         'label'         => __( 'Search location', 'fl-builder' ),
 						'description'   => __( 'Enter an address. eg. 123 Main st, Los Angeles, CA', 'fl-builder' ),
+						'default'       => 'usa',
                     ),
 				)
 			)
