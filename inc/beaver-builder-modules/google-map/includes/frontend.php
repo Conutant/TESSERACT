@@ -1,6 +1,9 @@
 <?php
-	define( 'GOOGLE_MAPS_API_KEY', 'AIzaSyD0QR0m_hwuRygluxvK13STDnmwyNFIdCk' );
-	define( 'GOOGLE_MAPS_STATIC_API_KEY', 'AIzaSyBnar7IcYUBu--NbsfEbnV-sQpwcb0YSKs' );
+	if ( ! defined( 'GOOGLE_MAPS_API_KEY' ) )
+		define( 'GOOGLE_MAPS_API_KEY', 'AIzaSyD0QR0m_hwuRygluxvK13STDnmwyNFIdCk' );
+
+	if ( ! defined( 'GOOGLE_MAPS_STATIC_API_KEY' ) )
+		define( 'GOOGLE_MAPS_STATIC_API_KEY', 'AIzaSyBnar7IcYUBu--NbsfEbnV-sQpwcb0YSKs' );
 
 	$wrapper_class = 'map-wrapper';
 
