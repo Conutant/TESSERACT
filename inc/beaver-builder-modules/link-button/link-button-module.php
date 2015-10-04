@@ -39,7 +39,7 @@ FLBuilder::register_module( 'TesseractLinkButtonModule', array(
 						'default'       => '_blank',
 						'options'       => array(
 							'_blank'      => __( 'A new window', 'fl-builder' ),
-							'_top'      => __( 'The current window', 'fl-builder' ),
+							'_top'        => __( 'The current window', 'fl-builder' ),
 						),
                     ),
                     'text_color'     => array(
@@ -65,6 +65,64 @@ FLBuilder::register_module( 'TesseractLinkButtonModule', array(
                         'label'         => __( 'Button color on hover', 'fl-builder' ),
 						'default'       => 'fff',
 						'show_reset'    => true,
+					),
+                    'border'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Border', 'fl-builder' ),
+						'default'       => 'none',
+						'options'       => array(
+							'none' => __( 'None', 'fl-builder' ),
+							'dotted' => __( 'Dotted', 'fl-builder' ),
+							'dashed' => __( 'Dashed', 'fl-builder' ),
+							'solid' => __( 'Solid', 'fl-builder' ),
+							'double' => __( 'Double', 'fl-builder' ),
+						),
+						'toggle'       => array(
+							'dotted' => array(
+								'fields' => array(
+									'border_width',
+									'border_color',
+									'border_radius'
+								)
+							),
+							'dashed' => array(
+								'fields' => array(
+									'border_width',
+									'border_color',
+									'border_radius'
+								)
+							),
+							'solid' => array(
+								'fields' => array(
+									'border_width',
+									'border_color',
+									'border_radius'
+								)
+							),
+							'double' => array(
+								'fields' => array(
+									'border_width',
+									'border_color',
+									'border_radius'
+								)
+							),
+						),
+                    ),
+                    'border_width'     => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Border width', 'fl-builder' ),
+						'default'          => '1',
+					),
+                    'border_color'     => array(
+                        'type'          => 'color',
+                        'label'         => __( 'Border color', 'fl-builder' ),
+						'default'       => '000',
+						'show_reset'    => true,
+					),
+                    'border_radius'     => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Border radius', 'fl-builder' ),
+						'default'          => '0',
 					),
 				)
 			)
