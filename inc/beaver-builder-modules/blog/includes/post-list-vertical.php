@@ -6,7 +6,10 @@
 			<?php echo sprintf( __( 'Posted by %s', 'tesseract' ), get_the_author() ); ?>
 			<?php endif; ?>
 			<?php if ( $settings->show_date == 'yes' ): ?>
-			<?php echo sprintf( __( 'on %s' ), get_the_time( get_option( 'date_format' ) ) ); ?>
+				<?php if ( $settings->show_author == 'yes' ): ?>
+				<?php echo __( 'on', 'tesseract' ); ?>
+				<?php endif; ?>
+			<?php echo get_the_time( get_option( 'date_format' ) ); ?>
 			<?php endif; ?>
 		</div>
 		<?php endif; ?>
