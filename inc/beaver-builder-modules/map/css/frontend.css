@@ -1,0 +1,11 @@
+.fl-module-content .map-wrapper {
+	background: rgba( 255, 0, 0, .1 );
+}
+
+.fl-module-content .map-wrapper iframe {
+	max-width: 100%;
+}
+
+#fl-field-lat, #fl-field-lng {
+	display: none;
+}

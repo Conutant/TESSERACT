@@ -46,11 +46,13 @@ if ( is_search() ) {
 <body <?php body_class( $bodyClass ); ?>>
 <?php $headright_content = get_theme_mod('tesseract_header_right_content');
 $wooheader = ( get_theme_mod('tesseract_woocommerce_headercart') == 1 ) ? true : false;
+$rightclass = '';
 if ( ( $headright_content  ) && ( $headright_content !== 'nothing' ) ) {
 	$rightclass = $wooheader ? $headright_content . ' is-right is-woo ' : $headright_content . ' is-right no-woo ';
 } else if ( ( $headright_content == 'nothing' ) && $wooheader ) {
 	$rightclass = $wooheader ? $headright_content . ' no-right is-woo ' : $headright_content . ' no-right no-woo ';
 }
+
 
 $headpos = ( is_front_page() && ( $header_bckOpacity && ( intval($opValue) < 100 ) ) ) ? 'pos-absolute' : 'pos-relative';
 ?>
