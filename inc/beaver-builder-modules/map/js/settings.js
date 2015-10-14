@@ -12,17 +12,14 @@
 
 			/* calculate coordinates only if we don't have a query field entered */
 			if ( query.val().trim() === '' ) {
-				var pos = this._calculatePosition();
+				var pos = this._calculatePosition( false );
 
-				if ( pos ) {
-					form.find( 'input[name=lat]' ).attr( 'value', pos.lat );
-					form.find( 'input[name=lng]' ).attr( 'value', pos.lng );
-				}
+				builderObj._updatePosition( pos );
 			}
 
 			/* add onchange events for previewing */
-			zoom.on( 'change', this._previewMap );
-			query.on( 'change', this._previewMap );
+			zoom.on( 'change', builderObj._previewMap );
+			query.on( 'change', builderObj._previewMap );
 		},
 		_calculatePosition: function( render ) {
 			if ( navigator.geolocation ) {
@@ -47,17 +44,15 @@
 			else {
 				alert( 'Please use a browser that supports Geolocation in order for the map module to get coordinates for the address' );
 			}
-
-			return false;
 		},
 		_previewMap: function() {
 			var form = $( '.fl-builder-settings' ),
 				zoom = parseInt( form.find( 'select[name=zoom]' ).val() ),
 				query = form.find( 'input[name=query]' ).val();
 
-			var pos;
 			if ( query.trim() === '' ) {
-				pos = builderObj._calculatePosition( true );
+				var pos = builderObj._calculatePosition( true );
+				builderObj._updatePosition( pos );
 			}
 			else {
 				var geocoder = new google.maps.Geocoder();
@@ -65,9 +60,9 @@
 				geocoder.geocode({
 					address: query
 				}, function( results ) {
-					pos = {
-						lat: results[0].geometry.location.J,
-						lng: results[0].geometry.location.M
+					var pos = {
+						lat: results[0].geometry.location.lat(),
+						lng: results[0].geometry.location.lng()
 					};
 
 					builderObj._updatePosition( pos );
@@ -78,7 +73,6 @@
 					initMap( map, position, zoom );
 				});
 			}
-
 		},
 		_updatePosition: function( pos ) {
 			var form = $( '.fl-builder-settings' );
