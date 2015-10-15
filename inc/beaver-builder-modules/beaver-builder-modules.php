@@ -26,7 +26,17 @@ add_action( 'init', 'tesseract_load_bb_modules' );
 
 /* register new field types */
 function fl_number_field( $name, $value, $field ) {
-	echo '<input type="number" class="text text-full" name="' . $name . '" value="' . $value . '" />';
+	$size = isset( $field['size'] ) ? ' size="' . $field['size'] . '"' : '';
+	$maxlength = isset( $field['maxlength'] ) ? ' maxlength="' . $field['maxlength'] . '"' : '';
+	$placeholder = isset( $field['placeholder'] ) ? ' placeholder="' . $field['placeholder'] . '"' : '';
+	$class = isset( $field['class'] ) ? " {$field['class']}" : '';
+
+	if ( empty ( $size ) ) {
+		$class .= ' text-full';
+	}
+
+	echo '<input type="number" class="text' . $class . '" name="' . $name . '" value="' . htmlspecialchars( $value ) . '" '
+		. $size . $maxlength . $placeholder . ' style="width: 56px;" />';
 }
 add_action( 'fl_builder_control_number', 'fl_number_field', 1, 3 );
 
