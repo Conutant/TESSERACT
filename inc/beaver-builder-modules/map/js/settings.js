@@ -10,18 +10,16 @@
 				zoom = form.find( 'select[name=zoom]' ),
 				query = form.find( 'input[name=query]' );
 
-			/* calculate coordinates only if we don't have a query field entered */
-			if ( query.val().trim() === '' ) {
-				var pos = this._calculatePosition( false );
-
-				builderObj._updatePosition( pos );
-			}
-
 			/* add onchange events for previewing */
 			zoom.on( 'change', builderObj._previewMap );
 			query.on( 'change', builderObj._previewMap );
+
+			/* calculate coordinates only if we don't have a query field entered */
+			if ( query.val().trim() === '' ) {
+				builderObj._calculatePosition();
+			}
 		},
-		_calculatePosition: function( render ) {
+		_calculatePosition: function() {
 			if ( navigator.geolocation ) {
 				navigator.geolocation.getCurrentPosition( function( result ) {
 					var pos = {
@@ -29,21 +27,21 @@
 						lng: result.coords.longitude
 					};
 
-					if ( render ) {
-						var form = $( '.fl-builder-settings' );
-						var zoom = parseInt( form.find( 'select[name=zoom]' ).val() );
-						var position = new google.maps.LatLng( pos.lat, pos.lng );
-						var map = new google.maps.Map( document.getElementById( 'map-module-' + form.data( 'node' ) ), {scrollwheel: false} );
-
-						initMap( map, position, zoom );
-					}
-
-					return pos;
+					builderObj._updatePosition( pos );
+					builderObj._renderMap( pos );
 				});
 			}
 			else {
 				alert( 'Please use a browser that supports Geolocation in order for the map module to get coordinates for the address' );
 			}
+		},
+		_renderMap: function( pos ) {
+			var form = $( '.fl-builder-settings' );
+			var zoom = parseInt( form.find( 'select[name=zoom]' ).val() );
+			var position = new google.maps.LatLng( pos.lat, pos.lng );
+			var map = new google.maps.Map( document.getElementById( 'map-module-' + form.data( 'node' ) ), {scrollwheel: false} );
+
+			initMap( map, position, zoom );
 		},
 		_previewMap: function() {
 			var form = $( '.fl-builder-settings' ),
@@ -51,8 +49,7 @@
 				query = form.find( 'input[name=query]' ).val();
 
 			if ( query.trim() === '' ) {
-				var pos = builderObj._calculatePosition( true );
-				builderObj._updatePosition( pos );
+				builderObj._calculatePosition();
 			}
 			else {
 				var geocoder = new google.maps.Geocoder();
@@ -66,11 +63,7 @@
 					};
 
 					builderObj._updatePosition( pos );
-
-					var position = new google.maps.LatLng( pos.lat, pos.lng );
-					var map = new google.maps.Map( document.getElementById( 'map-module-' + form.data( 'node' ) ), {scrollwheel: false} );
-
-					initMap( map, position, zoom );
+					builderObj._renderMap( pos );
 				});
 			}
 		},
