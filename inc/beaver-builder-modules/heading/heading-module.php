@@ -33,7 +33,11 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 					'size'     => array(
                         'type'          => 'text',
                         'label'         => __( 'Font size', 'fl-builder' ),
-						'description'   => __( 'Size in pixels', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '24',
+						'placeholder'   => '24',
+						'maxlength'     => '4',
+						'size'          => '5'
                     ),
                     'color'     => array(
                         'type'          => 'color',
@@ -50,6 +54,59 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 							'right' => __( 'Right', 'fl-builder' ),
 							'center' => __( 'Center', 'fl-builder' ),
 						),
+					),
+				)
+			),
+			'subheadline_display' => array(
+				'title' => __( 'Subheadline', 'fl-builder' ),
+				'fields' => array(
+					'add_subheadline' => array(
+						'type' => 'select',
+						'label'   => 'Add subheadline?',
+						'default' => '',
+						'options' => array(
+							'' => 'No',
+							'yes' => 'Yes',
+						),
+						'toggle' => array(
+							'' => array(),
+							'yes' => array(
+								'fields' => array(
+									'vertical_spacing',
+									'sub_text',
+									'sub_size',
+									'sub_color',
+								)
+							)
+						)
+					),
+                    'vertical_spacing'     => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Vertical spacing with heading', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '4',
+						'placeholder'   => '4',
+						'maxlength'     => '4',
+						'size'          => '5'
+                    ),
+                    'sub_text'     => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Subheadline text', 'fl-builder' ),
+                    ),
+					'sub_size'     => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Subheadline font size', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '18',
+						'placeholder'   => '18',
+						'maxlength'     => '4',
+						'size'          => '5'
+                    ),
+                    'sub_color'     => array(
+                        'type'          => 'color',
+                        'label'         => __( 'Subheadline text color', 'fl-builder' ),
+						'default'       => '333',
+						'show_reset'    => true,
 					),
 				)
 			)

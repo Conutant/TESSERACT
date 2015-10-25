@@ -105,12 +105,13 @@ function tesseract_horizontal_footer_menu_additional_content( $content ) {
  */
 function tesseract_display_social_network_list_items() {
 	for ( $i = 1; $i <= 10; $i++ ) {
-		$sn_img = get_theme_mod( 'tesseract_social_account0' . $i . '_image' );
+		$account_number = sprintf( '%02d', $i );
+		$sn_img = get_theme_mod( "tesseract_social_account{$account_number}_image" );
 
 		// Quit early if no image is found.
 		if ( $sn_img ) {
-			$sn_name = get_theme_mod( 'tesseract_social_account0' . $i . '_name' );
-			$sn_url = get_theme_mod( 'tesseract_social_account0' . $i . '_url' );
+			$sn_name = get_theme_mod( "tesseract_social_account{$account_number}_name" );
+			$sn_url = get_theme_mod( "tesseract_social_account{$account_number}_url" );
 
 			if ( $sn_name && $sn_url ) {
 				echo '<li><a title="Follow Us on ' . $sn_name . '" href="' . $sn_url . '" target="_blank"><img src="' . $sn_img . '" width="24" height="24" alt="' . $sn_name . ' icon" /></a></li>';
