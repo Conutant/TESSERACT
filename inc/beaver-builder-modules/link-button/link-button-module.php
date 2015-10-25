@@ -18,6 +18,40 @@ class TesseractLinkButtonModule extends FLBuilderModule {
 	}
 }
 
+/* get a list of all available font awesome icons */
+$icons_file = FL_BUILDER_DIR . 'css/font-awesome.min.css';
+$parsed_file = file_get_contents( $icons_file );
+preg_match_all( '/fa\-([a-zA-z0-9\-]+[^\:\.\,\s{>])/', $parsed_file, $matches );
+$exclude_icons = array(
+	'fa-lg', 'fa-2x', 'fa-3x', 'fa-4x', 'fa-5x',
+	'fa-ul', 'fa-li', 'fa-fw', 'fa-border',
+	'fa-pulse',	'fa-rotate-90',	'fa-rotate-180', 'fa-rotate-270',
+	'fa-spin', 'fa-flip-horizontal', 'fa-flip-vertical',
+	'fa-stack', 'fa-stack-1x', 'fa-stack-2x', 'fa-inverse'
+);
+
+$fa_icon_classes = array_diff( $matches[0], $exclude_icons );
+
+$fa_icons = array();
+foreach ( $fa_icon_classes as $icon ) {
+	$fa_icons[ $icon ] = ucwords( str_replace( array( 'fa-', '-' ), array( '', ' ' ), $icon ) );
+}
+
+asort( $fa_icons );
+
+/* get a list of all available typicons */
+$icons_file = get_stylesheet_directory() . '/css/typicons.css';
+$parsed_file = file_get_contents( $icons_file );
+preg_match_all( '/typcn\-([a-zA-z0-9\-]+[^\:\.\,\s{>])/', $parsed_file, $matches );
+$typ_icon_classes = $matches[0];
+
+$typ_icons = array();
+foreach ( $typ_icon_classes as $icon ) {
+	$typ_icons[ $icon ] = ucwords( str_replace( array( 'typcn-', '-' ), array( '', ' ' ), $icon ) );
+}
+
+asort( $typ_icons );
+
 FLBuilder::register_module( 'TesseractLinkButtonModule', array(
     'tesseract-link-button'      => array(
         'title'         => __( 'General', 'fl-builder' ),
@@ -52,6 +86,80 @@ FLBuilder::register_module( 'TesseractLinkButtonModule', array(
 						),
                     ),
 				),
+			),
+			'icon-setup' => array(
+				'title' => __( 'Icon setup', 'fl-builder' ),
+				'fields' => array(
+                    'icon'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Add icon?', 'fl-builder' ),
+						'default'		=> '',
+						'options'		=> array(
+							'' => 'No',
+							'fa' => 'Font Awesome',
+							'typ' => 'Typicons',
+						),
+						'toggle'       => array(
+							'fa' => array(
+								'fields' => array(
+									'icon_position',
+									'fa_icon',
+									'fa_icon_size',
+								)
+							),
+							'typ' => array(
+								'fields' => array(
+									'icon_position',
+									'typ_icon',
+									'typ_icon_size',
+								)
+							),
+						)
+                    ),
+                    'icon_position'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Icon position', 'fl-builder' ),
+						'default'		=> 'right',
+						'options'		=> array(
+							'right'   => 'Right',
+							'left' => 'Left',
+						)
+                    ),
+                    'fa_icon'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Icon', 'fl-builder' ),
+						'default'		=> 'none',
+						'options'		=> $fa_icons,
+                    ),
+                    'fa_icon_size'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Icon size', 'fl-builder' ),
+						'default'		=> '',
+						'options'		=> array(
+							''   => 'Normal',
+							'lg' => 'Large',
+							'2x' => '2X',
+							'3x' => '3X',
+							'4x' => '4X',
+							'5x' => '5X',
+						)
+                    ),
+                    'typ_icon'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Icon', 'fl-builder' ),
+						'default'		=> 'none',
+						'options'		=> $typ_icons,
+                    ),
+                    'typ_icon_size'     => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Icon size', 'fl-builder' ),
+						'default'		=> '100',
+						'description'   => '%',
+						'placeholder'   => '100',
+						'maxlength'     => '4',
+						'size'          => '5'
+                    ),
+				)
 			),
 			'button-colors' => array(
 				'title' => __( 'Button colors', 'fl-builder' ),
