@@ -420,5 +420,4 @@
 			$( '.icon-shopping-cart' ).css( 'color', to );
 		});
 	});
-
 } )( jQuery );

@@ -113,7 +113,7 @@ function tesseract_display_social_network_list_items() {
 			$sn_url = get_theme_mod( 'tesseract_social_account0' . $i . '_url' );
 
 			if ( $sn_name && $sn_url ) {
-				echo '<li><a title="Follow Us on ' . $sn_name . '" href="' . $sn_url . '" target="_blank"><img src="' . $sn_img . '" width="24" height="24" alt="' . $sn_full . ' icon" /></a></li>';
+				echo '<li><a title="Follow Us on ' . $sn_name . '" href="' . $sn_url . '" target="_blank"><img src="' . $sn_img . '" width="24" height="24" alt="' . $sn_name . ' icon" /></a></li>';
 			}
 		}
 	}

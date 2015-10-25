@@ -2,7 +2,7 @@
 /**
  * Debug function
  */
-function dd($obj)
+function tesseract_dd($obj)
 {
   echo("<pre>");
   var_dump($obj);
