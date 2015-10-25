@@ -79,7 +79,7 @@ FLBuilder::register_module( 'TesseractLinkButtonModule', array(
                     'target'     => array(
                         'type'          => 'select',
                         'label'         => __( 'Open link in', 'fl-builder' ),
-						'default'       => '_blank',
+						'default'       => '_top',
 						'options'       => array(
 							'_blank'      => __( 'A new window', 'fl-builder' ),
 							'_top'        => __( 'The current window', 'fl-builder' ),
