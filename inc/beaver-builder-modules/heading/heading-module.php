@@ -39,6 +39,16 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 						'maxlength'     => '4',
 						'size'          => '5'
                     ),
+                    'weight'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Font weight', 'fl-builder' ),
+						'default'       => '400',
+						'options'    => array(
+							'100' => 'Light',
+							'400' => 'Normal',
+							'600' => 'Bold',
+						),
+					),
                     'color'     => array(
                         'type'          => 'color',
                         'label'         => __( 'Text color', 'fl-builder' ),
@@ -51,8 +61,8 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 						'default'       => 'left',
 						'options'    => array(
 							'left' => __( 'Left', 'fl-builder' ),
-							'right' => __( 'Right', 'fl-builder' ),
 							'center' => __( 'Center', 'fl-builder' ),
+							'right' => __( 'Right', 'fl-builder' ),
 						),
 					),
 				)
@@ -75,6 +85,7 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 									'vertical_spacing',
 									'sub_text',
 									'sub_size',
+									'sub_weight',
 									'sub_color',
 								)
 							)
@@ -102,6 +113,16 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 						'maxlength'     => '4',
 						'size'          => '5'
                     ),
+                    'sub_weight'     => array(
+                        'type'          => 'select',
+                        'label'         => __( 'Subheadline font weight', 'fl-builder' ),
+						'default'       => '400',
+						'options'    => array(
+							'100' => 'Light',
+							'400' => 'Normal',
+							'600' => 'Bold',
+						),
+					),
                     'sub_color'     => array(
                         'type'          => 'color',
                         'label'         => __( 'Subheadline text color', 'fl-builder' ),
