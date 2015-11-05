@@ -1,22 +1,39 @@
 <?php
 
-add_action( 'after_switch_theme', 'tesseract_do_import_packages' );
+function tesseract_get_packages_url() {
+	$packages_url = 'https://s3-us-west-2.amazonaws.com/updates.tyler.com/TESSERACT/packages.json';
+	$request  = wp_remote_get( $packages_url );
+	$content = wp_remote_retrieve_body( $request );
 
-function tesseract_do_import_packages() {
-	$doing_import = get_option( 'tesseract_doing_import', false );
-
-	if ( ! $doing_import ) {
-		try {
-			update_option( 'tesseract_doing_import', true );
-			$packages = tesseract_get_packages();
-			tesseract_import_packages( $packages );
-			delete_option( 'tesseract_doing_import' );
-		} catch ( Exception $e ) {
-			delete_option( 'tesseract_doing_import' );
-			throw $e;
-		}
+	if ( empty( $content ) ) {
+		return array();
 	}
+
+	$data = json_decode( $content, true );
+
+	if ( NULL === $data ) {
+		return array();
+	}
+
+	$packages_version = get_option( 'tesseract_packages_version', false );
+	$packages_version = 'x';
+	$packages = array();
+
+	if ( $packages_version != $data['version'] ) {
+		$packages = $data['data']['packages'];
+		update_option( 'tesseract_packages_version', $data['version'] );
+	}
+
+	return $packages;
 }
+
+function tesseract_content_blocks_update() {
+	$packages = tesseract_get_packages_url();
+	tesseract_import_packages( $packages );
+
+	die();
+}
+add_action( 'wp_ajax_tesseract_content_blocks_update', 'tesseract_content_blocks_update' );
 
 function tesseract_import_packages( $packages ) {
 	if ( empty( $packages ) ) {
@@ -32,7 +49,7 @@ function tesseract_import_packages( $packages ) {
 		$current_package_slugs_to_versions[$slug] = $version;
 	}
 
-	$existing_packages = tesseract_get_previously_imported_packages();
+	$existing_packages = get_option( Tesseract_Importer_Constants::$IMPORTED_PACKAGES_OPTION_NAME, array() );
 
 	// Get packages that need to be totally deleted
 	$packages_for_deletion = array();
@@ -41,6 +58,7 @@ function tesseract_import_packages( $packages ) {
 			$packages_for_deletion[] = $slug;
 		}
 	}
+	echo json_encode($current_package_slugs_to_versions);
 
 	// Get packages that need to be added/updated
 	$packages_for_importing = array();
@@ -57,16 +75,17 @@ function tesseract_import_packages( $packages ) {
 
 	foreach ( $packages as $package ) {
 		$slug = $package['details']['slug'];
-		if ( in_array( $slug, $packages_for_importing ) ) {
+		if ( ! empty( $packages_for_importing ) && in_array( $slug, $packages_for_importing ) ) {
 			tesseract_import_package( $package );
-		} elseif ( in_array( $slug, $packages_for_updating ) ) {
+		}
+		elseif ( ! empty( $packages_for_updating ) && in_array( $slug, $packages_for_updating ) ) {
 			tesseract_delete_package_with_slug( $slug );
 			tesseract_import_package( $package );
 		}
 	}
 
 	foreach ( $existing_packages as $slug => $existing_package ) {
-		if ( in_array( $slug, $packages_for_deletion ) ) {
+		if ( ! empty( $packages_for_deletion ) && in_array( $slug, $packages_for_deletion ) ) {
 			tesseract_delete_package_with_slug( $slug );
 		}
 	}
