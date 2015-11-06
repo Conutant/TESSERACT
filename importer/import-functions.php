@@ -19,6 +19,10 @@ function tesseract_get_packages_url() {
 	$packages_version = 'x';
 	$packages = array();
 
+	if ( ! isset( $data['version'] ) ) {
+		$data['version'] = 1;
+	}
+
 	if ( $packages_version != $data['version'] ) {
 		$packages = $data['data']['packages'];
 		update_option( 'tesseract_packages_version', $data['version'] );
@@ -29,7 +33,9 @@ function tesseract_get_packages_url() {
 
 function tesseract_content_blocks_update() {
 	$packages = tesseract_get_packages_url();
-	tesseract_import_packages( $packages );
+	$result = tesseract_import_packages( $packages );
+
+	echo json_encode( $result );
 
 	die();
 }
@@ -58,7 +64,6 @@ function tesseract_import_packages( $packages ) {
 			$packages_for_deletion[] = $slug;
 		}
 	}
-	echo json_encode($current_package_slugs_to_versions);
 
 	// Get packages that need to be added/updated
 	$packages_for_importing = array();
@@ -89,6 +94,15 @@ function tesseract_import_packages( $packages ) {
 			tesseract_delete_package_with_slug( $slug );
 		}
 	}
+
+	/* return some information about what we did with the packages */
+	$result = array(
+		'deleted' => count( $packages_for_deletion ),
+		'updated' => count( $packages_for_updating ),
+		'imported' => count( $packages_for_importing ),
+	);
+
+	return $result;
 }
 
 function tesseract_delete_package_with_slug( $slug ) {

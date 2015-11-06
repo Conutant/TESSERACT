@@ -4,15 +4,26 @@ if ( ! class_exists( 'FLBuilderModel' ) ) {
 	return;
 }
 
+function tesseract_enqueue_beaver_builder_scripts() {
+	if ( FLBuilderModel::is_builder_active() ) {
+		wp_enqueue_script( 'tesseract-bb-extensions', get_template_directory_uri() . '/importer/js/beaver-builder.js', array( 'jquery' ) );
+		wp_enqueue_style( 'tesseract-bb-extensions', get_template_directory_uri() . '/importer/css/beaver-builder.css' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'tesseract_enqueue_beaver_builder_scripts' );
+
 add_action( 'wp_footer', 'tesseract_add_button_to_page_builder' );
+add_action( 'wp_ajax_tesseract_add_button_to_page_builder', 'tesseract_add_button_to_page_builder' );
 
 /**
  * Adds HTML to the bottom of the Beaver Builder Page Builder interface, which is used in a
  * modal to allow content blocks to be added to the page.
  */
 function tesseract_add_button_to_page_builder() {
-	if ( ! FLBuilderModel::is_builder_active() ) {
-		return;
+	if ( ! defined( 'DOING_AJAX' ) ) {
+		if ( ! FLBuilderModel::is_builder_active() ) {
+			return;
+		}
 	}
 
 	$templates_query = new WP_Query( array(
@@ -24,6 +35,8 @@ function tesseract_add_button_to_page_builder() {
 	?>
 		<div id="tesseract-content-blocks-wrapper">
 			<div class="cancel-wrapper">
+				<span class="fl-builder-blocks-update fl-builder-button fl-builder-button-primary fl-builder-button-large pull-left"><i class="fa fa-refresh"></i></span>
+				<span class="fl-builder-blocks-update-message pull-left"></span>
 				<span class="fl-builder-cancel-button fl-builder-button fl-builder-button-primary fl-builder-button-large">Cancel</span>
 			</div>
 			<?php while ( $templates_query->have_posts() ) : $templates_query->the_post(); ?>
@@ -40,16 +53,13 @@ function tesseract_add_button_to_page_builder() {
 				</div>
 			<?php endwhile; ?>
 			<div class="cancel-wrapper">
+				<span class="fl-builder-blocks-update fl-builder-button fl-builder-button-primary fl-builder-button-large pull-left"><i class="fa fa-refresh"></i></span>
+				<span class="fl-builder-blocks-update-message pull-left"></span>
 				<span class="fl-builder-cancel-button fl-builder-button fl-builder-button-primary fl-builder-button-large">Cancel</span>
 			</div>
 		</div>
 	<?php
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			die();
+		}
 }
-
-function tesseract_enqueue_beaver_builder_scripts() {
-	if ( FLBuilderModel::is_builder_active() ) {
-		wp_enqueue_script( 'tesseract-bb-extensions', get_template_directory_uri() . '/importer/js/beaver-builder.js', array( 'jquery' ) );
-		wp_enqueue_style( 'tesseract-bb-extensions', get_template_directory_uri() . '/importer/css/beaver-builder.css' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'tesseract_enqueue_beaver_builder_scripts' );
