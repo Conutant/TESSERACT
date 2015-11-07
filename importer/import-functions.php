@@ -1,5 +1,22 @@
 <?php
 
+add_action( 'after_switch_theme', 'tesseract_do_import_packages' );
+
+function tesseract_do_import_packages() {
+	$doing_import = get_option( 'tesseract_doing_import', false );
+	if ( ! $doing_import ) {
+		try {
+			update_option( 'tesseract_doing_import', true );
+			$packages = tesseract_get_packages_url();
+			tesseract_import_packages( $packages );
+			delete_option( 'tesseract_doing_import' );
+		} catch ( Exception $e ) {
+			delete_option( 'tesseract_doing_import' );
+			throw $e;
+		}
+	}
+}
+
 function tesseract_get_packages_url() {
 	$packages_url = 'https://s3-us-west-2.amazonaws.com/updates.tyler.com/TESSERACT/packages.json';
 	$request  = wp_remote_get( $packages_url );
@@ -15,18 +32,18 @@ function tesseract_get_packages_url() {
 		return array();
 	}
 
-	$packages_version = get_option( 'tesseract_packages_version', false );
-	$packages_version = 'x';
-	$packages = array();
+	//$packages_version = get_option( 'tesseract_packages_version', false );
+	//$packages_version = 'x';
+	//$packages = array();
 
-	if ( ! isset( $data['version'] ) ) {
-		$data['version'] = 1;
-	}
+	//if ( ! isset( $data['version'] ) ) {
+	//	$data['version'] = 1;
+	//}
 
-	if ( $packages_version != $data['version'] ) {
+	//if ( $packages_version != $data['version'] ) {
 		$packages = $data['data']['packages'];
-		update_option( 'tesseract_packages_version', $data['version'] );
-	}
+		//update_option( 'tesseract_packages_version', $data['version'] );
+	//}
 
 	return $packages;
 }
