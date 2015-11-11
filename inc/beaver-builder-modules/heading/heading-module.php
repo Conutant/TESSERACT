@@ -130,6 +130,87 @@ FLBuilder::register_module( 'TesseractHeadingModule', array(
 						'show_reset'    => true,
 					),
 				)
+			),
+			'responsive_fonts' => array(
+				'title' => __( 'Responsive Font Sizes', 'fl-builder' ),
+				'fields' => array(
+					'enable_responsive_font_sizes' => array(
+						'type' => 'select',
+						'label'   => 'Enable responsive font sizes?',
+						'default' => '',
+						'options' => array(
+							'' => 'No',
+							'yes' => 'Yes',
+						),
+						'toggle' => array(
+							'' => array(),
+							'yes' => array(
+								'fields' => array(
+									'heading_md',
+									'heading_sm',
+									'heading_xs',
+									'sub_md',
+									'sub_sm',
+									'sub_xs',
+								)
+							)
+						)
+					),
+					'heading_md' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Heading medium screen', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '20',
+						'placeholder'   => '20',
+						'maxlength'     => '4',
+						'size'          => '5'
+					),
+					'heading_sm' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Heading small screen', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '16',
+						'placeholder'   => '16',
+						'maxlength'     => '4',
+						'size'          => '5'
+					),
+					'heading_xs' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Heading extra small screen', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '14',
+						'placeholder'   => '14',
+						'maxlength'     => '4',
+						'size'          => '5'
+					),
+					'sub_md' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Subheadline medium screen', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '16',
+						'placeholder'   => '16',
+						'maxlength'     => '4',
+						'size'          => '5'
+					),
+					'sub_sm' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Subheadline small screen', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '14',
+						'placeholder'   => '14',
+						'maxlength'     => '4',
+						'size'          => '5'
+					),
+					'sub_xs' => array(
+                        'type'          => 'text',
+                        'label'         => __( 'Subheadline extra small screen', 'fl-builder' ),
+						'description'   => 'px',
+						'default'       => '12',
+						'placeholder'   => '12',
+						'maxlength'     => '4',
+						'size'          => '5'
+					),
+				)
 			)
 		)
 	)
