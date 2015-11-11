@@ -152,6 +152,7 @@ add_action( 'widgets_init', 'tesseract_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tesseract_scripts() {
+	global $wp_styles;
 
 	// Enqueue default style
 	wp_enqueue_style( 'tesseract-style', get_stylesheet_uri(), array(), '1.0.0' );
@@ -161,6 +162,11 @@ function tesseract_scripts() {
 
     // Social icons style
 	wp_enqueue_style( 'tesseract-icons', get_template_directory_uri() . '/css/typicons.css', array(), '1.0.0' );
+
+	/* only enqueue font-awesome stylesheet if not already enqueued */
+	if ( array_search( 'font-awesome', $wp_styles->queue ) === false ) {
+		wp_enqueue_style( 'fontawesome-icons', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.4.0' );
+	}
 
     // Horizontal menu style
 	wp_enqueue_style( 'tesseract-site-banner', get_template_directory_uri() . '/css/site-banner.css', array('tesseract-style'), '1.0.0' );
