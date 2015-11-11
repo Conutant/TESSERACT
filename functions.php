@@ -165,7 +165,7 @@ function tesseract_scripts() {
 
 	/* only enqueue font-awesome stylesheet if not already enqueued */
 	if ( array_search( 'font-awesome', $wp_styles->queue ) === false ) {
-		wp_enqueue_style( 'fontawesome-icons', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.4.0' );
+		wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.4.0' );
 	}
 
     // Horizontal menu style
