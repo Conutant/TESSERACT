@@ -21,7 +21,7 @@
 	<?php if ( ! empty( $icon ) && $settings->icon_position === 'left' ): ?>
 	<i class="<?php echo $icon; ?>" <?php echo $icon_style; ?>></i>
 	<?php endif; ?>
-    <?php echo $settings->text; ?>
+    <span><?php echo $settings->text; ?></span>
 	<?php if ( ! empty( $icon ) && $settings->icon_position === 'right' ): ?>
 	<i class="<?php echo $icon; ?>" <?php echo $icon_style; ?>></i>
 	<?php endif; ?>

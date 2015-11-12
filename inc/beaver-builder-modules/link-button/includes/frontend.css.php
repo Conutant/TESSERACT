@@ -29,6 +29,11 @@
 		$rgb_array_hover[] = hexdec( str_repeat( substr( $hex_hover, 2, 1 ), 2 ) );
 	}
 ?>
+.fl-node-<?php echo $id; ?> .fl-module-content .button i.fa,
+.fl-node-<?php echo $id; ?> .fl-module-content .button span {
+	vertical-align: middle;
+}
+
 .fl-node-<?php echo $id; ?> .fl-module-content .button {
 	<?php if ( empty( $rgb_array ) ): ?>
     background-color: #<?php echo $settings->button_color; ?>;
