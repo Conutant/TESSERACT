@@ -19,10 +19,10 @@
 ?>
 <a class="button" href="<?php echo $settings->href; ?>" target="<?php echo $settings->target; ?>">
 	<?php if ( ! empty( $icon ) && $settings->icon_position === 'left' ): ?>
-	<i class="<?php echo $icon; ?>" <?php echo $icon_style; ?>></i>
+	<span class="<?php echo $icon; ?>" <?php echo $icon_style; ?>></span>
 	<?php endif; ?>
-    <span><?php echo $settings->text; ?></span>
+    <?php echo $settings->text; ?>
 	<?php if ( ! empty( $icon ) && $settings->icon_position === 'right' ): ?>
-	<i class="<?php echo $icon; ?>" <?php echo $icon_style; ?>></i>
+	<span class="<?php echo $icon; ?>" <?php echo $icon_style; ?>></span>
 	<?php endif; ?>
 </a>
