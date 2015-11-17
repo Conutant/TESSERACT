@@ -288,8 +288,8 @@ function tesseract_scripts() {
 
 	$mobmenu_shadowColor_option = get_theme_mod('tesseract_mobmenu_shadow_color') ? get_theme_mod('tesseract_mobmenu_shadow_color') : 'dark';
 	$mobmenu_shadowColor_option_custom = get_theme_mod('tesseract_mobmenu_shadow_color_custom') ? get_theme_mod('tesseract_mobmenu_shadow_color_custom') : 'dark';
-	switch ( $mobmenu_shadowColor_option ) {
 
+	switch ( $mobmenu_shadowColor_option ) {
 		case 'custom':
 			list($shad_r, $shad_g, $shad_b) = sscanf($mobmenu_shadowColor_option_custom, "#%02x%02x%02x");
 			break;
@@ -424,15 +424,16 @@ function tesseract_scripts() {
 		color: " . $mobmenu_buttons_linkHoverColor . ";
 	}
 
+	/*
 	.sidr ul li > a,
 	.sidr ul li > span,
-	#sidr-id-header-button-container-inner > *,
+	#header-button-container *,
 	#sidr-id-header-button-container-inner button {
 		-webkit-box-shadow: " . $mobmenu_buttons_maxbtnSepColor . ";
 		-moz-box-shadow: " . $mobmenu_buttons_maxbtnSepColor . ";
 		box-shadow: " . $mobmenu_buttons_maxbtnSepColor . ";
 	}
-
+	*/
 	";
 
 	wp_add_inline_style( 'tesseract-sidr-style', $dynamic_styles_mobmenu );
