@@ -101,7 +101,6 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
             </div>
         </div>
   	</div>
-
 	<?php
 
 	$fragments['.woocart-header'] = ob_get_clean();

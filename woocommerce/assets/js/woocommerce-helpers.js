@@ -1,17 +1,29 @@
 (function($) {
+	var smallToggle = function() {
+		if ( $( window ).width() < 768 ) {
+			$( '.woocart-header' ).each( function() {
+				$( this ).unbind();
+			});
+		}
+		else {
+			$( '.woocart-header, .cart-contents' ).unbind();
+			$( '.woocart-header' ).each( function() {
+				$( this ).on({
+					mouseenter: function() {
+						$( this ).find( '.cart-content-details-wrap' ).stop().fadeIn();
+					}, mouseleave: function() {
+						$( this ).find( '.cart-content-details-wrap' ).stop().fadeOut();
+					}
+				});
+			});
+		}
+	};
 
 	$( document ).ready( function() {
-		$( document ).on( 'click', '.woocart-header .cart-contents', function( e ) {
-			console.log($( window ).width());
-			if ( $( window ).width() >= 768 ) {
-				e.preventDefault();
+		smallToggle();
+	});
 
-				$( this ).toggle( function() {
-					$( this ).find( '.cart-content-details-wrap' ).fadeIn();
-				}, function() {
-					$( this ).find( '.cart-content-details-wrap' ).fadeOut();
-				});
-			}
-		});
+	$( window ).resize( function() {
+		smallToggle();
 	});
 })(jQuery);
