@@ -30,7 +30,7 @@
 	}
 ?>
 .fl-module-link-button-module {
-	display: inline-block;
+/*	display: inline-block;*/
 }
 
 .fl-node-<?php echo $id; ?> .fl-module-content .button {
